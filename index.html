@@ -1,1052 +1,212 @@
 <!DOCTYPE html>
-<!-- saved from url=(0045)file:///C:/Users/numan/Downloads/RGT_App.html -->
 <html lang="tr" data-theme="siyah-gri"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>RGT App</title>
 
 <style>
-/* ═══════════════════════════════════════
-   TEMALAR
-═══════════════════════════════════════ */
 :root {
-  --bg: #111110;
-  --card-bg: #1a1916;
-  --half-bg: #1f1d19;
-  --item-bg: #252318;
-  --item-done-bg: #1a1916;
-  --accent: #e8823a;
-  --accent-dim: #332e1a;
-  --text-primary: #d4cfc8;
-  --text-secondary: #888070;
-  --text-done: #484540;
-  --border: rgba(255,255,255,0.06);
-  --badge-bg: #332e1a;
-  --badge-text: #e8823a;
-  --header-text: #e8823a;
-  --plus-bg: #252318;
-  --divider: rgba(255,255,255,0.05);
-  --modal-bg: #1a1916;
-  --input-bg: #252318;
-  --input-border: rgba(255,255,255,0.1);
-  --shadow: rgba(0,0,0,0.5);
+  --bg: #111110; --card-bg: #1a1916; --half-bg: #1f1d19; --item-bg: #252318;
+  --item-done-bg: #1a1916; --accent: #e8823a; --accent-dim: #332e1a;
+  --text-primary: #d4cfc8; --text-secondary: #888070; --text-done: #484540;
+  --border: rgba(255,255,255,0.06); --badge-bg: #332e1a; --badge-text: #e8823a;
+  --header-text: #e8823a; --plus-bg: #252318; --divider: rgba(255,255,255,0.05);
+  --modal-bg: #1a1916; --input-bg: #252318; --input-border: rgba(255,255,255,0.1); --shadow: rgba(0,0,0,0.5);
 }
 [data-theme="siyah-gri"] {
-  --bg: #0a0a0a;
-  --card-bg: #141414;
-  --half-bg: #181818;
-  --item-bg: #222222;
-  --item-done-bg: #141414;
-  --accent: #bbbbbb;
-  --accent-dim: #2a2a2a;
-  --text-primary: #dddddd;
-  --text-secondary: #666666;
-  --text-done: #333333;
-  --border: rgba(255,255,255,0.05);
-  --badge-bg: #2a2a2a;
-  --badge-text: #aaaaaa;
-  --header-text: #bbbbbb;
-  --plus-bg: #222222;
-  --divider: rgba(255,255,255,0.04);
-  --modal-bg: #141414;
-  --input-bg: #222222;
-  --input-border: rgba(255,255,255,0.08);
-  --shadow: rgba(0,0,0,0.6);
+  --bg: #0a0a0a; --card-bg: #141414; --half-bg: #181818; --item-bg: #222222;
+  --item-done-bg: #141414; --accent: #bbbbbb; --accent-dim: #2a2a2a;
+  --text-primary: #dddddd; --text-secondary: #666666; --text-done: #333333;
+  --border: rgba(255,255,255,0.05); --badge-bg: #2a2a2a; --badge-text: #aaaaaa;
+  --header-text: #bbbbbb; --plus-bg: #222222; --divider: rgba(255,255,255,0.04);
+  --modal-bg: #141414; --input-bg: #222222; --input-border: rgba(255,255,255,0.08); --shadow: rgba(0,0,0,0.6);
 }
 [data-theme="siyah-sari"] {
-  --bg: #0d0d0d;
-  --card-bg: #161400;
-  --half-bg: #1a1800;
-  --item-bg: #1e1c00;
-  --item-done-bg: #161400;
-  --accent: #f5d020;
-  --accent-dim: #2e2c00;
-  --text-primary: #e8e0b0;
-  --text-secondary: #7a7040;
-  --text-done: #3a3800;
-  --border: rgba(255,220,0,0.06);
-  --badge-bg: #2e2c00;
-  --badge-text: #f5d020;
-  --header-text: #f5d020;
-  --plus-bg: #222000;
-  --divider: rgba(255,220,0,0.05);
-  --modal-bg: #161400;
-  --input-bg: #1e1c00;
-  --input-border: rgba(255,220,0,0.12);
-  --shadow: rgba(0,0,0,0.6);
+  --bg: #0d0d0d; --card-bg: #161400; --half-bg: #1a1800; --item-bg: #1e1c00;
+  --item-done-bg: #161400; --accent: #f5d020; --accent-dim: #2e2c00;
+  --text-primary: #e8e0b0; --text-secondary: #7a7040; --text-done: #3a3800;
+  --border: rgba(255,220,0,0.06); --badge-bg: #2e2c00; --badge-text: #f5d020;
+  --header-text: #f5d020; --plus-bg: #222000; --divider: rgba(255,220,0,0.05);
+  --modal-bg: #161400; --input-bg: #1e1c00; --input-border: rgba(255,220,0,0.12); --shadow: rgba(0,0,0,0.6);
 }
 [data-theme="acik-krem"] {
-  --bg: #f5f0e8;
-  --card-bg: #ffffff;
-  --half-bg: #faf8f4;
-  --item-bg: #f3efe8;
-  --item-done-bg: #faf8f4;
-  --accent: #5a5040;
-  --accent-dim: #e8e0d0;
-  --text-primary: #1a1510;
-  --text-secondary: #8a8070;
-  --text-done: #bbb0a0;
-  --border: rgba(0,0,0,0.08);
-  --badge-bg: #e8e0d0;
-  --badge-text: #5a5040;
-  --header-text: #2a2520;
-  --plus-bg: #ede8e0;
-  --divider: rgba(0,0,0,0.06);
-  --modal-bg: #ffffff;
-  --input-bg: #f3efe8;
-  --input-border: rgba(0,0,0,0.1);
-  --shadow: rgba(0,0,0,0.15);
+  --bg: #f5f0e8; --card-bg: #ffffff; --half-bg: #faf8f4; --item-bg: #f3efe8;
+  --item-done-bg: #faf8f4; --accent: #5a5040; --accent-dim: #e8e0d0;
+  --text-primary: #1a1510; --text-secondary: #8a8070; --text-done: #bbb0a0;
+  --border: rgba(0,0,0,0.08); --badge-bg: #e8e0d0; --badge-text: #5a5040;
+  --header-text: #2a2520; --plus-bg: #ede8e0; --divider: rgba(0,0,0,0.06);
+  --modal-bg: #ffffff; --input-bg: #f3efe8; --input-border: rgba(0,0,0,0.1); --shadow: rgba(0,0,0,0.15);
 }
 [data-theme="gri-beyaz"] {
-  --bg: #e8e8e8;
-  --card-bg: #f5f5f5;
-  --half-bg: #efefef;
-  --item-bg: #e8e8e8;
-  --item-done-bg: #f5f5f5;
-  --accent: #444444;
-  --accent-dim: #d8d8d8;
-  --text-primary: #111111;
-  --text-secondary: #777777;
-  --text-done: #aaaaaa;
-  --border: rgba(0,0,0,0.09);
-  --badge-bg: #d8d8d8;
-  --badge-text: #444444;
-  --header-text: #222222;
-  --plus-bg: #e0e0e0;
-  --divider: rgba(0,0,0,0.06);
-  --modal-bg: #f5f5f5;
-  --input-bg: #e8e8e8;
-  --input-border: rgba(0,0,0,0.1);
-  --shadow: rgba(0,0,0,0.15);
+  --bg: #e8e8e8; --card-bg: #f5f5f5; --half-bg: #efefef; --item-bg: #e8e8e8;
+  --item-done-bg: #f5f5f5; --accent: #444444; --accent-dim: #d8d8d8;
+  --text-primary: #111111; --text-secondary: #777777; --text-done: #aaaaaa;
+  --border: rgba(0,0,0,0.09); --badge-bg: #d8d8d8; --badge-text: #444444;
+  --header-text: #222222; --plus-bg: #e0e0e0; --divider: rgba(0,0,0,0.06);
+  --modal-bg: #f5f5f5; --input-bg: #e8e8e8; --input-border: rgba(0,0,0,0.1); --shadow: rgba(0,0,0,0.15);
 }
 [data-theme="lacivert-cyan"] {
-  --bg: #0b0f1a;
-  --card-bg: #111827;
-  --half-bg: #141e30;
-  --item-bg: #1a2640;
-  --item-done-bg: #111827;
-  --accent: #4fc3f7;
-  --accent-dim: #0d2040;
-  --text-primary: #c5d8f0;
-  --text-secondary: #4a6a90;
-  --text-done: #2a4060;
-  --border: rgba(79,195,247,0.08);
-  --badge-bg: #0d2040;
-  --badge-text: #4fc3f7;
-  --header-text: #4fc3f7;
-  --plus-bg: #1a2640;
-  --divider: rgba(79,195,247,0.05);
-  --modal-bg: #111827;
-  --input-bg: #1a2640;
-  --input-border: rgba(79,195,247,0.12);
-  --shadow: rgba(0,0,0,0.5);
+  --bg: #0b0f1a; --card-bg: #111827; --half-bg: #141e30; --item-bg: #1a2640;
+  --item-done-bg: #111827; --accent: #4fc3f7; --accent-dim: #0d2040;
+  --text-primary: #c5d8f0; --text-secondary: #4a6a90; --text-done: #2a4060;
+  --border: rgba(79,195,247,0.08); --badge-bg: #0d2040; --badge-text: #4fc3f7;
+  --header-text: #4fc3f7; --plus-bg: #1a2640; --divider: rgba(79,195,247,0.05);
+  --modal-bg: #111827; --input-bg: #1a2640; --input-border: rgba(79,195,247,0.12); --shadow: rgba(0,0,0,0.5);
 }
-
-/* ═══════════════════════════════════════
-   GENEL
-═══════════════════════════════════════ */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body {
-  height: 100%;
-  background: var(--bg);
-  color: var(--text-primary);
-  font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-  overflow: hidden;
-  user-select: none;
-}
-
-/* ═══════════════════════════════════════
-   ANA LAYOUT
-═══════════════════════════════════════ */
-#app {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  max-width: 430px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* ═══════════════════════════════════════
-   HEADER
-═══════════════════════════════════════ */
-#header {
-  padding: 16px 20px 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-#date-display {
-  display: flex;
-  flex-direction: column;
-}
-#day-name {
-  font-size: 13px;
-  color: var(--text-secondary);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-#date-full {
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
-#header-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.header-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: opacity 0.15s;
-  font-size: 16px;
-}
+html, body { height: 100%; background: var(--bg); color: var(--text-primary); font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif; overflow: hidden; user-select: none; }
+#app { height: 100vh; display: flex; flex-direction: column; max-width: 430px; margin: 0 auto; position: relative; }
+#header { padding: 16px 20px 8px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+#date-display { display: flex; flex-direction: column; }
+#day-name { font-size: 13px; color: var(--text-secondary); font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; }
+#date-full { font-size: 22px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.02em; }
+#header-actions { display: flex; gap: 8px; align-items: center; }
+.header-btn { width: 36px; height: 36px; border-radius: 10px; background: var(--item-bg); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity 0.15s; font-size: 16px; }
 .header-btn:active { opacity: 0.6; }
-
-/* ═══════════════════════════════════════
-   GÜN GEZİNME
-═══════════════════════════════════════ */
-#day-nav {
-  padding: 8px 20px;
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  flex-shrink: 0;
-}
+#day-nav { padding: 8px 20px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; flex-shrink: 0; }
 #day-nav::-webkit-scrollbar { display: none; }
-.day-chip {
-  flex-shrink: 0;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.day-chip.active {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-  font-weight: 600;
-}
+.day-chip { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--text-secondary); background: var(--item-bg); border: 0.5px solid var(--border); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.day-chip.active { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
 .day-chip:active { opacity: 0.7; }
-
-/* ═══════════════════════════════════════
-   KART ALANI - PEEK SWIPE
-═══════════════════════════════════════ */
-#cards-wrapper {
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-  padding: 0 0 16px;
-  /* Peek için: yanlarda kartın taşmasına izin veriyoruz */
-}
-/* Track'in yanlara taşması için wrapper'ın clip'ini kaldırıyoruz */
-#cards-wrapper::before,
-#cards-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 16px;
-  width: 24px;
-  z-index: 2;
-  pointer-events: none;
-}
+#cards-wrapper { flex: 1; overflow: hidden; position: relative; padding: 0 0 16px; }
+#cards-wrapper::before, #cards-wrapper::after { content: ''; position: absolute; top: 0; bottom: 16px; width: 24px; z-index: 2; pointer-events: none; }
 #cards-wrapper::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
-#cards-wrapper::after  { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
-#cards-track {
-  display: flex;
-  height: 100%;
-  transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform;
-}
-.day-card {
-  flex-shrink: 0;
-  /* Kart genişliği: ekranın %82'si, ortalanmış, yanlarda peek */
-  width: calc(100% - 64px);
-  margin: 0 8px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background: var(--card-bg);
-  border-radius: 26px;
-  border: 0.5px solid var(--border);
-  overflow: hidden;
-  transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              opacity 0.38s ease;
-}
-/* Aktif olmayan kartlar biraz küçülsün ve soluklaşsın */
-.day-card:not(.active-card) {
-  opacity: 0.55;
-  transform: scale(0.96);
-}
-
-/* ═══════════════════════════════════════
-   KART İÇİ - İKİ YARI
-═══════════════════════════════════════ */
-.card-half {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 14px 14px 10px;
-  min-height: 0;
-}
-.card-half + .card-half {
-  border-top: 0.5px solid var(--divider);
-}
-.half-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  flex-shrink: 0;
-}
-.half-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--header-text);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.add-btn {
-  width: 26px;
-  height: 26px;
-  border-radius: 8px;
-  background: var(--plus-bg);
-  border: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-  line-height: 1;
-  color: var(--accent);
-  transition: opacity 0.15s;
-}
+#cards-wrapper::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
+#cards-track { display: flex; height: 100%; transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
+.day-card { flex-shrink: 0; width: calc(100% - 64px); margin: 0 8px; height: 100%; display: flex; flex-direction: column; background: var(--card-bg); border-radius: 26px; border: 0.5px solid var(--border); overflow: hidden; transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.38s ease; }
+.day-card:not(.active-card) { opacity: 0.55; transform: scale(0.96); }
+.card-half { flex: 1; display: flex; flex-direction: column; overflow: hidden; padding: 14px 14px 10px; min-height: 0; }
+.card-half + .card-half { border-top: 0.5px solid var(--divider); }
+.half-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-shrink: 0; }
+.half-title { font-size: 12px; font-weight: 600; color: var(--header-text); letter-spacing: 0.06em; text-transform: uppercase; }
+.add-btn { width: 26px; height: 26px; border-radius: 8px; background: var(--plus-bg); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; line-height: 1; color: var(--accent); transition: opacity 0.15s; }
 .add-btn:active { opacity: 0.6; }
-
-/* ═══════════════════════════════════════
-   GÖREV LİSTESİ
-═══════════════════════════════════════ */
-.items-scroll {
-  flex: 1;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
+.items-scroll { flex: 1; overflow-y: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .items-scroll::-webkit-scrollbar { display: none; }
-
-.task-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 10px;
-  border-radius: 12px;
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  margin-bottom: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: opacity 0.2s;
-  -webkit-user-select: none;
-}
-.task-item.done {
-  background: var(--item-done-bg);
-  opacity: 0.45;
-}
-.task-item.done .task-name {
-  text-decoration: line-through;
-  color: var(--text-done);
-}
-
-.task-time {
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 9px;
-  border-radius: 8px;
-  background: var(--badge-bg);
-  color: var(--badge-text);
-  white-space: nowrap;
-  flex-shrink: 0;
-  letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
-  border: 0.5px solid var(--accent);
-  opacity: 0.95;
-}
-.task-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-primary);
-  flex: 1;
-  line-height: 1.3;
-}
-.task-detail-btn {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  background: var(--half-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  color: var(--text-secondary);
-  flex-shrink: 0;
-  border: 0.5px solid var(--border);
-}
-
-/* Swipe to complete çizgisi */
-.swipe-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: var(--accent);
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: width 0.25s ease;
-}
+.task-item { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 12px; background: var(--item-bg); border: 0.5px solid var(--border); margin-bottom: 6px; cursor: pointer; position: relative; overflow: hidden; transition: opacity 0.2s; -webkit-user-select: none; }
+.task-item.done { background: var(--item-done-bg); opacity: 0.45; }
+.task-item.done .task-name { text-decoration: line-through; color: var(--text-done); }
+.task-time { font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 8px; background: var(--badge-bg); color: var(--badge-text); white-space: nowrap; flex-shrink: 0; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; border: 0.5px solid var(--accent); opacity: 0.95; }
+.task-name { font-size: 13px; font-weight: 500; color: var(--text-primary); flex: 1; line-height: 1.3; }
+.task-detail-btn { width: 22px; height: 22px; border-radius: 6px; background: var(--half-bg); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--text-secondary); flex-shrink: 0; border: 0.5px solid var(--border); }
+.swipe-line { position: absolute; top: 50%; left: 0; width: 0; height: 1.5px; background: var(--accent); transform: translateY(-50%); pointer-events: none; transition: width 0.25s ease; }
 .task-item.swiping .swipe-line { width: 100%; }
-
-/* Peek item (tamamlananların alttan görünmesi) */
-.peek-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 10px;
-  border-radius: 10px;
-  background: var(--item-done-bg);
-  border: 0.5px solid var(--border);
-  opacity: 0.3;
-  margin-top: 4px;
-  flex-shrink: 0;
-}
-.peek-name {
-  font-size: 12px;
-  color: var(--text-done);
-  text-decoration: line-through;
-}
-
-/* ═══════════════════════════════════════
-   TAKVİM MODAL
-═══════════════════════════════════════ */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 100;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s;
-}
-.modal-overlay.open {
-  opacity: 1;
-  pointer-events: all;
-}
-.modal-sheet {
-  width: 100%;
-  max-width: 430px;
-  background: var(--modal-bg);
-  border-radius: 24px 24px 0 0;
-  padding: 20px;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: 0.5px solid var(--border);
-  border-bottom: none;
-  max-height: 85vh;
-  overflow-y: auto;
-}
-.modal-overlay.open .modal-sheet {
-  transform: translateY(0);
-}
-.modal-handle {
-  width: 36px;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--border);
-  margin: 0 auto 16px;
-}
-
-/* ═══════════════════════════════════════
-   KAYDIRMALI SAAT PİCKER
-═══════════════════════════════════════ */
-.time-picker-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin: 4px 0 16px;
-  position: relative;
-}
-.time-picker-wrap .sep {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 2px;
-}
-.drum {
-  width: 72px;
-  height: 140px;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 16px;
-  background: var(--input-bg);
-  border: 0.5px solid var(--input-border);
-  position: relative;
-}
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-sheet { width: 100%; max-width: 430px; background: var(--modal-bg); border-radius: 24px 24px 0 0; padding: 20px; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border: 0.5px solid var(--border); border-bottom: none; max-height: 85vh; overflow-y: auto; position: relative; z-index: 101; }
+.modal-overlay.open .modal-sheet { transform: translateY(0); }
+.modal-handle { width: 36px; height: 4px; border-radius: 2px; background: var(--border); margin: 0 auto 16px; }
+.modal-sheet button, .modal-sheet .add-btn, .modal-sheet .week-tab, .modal-sheet .cal-day, .modal-sheet .theme-option, .modal-sheet .time-toggle-btn, .modal-sheet .auth-tab { position: relative; z-index: 5; }
+.time-picker-wrap { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 4px 0 16px; position: relative; }
+.time-picker-wrap .sep { font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 2px; }
+.drum { width: 72px; height: 140px; overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; border-radius: 16px; background: var(--input-bg); border: 0.5px solid var(--input-border); position: relative; }
 .drum::-webkit-scrollbar { display: none; }
-.drum-item {
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  scroll-snap-align: center;
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-  transition: color 0.15s, font-size 0.15s;
-  cursor: pointer;
-}
-.drum-item.selected {
-  color: var(--accent);
-  font-size: 26px;
-}
-/* Drum üst/alt boşluk için phantom item */
-.drum-item.phantom {
-  pointer-events: none;
-}
-/* Seçim çizgileri */
-.drum::before,
-.drum::after {
-  content: '';
-  position: sticky;
-  display: block;
-  left: 0; right: 0;
-  height: 1px;
-  background: var(--accent);
-  opacity: 0.35;
-  z-index: 2;
-}
+.drum-item { height: 44px; display: flex; align-items: center; justify-content: center; scroll-snap-align: center; font-size: 22px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.02em; font-variant-numeric: tabular-nums; transition: color 0.15s, font-size 0.15s; cursor: pointer; }
+.drum-item.selected { color: var(--accent); font-size: 26px; }
+.drum-item.phantom { pointer-events: none; }
+.drum::before, .drum::after { content: ''; position: sticky; display: block; left: 0; right: 0; height: 1px; background: var(--accent); opacity: 0.35; z-index: 2; }
 .drum::before { top: 48px; }
-.drum::after  { top: 91px; }
-.time-picker-label {
-  font-size: 11px;
-  color: var(--text-secondary);
-  text-align: center;
-  margin-bottom: 4px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.time-picker-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.time-picker-section {
-  margin-bottom: 12px;
-}
-.time-picker-section-title {
-  font-size: 12px;
-  color: var(--text-secondary);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.time-toggle-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-.time-toggle-btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 12px;
-  background: var(--input-bg);
-  border: 0.5px solid var(--input-border);
-  color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 500;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: inherit;
-}
-.time-toggle-btn.active {
-  background: var(--accent-dim);
-  border-color: var(--accent);
-  color: var(--accent);
-  font-weight: 700;
-}
-.modal-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-}
-
-/* Takvim */
-.cal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-.cal-month {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-.cal-nav {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 14px;
-  color: var(--text-primary);
-}
-.cal-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-.cal-day-name {
-  text-align: center;
-  font-size: 11px;
-  color: var(--text-secondary);
-  font-weight: 500;
-  padding: 4px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.cal-day {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all 0.15s;
-}
+.drum::after { top: 91px; }
+.time-picker-label { font-size: 11px; color: var(--text-secondary); text-align: center; margin-bottom: 4px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+.time-picker-col { display: flex; flex-direction: column; align-items: center; }
+.time-toggle-btn { flex: 1; padding: 10px; border-radius: 12px; background: var(--input-bg); border: 0.5px solid var(--input-border); color: var(--text-secondary); font-size: 13px; font-weight: 500; text-align: center; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+.time-toggle-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); font-weight: 700; }
+.modal-title { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; }
+.cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.cal-month { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.cal-nav { width: 32px; height: 32px; border-radius: 8px; background: var(--item-bg); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; color: var(--text-primary); }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-day-name { text-align: center; font-size: 11px; color: var(--text-secondary); font-weight: 500; padding: 4px 0; text-transform: uppercase; letter-spacing: 0.04em; }
+.cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 13px; font-weight: 500; color: var(--text-primary); cursor: pointer; transition: all 0.15s; position: relative; }
 .cal-day:hover { background: var(--item-bg); }
 .cal-day.today { background: var(--accent-dim); color: var(--accent); }
 .cal-day.selected { background: var(--accent); color: var(--bg); font-weight: 700; }
 .cal-day.empty { pointer-events: none; }
-.cal-day.has-task::after {
-  content: '';
-  position: absolute;
-  bottom: 3px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-.cal-day { position: relative; }
-
-/* Form elemanları */
+.cal-day.has-task::after { content: ''; position: absolute; bottom: 3px; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
 .form-group { margin-bottom: 14px; }
-.form-label {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
-  display: block;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-.form-input {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: var(--input-bg);
-  border: 0.5px solid var(--input-border);
-  color: var(--text-primary);
-  font-size: 14px;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.2s;
-}
+.form-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; display: block; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; }
+.form-input { width: 100%; padding: 10px 12px; border-radius: 12px; background: var(--input-bg); border: 0.5px solid var(--input-border); color: var(--text-primary); font-size: 14px; font-family: inherit; outline: none; transition: border-color 0.2s; }
 .form-input:focus { border-color: var(--accent); }
-.time-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.btn-primary {
-  width: 100%;
-  padding: 12px;
-  border-radius: 14px;
-  background: var(--accent);
-  color: var(--bg);
-  font-size: 15px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  margin-top: 4px;
-  transition: opacity 0.15s;
-}
+.btn-primary { width: 100%; padding: 12px; border-radius: 14px; background: var(--accent); color: var(--bg); font-size: 15px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; margin-top: 4px; transition: opacity 0.15s; }
 .btn-primary:active { opacity: 0.8; }
-.btn-secondary {
-  width: 100%;
-  padding: 11px;
-  border-radius: 14px;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 14px;
-  font-weight: 500;
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  font-family: inherit;
-  margin-top: 8px;
-  transition: opacity 0.15s;
-}
+.btn-secondary { width: 100%; padding: 11px; border-radius: 14px; background: transparent; color: var(--text-secondary); font-size: 14px; font-weight: 500; border: 0.5px solid var(--border); cursor: pointer; font-family: inherit; margin-top: 8px; transition: opacity 0.15s; }
 .btn-secondary:active { opacity: 0.6; }
-
-/* Tema seçici */
-.theme-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 8px;
-}
-.theme-option {
-  border-radius: 14px;
-  padding: 12px 8px;
-  border: 1.5px solid transparent;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.2s;
-}
+.theme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+.theme-option { border-radius: 14px; padding: 12px 8px; border: 1.5px solid transparent; cursor: pointer; text-align: center; transition: all 0.2s; }
 .theme-option.active { border-color: var(--accent); }
-.theme-swatch {
-  width: 100%;
-  height: 36px;
-  border-radius: 8px;
-  margin-bottom: 6px;
-}
-.theme-name {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-/* Detay modal */
-.detail-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-}
-.btn-danger {
-  flex: 1;
-  padding: 11px;
-  border-radius: 14px;
-  background: transparent;
-  color: #e05555;
-  font-size: 14px;
-  font-weight: 500;
-  border: 0.5px solid rgba(224,85,85,0.3);
-  cursor: pointer;
-  font-family: inherit;
-  transition: opacity 0.15s;
-}
-.detail-info {
-  background: var(--item-bg);
-  border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 12px;
-}
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 0;
-  border-bottom: 0.5px solid var(--divider);
-}
+.theme-swatch { width: 100%; height: 36px; border-radius: 8px; margin-bottom: 6px; }
+.theme-name { font-size: 11px; font-weight: 500; color: var(--text-secondary); }
+.detail-actions { display: flex; gap: 8px; margin-top: 16px; }
+.btn-danger { flex: 1; padding: 11px; border-radius: 14px; background: transparent; color: #e05555; font-size: 14px; font-weight: 500; border: 0.5px solid rgba(224,85,85,0.3); cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
+.detail-info { background: var(--item-bg); border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+.detail-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 0.5px solid var(--divider); }
 .detail-row:last-child { border-bottom: none; }
 .detail-key { font-size: 13px; color: var(--text-secondary); }
 .detail-val { font-size: 13px; color: var(--text-primary); font-weight: 500; }
-
-/* Haftalık rutin düzenleme */
-.week-tabs {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 14px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
+.week-tabs { display: flex; gap: 4px; margin-bottom: 14px; overflow-x: auto; scrollbar-width: none; }
 .week-tabs::-webkit-scrollbar { display: none; }
-.week-tab {
-  flex-shrink: 0;
-  padding: 6px 12px;
-  border-radius: 10px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.week-tab.active {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-}
-
-
-/* ═══════════════════════════════════════
-   AUTH EKRANI
-═══════════════════════════════════════ */
-#auth-screen {
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 24px;
-  max-width: 430px;
-  margin: 0 auto;
-}
+.week-tab { flex-shrink: 0; padding: 6px 12px; border-radius: 10px; font-size: 12px; font-weight: 600; color: var(--text-secondary); background: var(--item-bg); border: 0.5px solid var(--border); cursor: pointer; transition: all 0.15s; }
+.week-tab.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+#auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 24px; max-width: 430px; margin: 0 auto; }
 #auth-screen.hidden { display: none; }
-.auth-logo {
-  font-size: 48px;
-  margin-bottom: 8px;
-}
-.auth-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.03em;
-  margin-bottom: 4px;
-}
-.auth-subtitle {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-bottom: 40px;
-  text-align: center;
-}
-.auth-card {
-  width: 100%;
-  background: var(--card-bg);
-  border-radius: 24px;
-  border: 0.5px solid var(--border);
-  padding: 24px;
-}
-.auth-tabs {
-  display: flex;
-  gap: 4px;
-  background: var(--item-bg);
-  border-radius: 12px;
-  padding: 4px;
-  margin-bottom: 24px;
-}
-.auth-tab {
-  flex: 1;
-  padding: 9px;
-  border-radius: 9px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.auth-tab.active {
-  background: var(--card-bg);
-  color: var(--accent);
-  border: 0.5px solid var(--border);
-}
+.auth-logo { font-size: 48px; margin-bottom: 8px; }
+.auth-title { font-size: 28px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.03em; margin-bottom: 4px; }
+.auth-subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 40px; text-align: center; }
+.auth-card { width: 100%; background: var(--card-bg); border-radius: 24px; border: 0.5px solid var(--border); padding: 24px; }
+.auth-tabs { display: flex; gap: 4px; background: var(--item-bg); border-radius: 12px; padding: 4px; margin-bottom: 24px; }
+.auth-tab { flex: 1; padding: 9px; border-radius: 9px; text-align: center; font-size: 14px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.auth-tab.active { background: var(--card-bg); color: var(--accent); border: 0.5px solid var(--border); }
 .auth-form { display: flex; flex-direction: column; gap: 12px; }
-.auth-error {
-  font-size: 13px;
-  color: #e05555;
-  text-align: center;
-  padding: 10px;
-  background: rgba(224,85,85,0.1);
-  border-radius: 10px;
-  border: 0.5px solid rgba(224,85,85,0.2);
-  display: none;
-}
+.auth-error { font-size: 13px; color: #e05555; text-align: center; padding: 10px; background: rgba(224,85,85,0.1); border-radius: 10px; border: 0.5px solid rgba(224,85,85,0.2); display: none; }
 .auth-error.show { display: block; }
-.auth-forgot {
-  font-size: 12px;
-  color: var(--accent);
-  text-align: right;
-  cursor: pointer;
-  margin-top: -4px;
-}
-.btn-google {
-  width: 100%;
-  padding: 12px;
-  border-radius: 14px;
-  background: transparent;
-  color: var(--text-primary);
-  font-size: 14px;
-  font-weight: 600;
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  font-family: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: background 0.15s;
-}
+.auth-forgot { font-size: 12px; color: var(--accent); text-align: right; cursor: pointer; margin-top: -4px; }
+.btn-google { width: 100%; padding: 12px; border-radius: 14px; background: transparent; color: var(--text-primary); font-size: 14px; font-weight: 600; border: 0.5px solid var(--border); cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background 0.15s; }
 .btn-google:active { opacity: 0.7; }
 .btn-google:hover { background: var(--item-bg); }
-.google-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-.auth-divider {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 4px 0;
-}
-.auth-divider::before,
-.auth-divider::after {
-  content: '';
-  flex: 1;
-  height: 0.5px;
-  background: var(--border);
-}
-.auth-divider span {
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-.auth-loading {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
+.google-icon { width: 20px; height: 20px; flex-shrink: 0; }
+.auth-divider { display: flex; align-items: center; gap: 10px; margin: 4px 0; }
+.auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+.auth-divider span { font-size: 12px; color: var(--text-secondary); }
+.auth-loading { display: none; align-items: center; justify-content: center; gap: 8px; padding: 12px; color: var(--text-secondary); font-size: 14px; }
 .auth-loading.show { display: flex; }
-.spinner {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
+.spinner { width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* Kullanıcı profil butonu */
-#user-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  border-radius: 10px;
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  font-size: 12px;
-  color: var(--text-secondary);
-  max-width: 120px;
-  overflow: hidden;
-}
-#user-email {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 11px;
-}
-
-.modal-sheet button, .modal-sheet .add-btn, .modal-sheet .week-tab, .modal-sheet .cal-day, .modal-sheet .theme-option, .modal-sheet .time-toggle-btn, .modal-sheet .auth-tab {
-  position: relative;
-  z-index: 5;
-}
-.modal-sheet {
-  position: relative;
-  z-index: 101;
-}
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
-  gap: 6px;
-}
-.empty-state-text {
-  font-size: 13px;
-  color: var(--text-secondary);
-}
+#user-btn { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 10px; background: var(--item-bg); border: 0.5px solid var(--border); cursor: pointer; font-size: 12px; color: var(--text-secondary); max-width: 120px; overflow: hidden; }
+#user-email { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; }
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80px; gap: 6px; }
+.empty-state-text { font-size: 13px; color: var(--text-secondary); }
+.peek-item { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 10px; background: var(--item-done-bg); border: 0.5px solid var(--border); opacity: 0.3; margin-top: 4px; flex-shrink: 0; }
+.peek-name { font-size: 12px; color: var(--text-done); text-decoration: line-through; }
 </style>
-<script src="file:///C:/Users/numan/Downloads/RGT%20App_files/firebase-app-compat.js.indir"></script>
-<script src="file:///C:/Users/numan/Downloads/RGT%20App_files/firebase-auth-compat.js.indir"></script>
-<script src="file:///C:/Users/numan/Downloads/RGT%20App_files/firebase-firestore-compat.js.indir"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
-<!-- AUTH EKRANI -->
-
 <div id="auth-screen">
   <div class="auth-logo">✓</div>
   <div class="auth-title">RGT App</div>
   <div class="auth-subtitle">Günlük rutinlerini ve görevlerini takip et</div>
   <div class="auth-card">
     <div class="auth-tabs">
-      <div class="auth-tab active" id="login-tab" onclick="switchAuthTab(&#39;login&#39;)">Giriş Yap</div>
-      <div class="auth-tab" id="register-tab" onclick="switchAuthTab(&#39;register&#39;)">Kayıt Ol</div>
+      <div class="auth-tab active" id="login-tab" onclick="switchAuthTab('login')">Giriş Yap</div>
+      <div class="auth-tab" id="register-tab" onclick="switchAuthTab('register')">Kayıt Ol</div>
     </div>
     <div class="auth-form">
       <input class="form-input" id="auth-email" type="email" placeholder="E-posta adresi" autocomplete="email">
       <input class="form-input" id="auth-password" type="password" placeholder="Şifre" autocomplete="current-password">
       <input class="form-input" id="auth-password2" type="password" placeholder="Şifre tekrar" style="display:none;" autocomplete="new-password">
       <div class="auth-forgot" id="forgot-btn" onclick="forgotPassword()">Şifremi unuttum</div>
-      <div class="auth-error show" id="auth-error">Bağlantı hatası. Sayfayı yenileyin.</div>
+      <div class="auth-error" id="auth-error"></div>
       <div class="auth-loading" id="auth-loading"><div class="spinner"></div> Lütfen bekle...</div>
-      <button class="btn-primary" id="auth-submit-btn" onclick="handleAuth()" style="display: block;">Giriş Yap</button>
+      <button class="btn-primary" id="auth-submit-btn" onclick="handleAuth()">Giriş Yap</button>
       <div class="auth-divider"><span>veya</span></div>
       <button class="btn-google" onclick="handleGoogleAuth()">
         <svg class="google-icon" viewBox="0 0 24 24">
-          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path>
-          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path>
-          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"></path>
-          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"></path>
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
         </svg>
         Google ile Giriş Yap
       </button>
@@ -1058,32 +218,21 @@ html, body {
 </div>
 
 <div id="app">
-  <!-- HEADER -->
   <div id="header">
     <div id="date-display">
       <span id="day-name"></span>
       <span id="date-full"></span>
     </div>
     <div id="header-actions">
-      <div class="header-btn" id="cal-btn" title="Takvim">📅</div>
-      <div class="header-btn" id="theme-btn" title="Tema">🎨</div>
-      <div id="user-btn" title="Hesap" onclick="openUserModal()">
-        <span>👤</span>
-        <span id="user-email">...</span>
-      </div>
+      <div class="header-btn" id="cal-btn">📅</div>
+      <div class="header-btn" id="theme-btn">🎨</div>
+      <div id="user-btn" onclick="openUserModal()"><span>👤</span><span id="user-email">...</span></div>
     </div>
   </div>
-
-  <!-- GÜN NAVİGASYON -->
   <div id="day-nav"></div>
-
-  <!-- KARTLAR -->
-  <div id="cards-wrapper">
-    <div id="cards-track"></div>
-  </div>
+  <div id="cards-wrapper"><div id="cards-track"></div></div>
 </div>
 
-<!-- TAKVİM MODAL -->
 <div class="modal-overlay" id="cal-modal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
@@ -1096,23 +245,18 @@ html, body {
   </div>
 </div>
 
-<!-- KULLANICI MODAL -->
 <div class="modal-overlay" id="user-modal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <div class="modal-title">Hesabım</div>
-    <div class="detail-info" id="user-info-box">
-      <div class="detail-row">
-        <span class="detail-key">E-posta</span>
-        <span class="detail-val" id="user-info-email">-</span>
-      </div>
+    <div class="detail-info">
+      <div class="detail-row"><span class="detail-key">E-posta</span><span class="detail-val" id="user-info-email">-</span></div>
     </div>
     <button class="btn-danger" id="logout-btn" style="width:100%;margin-top:8px;flex:none;display:block;position:relative;z-index:10;" onclick="handleLogout()">Çıkış Yap</button>
-    <button class="btn-secondary" style="position:relative;z-index:10;" onclick="closeModal(&#39;user-modal&#39;)">Kapat</button>
+    <button class="btn-secondary" style="position:relative;z-index:10;" onclick="closeModal('user-modal')">Kapat</button>
   </div>
 </div>
 
-<!-- TEMA MODAL -->
 <div class="modal-overlay" id="theme-modal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
@@ -1121,7 +265,6 @@ html, body {
   </div>
 </div>
 
-<!-- GÖREV EKLE MODAL -->
 <div class="modal-overlay" id="add-task-modal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
@@ -1133,13 +276,13 @@ html, body {
     <div class="form-group">
       <label class="form-label">Saat (isteğe bağlı)</label>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
-        <div class="time-toggle-btn active" id="task-range-btn" onclick="taskTimeToggle(&#39;range&#39;)" style="flex:1;font-size:14px;padding:11px;">Saat</div>
-        <div class="time-toggle-btn" id="task-no-time-btn" onclick="taskTimeToggle(&#39;none&#39;)" style="flex:0 0 auto;font-size:11px;padding:8px 12px;opacity:0.6;">Saat yok</div>
+        <div class="time-toggle-btn active" id="task-range-btn" onclick="taskTimeToggle('range')" style="flex:1;font-size:14px;padding:11px;">Saat</div>
+        <div class="time-toggle-btn" id="task-no-time-btn" onclick="taskTimeToggle('none')" style="flex:0 0 auto;font-size:11px;padding:8px 12px;opacity:0.6;">Saat yok</div>
       </div>
       <div id="task-time-pickers" style="display:none;">
         <div style="display:flex;gap:16px;justify-content:center;">
           <div class="time-picker-col">
-            <div class="time-picker-label" id="task-start-label">Başlangıç</div>
+            <div class="time-picker-label">Başlangıç</div>
             <div class="time-picker-wrap">
               <div class="time-picker-col"><div class="drum" id="task-hour-drum"></div></div>
               <div class="sep">:</div>
@@ -1156,8 +299,6 @@ html, body {
           </div>
         </div>
       </div>
-      <input type="hidden" id="task-time-start">
-      <input type="hidden" id="task-time-end">
     </div>
     <div class="form-group">
       <label class="form-label">Not (isteğe bağlı)</label>
@@ -1168,7 +309,6 @@ html, body {
   </div>
 </div>
 
-<!-- RUTİN DÜZENLE MODAL -->
 <div class="modal-overlay" id="edit-routine-modal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
@@ -1180,11 +320,10 @@ html, body {
   </div>
 </div>
 
-<!-- RUTİN EKLE MODAL -->
 <div class="modal-overlay" id="add-routine-modal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
-    <div class="modal-title" id="add-routine-title">Rutin Ekle</div>
+    <div class="modal-title">Rutin Ekle</div>
     <div class="form-group">
       <label class="form-label">Rutin Adı</label>
       <input class="form-input" id="routine-name-input" placeholder="Her gün ne yapıyorsun?" type="text">
@@ -1192,13 +331,13 @@ html, body {
     <div class="form-group">
       <label class="form-label">Saat (isteğe bağlı)</label>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
-        <div class="time-toggle-btn active" id="rtn-range-btn" onclick="routineTimeToggle(&#39;range&#39;)" style="flex:1;font-size:14px;padding:11px;">Saat</div>
-        <div class="time-toggle-btn" id="rtn-no-time-btn" onclick="routineTimeToggle(&#39;none&#39;)" style="flex:0 0 auto;font-size:11px;padding:8px 12px;opacity:0.6;">Saat yok</div>
+        <div class="time-toggle-btn active" id="rtn-range-btn" onclick="routineTimeToggle('range')" style="flex:1;font-size:14px;padding:11px;">Saat</div>
+        <div class="time-toggle-btn" id="rtn-no-time-btn" onclick="routineTimeToggle('none')" style="flex:0 0 auto;font-size:11px;padding:8px 12px;opacity:0.6;">Saat yok</div>
       </div>
       <div id="rtn-time-pickers" style="display:none;">
         <div style="display:flex;gap:16px;justify-content:center;">
           <div class="time-picker-col">
-            <div class="time-picker-label" id="rtn-start-label">Başlangıç</div>
+            <div class="time-picker-label">Başlangıç</div>
             <div class="time-picker-wrap">
               <div class="time-picker-col"><div class="drum" id="rtn-hour-drum"></div></div>
               <div class="sep">:</div>
@@ -1215,15 +354,12 @@ html, body {
           </div>
         </div>
       </div>
-      <input type="hidden" id="routine-time-start">
-      <input type="hidden" id="routine-time-end">
     </div>
     <button class="btn-primary" id="save-routine-btn">Kaydet</button>
     <button class="btn-secondary" id="cancel-routine-btn">Vazgeç</button>
   </div>
 </div>
 
-<!-- DETAY MODAL -->
 <div class="modal-overlay" id="detail-modal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
@@ -1238,1065 +374,156 @@ html, body {
 </div>
 
 <script>
-// ═══════════════════════════════════════
-// VERİ
-// ═══════════════════════════════════════
 const DAYS_TR = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
 const DAYS_SHORT = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
 const MONTHS_TR = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-
-// Haftalık rutin şablonu (0=Pazar...6=Cumartesi)
-let routineTemplates = JSON.parse(localStorage.getItem('routineTemplates') || 'null') || {
-  0: [], 1: [
-    {id:'r1', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-    {id:'r2', name:'Egzersiz', timeStart:'08:00', timeEnd:'09:00'},
-  ], 2: [
-    {id:'r3', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-  ], 3: [
-    {id:'r4', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-    {id:'r5', name:'Egzersiz', timeStart:'08:00', timeEnd:'09:00'},
-  ], 4: [
-    {id:'r6', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-  ], 5: [
-    {id:'r7', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-    {id:'r8', name:'Egzersiz', timeStart:'08:00', timeEnd:'09:00'},
-  ], 6: []
-};
-
-// Günlük tamamlanma durumu: { 'YYYY-MM-DD': { routineId: true, ... } }
+let routineTemplates = JSON.parse(localStorage.getItem('routineTemplates') || 'null') || {0:[],1:[{id:'r1',name:'Sabah rutini',timeStart:'07:00',timeEnd:'07:30'},{id:'r2',name:'Egzersiz',timeStart:'08:00',timeEnd:'09:00'}],2:[{id:'r3',name:'Sabah rutini',timeStart:'07:00',timeEnd:'07:30'}],3:[{id:'r4',name:'Sabah rutini',timeStart:'07:00',timeEnd:'07:30'},{id:'r5',name:'Egzersiz',timeStart:'08:00',timeEnd:'09:00'}],4:[{id:'r6',name:'Sabah rutini',timeStart:'07:00',timeEnd:'07:30'}],5:[{id:'r7',name:'Sabah rutini',timeStart:'07:00',timeEnd:'07:30'},{id:'r8',name:'Egzersiz',timeStart:'08:00',timeEnd:'09:00'}],6:[]};
 let completions = JSON.parse(localStorage.getItem('completions') || '{}');
-
-// Özel görevler: { 'YYYY-MM-DD': [{id, name, timeStart, timeEnd, note, done}] }
 let specialTasks = JSON.parse(localStorage.getItem('specialTasks') || '{}');
-
-// Tema - varsayılan siyah-gri (eski 'default' tema varsa temizle)
 let currentTheme = localStorage.getItem('theme') || 'siyah-gri';
 if (currentTheme === 'default' || !currentTheme) currentTheme = 'siyah-gri';
 localStorage.setItem('theme', currentTheme);
 document.documentElement.setAttribute('data-theme', currentTheme);
-
-const themes = [
-  { id: 'default', name: 'Siyah\nTuruncu', bg: '#111110', accent: '#e8823a' },
-  { id: 'siyah-gri', name: 'Siyah\nGri', bg: '#0a0a0a', accent: '#bbbbbb' },
-  { id: 'siyah-sari', name: 'Siyah\nSarı', bg: '#0d0d0d', accent: '#f5d020' },
-  { id: 'acik-krem', name: 'Açık\nKrem', bg: '#f5f0e8', accent: '#5a5040' },
-  { id: 'gri-beyaz', name: 'Gri\nBeyaz', bg: '#e8e8e8', accent: '#444444' },
-  { id: 'lacivert-cyan', name: 'Lacivert\nCyan', bg: '#0b0f1a', accent: '#4fc3f7' },
-];
-
-// Aktif gün indeksi (merkez = bugün)
-const today = new Date();
-today.setHours(0,0,0,0);
-let activeDayOffset = 0; // bugünden fark (gün sayısı)
-const WINDOW = 30; // her yönde 30 gün
-
-function getDateByOffset(offset) {
-  const d = new Date(today);
-  d.setDate(d.getDate() + offset);
-  return d;
+const themes = [{id:'default',name:'Siyah\nTuruncu',bg:'#111110',accent:'#e8823a'},{id:'siyah-gri',name:'Siyah\nGri',bg:'#0a0a0a',accent:'#bbbbbb'},{id:'siyah-sari',name:'Siyah\nSarı',bg:'#0d0d0d',accent:'#f5d020'},{id:'acik-krem',name:'Açık\nKrem',bg:'#f5f0e8',accent:'#5a5040'},{id:'gri-beyaz',name:'Gri\nBeyaz',bg:'#e8e8e8',accent:'#444444'},{id:'lacivert-cyan',name:'Lacivert\nCyan',bg:'#0b0f1a',accent:'#4fc3f7'}];
+const today = new Date(); today.setHours(0,0,0,0);
+let activeDayOffset = 0;
+const WINDOW = 30;
+function getDateByOffset(o){const d=new Date(today);d.setDate(d.getDate()+o);return d;}
+function dateKey(d){return d.toISOString().split('T')[0];}
+function buildCard(offset){
+  const date=getDateByOffset(offset),key=dateKey(date),dow=date.getDay();
+  const card=document.createElement('div');card.className='day-card';card.dataset.offset=offset;
+  const routines=routineTemplates[dow]||[],comp=completions[key]||{},tasks=specialTasks[key]||[];
+  const sort=items=>[...items].sort((a,b)=>a.timeStart&&b.timeStart?a.timeStart.localeCompare(b.timeStart):a.timeStart?-1:b.timeStart?1:0);
+  const rHalf=document.createElement('div');rHalf.className='card-half';
+  const rH=document.createElement('div');rH.className='half-header';rH.innerHTML='<span class="half-title">Rutinler</span>';
+  const rBtn=document.createElement('div');rBtn.className='add-btn';rBtn.textContent='+';rBtn.addEventListener('click',()=>openEditRoutineModal(dow));
+  rH.appendChild(rBtn);rHalf.appendChild(rH);
+  const rS=document.createElement('div');rS.className='items-scroll';
+  sort(routines.filter(r=>!comp[r.id])).forEach(r=>rS.appendChild(makeTaskEl(r,false,'routine',key,offset)));
+  sort(routines.filter(r=>comp[r.id])).forEach(r=>rS.appendChild(makeTaskEl(r,true,'routine',key,offset)));
+  if(!routines.length){const e=document.createElement('div');e.className='empty-state';e.innerHTML='<span class="empty-state-text">Bu gün için rutin yok</span>';rS.appendChild(e);}
+  rHalf.appendChild(rS);
+  const tHalf=document.createElement('div');tHalf.className='card-half';
+  const tH=document.createElement('div');tH.className='half-header';tH.innerHTML='<span class="half-title">Görevler</span>';
+  const tBtn=document.createElement('div');tBtn.className='add-btn';tBtn.textContent='+';tBtn.addEventListener('click',()=>openAddTaskModal(key));
+  tH.appendChild(tBtn);tHalf.appendChild(tH);
+  const tS=document.createElement('div');tS.className='items-scroll';
+  sort(tasks.filter(t=>!t.done)).forEach(t=>tS.appendChild(makeTaskEl(t,false,'task',key,offset)));
+  sort(tasks.filter(t=>t.done)).forEach(t=>tS.appendChild(makeTaskEl(t,true,'task',key,offset)));
+  if(!tasks.length){const e=document.createElement('div');e.className='empty-state';e.innerHTML='<span class="empty-state-text">Bu gün için özel görev yok</span>';tS.appendChild(e);}
+  tHalf.appendChild(tS);card.appendChild(rHalf);card.appendChild(tHalf);return card;
 }
-function dateKey(date) {
-  return date.toISOString().split('T')[0];
-}
-// saveData is defined later with cloud sync support
-
-// ═══════════════════════════════════════
-// KART RENDER
-// ═══════════════════════════════════════
-function buildCard(offset) {
-  const date = getDateByOffset(offset);
-  const key = dateKey(date);
-  const dow = date.getDay();
-
-  const card = document.createElement('div');
-  card.className = 'day-card';
-  card.dataset.offset = offset;
-
-  // Rutinler
-  const routines = routineTemplates[dow] || [];
-  const comp = completions[key] || {};
-  const tasks = specialTasks[key] || [];
-
-  // Sırala: saatli önce, saatsiz sona
-  const sortItems = (items, isDone) => {
-    return [...items].sort((a,b) => {
-      if (a.timeStart && b.timeStart) return a.timeStart.localeCompare(b.timeStart);
-      if (a.timeStart) return -1;
-      if (b.timeStart) return 1;
-      return 0;
-    });
-  };
-
-  // --- RUTİN YARISI ---
-  const rHalf = document.createElement('div');
-  rHalf.className = 'card-half';
-
-  const rHeader = document.createElement('div');
-  rHeader.className = 'half-header';
-  rHeader.innerHTML = `<span class="half-title">Rutinler</span>`;
-  const rAddBtn = document.createElement('div');
-  rAddBtn.className = 'add-btn';
-  rAddBtn.textContent = '+';
-  rAddBtn.addEventListener('click', () => openEditRoutineModal(dow));
-  rHeader.appendChild(rAddBtn);
-  rHalf.appendChild(rHeader);
-
-  const rScroll = document.createElement('div');
-  rScroll.className = 'items-scroll';
-
-  const pendingRoutines = sortItems(routines.filter(r => !comp[r.id]));
-  const doneRoutines = sortItems(routines.filter(r => comp[r.id]));
-
-  pendingRoutines.forEach(r => {
-    rScroll.appendChild(makeTaskEl(r, false, 'routine', key, offset));
-  });
-
-  if (doneRoutines.length > 0) {
-    // Tamamlananlar listenin altında soluk görünsün
-    doneRoutines.forEach(r => {
-      rScroll.appendChild(makeTaskEl(r, true, 'routine', key, offset));
-    });
-  }
-
-  if (routines.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'empty-state';
-    empty.innerHTML = `<span class="empty-state-text">Bu gün için rutin yok</span>`;
-    rScroll.appendChild(empty);
-  }
-
-  rHalf.appendChild(rScroll);
-
-  // --- GÖREV YARISI ---
-  const tHalf = document.createElement('div');
-  tHalf.className = 'card-half';
-
-  const tHeader = document.createElement('div');
-  tHeader.className = 'half-header';
-  tHeader.innerHTML = `<span class="half-title">Görevler</span>`;
-  const tAddBtn = document.createElement('div');
-  tAddBtn.className = 'add-btn';
-  tAddBtn.textContent = '+';
-  tAddBtn.addEventListener('click', () => openAddTaskModal(key));
-  tHeader.appendChild(tAddBtn);
-  tHalf.appendChild(tHeader);
-
-  const tScroll = document.createElement('div');
-  tScroll.className = 'items-scroll';
-
-  const pendingTasks = sortItems(tasks.filter(t => !t.done));
-  const doneTasks = sortItems(tasks.filter(t => t.done));
-
-  pendingTasks.forEach(t => {
-    tScroll.appendChild(makeTaskEl(t, false, 'task', key, offset));
-  });
-  doneTasks.forEach(t => {
-    tScroll.appendChild(makeTaskEl(t, true, 'task', key, offset));
-  });
-
-  if (tasks.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'empty-state';
-    empty.innerHTML = `<span class="empty-state-text">Bu gün için özel görev yok</span>`;
-    tScroll.appendChild(empty);
-  }
-
-  tHalf.appendChild(tScroll);
-
-  card.appendChild(rHalf);
-  card.appendChild(tHalf);
-  return card;
-}
-
-function makeTaskEl(item, isDone, type, dateKey, offset) {
-  const el = document.createElement('div');
-  el.className = 'task-item' + (isDone ? ' done' : '');
-  el.dataset.id = item.id;
-  el.dataset.type = type;
-
-  let timeHtml = '';
-  if (item.timeStart) {
-    const t = item.timeEnd ? `${item.timeStart} – ${item.timeEnd}` : item.timeStart;
-    timeHtml = `<span class="task-time">${t}</span>`;
-  }
-
-  el.innerHTML = `
-    ${timeHtml}
-    <span class="task-name">${item.name}</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  `;
-
-  // Detay butonu
-  el.querySelector('.task-detail-btn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    openDetailModal(item, type, dateKey, isDone);
-  });
-
-  // Swipe to complete
-  let startX = 0, startY = 0, swiping = false;
-  el.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    swiping = false;
-  }, {passive: true});
-  el.addEventListener('touchmove', e => {
-    const dx = e.touches[0].clientX - startX;
-    const dy = e.touches[0].clientY - startY;
-    if (Math.abs(dx) > Math.abs(dy) && dx > 20) {
-      swiping = true;
-      el.classList.add('swiping');
-      e.stopPropagation();
-    }
-  }, {passive: true});
-  el.addEventListener('touchend', e => {
-    if (swiping) {
-      e.stopPropagation();
-      el.classList.remove('swiping');
-      toggleDone(item, type, dateKey, offset);
-    }
-    swiping = false;
-  });
-
-  // Click to complete (masaüstü)
-  el.addEventListener('click', (e) => {
-    if (e.target.classList.contains('task-detail-btn')) return;
-    toggleDone(item, type, dateKey, offset);
-  });
-
+function makeTaskEl(item,isDone,type,dKey,offset){
+  const el=document.createElement('div');el.className='task-item'+(isDone?' done':'');el.dataset.id=item.id;
+  let th='';if(item.timeStart){const t=item.timeEnd?`${item.timeStart} – ${item.timeEnd}`:item.timeStart;th=`<span class="task-time">${t}</span>`;}
+  el.innerHTML=`${th}<span class="task-name">${item.name}</span><div class="task-detail-btn">···</div><div class="swipe-line"></div>`;
+  el.querySelector('.task-detail-btn').addEventListener('click',e=>{e.stopPropagation();openDetailModal(item,type,dKey,isDone);});
+  let sx=0,sy=0,sw=false;
+  el.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;sw=false;},{passive:true});
+  el.addEventListener('touchmove',e=>{const dx=e.touches[0].clientX-sx,dy=e.touches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy)&&dx>20){sw=true;el.classList.add('swiping');e.stopPropagation();}},{passive:true});
+  el.addEventListener('touchend',e=>{if(sw){e.stopPropagation();el.classList.remove('swiping');toggleDone(item,type,dKey,offset);}sw=false;});
+  el.addEventListener('click',e=>{if(e.target.classList.contains('task-detail-btn'))return;toggleDone(item,type,dKey,offset);});
   return el;
 }
-
-function toggleDone(item, type, dateKey, offset) {
-  if (type === 'routine') {
-    if (!completions[dateKey]) completions[dateKey] = {};
-    if (completions[dateKey][item.id]) {
-      delete completions[dateKey][item.id];
-    } else {
-      completions[dateKey][item.id] = true;
-    }
-  } else {
-    const tasks = specialTasks[dateKey] || [];
-    const t = tasks.find(t => t.id === item.id);
-    if (t) t.done = !t.done;
-    specialTasks[dateKey] = tasks;
-  }
-  saveData();
-  refreshCard(offset);
+function toggleDone(item,type,dKey,offset){
+  if(type==='routine'){if(!completions[dKey])completions[dKey]={};if(completions[dKey][item.id])delete completions[dKey][item.id];else completions[dKey][item.id]=true;}
+  else{const tasks=specialTasks[dKey]||[];const t=tasks.find(t=>t.id===item.id);if(t)t.done=!t.done;specialTasks[dKey]=tasks;}
+  saveData();refreshCard(offset);
 }
-
-function refreshCard(offset) {
-  const track = document.getElementById('cards-track');
-  const existing = track.querySelector(`[data-offset="${offset}"]`);
-  if (existing) {
-    const wasActive = existing.classList.contains('active-card');
-    const newCard = buildCard(offset);
-    if (wasActive) newCard.classList.add('active-card');
-    track.replaceChild(newCard, existing);
-  }
-  updateDayNav();
+function refreshCard(offset){const track=document.getElementById('cards-track'),ex=track.querySelector(`[data-offset="${offset}"]`);if(ex){const wa=ex.classList.contains('active-card'),nc=buildCard(offset);if(wa)nc.classList.add('active-card');track.replaceChild(nc,ex);}updateDayNav();}
+function initTrack(){const t=document.getElementById('cards-track');t.innerHTML='';for(let i=-WINDOW;i<=WINDOW;i++)t.appendChild(buildCard(i));setTrackOffset(activeDayOffset,false);}
+function getCardWidth(){return document.getElementById('cards-wrapper').offsetWidth-64+16;}
+function setTrackOffset(offset,animate=true){
+  const track=document.getElementById('cards-track'),idx=offset+WINDOW,cardW=getCardWidth(),tx=-(idx*cardW)+24;
+  if(!animate)track.style.transition='none';track.style.transform=`translateX(${tx}px)`;
+  if(!animate)setTimeout(()=>{track.style.transition='';},50);
+  track.querySelectorAll('.day-card').forEach((c,i)=>{if(i===idx)c.classList.add('active-card');else c.classList.remove('active-card');});
 }
-
-// ═══════════════════════════════════════
-// TRACK & SWIPE
-// ═══════════════════════════════════════
-function initTrack() {
-  const track = document.getElementById('cards-track');
-  track.innerHTML = '';
-  for (let i = -WINDOW; i <= WINDOW; i++) {
-    track.appendChild(buildCard(i));
-  }
-  setTrackOffset(activeDayOffset, false);
+function goToOffset(offset){activeDayOffset=offset;setTrackOffset(offset);updateHeader();updateDayNav();}
+let txS=0,tyS=0,drag=false;
+const wrapper=document.getElementById('cards-wrapper');
+wrapper.addEventListener('touchstart',e=>{txS=e.touches[0].clientX;tyS=e.touches[0].clientY;drag=false;},{passive:true});
+wrapper.addEventListener('touchmove',e=>{if(e.target.closest('.task-item'))return;const dx=e.touches[0].clientX-txS,dy=e.touches[0].clientY-tyS;if(!drag&&Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>10)drag=true;},{passive:true});
+wrapper.addEventListener('touchend',e=>{if(!drag)return;if(e.target.closest('.task-item')){drag=false;return;}const dx=e.changedTouches[0].clientX-txS;if(Math.abs(dx)>getCardWidth()*0.25){const no=activeDayOffset+(dx<0?1:-1);if(no>=-WINDOW&&no<=WINDOW)goToOffset(no);}drag=false;});
+function updateHeader(){const d=getDateByOffset(activeDayOffset);document.getElementById('day-name').textContent=DAYS_TR[d.getDay()];document.getElementById('date-full').textContent=`${d.getDate()} ${MONTHS_TR[d.getMonth()]} ${d.getFullYear()}`;}
+function updateDayNav(){const nav=document.getElementById('day-nav');nav.innerHTML='';for(let i=-3;i<=3;i++){const d=getDateByOffset(i),chip=document.createElement('div');chip.className='day-chip'+(i===activeDayOffset?' active':'');chip.textContent=i===0?'Bugün':DAYS_SHORT[d.getDay()]+' '+d.getDate();chip.addEventListener('click',()=>goToOffset(i));nav.appendChild(chip);}setTimeout(()=>{const a=nav.querySelector('.active');if(a)a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});},50);}
+let calY=today.getFullYear(),calM=today.getMonth();
+document.getElementById('cal-btn').addEventListener('click',()=>{calY=today.getFullYear();calM=today.getMonth();renderCal();openModal('cal-modal');});
+document.getElementById('cal-prev').addEventListener('click',()=>{calM--;if(calM<0){calM=11;calY--;}renderCal();});
+document.getElementById('cal-next').addEventListener('click',()=>{calM++;if(calM>11){calM=0;calY++;}renderCal();});
+function renderCal(){
+  document.getElementById('cal-month-label').textContent=`${MONTHS_TR[calM]} ${calY}`;
+  const grid=document.getElementById('cal-grid');grid.innerHTML='';
+  ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'].forEach(d=>{const e=document.createElement('div');e.className='cal-day-name';e.textContent=d;grid.appendChild(e);});
+  const first=new Date(calY,calM,1);let sd=first.getDay();sd=sd===0?6:sd-1;
+  for(let i=0;i<sd;i++){const e=document.createElement('div');e.className='cal-day empty';grid.appendChild(e);}
+  const dim=new Date(calY,calM+1,0).getDate();
+  for(let d=1;d<=dim;d++){const el=document.createElement('div');el.className='cal-day';el.textContent=d;const td=new Date(calY,calM,d);td.setHours(0,0,0,0);const key=dateKey(td),diff=Math.round((td-today)/86400000);if(td.getTime()===today.getTime())el.classList.add('today');if(diff===activeDayOffset)el.classList.add('selected');if(specialTasks[key]&&specialTasks[key].length)el.classList.add('has-task');el.addEventListener('click',()=>{if(diff>=-WINDOW&&diff<=WINDOW){goToOffset(diff);closeModal('cal-modal');}});grid.appendChild(el);}
 }
-
-function getCardWidth() {
-  const wrapper = document.getElementById('cards-wrapper');
-  return wrapper.offsetWidth - 64 + 16; // kart genişliği: wrapper - peek padding + margins
-}
-
-function setTrackOffset(offset, animate = true) {
-  const track = document.getElementById('cards-track');
-  const idx = offset + WINDOW;
-  const cardW = getCardWidth();
-  // Kartları ortala: sol peek 24px
-  const translateX = -(idx * cardW) + 24;
-  if (!animate) track.style.transition = 'none';
-  track.style.transform = `translateX(${translateX}px)`;
-  if (!animate) setTimeout(() => { track.style.transition = ''; }, 50);
-
-  // Aktif kart vurgusu
-  track.querySelectorAll('.day-card').forEach((c, i) => {
-    if (i === idx) c.classList.add('active-card');
-    else c.classList.remove('active-card');
-  });
-}
-
-function goToOffset(offset) {
-  activeDayOffset = offset;
-  setTrackOffset(offset);
-  updateHeader();
-  updateDayNav();
-}
-
-// Touch swipe
-let touchStartX = 0, touchStartY = 0, isDragging = false;
-const wrapper = document.getElementById('cards-wrapper');
-
-wrapper.addEventListener('touchstart', e => {
-  touchStartX = e.touches[0].clientX;
-  touchStartY = e.touches[0].clientY;
-  isDragging = false;
-}, {passive: true});
-
-wrapper.addEventListener('touchmove', e => {
-  if (e.target.closest('.task-item')) return;
-  const dx = e.touches[0].clientX - touchStartX;
-  const dy = e.touches[0].clientY - touchStartY;
-  if (!isDragging && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
-    isDragging = true;
-  }
-}, {passive: true});
-
-wrapper.addEventListener('touchend', e => {
-  if (!isDragging) return;
-  if (e.target.closest('.task-item')) { isDragging = false; return; }
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  const threshold = getCardWidth() * 0.25;
-  if (Math.abs(dx) > threshold) {
-    const newOffset = activeDayOffset + (dx < 0 ? 1 : -1);
-    if (newOffset >= -WINDOW && newOffset <= WINDOW) goToOffset(newOffset);
-  }
-  isDragging = false;
-});
-
-// ═══════════════════════════════════════
-// HEADER & NAV
-// ═══════════════════════════════════════
-function updateHeader() {
-  const date = getDateByOffset(activeDayOffset);
-  document.getElementById('day-name').textContent = DAYS_TR[date.getDay()];
-  document.getElementById('date-full').textContent =
-    `${date.getDate()} ${MONTHS_TR[date.getMonth()]} ${date.getFullYear()}`;
-}
-
-function updateDayNav() {
-  const nav = document.getElementById('day-nav');
-  nav.innerHTML = '';
-  for (let i = -3; i <= 3; i++) {
-    const d = getDateByOffset(i);
-    const chip = document.createElement('div');
-    chip.className = 'day-chip' + (i === activeDayOffset ? ' active' : '');
-    chip.textContent = i === 0 ? 'Bugün' : DAYS_SHORT[d.getDay()] + ' ' + d.getDate();
-    chip.addEventListener('click', () => goToOffset(i));
-    nav.appendChild(chip);
-  }
-  // Scroll aktif chip'e
-  setTimeout(() => {
-    const active = nav.querySelector('.active');
-    if (active) active.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
-  }, 50);
-}
-
-// ═══════════════════════════════════════
-// TAKVİM
-// ═══════════════════════════════════════
-let calViewYear = today.getFullYear();
-let calViewMonth = today.getMonth();
-
-document.getElementById('cal-btn').addEventListener('click', () => {
-  calViewYear = today.getFullYear();
-  calViewMonth = today.getMonth();
-  renderCal();
-  openModal('cal-modal');
-});
-document.getElementById('cal-prev').addEventListener('click', () => {
-  calViewMonth--;
-  if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; }
-  renderCal();
-});
-document.getElementById('cal-next').addEventListener('click', () => {
-  calViewMonth++;
-  if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; }
-  renderCal();
-});
-
-function renderCal() {
-  document.getElementById('cal-month-label').textContent =
-    `${MONTHS_TR[calViewMonth]} ${calViewYear}`;
-  const grid = document.getElementById('cal-grid');
-  grid.innerHTML = '';
-  const dayNames = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
-  dayNames.forEach(d => {
-    const el = document.createElement('div');
-    el.className = 'cal-day-name';
-    el.textContent = d;
-    grid.appendChild(el);
-  });
-  const first = new Date(calViewYear, calViewMonth, 1);
-  let startDow = first.getDay(); // 0=Sun
-  startDow = startDow === 0 ? 6 : startDow - 1; // Mon=0
-  for (let i = 0; i < startDow; i++) {
-    const el = document.createElement('div');
-    el.className = 'cal-day empty';
-    grid.appendChild(el);
-  }
-  const daysInMonth = new Date(calViewYear, calViewMonth + 1, 0).getDate();
-  for (let d = 1; d <= daysInMonth; d++) {
-    const el = document.createElement('div');
-    el.className = 'cal-day';
-    el.textContent = d;
-    const thisDate = new Date(calViewYear, calViewMonth, d);
-    thisDate.setHours(0,0,0,0);
-    const key = dateKey(thisDate);
-    const diff = Math.round((thisDate - today) / 86400000);
-    if (thisDate.getTime() === today.getTime()) el.classList.add('today');
-    if (diff === activeDayOffset) el.classList.add('selected');
-    if (specialTasks[key] && specialTasks[key].length > 0) el.classList.add('has-task');
-    el.addEventListener('click', () => {
-      if (diff >= -WINDOW && diff <= WINDOW) {
-        goToOffset(diff);
-        closeModal('cal-modal');
-      }
+document.getElementById('theme-btn').addEventListener('click',()=>{renderThemeGrid();openModal('theme-modal');});
+function renderThemeGrid(){const grid=document.getElementById('theme-grid');grid.innerHTML='';themes.forEach(t=>{const el=document.createElement('div');el.className='theme-option'+(currentTheme===t.id?' active':'');el.innerHTML=`<div class="theme-swatch" style="background:${t.bg};border:2px solid ${t.accent};"></div><div class="theme-name" style="white-space:pre-line;">${t.name}</div>`;el.addEventListener('click',()=>{currentTheme=t.id;localStorage.setItem('theme',t.id);document.documentElement.setAttribute('data-theme',t.id==='default'?'':t.id);renderThemeGrid();initTrack();});grid.appendChild(el);});}
+let addTaskForKey='';
+function openAddTaskModal(key){addTaskForKey=key;taskDrumsInited=false;const d=new Date(key+'T12:00:00');document.getElementById('add-task-title').textContent=`Görev Ekle — ${d.getDate()} ${MONTHS_TR[d.getMonth()]}`;document.getElementById('task-name-input').value='';document.getElementById('task-note-input').value='';taskTimeToggle('range');openModal('add-task-modal');setTimeout(()=>document.getElementById('task-name-input').focus(),300);}
+document.getElementById('save-task-btn').addEventListener('click',()=>{const name=document.getElementById('task-name-input').value.trim();if(!name)return;if(!specialTasks[addTaskForKey])specialTasks[addTaskForKey]=[];let ts='',te='';if(taskTimeMode!=='none'){ts=getPickerTime('task');if(taskTimeMode==='range')te=getPickerEndTime('task');}specialTasks[addTaskForKey].push({id:'t'+Date.now(),name,timeStart:ts,timeEnd:te,note:document.getElementById('task-note-input').value.trim(),done:false});saveData();const d=new Date(addTaskForKey);d.setHours(0,0,0,0);refreshCard(Math.round((d-today)/86400000));closeModal('add-task-modal');});
+document.getElementById('cancel-task-btn').addEventListener('click',()=>closeModal('add-task-modal'));
+let editRoutineDow=1;
+function openEditRoutineModal(dow){editRoutineDow=dow;renderRoutineEditList();renderWeekTabs();openModal('edit-routine-modal');}
+function renderWeekTabs(){const tabs=document.getElementById('week-tabs');tabs.innerHTML='';const dn=['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];for(let i=1;i<=7;i++){const d=i%7,tab=document.createElement('div');tab.className='week-tab'+(d===editRoutineDow?' active':'');tab.textContent=dn[d];tab.addEventListener('click',()=>{editRoutineDow=d;renderWeekTabs();renderRoutineEditList();});tabs.appendChild(tab);}}
+function renderRoutineEditList(){const list=document.getElementById('routine-list-edit');list.innerHTML='';const routines=routineTemplates[editRoutineDow]||[];if(!routines.length){list.innerHTML='<div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div>';return;}routines.forEach(r=>{const el=document.createElement('div');el.className='task-item';el.style.marginBottom='8px';const ts=r.timeStart?`${r.timeStart}${r.timeEnd?' – '+r.timeEnd:''}`:'';el.innerHTML=`${ts?`<span class="task-time">${ts}</span>`:''}<span class="task-name">${r.name}</span><div class="task-detail-btn" style="color:#e05555;">✕</div>`;el.querySelector('.task-detail-btn').addEventListener('click',()=>{routineTemplates[editRoutineDow]=routineTemplates[editRoutineDow].filter(x=>x.id!==r.id);saveData();renderRoutineEditList();for(let i=-WINDOW;i<=WINDOW;i++){const d=getDateByOffset(i);if(d.getDay()===editRoutineDow)refreshCard(i);}});list.appendChild(el);});}
+document.getElementById('add-routine-inline-btn').addEventListener('click',()=>{rtnDrumsInited=false;document.getElementById('routine-name-input').value='';routineTimeToggle('range');openModal('add-routine-modal');setTimeout(()=>document.getElementById('routine-name-input').focus(),300);});
+document.getElementById('close-routine-modal-btn').addEventListener('click',()=>closeModal('edit-routine-modal'));
+document.getElementById('save-routine-btn').addEventListener('click',()=>{const name=document.getElementById('routine-name-input').value.trim();if(!name)return;if(!routineTemplates[editRoutineDow])routineTemplates[editRoutineDow]=[];let ts='',te='';if(rtnTimeMode!=='none'){ts=getPickerTime('rtn');if(rtnTimeMode==='range')te=getPickerEndTime('rtn');}routineTemplates[editRoutineDow].push({id:'r'+Date.now(),name,timeStart:ts,timeEnd:te});saveData();renderRoutineEditList();for(let i=-WINDOW;i<=WINDOW;i++){const d=getDateByOffset(i);if(d.getDay()===editRoutineDow)refreshCard(i);}closeModal('add-routine-modal');});
+document.getElementById('cancel-routine-btn').addEventListener('click',()=>closeModal('add-routine-modal'));
+let detailItem=null,detailType='',detailKey='';
+function openDetailModal(item,type,key,isDone){detailItem=item;detailType=type;detailKey=key;document.getElementById('detail-title').textContent=item.name;const info=document.getElementById('detail-info');let rows='';if(item.timeStart){const t=item.timeEnd?`${item.timeStart} – ${item.timeEnd}`:item.timeStart;rows+=`<div class="detail-row"><span class="detail-key">Saat</span><span class="detail-val">${t}</span></div>`;}if(item.note)rows+=`<div class="detail-row"><span class="detail-key">Not</span><span class="detail-val">${item.note}</span></div>`;const d=new Date(key+'T12:00:00');rows+=`<div class="detail-row"><span class="detail-key">Tarih</span><span class="detail-val">${d.getDate()} ${MONTHS_TR[d.getMonth()]} ${d.getFullYear()}</span></div>`;rows+=`<div class="detail-row"><span class="detail-key">Tür</span><span class="detail-val">${type==='routine'?'Rutin':'Özel Görev'}</span></div>`;rows+=`<div class="detail-row"><span class="detail-key">Durum</span><span class="detail-val">${isDone?'✓ Tamamlandı':'Bekliyor'}</span></div>`;info.innerHTML=rows;document.getElementById('detail-done-btn').textContent=isDone?'Tamamlanmadı':'Tamamlandı';document.getElementById('detail-delete-btn').style.display=type==='task'?'block':'none';openModal('detail-modal');}
+document.getElementById('detail-done-btn').addEventListener('click',()=>{const d=new Date(detailKey);d.setHours(0,0,0,0);toggleDone(detailItem,detailType,detailKey,Math.round((d-today)/86400000));closeModal('detail-modal');});
+document.getElementById('detail-delete-btn').addEventListener('click',()=>{specialTasks[detailKey]=(specialTasks[detailKey]||[]).filter(t=>t.id!==detailItem.id);saveData();const d=new Date(detailKey);d.setHours(0,0,0,0);refreshCard(Math.round((d-today)/86400000));closeModal('detail-modal');});
+document.getElementById('detail-close-btn').addEventListener('click',()=>closeModal('detail-modal'));
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeModal(o.id);}));
+function buildDrum(el,items,def){el.innerHTML='';const tp=document.createElement('div');tp.className='drum-item phantom';tp.style.height='48px';el.appendChild(tp);items.forEach(v=>{const i=document.createElement('div');i.className='drum-item';i.textContent=v;i.dataset.val=v;el.appendChild(i);});const bp=document.createElement('div');bp.className='drum-item phantom';bp.style.height='48px';el.appendChild(bp);let st;el.addEventListener('scroll',()=>{clearTimeout(st);st=setTimeout(()=>snapDrum(el),80);},{passive:true});const idx=items.indexOf(def);if(idx>=0)setTimeout(()=>{el.scrollTop=idx*44;highlightDrum(el);},50);}
+function snapDrum(el){const i=Math.round(el.scrollTop/44);el.scrollTo({top:i*44,behavior:'smooth'});setTimeout(()=>highlightDrum(el),120);}
+function highlightDrum(el){const i=Math.round(el.scrollTop/44);el.querySelectorAll('.drum-item:not(.phantom)').forEach((e,j)=>e.classList.toggle('selected',j===i));}
+function getDrumVal(el){const i=Math.round(el.scrollTop/44),items=el.querySelectorAll('.drum-item:not(.phantom)');return items[i]?items[i].dataset.val:'00';}
+const HOURS=Array.from({length:24},(_,i)=>String(i).padStart(2,'0'));
+const MINS=Array.from({length:60},(_,i)=>String(i).padStart(2,'0'));
+function initDrums(p,dH='08',dM='00',dEH='09',dEM='00'){buildDrum(document.getElementById(p+'-hour-drum'),HOURS,dH);buildDrum(document.getElementById(p+'-min-drum'),MINS,dM);if(document.getElementById(p+'-hour-end-drum')){buildDrum(document.getElementById(p+'-hour-end-drum'),HOURS,dEH);buildDrum(document.getElementById(p+'-min-end-drum'),MINS,dEM);}}
+function getPickerTime(p){return getDrumVal(document.getElementById(p+'-hour-drum'))+':'+getDrumVal(document.getElementById(p+'-min-drum'));}
+function getPickerEndTime(p){const el=document.getElementById(p+'-hour-end-drum');if(!el)return '';return getDrumVal(el)+':'+getDrumVal(document.getElementById(p+'-min-end-drum'));}
+let taskTimeMode='range',taskDrumsInited=false;
+function taskTimeToggle(mode){taskTimeMode=mode;document.getElementById('task-range-btn').classList.toggle('active',mode!=='none');document.getElementById('task-no-time-btn').classList.toggle('active',mode==='none');const p=document.getElementById('task-time-pickers'),ec=document.getElementById('task-end-col');if(mode==='none'){p.style.display='none';}else{p.style.display='block';ec.style.display='flex';if(!taskDrumsInited){taskDrumsInited=true;setTimeout(()=>initDrums('task'),50);}else initDrums('task');}}
+let rtnTimeMode='range',rtnDrumsInited=false;
+function routineTimeToggle(mode){rtnTimeMode=mode;document.getElementById('rtn-range-btn').classList.toggle('active',mode!=='none');document.getElementById('rtn-no-time-btn').classList.toggle('active',mode==='none');const p=document.getElementById('rtn-time-pickers'),ec=document.getElementById('rtn-end-col');if(mode==='none'){p.style.display='none';}else{p.style.display='block';ec.style.display='flex';if(!rtnDrumsInited){rtnDrumsInited=true;setTimeout(()=>initDrums('rtn'),50);}else initDrums('rtn');}}
+const firebaseConfig={apiKey:"AIzaSyBUeNLPUN3uPlW8VEFtXkBBPWUC5-QI9Zc",authDomain:"rgt-app-9142c.firebaseapp.com",projectId:"rgt-app-9142c",storageBucket:"rgt-app-9142c.firebasestorage.app",messagingSenderId:"997235706058",appId:"1:997235706058:web:396e26b087ee3c07f9cc33"};
+let auth,db;
+window.addEventListener('load',function(){
+  try{
+    firebase.initializeApp(firebaseConfig);auth=firebase.auth();db=firebase.firestore();
+    if(localStorage.getItem('googleRedirectPending')){setAuthLoading(true);localStorage.removeItem('googleRedirectPending');}
+    auth.getRedirectResult().then(r=>{if(r&&r.user)console.log('Google redirect OK');else setAuthLoading(false);}).catch(e=>{setAuthLoading(false);if(e.code&&e.code!=='auth/no-current-user'&&e.code!=='auth/null-user')showAuthError('Google girişi başarısız: '+e.message);});
+    auth.onAuthStateChanged(async user=>{
+      if(user){currentUser=user;document.getElementById('auth-screen').classList.add('hidden');document.getElementById('user-email').textContent=user.email?user.email.split('@')[0]:(user.displayName||'Kullanıcı');await loadUserData();updateHeader();updateDayNav();initTrack();}
+      else{currentUser=null;document.getElementById('auth-screen').classList.remove('hidden');document.getElementById('user-email').textContent='...';setAuthLoading(false);}
     });
-    grid.appendChild(el);
-  }
-}
-
-// ═══════════════════════════════════════
-// TEMA
-// ═══════════════════════════════════════
-document.getElementById('theme-btn').addEventListener('click', () => {
-  renderThemeGrid();
-  openModal('theme-modal');
+  }catch(e){document.getElementById('auth-error').textContent='Bağlantı hatası. Sayfayı yenileyin.';document.getElementById('auth-error').classList.add('show');}
 });
-
-function renderThemeGrid() {
-  const grid = document.getElementById('theme-grid');
-  grid.innerHTML = '';
-  themes.forEach(t => {
-    const el = document.createElement('div');
-    el.className = 'theme-option' + (currentTheme === t.id ? ' active' : '');
-    el.innerHTML = `
-      <div class="theme-swatch" style="background:${t.bg}; border: 2px solid ${t.accent};"></div>
-      <div class="theme-name" style="white-space:pre-line;">${t.name}</div>
-    `;
-    el.addEventListener('click', () => {
-      currentTheme = t.id;
-      localStorage.setItem('theme', t.id);
-      document.documentElement.setAttribute('data-theme', t.id === 'default' ? '' : t.id);
-      renderThemeGrid();
-      initTrack();
-    });
-    grid.appendChild(el);
-  });
-}
-
-// ═══════════════════════════════════════
-// GÖREV EKLE
-// ═══════════════════════════════════════
-let addTaskForKey = '';
-
-function openAddTaskModal(key) {
-  addTaskForKey = key;
-  taskDrumsInited = false;
-  const date = new Date(key + 'T12:00:00');
-  document.getElementById('add-task-title').textContent =
-    `Görev Ekle — ${date.getDate()} ${MONTHS_TR[date.getMonth()]}`;
-  document.getElementById('task-name-input').value = '';
-  document.getElementById('task-note-input').value = '';
-  taskTimeToggle('range');
-  openModal('add-task-modal');
-  setTimeout(() => document.getElementById('task-name-input').focus(), 300);
-}
-
-document.getElementById('save-task-btn').addEventListener('click', () => {
-  const name = document.getElementById('task-name-input').value.trim();
-  if (!name) return;
-  if (!specialTasks[addTaskForKey]) specialTasks[addTaskForKey] = [];
-  let ts = '', te = '';
-  if (taskTimeMode !== 'none') {
-    ts = getPickerTime('task');
-    if (taskTimeMode === 'range') te = getPickerEndTime('task');
-  }
-  specialTasks[addTaskForKey].push({
-    id: 't' + Date.now(),
-    name,
-    timeStart: ts,
-    timeEnd: te,
-    note: document.getElementById('task-note-input').value.trim(),
-    done: false
-  });
-  saveData();
-  const date = new Date(addTaskForKey);
-  date.setHours(0,0,0,0);
-  const diff = Math.round((date - today) / 86400000);
-  refreshCard(diff);
-  closeModal('add-task-modal');
-});
-document.getElementById('cancel-task-btn').addEventListener('click', () => closeModal('add-task-modal'));
-
-// ═══════════════════════════════════════
-// RUTİN DÜZENLE
-// ═══════════════════════════════════════
-let editRoutineDow = 1;
-
-function openEditRoutineModal(dow) {
-  editRoutineDow = dow;
-  renderRoutineEditList();
-  renderWeekTabs();
-  openModal('edit-routine-modal');
-}
-
-function renderWeekTabs() {
-  const tabs = document.getElementById('week-tabs');
-  tabs.innerHTML = '';
-  const dowNames = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
-  for (let i = 1; i <= 7; i++) {
-    const d = i % 7;
-    const tab = document.createElement('div');
-    tab.className = 'week-tab' + (d === editRoutineDow ? ' active' : '');
-    tab.textContent = dowNames[d];
-    tab.addEventListener('click', () => {
-      editRoutineDow = d;
-      renderWeekTabs();
-      renderRoutineEditList();
-    });
-    tabs.appendChild(tab);
-  }
-}
-
-function renderRoutineEditList() {
-  const list = document.getElementById('routine-list-edit');
-  list.innerHTML = '';
-  const routines = routineTemplates[editRoutineDow] || [];
-  if (routines.length === 0) {
-    list.innerHTML = `<div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div>`;
-    return;
-  }
-  routines.forEach(r => {
-    const el = document.createElement('div');
-    el.className = 'task-item';
-    el.style.marginBottom = '8px';
-    let timeStr = r.timeStart ? `${r.timeStart}${r.timeEnd ? ' – '+r.timeEnd : ''}` : '';
-    el.innerHTML = `
-      ${timeStr ? `<span class="task-time">${timeStr}</span>` : ''}
-      <span class="task-name">${r.name}</span>
-      <div class="task-detail-btn" style="color:#e05555;">✕</div>
-    `;
-    el.querySelector('.task-detail-btn').addEventListener('click', () => {
-      routineTemplates[editRoutineDow] = routineTemplates[editRoutineDow].filter(x => x.id !== r.id);
-      saveData();
-      renderRoutineEditList();
-      // Tüm kartları yenile
-      for (let i = -WINDOW; i <= WINDOW; i++) {
-        const date = getDateByOffset(i);
-        if (date.getDay() === editRoutineDow) refreshCard(i);
-      }
-    });
-    list.appendChild(el);
-  });
-}
-
-document.getElementById('add-routine-inline-btn').addEventListener('click', () => {
-  rtnDrumsInited = false;
-  document.getElementById('routine-name-input').value = '';
-  routineTimeToggle('range');
-  openModal('add-routine-modal');
-  setTimeout(() => document.getElementById('routine-name-input').focus(), 300);
-});
-document.getElementById('close-routine-modal-btn').addEventListener('click', () => closeModal('edit-routine-modal'));
-
-document.getElementById('save-routine-btn').addEventListener('click', () => {
-  const name = document.getElementById('routine-name-input').value.trim();
-  if (!name) return;
-  if (!routineTemplates[editRoutineDow]) routineTemplates[editRoutineDow] = [];
-  let ts = '', te = '';
-  if (rtnTimeMode !== 'none') {
-    ts = getPickerTime('rtn');
-    if (rtnTimeMode === 'range') te = getPickerEndTime('rtn');
-  }
-  routineTemplates[editRoutineDow].push({
-    id: 'r' + Date.now(),
-    name,
-    timeStart: ts,
-    timeEnd: te,
-  });
-  saveData();
-  renderRoutineEditList();
-  // Tüm o günün kartlarını yenile
-  for (let i = -WINDOW; i <= WINDOW; i++) {
-    const date = getDateByOffset(i);
-    if (date.getDay() === editRoutineDow) refreshCard(i);
-  }
-  closeModal('add-routine-modal');
-});
-document.getElementById('cancel-routine-btn').addEventListener('click', () => closeModal('add-routine-modal'));
-
-// ═══════════════════════════════════════
-// DETAY MODAL
-// ═══════════════════════════════════════
-let detailItem = null, detailType = '', detailKey = '';
-
-function openDetailModal(item, type, key, isDone) {
-  detailItem = item;
-  detailType = type;
-  detailKey = key;
-  document.getElementById('detail-title').textContent = item.name;
-  const info = document.getElementById('detail-info');
-  let rows = '';
-  if (item.timeStart) {
-    const t = item.timeEnd ? `${item.timeStart} – ${item.timeEnd}` : item.timeStart;
-    rows += `<div class="detail-row"><span class="detail-key">Saat</span><span class="detail-val">${t}</span></div>`;
-  }
-  if (item.note) {
-    rows += `<div class="detail-row"><span class="detail-key">Not</span><span class="detail-val">${item.note}</span></div>`;
-  }
-  const date = new Date(key + 'T12:00:00');
-  rows += `<div class="detail-row"><span class="detail-key">Tarih</span><span class="detail-val">${date.getDate()} ${MONTHS_TR[date.getMonth()]} ${date.getFullYear()}</span></div>`;
-  rows += `<div class="detail-row"><span class="detail-key">Tür</span><span class="detail-val">${type === 'routine' ? 'Rutin' : 'Özel Görev'}</span></div>`;
-  rows += `<div class="detail-row"><span class="detail-key">Durum</span><span class="detail-val">${isDone ? '✓ Tamamlandı' : 'Bekliyor'}</span></div>`;
-  if (!rows) rows = '<div class="detail-row"><span class="detail-key">Not yok</span></div>';
-  info.innerHTML = rows;
-  document.getElementById('detail-done-btn').textContent = isDone ? 'Tamamlanmadı' : 'Tamamlandı';
-  document.getElementById('detail-delete-btn').style.display = type === 'task' ? 'block' : 'none';
-  openModal('detail-modal');
-}
-
-document.getElementById('detail-done-btn').addEventListener('click', () => {
-  const date = new Date(detailKey);
-  date.setHours(0,0,0,0);
-  const diff = Math.round((date - today) / 86400000);
-  toggleDone(detailItem, detailType, detailKey, diff);
-  closeModal('detail-modal');
-});
-
-document.getElementById('detail-delete-btn').addEventListener('click', () => {
-  specialTasks[detailKey] = (specialTasks[detailKey] || []).filter(t => t.id !== detailItem.id);
-  saveData();
-  const date = new Date(detailKey);
-  date.setHours(0,0,0,0);
-  const diff = Math.round((date - today) / 86400000);
-  refreshCard(diff);
-  closeModal('detail-modal');
-});
-document.getElementById('detail-close-btn').addEventListener('click', () => closeModal('detail-modal'));
-
-// ═══════════════════════════════════════
-// MODAL YARDIMCILARI
-// ═══════════════════════════════════════
-function openModal(id) {
-  document.getElementById(id).classList.add('open');
-}
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-}
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) closeModal(overlay.id);
-  });
-});
-
-
-// ═══════════════════════════════════════
-// DRUM PICKER
-// ═══════════════════════════════════════
-function buildDrum(drumEl, items, defaultVal) {
-  drumEl.innerHTML = '';
-  // Üst phantom
-  const topPhantom = document.createElement('div');
-  topPhantom.className = 'drum-item phantom';
-  topPhantom.style.height = '48px';
-  drumEl.appendChild(topPhantom);
-
-  items.forEach(val => {
-    const item = document.createElement('div');
-    item.className = 'drum-item';
-    item.textContent = val;
-    item.dataset.val = val;
-    drumEl.appendChild(item);
-  });
-
-  // Alt phantom
-  const botPhantom = document.createElement('div');
-  botPhantom.className = 'drum-item phantom';
-  botPhantom.style.height = '48px';
-  drumEl.appendChild(botPhantom);
-
-  // Scroll listener
-  let scrollTimer;
-  drumEl.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => snapDrum(drumEl), 80);
-  }, {passive: true});
-
-  // Başlangıç değeri
-  const idx = items.indexOf(defaultVal);
-  if (idx >= 0) {
-    setTimeout(() => {
-      drumEl.scrollTop = idx * 44;
-      highlightDrum(drumEl);
-    }, 50);
-  }
-}
-
-function snapDrum(drumEl) {
-  const idx = Math.round(drumEl.scrollTop / 44);
-  drumEl.scrollTo({top: idx * 44, behavior: 'smooth'});
-  setTimeout(() => highlightDrum(drumEl), 120);
-}
-
-function highlightDrum(drumEl) {
-  const idx = Math.round(drumEl.scrollTop / 44);
-  drumEl.querySelectorAll('.drum-item:not(.phantom)').forEach((el, i) => {
-    el.classList.toggle('selected', i === idx);
-  });
-}
-
-function getDrumVal(drumEl) {
-  const idx = Math.round(drumEl.scrollTop / 44);
-  const items = drumEl.querySelectorAll('.drum-item:not(.phantom)');
-  return items[idx] ? items[idx].dataset.val : '00';
-}
-
-const HOURS = Array.from({length:24}, (_,i) => String(i).padStart(2,'0'));
-const MINS  = Array.from({length:60}, (_,i) => String(i).padStart(2,'0'));
-
-function initDrums(prefix, defaultH='08', defaultM='00', defaultEH='09', defaultEM='00') {
-  buildDrum(document.getElementById(prefix+'-hour-drum'), HOURS, defaultH);
-  buildDrum(document.getElementById(prefix+'-min-drum'),  MINS,  defaultM);
-  if (document.getElementById(prefix+'-hour-end-drum')) {
-    buildDrum(document.getElementById(prefix+'-hour-end-drum'), HOURS, defaultEH);
-    buildDrum(document.getElementById(prefix+'-min-end-drum'),  MINS,  defaultEM);
-  }
-}
-
-function getPickerTime(prefix) {
-  const h = getDrumVal(document.getElementById(prefix+'-hour-drum'));
-  const m = getDrumVal(document.getElementById(prefix+'-min-drum'));
-  return h + ':' + m;
-}
-function getPickerEndTime(prefix) {
-  const el = document.getElementById(prefix+'-hour-end-drum');
-  if (!el) return '';
-  const h = getDrumVal(el);
-  const m = getDrumVal(document.getElementById(prefix+'-min-end-drum'));
-  return h + ':' + m;
-}
-
-// Görev saat toggle
-let taskTimeMode = 'range';
-let taskDrumsInited = false;
-function taskTimeToggle(mode) {
-  taskTimeMode = mode;
-  const rangeBtn = document.getElementById('task-range-btn');
-  const noneBtn = document.getElementById('task-no-time-btn');
-  if (rangeBtn) rangeBtn.classList.toggle('active', mode !== 'none');
-  if (noneBtn) noneBtn.classList.toggle('active', mode === 'none');
-  const pickers = document.getElementById('task-time-pickers');
-  const endCol = document.getElementById('task-end-col');
-  if (mode === 'none') {
-    pickers.style.display = 'none';
-  } else {
-    pickers.style.display = 'block';
-    endCol.style.display = 'flex';
-    if (!taskDrumsInited) {
-      taskDrumsInited = true;
-      setTimeout(() => initDrums('task'), 50);
-    } else {
-      initDrums('task');
-    }
-  }
-}
-
-// Rutin saat toggle
-let rtnTimeMode = 'range';
-let rtnDrumsInited = false;
-function routineTimeToggle(mode) {
-  rtnTimeMode = mode;
-  const rangeBtn = document.getElementById('rtn-range-btn');
-  const noneBtn = document.getElementById('rtn-no-time-btn');
-  if (rangeBtn) rangeBtn.classList.toggle('active', mode !== 'none');
-  if (noneBtn) noneBtn.classList.toggle('active', mode === 'none');
-  const pickers = document.getElementById('rtn-time-pickers');
-  const endCol = document.getElementById('rtn-end-col');
-  if (mode === 'none') {
-    pickers.style.display = 'none';
-  } else {
-    pickers.style.display = 'block';
-    endCol.style.display = 'flex';
-    if (!rtnDrumsInited) {
-      rtnDrumsInited = true;
-      setTimeout(() => initDrums('rtn'), 50);
-    } else {
-      initDrums('rtn');
-    }
-  }
-}
-
-
-// ═══════════════════════════════════════
-// FİREBASE YAPILANDIRMA
-// ═══════════════════════════════════════
-const firebaseConfig = {
-  apiKey: "AIzaSyBUeNLPUN3uPlW8VEFtXkBBPWUC5-QI9Zc",
-  authDomain: "rgt-app-9142c.firebaseapp.com",
-  projectId: "rgt-app-9142c",
-  storageBucket: "rgt-app-9142c.firebasestorage.app",
-  messagingSenderId: "997235706058",
-  appId: "1:997235706058:web:396e26b087ee3c07f9cc33"
-};
-// Firebase başlat - window.onload garantisi
-let auth, db;
-window.addEventListener('load', function() {
-  try {
-    firebase.initializeApp(firebaseConfig);
-    auth = firebase.auth();
-    db = firebase.firestore();
-    console.log('Firebase OK');
-
-    // Google redirect sonucunu yakala (Android için)
-    if (localStorage.getItem('googleRedirectPending')) {
-      setAuthLoading(true);
-      localStorage.removeItem('googleRedirectPending');
-    }
-    auth.getRedirectResult().then(result => {
-      if (result && result.user) {
-        console.log('Google redirect login OK');
-        // onAuthStateChanged zaten handle edecek
-      } else {
-        setAuthLoading(false);
-      }
-    }).catch(e => {
-      setAuthLoading(false);
-      if (e.code && e.code !== 'auth/no-current-user' && e.code !== 'auth/null-user') {
-        console.error('Redirect error:', e);
-        showAuthError('Google girişi başarısız: ' + e.message);
-      }
-    });
-
-    // Auth state listener'ı burada başlat
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        currentUser = user;
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('user-email').textContent = user.email ? user.email.split('@')[0] : (user.displayName || 'Kullanıcı');
-        await loadUserData();
-        updateHeader();
-        updateDayNav();
-        initTrack();
-      } else {
-        currentUser = null;
-        document.getElementById('auth-screen').classList.remove('hidden');
-        document.getElementById('user-email').textContent = '...';
-        setAuthLoading(false);
-      }
-    });
-  } catch(e) {
-    console.error('Firebase init hatası:', e);
-    document.getElementById('auth-error').textContent = 'Bağlantı hatası. Sayfayı yenileyin.';
-    document.getElementById('auth-error').classList.add('show');
-  }
-});
-
-let currentUser = null;
-
-// ═══════════════════════════════════════
-// AUTH FONKSİYONLARI
-// ═══════════════════════════════════════
-let authMode = 'login';
-
-function switchAuthTab(mode) {
-  authMode = mode;
-  document.getElementById('login-tab').classList.toggle('active', mode === 'login');
-  document.getElementById('register-tab').classList.toggle('active', mode === 'register');
-  document.getElementById('auth-password2').style.display = mode === 'register' ? 'block' : 'none';
-  document.getElementById('forgot-btn').style.display = mode === 'login' ? 'block' : 'none';
-  document.getElementById('auth-submit-btn').textContent = mode === 'login' ? 'Giriş Yap' : 'Kayıt Ol';
-  hideAuthError();
-}
-
-function showAuthError(msg) {
-  const el = document.getElementById('auth-error');
-  el.textContent = msg;
-  el.classList.add('show');
-}
-function hideAuthError() {
-  document.getElementById('auth-error').classList.remove('show');
-}
-function setAuthLoading(show) {
-  document.getElementById('auth-loading').classList.toggle('show', show);
-  document.getElementById('auth-submit-btn').style.display = show ? 'none' : 'block';
-}
-
-async function handleAuth() {
-  const email = document.getElementById('auth-email').value.trim();
-  const password = document.getElementById('auth-password').value;
-  const password2 = document.getElementById('auth-password2').value;
-  hideAuthError();
-
-  if (!email || !password) { showAuthError('E-posta ve şifre gerekli.'); return; }
-  if (authMode === 'register') {
-    if (password.length < 6) { showAuthError('Şifre en az 6 karakter olmalı.'); return; }
-    if (password !== password2) { showAuthError('Şifreler eşleşmiyor.'); return; }
-  }
-
-  setAuthLoading(true);
-  try {
-    if (authMode === 'login') {
-      await auth.signInWithEmailAndPassword(email, password);
-    } else {
-      await auth.createUserWithEmailAndPassword(email, password);
-    }
-  } catch(e) {
-    setAuthLoading(false);
-    const msgs = {
-      'auth/user-not-found': 'Bu e-posta ile kayıtlı hesap yok.',
-      'auth/wrong-password': 'Şifre yanlış.',
-      'auth/email-already-in-use': 'Bu e-posta zaten kayıtlı.',
-      'auth/invalid-email': 'Geçersiz e-posta adresi.',
-      'auth/too-many-requests': 'Çok fazla deneme. Lütfen bekle.',
-      'auth/invalid-credential': 'E-posta veya şifre hatalı.',
-    };
-    showAuthError(msgs[e.code] || 'Bir hata oluştu: ' + e.message);
-  }
-}
-
-
-async function handleGoogleAuth() {
-  hideAuthError();
-  setAuthLoading(true);
-  try {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: 'select_account' });
-    // Android'de redirect, diğerlerinde popup
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    if (isAndroid) {
-      // Redirect öncesi flag kaydet
-      localStorage.setItem('googleRedirectPending', '1');
-      await auth.signInWithRedirect(provider);
-    } else {
-      await auth.signInWithPopup(provider);
-    }
-  } catch(e) {
-    setAuthLoading(false);
-    const msgs = {
-      'auth/popup-closed-by-user': 'Giriş penceresi kapatıldı.',
-      'auth/popup-blocked': 'Açılır pencere engellendi. Tarayıcı ayarlarını kontrol edin.',
-      'auth/cancelled-popup-request': '',
-      'auth/network-request-failed': 'Ağ bağlantısı hatası.',
-    };
-    const msg = msgs[e.code];
-    if (msg !== undefined && msg !== '') showAuthError(msg || 'Google girişi başarısız: ' + e.message);
-  }
-}
-
-// Google redirect sonucu window.onload içinde yakalanıyor
-
-function handleGuestMode() {
-  // Misafir mod: Firebase olmadan sadece localStorage ile çalış
-  currentUser = null;
-  document.getElementById('auth-screen').classList.add('hidden');
-  document.getElementById('user-email').textContent = 'Misafir';
-  updateHeader();
-  updateDayNav();
-  initTrack();
-}
-
-async function forgotPassword() {
-  const email = document.getElementById('auth-email').value.trim();
-  if (!email) { showAuthError('Önce e-posta adresini gir.'); return; }
-  try {
-    await auth.sendPasswordResetEmail(email);
-    showAuthError('Şifre sıfırlama e-postası gönderildi!');
-    document.getElementById('auth-error').style.color = '#4fc3f7';
-  } catch(e) {
-    showAuthError('E-posta gönderilemedi.');
-  }
-}
-
-function openUserModal() {
-  document.getElementById('user-info-email').textContent = currentUser ? currentUser.email : 'Misafir (veriler sadece bu cihazda)';
-  openModal('user-modal');
-}
-
-function handleLogout() {
-  if (currentUser) {
-    auth.signOut();
-  } else {
-    // Misafir mod: auth ekranına dön
-    document.getElementById('auth-screen').classList.remove('hidden');
-  }
-  closeModal('user-modal');
-}
-
-// Auth state - window.onload içinde
-
-// Enter tuşu ile giriş
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !document.getElementById('auth-screen').classList.contains('hidden')) {
-    handleAuth();
-  }
-});
-
-// ═══════════════════════════════════════
-// BULUT VERİ YÜKLEME / KAYDETME
-// ═══════════════════════════════════════
-async function loadUserData() {
-  if (!currentUser) return;
-  try {
-    const doc = await db.collection('users').doc(currentUser.uid).get();
-    if (doc.exists) {
-      const data = doc.data();
-      if (data.routineTemplates) routineTemplates = data.routineTemplates;
-      if (data.completions) completions = data.completions;
-      if (data.specialTasks) specialTasks = data.specialTasks;
-      if (data.theme) {
-        currentTheme = data.theme;
-        localStorage.setItem('theme', data.theme);
-        document.documentElement.setAttribute('data-theme', data.theme === 'default' ? '' : data.theme);
-      }
-    }
-  } catch(e) {
-    console.log('Veri yüklenemedi:', e);
-  }
-}
-
-let saveTimer = null;
-async function saveData() {
-  // Yerel depolama
-  localStorage.setItem('routineTemplates', JSON.stringify(routineTemplates));
-  localStorage.setItem('completions', JSON.stringify(completions));
-  localStorage.setItem('specialTasks', JSON.stringify(specialTasks));
-  // Bulut kayıt (debounce - 1.5 saniye bekle)
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(async () => {
-    if (!currentUser) return;
-    try {
-      await db.collection('users').doc(currentUser.uid).set({
-        routineTemplates,
-        completions,
-        specialTasks,
-        theme: currentTheme,
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-    } catch(e) {
-      console.log('Bulut kayıt hatası:', e);
-    }
-  }, 1500);
-}
-
-// ═══════════════════════════════════════
-// BAŞLAT
-// ═══════════════════════════════════════
-// Auth kontrolü yapılıyor, initTrack auth callback'te çağrılacak
-
-
-// Ekran boyutu değişince kartları yeniden hizala
-window.addEventListener('resize', () => {
-  setTrackOffset(activeDayOffset, false);
-});
-
+let currentUser=null,authMode='login';
+function switchAuthTab(mode){authMode=mode;document.getElementById('login-tab').classList.toggle('active',mode==='login');document.getElementById('register-tab').classList.toggle('active',mode==='register');document.getElementById('auth-password2').style.display=mode==='register'?'block':'none';document.getElementById('forgot-btn').style.display=mode==='login'?'block':'none';document.getElementById('auth-submit-btn').textContent=mode==='login'?'Giriş Yap':'Kayıt Ol';hideAuthError();}
+function showAuthError(msg){const el=document.getElementById('auth-error');el.textContent=msg;el.classList.add('show');}
+function hideAuthError(){document.getElementById('auth-error').classList.remove('show');}
+function setAuthLoading(show){document.getElementById('auth-loading').classList.toggle('show',show);document.getElementById('auth-submit-btn').style.display=show?'none':'block';}
+async function handleAuth(){const email=document.getElementById('auth-email').value.trim(),password=document.getElementById('auth-password').value,password2=document.getElementById('auth-password2').value;hideAuthError();if(!email||!password){showAuthError('E-posta ve şifre gerekli.');return;}if(authMode==='register'){if(password.length<6){showAuthError('Şifre en az 6 karakter olmalı.');return;}if(password!==password2){showAuthError('Şifreler eşleşmiyor.');return;}}setAuthLoading(true);try{if(authMode==='login')await auth.signInWithEmailAndPassword(email,password);else await auth.createUserWithEmailAndPassword(email,password);}catch(e){setAuthLoading(false);const msgs={'auth/user-not-found':'Bu e-posta ile kayıtlı hesap yok.','auth/wrong-password':'Şifre yanlış.','auth/email-already-in-use':'Bu e-posta zaten kayıtlı.','auth/invalid-email':'Geçersiz e-posta adresi.','auth/too-many-requests':'Çok fazla deneme. Lütfen bekle.','auth/invalid-credential':'E-posta veya şifre hatalı.'};showAuthError(msgs[e.code]||'Bir hata oluştu: '+e.message);}}
+async function handleGoogleAuth(){hideAuthError();setAuthLoading(true);try{const provider=new firebase.auth.GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});const isAndroid=/Android/i.test(navigator.userAgent);if(isAndroid){localStorage.setItem('googleRedirectPending','1');await auth.signInWithRedirect(provider);}else await auth.signInWithPopup(provider);}catch(e){setAuthLoading(false);const msgs={'auth/popup-closed-by-user':'Giriş penceresi kapatıldı.','auth/popup-blocked':'Açılır pencere engellendi.','auth/cancelled-popup-request':'','auth/network-request-failed':'Ağ bağlantısı hatası.'};const msg=msgs[e.code];if(msg!==undefined&&msg!=='')showAuthError(msg||'Google girişi başarısız: '+e.message);}}
+function handleGuestMode(){currentUser=null;document.getElementById('auth-screen').classList.add('hidden');document.getElementById('user-email').textContent='Misafir';updateHeader();updateDayNav();initTrack();}
+async function forgotPassword(){const email=document.getElementById('auth-email').value.trim();if(!email){showAuthError('Önce e-posta adresini gir.');return;}try{await auth.sendPasswordResetEmail(email);showAuthError('Şifre sıfırlama e-postası gönderildi!');document.getElementById('auth-error').style.color='#4fc3f7';}catch(e){showAuthError('E-posta gönderilemedi.');}}
+function openUserModal(){document.getElementById('user-info-email').textContent=currentUser?currentUser.email:'Misafir (veriler sadece bu cihazda)';openModal('user-modal');}
+function handleLogout(){if(currentUser)auth.signOut();else document.getElementById('auth-screen').classList.remove('hidden');closeModal('user-modal');}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!document.getElementById('auth-screen').classList.contains('hidden'))handleAuth();});
+async function loadUserData(){if(!currentUser)return;try{const doc=await db.collection('users').doc(currentUser.uid).get();if(doc.exists){const data=doc.data();if(data.routineTemplates)routineTemplates=data.routineTemplates;if(data.completions)completions=data.completions;if(data.specialTasks)specialTasks=data.specialTasks;if(data.theme){currentTheme=data.theme;localStorage.setItem('theme',data.theme);document.documentElement.setAttribute('data-theme',data.theme==='default'?'':data.theme);}}}catch(e){console.log('Veri yüklenemedi:',e);}}
+let saveTimer=null;
+async function saveData(){localStorage.setItem('routineTemplates',JSON.stringify(routineTemplates));localStorage.setItem('completions',JSON.stringify(completions));localStorage.setItem('specialTasks',JSON.stringify(specialTasks));clearTimeout(saveTimer);saveTimer=setTimeout(async()=>{if(!currentUser)return;try{await db.collection('users').doc(currentUser.uid).set({routineTemplates,completions,specialTasks,theme:currentTheme,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});}catch(e){console.log('Bulut kayıt hatası:',e);}},1500);}
+window.addEventListener('resize',()=>setTrackOffset(activeDayOffset,false));
 </script>
-
-
 </body></html>
