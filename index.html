@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- saved from url=(0047)file:///C:/Users/numan/Downloads/RGT_App_5.html -->
 <html lang="tr" data-theme="siyah-gri"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -1015,9 +1016,9 @@ html, body {
   color: var(--text-secondary);
 }
 </style>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="./RGT App_files/firebase-app-compat.js.indir"></script>
+<script src="./RGT App_files/firebase-auth-compat.js.indir"></script>
+<script src="./RGT App_files/firebase-firestore-compat.js.indir"></script>
 </head>
 <body>
 <!-- AUTH EKRANI -->
@@ -1036,9 +1037,9 @@ html, body {
       <input class="form-input" id="auth-password" type="password" placeholder="Şifre" autocomplete="current-password">
       <input class="form-input" id="auth-password2" type="password" placeholder="Şifre tekrar" style="display:none;" autocomplete="new-password">
       <div class="auth-forgot" id="forgot-btn" onclick="forgotPassword()">Şifremi unuttum</div>
-      <div class="auth-error" id="auth-error"></div>
+      <div class="auth-error show" id="auth-error">Google girişi başarısız: Firebase: This operation is not supported in the environment this application is running on. "location.protocol" must be http, https or chrome-extension and web storage must be enabled. (auth/operation-not-supported-in-this-environment).</div>
       <div class="auth-loading" id="auth-loading"><div class="spinner"></div> Lütfen bekle...</div>
-      <button class="btn-primary" id="auth-submit-btn" onclick="handleAuth()">Giriş Yap</button>
+      <button class="btn-primary" id="auth-submit-btn" onclick="handleAuth()" style="display: block;">Giriş Yap</button>
       <div class="auth-divider"><span>veya</span></div>
       <button class="btn-google" onclick="handleGoogleAuth()">
         <svg class="google-icon" viewBox="0 0 24 24">
@@ -1107,7 +1108,7 @@ html, body {
       </div>
     </div>
     <button class="btn-danger" id="logout-btn" style="width:100%;margin-top:8px;flex:none;display:block;position:relative;z-index:10;" onclick="handleLogout()">Çıkış Yap</button>
-    <button class="btn-secondary" style="position:relative;z-index:10;" onclick="closeModal('user-modal')">Kapat</button>
+    <button class="btn-secondary" style="position:relative;z-index:10;" onclick="closeModal(&#39;user-modal&#39;)">Kapat</button>
   </div>
 </div>
 
@@ -1268,7 +1269,7 @@ let completions = JSON.parse(localStorage.getItem('completions') || '{}');
 // Özel görevler: { 'YYYY-MM-DD': [{id, name, timeStart, timeEnd, note, done}] }
 let specialTasks = JSON.parse(localStorage.getItem('specialTasks') || '{}');
 
-// Tema
+// Tema - varsayılan siyah-gri
 let currentTheme = localStorage.getItem('theme') || 'siyah-gri';
 document.documentElement.setAttribute('data-theme', currentTheme === 'default' ? '' : currentTheme);
 
@@ -2157,13 +2158,8 @@ async function handleGoogleAuth() {
   try {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
-    // Mobilde redirect, masaüstünde popup dene
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) {
-      await auth.signInWithRedirect(provider);
-    } else {
-      await auth.signInWithPopup(provider);
-    }
+    // Tüm cihazlarda popup kullan (redirect mobilde sorun çıkarıyor)
+    await auth.signInWithPopup(provider);
   } catch(e) {
     setAuthLoading(false);
     const msgs = {
@@ -2173,7 +2169,7 @@ async function handleGoogleAuth() {
       'auth/network-request-failed': 'Ağ bağlantısı hatası.',
     };
     const msg = msgs[e.code];
-    if (msg !== '') showAuthError(msg || 'Google girişi başarısız: ' + e.message);
+    if (msg !== undefined && msg !== '') showAuthError(msg || 'Google girişi başarısız: ' + e.message);
   }
 }
 
