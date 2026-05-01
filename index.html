@@ -271,7 +271,7 @@ html, body {
 #cards-track {
   display: flex;
   height: 100%;
-  transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.42s cubic-bezier(0.22, 0.61, 0.36, 1);
   will-change: transform;
 }
 .day-card {
@@ -976,23 +976,14 @@ html, body {
 #user-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
+  justify-content: center;
   border-radius: 10px;
   background: var(--item-bg);
   border: 0.5px solid var(--border);
   cursor: pointer;
-  font-size: 12px;
-  color: var(--text-secondary);
-  max-width: 120px;
-  overflow: hidden;
+  font-size: 16px;
 }
-#user-email {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 11px;
-}
+#user-email { display: none; }
 
 .modal-sheet button, .modal-sheet .add-btn, .modal-sheet .week-tab, .modal-sheet .cal-day, .modal-sheet .theme-option, .modal-sheet .time-toggle-btn, .modal-sheet .auth-tab {
   position: relative;
@@ -1066,10 +1057,8 @@ html, body {
     <div id="header-actions">
       <div class="header-btn" id="cal-btn" title="Takvim">📅</div>
       <div class="header-btn" id="theme-btn" title="Tema">🎨</div>
-      <div id="user-btn" title="Hesap" onclick="openUserModal()">
-        <span>👤</span>
-        <span id="user-email">...</span>
-      </div>
+      <div class="header-btn" id="template-btn" title="Şablonlar">📋</div>
+      <div class="header-btn" id="user-btn" title="Hesap" onclick="openUserModal()">👤<span id="user-email" style="display:none;"></span></div>
     </div>
   </div>
 
@@ -1079,6 +1068,80 @@ html, body {
   <!-- KARTLAR -->
   <div id="cards-wrapper">
     <div id="cards-track"></div>
+  </div>
+</div>
+
+
+<!-- ŞABLON MODAL -->
+<div class="modal-overlay" id="template-modal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+      <div class="modal-title" style="margin-bottom:0;">Haftalık Şablonlar</div>
+      <div class="add-btn" id="add-template-btn" style="width:32px;height:32px;font-size:20px;">+</div>
+    </div>
+    <div id="template-list"></div>
+    <button class="btn-secondary" id="close-template-modal-btn">Kapat</button>
+  </div>
+</div>
+
+<!-- ŞABLON OLUŞTUR MODAL -->
+<div class="modal-overlay" id="create-template-modal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="create-template-title">Yeni Şablon</div>
+    <div class="form-group">
+      <label class="form-label">Şablon Adı</label>
+      <input class="form-input" id="template-name-input" placeholder="Örn: Sınav Haftası, Tatil..." type="text">
+    </div>
+    <div class="week-tabs" id="template-week-tabs"></div>
+    <div id="template-routine-list"></div>
+    <button class="btn-primary" id="add-template-routine-btn">+ Rutin Ekle</button>
+    <div style="display:flex;gap:8px;margin-top:8px;">
+      <button class="btn-primary" id="save-template-btn" style="flex:2;">Kaydet</button>
+      <button class="btn-secondary" id="cancel-template-btn" style="flex:1;margin-top:0;">Vazgeç</button>
+    </div>
+  </div>
+</div>
+
+<!-- ŞABLON RUTİN EKLE MODAL -->
+<div class="modal-overlay" id="add-template-routine-modal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Rutin Ekle</div>
+    <div class="form-group">
+      <label class="form-label">Rutin Adı</label>
+      <input class="form-input" id="tpl-routine-name" placeholder="Rutin adı..." type="text">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Saat (isteğe bağlı)</label>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div class="time-toggle-btn active" id="tpl-range-btn" onclick="tplTimeToggle('range')" style="flex:1;font-size:14px;padding:11px;">Saat</div>
+        <div class="time-toggle-btn" id="tpl-no-time-btn" onclick="tplTimeToggle('none')" style="flex:0 0 auto;font-size:11px;padding:8px 12px;opacity:0.6;">Saat yok</div>
+      </div>
+      <div id="tpl-time-pickers" style="display:none;">
+        <div style="display:flex;gap:16px;justify-content:center;">
+          <div class="time-picker-col">
+            <div class="time-picker-label">Başlangıç</div>
+            <div class="time-picker-wrap">
+              <div class="time-picker-col"><div class="drum" id="tpl-hour-drum"></div></div>
+              <div class="sep">:</div>
+              <div class="time-picker-col"><div class="drum" id="tpl-min-drum"></div></div>
+            </div>
+          </div>
+          <div class="time-picker-col" id="tpl-end-col" style="display:none;">
+            <div class="time-picker-label">Bitiş</div>
+            <div class="time-picker-wrap">
+              <div class="time-picker-col"><div class="drum" id="tpl-hour-end-drum"></div></div>
+              <div class="sep">:</div>
+              <div class="time-picker-col"><div class="drum" id="tpl-min-end-drum"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-primary" id="save-tpl-routine-btn">Ekle</button>
+    <button class="btn-secondary" id="cancel-tpl-routine-btn">Vazgeç</button>
   </div>
 </div>
 
@@ -1332,7 +1395,26 @@ function buildCard(offset) {
 
   const rHeader = document.createElement('div');
   rHeader.className = 'half-header';
-  rHeader.innerHTML = `<span class="half-title">Rutinler</span>`;
+  const rTitleWrap = document.createElement('div');
+  rTitleWrap.style.cssText = 'display:flex;align-items:center;gap:10px;flex:1;';
+  const rTitle = document.createElement('span');
+  rTitle.className = 'half-title';
+  rTitle.textContent = 'Rutinler';
+  const rTotal = routines.length;
+  const rDone = routines.filter(r => comp[r.id]).length;
+  const rPct = rTotal > 0 ? Math.round((rDone / rTotal) * 100) : 0;
+  const rBarWrap = document.createElement('div');
+  rBarWrap.style.cssText = 'position:relative;width:80px;height:14px;background:var(--accent-dim);border-radius:7px;overflow:hidden;flex-shrink:0;';
+  const rBarFill = document.createElement('div');
+  rBarFill.style.cssText = `width:${rPct}%;height:100%;background:var(--accent);border-radius:7px;transition:width 0.4s ease;`;
+  const rBarText = document.createElement('span');
+  rBarText.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;font-weight:600;color:var(--bg);letter-spacing:0.03em;';
+  rBarText.textContent = rTotal > 0 ? rPct + '%' : '';
+  rBarWrap.appendChild(rBarFill);
+  rBarWrap.appendChild(rBarText);
+  rTitleWrap.appendChild(rTitle);
+  rTitleWrap.appendChild(rBarWrap);
+  rHeader.appendChild(rTitleWrap);
   const rAddBtn = document.createElement('div');
   rAddBtn.className = 'add-btn';
   rAddBtn.textContent = '+';
@@ -1372,7 +1454,26 @@ function buildCard(offset) {
 
   const tHeader = document.createElement('div');
   tHeader.className = 'half-header';
-  tHeader.innerHTML = `<span class="half-title">Görevler</span>`;
+  const tTitleWrap = document.createElement('div');
+  tTitleWrap.style.cssText = 'display:flex;align-items:center;gap:10px;flex:1;';
+  const tTitle = document.createElement('span');
+  tTitle.className = 'half-title';
+  tTitle.textContent = 'Görevler';
+  const tTotal = tasks.length;
+  const tDone = tasks.filter(t => t.done).length;
+  const tPct = tTotal > 0 ? Math.round((tDone / tTotal) * 100) : 0;
+  const tBarWrap = document.createElement('div');
+  tBarWrap.style.cssText = 'position:relative;width:80px;height:14px;background:var(--accent-dim);border-radius:7px;overflow:hidden;flex-shrink:0;';
+  const tBarFill = document.createElement('div');
+  tBarFill.style.cssText = `width:${tPct}%;height:100%;background:var(--accent);border-radius:7px;transition:width 0.4s ease;`;
+  const tBarText = document.createElement('span');
+  tBarText.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;font-weight:600;color:var(--bg);letter-spacing:0.03em;';
+  tBarText.textContent = tTotal > 0 ? tPct + '%' : '';
+  tBarWrap.appendChild(tBarFill);
+  tBarWrap.appendChild(tBarText);
+  tTitleWrap.appendChild(tTitle);
+  tTitleWrap.appendChild(tBarWrap);
+  tHeader.appendChild(tTitleWrap);
   const tAddBtn = document.createElement('div');
   tAddBtn.className = 'add-btn';
   tAddBtn.textContent = '+';
@@ -1442,7 +1543,7 @@ function makeTaskEl(item, isDone, type, dateKey, offset) {
   el.addEventListener('touchmove', e => {
     const dx = e.touches[0].clientX - startX;
     const dy = e.touches[0].clientY - startY;
-    if (Math.abs(dx) > Math.abs(dy) && dx > 20) {
+    if (Math.abs(dx) > Math.abs(dy) * 1.5 && dx > 60) {
       swiping = true;
       el.classList.add('swiping');
       e.stopPropagation();
@@ -1581,7 +1682,7 @@ function updateHeader() {
 function updateDayNav() {
   const nav = document.getElementById('day-nav');
   nav.innerHTML = '';
-  for (let i = -3; i <= 3; i++) {
+  for (let i = -15; i <= 15; i++) {
     const d = getDateByOffset(i);
     const chip = document.createElement('div');
     chip.className = 'day-chip' + (i === activeDayOffset ? ' active' : '');
@@ -2355,6 +2456,212 @@ function openYearPicker(){
   ov.addEventListener('click',e=>{if(e.target===ov)document.body.removeChild(ov);});
   document.body.appendChild(ov);
 }
+
+
+// ═══════════════════════════════════════
+// HAFTALIK ŞABLON SİSTEMİ
+// ═══════════════════════════════════════
+let templates = JSON.parse(localStorage.getItem('weeklyTemplates') || '[]');
+let editingTemplateId = null;
+let templateEditDow = 1;
+let tplTimeMode = 'range';
+let tplDrumsInited = false;
+
+document.getElementById('template-btn').addEventListener('click', () => {
+  renderTemplateList();
+  openModal('template-modal');
+});
+document.getElementById('close-template-modal-btn').addEventListener('click', () => closeModal('template-modal'));
+
+document.getElementById('add-template-btn').addEventListener('click', () => {
+  editingTemplateId = null;
+  document.getElementById('template-name-input').value = '';
+  document.getElementById('create-template-title').textContent = 'Yeni Şablon';
+  templateEditDow = 1;
+  initNewTemplate();
+  renderTemplateWeekTabs();
+  renderTemplateRoutineList();
+  closeModal('template-modal');
+  openModal('create-template-modal');
+});
+
+let newTemplateData = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]};
+
+function initNewTemplate() {
+  newTemplateData = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]};
+}
+
+function renderTemplateList() {
+  const list = document.getElementById('template-list');
+  list.innerHTML = '';
+  if (templates.length === 0) {
+    list.innerHTML = '<div class="empty-state"><span class="empty-state-text">Henüz şablon yok</span></div>';
+    return;
+  }
+  templates.forEach(tpl => {
+    const el = document.createElement('div');
+    el.className = 'task-item';
+    el.style.cssText = 'margin-bottom:8px;cursor:default;';
+    const isActive = tpl.id === localStorage.getItem('activeTemplateId');
+    const nameEl = document.createElement('span');
+    nameEl.className = 'task-name';
+    nameEl.style.fontWeight = '600';
+    nameEl.textContent = tpl.name;
+    el.appendChild(nameEl);
+    if (isActive) {
+      const badge = document.createElement('span');
+      badge.style.cssText = 'font-size:11px;padding:3px 8px;border-radius:6px;background:var(--accent-dim);color:var(--accent);font-weight:600;';
+      badge.textContent = 'Aktif';
+      el.appendChild(badge);
+    }
+    const btnWrap = document.createElement('div');
+    btnWrap.style.cssText = 'display:flex;gap:6px;';
+    if (!isActive) {
+      const applyBtn = document.createElement('div');
+      applyBtn.className = 'task-detail-btn';
+      applyBtn.style.cssText = 'width:auto;padding:0 8px;font-size:11px;color:var(--accent);';
+      applyBtn.textContent = 'Uygula';
+      applyBtn.addEventListener('click', () => activateTemplate(tpl.id));
+      btnWrap.appendChild(applyBtn);
+    }
+    const delBtn = document.createElement('div');
+    delBtn.className = 'task-detail-btn';
+    delBtn.style.color = '#e05555';
+    delBtn.textContent = '✕';
+    delBtn.addEventListener('click', () => deleteTemplate(tpl.id));
+    btnWrap.appendChild(delBtn);
+    el.appendChild(btnWrap);
+    list.appendChild(el);
+  });
+}
+
+function activateTemplate(id) {
+  const tpl = templates.find(t => t.id === id);
+  if (!tpl) return;
+  localStorage.setItem('activeTemplateId', id);
+  routineTemplates = JSON.parse(JSON.stringify(tpl.routines));
+  saveData();
+  initTrack();
+  renderTemplateList();
+}
+
+function deleteTemplate(id) {
+  templates = templates.filter(t => t.id !== id);
+  localStorage.setItem('weeklyTemplates', JSON.stringify(templates));
+  if (localStorage.getItem('activeTemplateId') === id) localStorage.removeItem('activeTemplateId');
+  renderTemplateList();
+}
+
+function renderTemplateWeekTabs() {
+  const tabs = document.getElementById('template-week-tabs');
+  tabs.innerHTML = '';
+  const dn = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
+  for (let i = 1; i <= 7; i++) {
+    const d = i % 7;
+    const tab = document.createElement('div');
+    tab.className = 'week-tab' + (d === templateEditDow ? ' active' : '');
+    tab.textContent = dn[d];
+    tab.addEventListener('click', () => { templateEditDow = d; renderTemplateWeekTabs(); renderTemplateRoutineList(); });
+    tabs.appendChild(tab);
+  }
+}
+
+function renderTemplateRoutineList() {
+  const list = document.getElementById('template-routine-list');
+  list.innerHTML = '';
+  const routines = newTemplateData[templateEditDow] || [];
+  if (routines.length === 0) {
+    list.innerHTML = '<div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div>';
+    return;
+  }
+  routines.forEach((r, idx) => {
+    const el = document.createElement('div');
+    el.className = 'task-item';
+    el.style.marginBottom = '8px';
+    const ts = r.timeStart ? `${r.timeStart}${r.timeEnd ? ' – '+r.timeEnd : ''}` : '';
+    if (ts) {
+      const timeEl = document.createElement('span');
+      timeEl.className = 'task-time';
+      timeEl.textContent = ts;
+      el.appendChild(timeEl);
+    }
+    const nameEl2 = document.createElement('span');
+    nameEl2.className = 'task-name';
+    nameEl2.textContent = r.name;
+    el.appendChild(nameEl2);
+    const delBtn2 = document.createElement('div');
+    delBtn2.className = 'task-detail-btn';
+    delBtn2.style.color = '#e05555';
+    delBtn2.textContent = '✕';
+    delBtn2.addEventListener('click', () => removeTplRoutine(idx));
+    el.appendChild(delBtn2);
+    list.appendChild(el);
+  });
+}
+
+function removeTplRoutine(idx) {
+  newTemplateData[templateEditDow].splice(idx, 1);
+  renderTemplateRoutineList();
+}
+
+document.getElementById('add-template-routine-btn').addEventListener('click', () => {
+  tplDrumsInited = false;
+  document.getElementById('tpl-routine-name').value = '';
+  tplTimeToggle('range');
+  openModal('add-template-routine-modal');
+  setTimeout(() => document.getElementById('tpl-routine-name').focus(), 300);
+});
+
+document.getElementById('save-tpl-routine-btn').addEventListener('click', () => {
+  const name = document.getElementById('tpl-routine-name').value.trim();
+  if (!name) return;
+  let ts = '', te = '';
+  if (tplTimeMode !== 'none') {
+    ts = getPickerTime('tpl');
+    if (tplTimeMode === 'range') te = getPickerEndTime('tpl');
+  }
+  if (!newTemplateData[templateEditDow]) newTemplateData[templateEditDow] = [];
+  newTemplateData[templateEditDow].push({ id: 'tr' + Date.now(), name, timeStart: ts, timeEnd: te });
+  renderTemplateRoutineList();
+  closeModal('add-template-routine-modal');
+});
+document.getElementById('cancel-tpl-routine-btn').addEventListener('click', () => closeModal('add-template-routine-modal'));
+
+document.getElementById('save-template-btn').addEventListener('click', () => {
+  const name = document.getElementById('template-name-input').value.trim();
+  if (!name) return;
+  const tpl = { id: 'tpl' + Date.now(), name, routines: JSON.parse(JSON.stringify(newTemplateData)) };
+  templates.push(tpl);
+  localStorage.setItem('weeklyTemplates', JSON.stringify(templates));
+  closeModal('create-template-modal');
+  renderTemplateList();
+  openModal('template-modal');
+});
+document.getElementById('cancel-template-btn').addEventListener('click', () => {
+  closeModal('create-template-modal');
+  openModal('template-modal');
+});
+
+function tplTimeToggle(mode) {
+  tplTimeMode = mode;
+  document.getElementById('tpl-range-btn').classList.toggle('active', mode !== 'none');
+  document.getElementById('tpl-no-time-btn').classList.toggle('active', mode === 'none');
+  const pickers = document.getElementById('tpl-time-pickers');
+  const endCol = document.getElementById('tpl-end-col');
+  if (mode === 'none') {
+    pickers.style.display = 'none';
+  } else {
+    pickers.style.display = 'block';
+    endCol.style.display = 'flex';
+    if (!tplDrumsInited) {
+      tplDrumsInited = true;
+      setTimeout(() => initDrums('tpl'), 50);
+    } else {
+      initDrums('tpl');
+    }
+  }
+}
+
 
 window.addEventListener('resize', () => {
   setTrackOffset(activeDayOffset, false);
