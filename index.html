@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)file:///C:/Users/numan/Downloads/RGT_GITHUB_1.html -->
 <html lang="tr" data-theme="siyah-gri"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -1016,9 +1015,9 @@ html, body {
   color: var(--text-secondary);
 }
 </style>
-<script src="./RGT App_files/firebase-app-compat.js.indir"></script>
-<script src="./RGT App_files/firebase-auth-compat.js.indir"></script>
-<script src="./RGT App_files/firebase-firestore-compat.js.indir"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
 <!-- AUTH EKRANI -->
@@ -1037,7 +1036,7 @@ html, body {
       <input class="form-input" id="auth-password" type="password" placeholder="Şifre" autocomplete="current-password">
       <input class="form-input" id="auth-password2" type="password" placeholder="Şifre tekrar" style="display:none;" autocomplete="new-password">
       <div class="auth-forgot" id="forgot-btn" onclick="forgotPassword()">Şifremi unuttum</div>
-      <div class="auth-error show" id="auth-error">Google girişi başarısız: Firebase: This operation is not supported in the environment this application is running on. "location.protocol" must be http, https or chrome-extension and web storage must be enabled. (auth/operation-not-supported-in-this-environment).</div>
+      <div class="auth-error" id="auth-error"></div>
       <div class="auth-loading" id="auth-loading"><div class="spinner"></div> Lütfen bekle...</div>
       <button class="btn-primary" id="auth-submit-btn" onclick="handleAuth()" style="display: block;">Giriş Yap</button>
       <div class="auth-divider"><span>veya</span></div>
@@ -1622,7 +1621,7 @@ document.getElementById('cal-next').addEventListener('click', () => {
 
 function renderCal() {
   const _ml=document.getElementById('cal-month-label');
-  _ml.innerHTML='<span onclick="openMonthPicker()" style="cursor:pointer;border-bottom:1px dashed var(--accent);padding-bottom:1px;">'+MONTHS_TR[calViewMonth]+'</span> <span onclick="openYearPicker()" style="cursor:pointer;border-bottom:1px dashed var(--accent);padding-bottom:1px;">'+calViewYear+'</span>';
+  _ml.innerHTML='<span onclick="openMonthPicker()" style="cursor:pointer;font-size:16px;font-weight:700;padding:4px 8px;border-radius:8px;background:var(--accent-dim);">'+MONTHS_TR[calViewMonth]+'</span> <span onclick="openYearPicker()" style="cursor:pointer;font-size:16px;font-weight:700;padding:4px 8px;border-radius:8px;background:var(--accent-dim);">'+calViewYear+'</span>';
   const grid = document.getElementById('cal-grid');
   grid.innerHTML = '';
   const dayNames = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
@@ -1655,8 +1654,14 @@ function renderCal() {
     el.addEventListener('click', () => {
       if (diff >= -WINDOW && diff <= WINDOW) {
         goToOffset(diff);
-        closeModal('cal-modal');
+      } else {
+        // Tarih WINDOW dışında - sadece takvimi kapat, o tarihe git
+        activeDayOffset = diff;
+        // WINDOW'u geç bir tarihe gidince kartı rebuild etme, sadece header güncelle
+        updateHeader();
+        updateDayNav();
       }
+      closeModal('cal-modal');
     });
     grid.appendChild(el);
   }
@@ -2168,14 +2173,22 @@ async function handleGoogleAuth() {
   try {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
-    // Android'de redirect, diğerlerinde popup
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    if (isAndroid) {
-      // Redirect öncesi flag kaydet
+    // Mobilde redirect, masaüstünde popup (popup başarısız olursa redirect dene)
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
       localStorage.setItem('googleRedirectPending', '1');
       await auth.signInWithRedirect(provider);
     } else {
-      await auth.signInWithPopup(provider);
+      try {
+        await auth.signInWithPopup(provider);
+      } catch(popupErr) {
+        if (popupErr.code === 'auth/popup-blocked' || popupErr.code === 'auth/operation-not-supported-in-this-environment') {
+          localStorage.setItem('googleRedirectPending', '1');
+          await auth.signInWithRedirect(provider);
+        } else {
+          throw popupErr;
+        }
+      }
     }
   } catch(e) {
     setAuthLoading(false);
