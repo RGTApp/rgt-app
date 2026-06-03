@@ -1,2673 +1,994 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="siyah-gri"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>RGT App</title>
-
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psikoloji Tarihi — Sınav Hazırlık</title>
 <style>
-/* ═══════════════════════════════════════
-   TEMALAR
-═══════════════════════════════════════ */
-:root {
-  --bg: #111110;
-  --card-bg: #1a1916;
-  --half-bg: #1f1d19;
-  --item-bg: #252318;
-  --item-done-bg: #1a1916;
-  --accent: #e8823a;
-  --accent-dim: #332e1a;
-  --text-primary: #d4cfc8;
-  --text-secondary: #888070;
-  --text-done: #484540;
-  --border: rgba(255,255,255,0.06);
-  --badge-bg: #332e1a;
-  --badge-text: #e8823a;
-  --header-text: #e8823a;
-  --plus-bg: #252318;
-  --divider: rgba(255,255,255,0.05);
-  --modal-bg: #1a1916;
-  --input-bg: #252318;
-  --input-border: rgba(255,255,255,0.1);
-  --shadow: rgba(0,0,0,0.5);
-}
-[data-theme="siyah-gri"] {
-  --bg: #0a0a0a;
-  --card-bg: #141414;
-  --half-bg: #181818;
-  --item-bg: #222222;
-  --item-done-bg: #141414;
-  --accent: #bbbbbb;
-  --accent-dim: #2a2a2a;
-  --text-primary: #dddddd;
-  --text-secondary: #666666;
-  --text-done: #333333;
-  --border: rgba(255,255,255,0.05);
-  --badge-bg: #2a2a2a;
-  --badge-text: #aaaaaa;
-  --header-text: #bbbbbb;
-  --plus-bg: #222222;
-  --divider: rgba(255,255,255,0.04);
-  --modal-bg: #141414;
-  --input-bg: #222222;
-  --input-border: rgba(255,255,255,0.08);
-  --shadow: rgba(0,0,0,0.6);
-}
-[data-theme="siyah-sari"] {
-  --bg: #0d0d0d;
-  --card-bg: #161400;
-  --half-bg: #1a1800;
-  --item-bg: #1e1c00;
-  --item-done-bg: #161400;
-  --accent: #f5d020;
-  --accent-dim: #2e2c00;
-  --text-primary: #e8e0b0;
-  --text-secondary: #7a7040;
-  --text-done: #3a3800;
-  --border: rgba(255,220,0,0.06);
-  --badge-bg: #2e2c00;
-  --badge-text: #f5d020;
-  --header-text: #f5d020;
-  --plus-bg: #222000;
-  --divider: rgba(255,220,0,0.05);
-  --modal-bg: #161400;
-  --input-bg: #1e1c00;
-  --input-border: rgba(255,220,0,0.12);
-  --shadow: rgba(0,0,0,0.6);
-}
-[data-theme="acik-krem"] {
-  --bg: #f5f0e8;
-  --card-bg: #ffffff;
-  --half-bg: #faf8f4;
-  --item-bg: #f3efe8;
-  --item-done-bg: #faf8f4;
-  --accent: #5a5040;
-  --accent-dim: #e8e0d0;
-  --text-primary: #1a1510;
-  --text-secondary: #8a8070;
-  --text-done: #bbb0a0;
-  --border: rgba(0,0,0,0.08);
-  --badge-bg: #e8e0d0;
-  --badge-text: #5a5040;
-  --header-text: #2a2520;
-  --plus-bg: #ede8e0;
-  --divider: rgba(0,0,0,0.06);
-  --modal-bg: #ffffff;
-  --input-bg: #f3efe8;
-  --input-border: rgba(0,0,0,0.1);
-  --shadow: rgba(0,0,0,0.15);
-}
-[data-theme="gri-beyaz"] {
-  --bg: #e8e8e8;
-  --card-bg: #f5f5f5;
-  --half-bg: #efefef;
-  --item-bg: #e8e8e8;
-  --item-done-bg: #f5f5f5;
-  --accent: #444444;
-  --accent-dim: #d8d8d8;
-  --text-primary: #111111;
-  --text-secondary: #777777;
-  --text-done: #aaaaaa;
-  --border: rgba(0,0,0,0.09);
-  --badge-bg: #d8d8d8;
-  --badge-text: #444444;
-  --header-text: #222222;
-  --plus-bg: #e0e0e0;
-  --divider: rgba(0,0,0,0.06);
-  --modal-bg: #f5f5f5;
-  --input-bg: #e8e8e8;
-  --input-border: rgba(0,0,0,0.1);
-  --shadow: rgba(0,0,0,0.15);
-}
-[data-theme="lacivert-cyan"] {
-  --bg: #0b0f1a;
-  --card-bg: #111827;
-  --half-bg: #141e30;
-  --item-bg: #1a2640;
-  --item-done-bg: #111827;
-  --accent: #4fc3f7;
-  --accent-dim: #0d2040;
-  --text-primary: #c5d8f0;
-  --text-secondary: #4a6a90;
-  --text-done: #2a4060;
-  --border: rgba(79,195,247,0.08);
-  --badge-bg: #0d2040;
-  --badge-text: #4fc3f7;
-  --header-text: #4fc3f7;
-  --plus-bg: #1a2640;
-  --divider: rgba(79,195,247,0.05);
-  --modal-bg: #111827;
-  --input-bg: #1a2640;
-  --input-border: rgba(79,195,247,0.12);
-  --shadow: rgba(0,0,0,0.5);
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0e0e0d;
+    color: #e8e6e0;
+    min-height: 100vh;
+  }
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: flex; flex-direction: column; }
 
-/* ═══════════════════════════════════════
-   GENEL
-═══════════════════════════════════════ */
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body {
-  height: 100%;
-  background: var(--bg);
-  color: var(--text-primary);
-  font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-  overflow: hidden;
-  user-select: none;
-}
+  /* HOME */
+  #home { align-items: center; justify-content: center; padding: 2rem 1.5rem; }
+  .home-inner { width: 100%; max-width: 480px; }
+  .home-badge {
+    display: inline-block; font-size: 11px; letter-spacing: 0.1em;
+    color: #EF9F27; background: rgba(239,159,39,0.12);
+    border: 0.5px solid rgba(239,159,39,0.3); border-radius: 20px;
+    padding: 4px 12px; margin-bottom: 1.5rem;
+  }
+  .home-title { font-size: 28px; font-weight: 600; color: #F1EFE8; line-height: 1.2; margin-bottom: 0.5rem; }
+  .home-sub { font-size: 14px; color: #888780; margin-bottom: 2rem; line-height: 1.6; }
 
-/* ═══════════════════════════════════════
-   ANA LAYOUT
-═══════════════════════════════════════ */
-#app {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  max-width: 430px;
-  margin: 0 auto;
-  position: relative;
-}
+  .mastery-block {
+    background: #141413; border: 0.5px solid #2a2a28; border-radius: 12px;
+    padding: 1.25rem; margin-bottom: 1.5rem;
+  }
+  .mastery-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .mastery-title { font-size: 12px; color: #888780; letter-spacing: 0.04em; }
+  .mastery-pct { font-size: 22px; font-weight: 600; color: #EF9F27; }
+  .mastery-bar-bg { height: 4px; background: #2a2a28; border-radius: 2px; margin-bottom: 10px; }
+  .mastery-bar-fill { height: 4px; background: #EF9F27; border-radius: 2px; transition: width 0.5s; }
+  .mastery-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .mstat { text-align: center; }
+  .mstat-num { font-size: 16px; font-weight: 600; color: #D3D1C7; }
+  .mstat-num.green { color: #1D9E75; }
+  .mstat-num.red { color: #E24B4A; }
+  .mstat-lbl { font-size: 11px; color: #555553; margin-top: 2px; }
 
-/* ═══════════════════════════════════════
-   HEADER
-═══════════════════════════════════════ */
-#header {
-  padding: 16px 20px 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-#date-display {
-  display: flex;
-  flex-direction: column;
-}
-#day-name {
-  font-size: 13px;
-  color: var(--text-secondary);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-#date-full {
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
-#header-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.header-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: opacity 0.15s;
-  font-size: 16px;
-}
-.header-btn:active { opacity: 0.6; }
+  .name-label { font-size: 12px; color: #888780; letter-spacing: 0.04em; margin-bottom: 8px; }
+  .name-input {
+    width: 100%; background: #1a1a18; border: 0.5px solid #3a3a38; border-radius: 10px;
+    padding: 12px 16px; font-size: 15px; color: #F1EFE8; outline: none; margin-bottom: 1.25rem;
+    transition: border-color 0.15s;
+  }
+  .name-input:focus { border-color: #EF9F27; }
+  .name-input::placeholder { color: #555553; }
 
-/* ═══════════════════════════════════════
-   GÜN GEZİNME
-═══════════════════════════════════════ */
-#day-nav {
-  padding: 8px 20px;
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  flex-shrink: 0;
-}
-#day-nav::-webkit-scrollbar { display: none; }
-.day-chip {
-  flex-shrink: 0;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.day-chip.active {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-  font-weight: 600;
-}
-.day-chip:active { opacity: 0.7; }
+  .btn-primary {
+    width: 100%; background: #EF9F27; color: #0e0e0d; border: none; border-radius: 10px;
+    padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s; margin-bottom: 10px;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-secondary {
+    width: 100%; background: transparent; color: #888780;
+    border: 0.5px solid #3a3a38; border-radius: 10px;
+    padding: 14px; font-size: 15px; cursor: pointer;
+    transition: background 0.15s, color 0.15s; margin-bottom: 10px;
+  }
+  .btn-secondary:hover { background: #1a1a18; color: #D3D1C7; }
+  .btn-outline-orange {
+    width: 100%; background: transparent; color: #EF9F27;
+    border: 0.5px solid rgba(239,159,39,0.4); border-radius: 10px;
+    padding: 14px; font-size: 15px; cursor: pointer;
+    transition: background 0.15s; margin-bottom: 10px;
+  }
+  .btn-outline-orange:hover { background: rgba(239,159,39,0.08); }
 
-/* ═══════════════════════════════════════
-   KART ALANI - PEEK SWIPE
-═══════════════════════════════════════ */
-#cards-wrapper {
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-  padding: 0 0 16px;
-  /* Peek için: yanlarda kartın taşmasına izin veriyoruz */
-}
-/* Track'in yanlara taşması için wrapper'ın clip'ini kaldırıyoruz */
-#cards-wrapper::before,
-#cards-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 16px;
-  width: 24px;
-  z-index: 2;
-  pointer-events: none;
-}
-#cards-wrapper::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
-#cards-wrapper::after  { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
-#cards-track {
-  display: flex;
-  height: 100%;
-  transition: transform 0.42s cubic-bezier(0.22, 0.61, 0.36, 1);
-  will-change: transform;
-}
-.day-card {
-  flex-shrink: 0;
-  /* Kart genişliği: ekranın %82'si, ortalanmış, yanlarda peek */
-  width: calc(100% - 64px);
-  margin: 0 8px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background: var(--card-bg);
-  border-radius: 26px;
-  border: 0.5px solid var(--border);
-  overflow: hidden;
-  transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              opacity 0.38s ease;
-}
-/* Aktif olmayan kartlar biraz küçülsün ve soluklaşsın */
-.day-card:not(.active-card) {
-  opacity: 0.55;
-  transform: scale(0.96);
-}
+  /* QUIZ SCREEN */
+  #quiz { padding: 0; }
+  .quiz-topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 1.5rem 0.75rem; border-bottom: 0.5px solid #1e1e1c;
+  }
+  .quiz-meta { font-size: 12px; color: #666664; letter-spacing: 0.04em; }
+  .quiz-streak { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888780; }
+  .progress-bar { height: 2px; background: #1e1e1c; flex-shrink: 0; }
+  .progress-fill { height: 2px; background: #EF9F27; transition: width 0.4s ease; }
 
-/* ═══════════════════════════════════════
-   KART İÇİ - İKİ YARI
-═══════════════════════════════════════ */
-.card-half {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 14px 14px 10px;
-  min-height: 0;
-}
-.card-half + .card-half {
-  border-top: 0.5px solid var(--divider);
-}
-.half-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  flex-shrink: 0;
-}
-.half-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--header-text);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.add-btn {
-  width: 26px;
-  height: 26px;
-  border-radius: 8px;
-  background: var(--plus-bg);
-  border: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-  line-height: 1;
-  color: var(--accent);
-  transition: opacity 0.15s;
-}
-.add-btn:active { opacity: 0.6; }
+  .quiz-body { flex: 1; padding: 1.5rem; max-width: 640px; margin: 0 auto; width: 100%; }
+  .level-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: #666664; margin-bottom: 1rem; }
+  .level-dot { width: 6px; height: 6px; border-radius: 50%; background: #2a2a28; }
+  .level-dot.active { background: #EF9F27; }
 
-/* ═══════════════════════════════════════
-   GÖREV LİSTESİ
-═══════════════════════════════════════ */
-.items-scroll {
-  flex: 1;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-.items-scroll::-webkit-scrollbar { display: none; }
+  .question-text { font-size: 16px; font-weight: 500; color: #F1EFE8; line-height: 1.65; margin-bottom: 1.5rem; }
+  .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+  .opt-btn {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 16px; background: #141413;
+    border: 0.5px solid #2a2a28; border-radius: 10px;
+    cursor: pointer; text-align: left;
+    transition: border-color 0.12s, background 0.12s; width: 100%;
+  }
+  .opt-btn:hover:not(:disabled) { border-color: #4a4a48; background: #1a1a18; }
+  .opt-btn:disabled { cursor: default; }
+  .opt-letter {
+    width: 26px; height: 26px; border-radius: 50%; border: 0.5px solid #3a3a38;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500; color: #888780; flex-shrink: 0;
+    transition: all 0.15s; margin-top: 1px;
+  }
+  .opt-text { font-size: 14px; color: #C8C6C0; line-height: 1.5; }
 
-.task-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 10px;
-  border-radius: 12px;
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  margin-bottom: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: opacity 0.2s;
-  -webkit-user-select: none;
-}
-.task-item.done {
-  background: var(--item-done-bg);
-  opacity: 0.45;
-}
-.task-item.done .task-name {
-  text-decoration: line-through;
-  color: var(--text-done);
-}
+  .opt-btn.selected-correct { border-color: #1D9E75; background: rgba(29,158,117,0.08); }
+  .opt-btn.selected-correct .opt-letter { background: #1D9E75; border-color: #1D9E75; color: #fff; }
+  .opt-btn.selected-correct .opt-text { color: #9FE1CB; }
 
-.task-time {
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 9px;
-  border-radius: 8px;
-  background: var(--badge-bg);
-  color: var(--badge-text);
-  white-space: nowrap;
-  flex-shrink: 0;
-  letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
-  border: 0.5px solid var(--accent);
-  opacity: 0.95;
-}
-.task-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-primary);
-  flex: 1;
-  line-height: 1.3;
-}
-.task-detail-btn {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  background: var(--half-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  color: var(--text-secondary);
-  flex-shrink: 0;
-  border: 0.5px solid var(--border);
-}
+  .opt-btn.selected-wrong { border-color: #E24B4A; background: rgba(226,75,74,0.08); }
+  .opt-btn.selected-wrong .opt-letter { background: #E24B4A; border-color: #E24B4A; color: #fff; }
+  .opt-btn.selected-wrong .opt-text { color: #F09595; }
 
-/* Swipe to complete çizgisi */
-.swipe-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: var(--accent);
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: width 0.25s ease;
-}
-.task-item.swiping .swipe-line { width: 100%; }
+  .opt-btn.show-correct { border-color: #1D9E75; background: rgba(29,158,117,0.06); }
+  .opt-btn.show-correct .opt-letter { background: #1D9E75; border-color: #1D9E75; color: #fff; }
+  .opt-btn.show-correct .opt-text { color: #9FE1CB; }
 
-/* Peek item (tamamlananların alttan görünmesi) */
-.peek-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 10px;
-  border-radius: 10px;
-  background: var(--item-done-bg);
-  border: 0.5px solid var(--border);
-  opacity: 0.3;
-  margin-top: 4px;
-  flex-shrink: 0;
-}
-.peek-name {
-  font-size: 12px;
-  color: var(--text-done);
-  text-decoration: line-through;
-}
+  .explanation-box {
+    background: #181817; border: 0.5px solid #2a2a28;
+    border-left: 3px solid #EF9F27; border-radius: 0 10px 10px 0;
+    padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+    animation: slideUp 0.25s ease;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .exp-result { font-size: 13px; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 6px; }
+  .exp-result.correct { color: #1D9E75; }
+  .exp-result.wrong { color: #E24B4A; }
+  .exp-text { font-size: 13px; color: #B4B2A9; line-height: 1.65; }
+  .exp-text strong { color: #EF9F27; font-weight: 500; }
 
-/* ═══════════════════════════════════════
-   TAKVİM MODAL
-═══════════════════════════════════════ */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 100;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s;
-}
-.modal-overlay.open {
-  opacity: 1;
-  pointer-events: all;
-}
-.modal-sheet {
-  width: 100%;
-  max-width: 430px;
-  background: var(--modal-bg);
-  border-radius: 24px 24px 0 0;
-  padding: 20px;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: 0.5px solid var(--border);
-  border-bottom: none;
-  max-height: 85vh;
-  overflow-y: auto;
-}
-.modal-overlay.open .modal-sheet {
-  transform: translateY(0);
-}
-.modal-handle {
-  width: 36px;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--border);
-  margin: 0 auto 16px;
-}
+  .quiz-footer { padding: 0 1.5rem 1.5rem; max-width: 640px; margin: 0 auto; width: 100%; }
+  .next-btn {
+    width: 100%; background: #EF9F27; color: #0e0e0d; border: none; border-radius: 10px;
+    padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: opacity 0.15s; margin-bottom: 10px;
+  }
+  .next-btn:hover { opacity: 0.9; }
 
-/* ═══════════════════════════════════════
-   KAYDIRMALI SAAT PİCKER
-═══════════════════════════════════════ */
-.time-picker-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin: 4px 0 16px;
-  position: relative;
-}
-.time-picker-wrap .sep {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 2px;
-}
-.drum {
-  width: 72px;
-  height: 140px;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 16px;
-  background: var(--input-bg);
-  border: 0.5px solid var(--input-border);
-  position: relative;
-}
-.drum::-webkit-scrollbar { display: none; }
-.drum-item {
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  scroll-snap-align: center;
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-  transition: color 0.15s, font-size 0.15s;
-  cursor: pointer;
-}
-.drum-item.selected {
-  color: var(--accent);
-  font-size: 26px;
-}
-/* Drum üst/alt boşluk için phantom item */
-.drum-item.phantom {
-  pointer-events: none;
-}
-/* Seçim çizgileri */
-.drum::before,
-.drum::after {
-  content: '';
-  position: sticky;
-  display: block;
-  left: 0; right: 0;
-  height: 1px;
-  background: var(--accent);
-  opacity: 0.35;
-  z-index: 2;
-}
-.drum::before { top: 48px; }
-.drum::after  { top: 91px; }
-.time-picker-label {
-  font-size: 11px;
-  color: var(--text-secondary);
-  text-align: center;
-  margin-bottom: 4px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.time-picker-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.time-picker-section {
-  margin-bottom: 12px;
-}
-.time-picker-section-title {
-  font-size: 12px;
-  color: var(--text-secondary);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.time-toggle-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-.time-toggle-btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 12px;
-  background: var(--input-bg);
-  border: 0.5px solid var(--input-border);
-  color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 500;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: inherit;
-}
-.time-toggle-btn.active {
-  background: var(--accent-dim);
-  border-color: var(--accent);
-  color: var(--accent);
-  font-weight: 700;
-}
-.modal-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-}
+  /* 46 SORULAR EKRANI */
+  #fulltest { padding: 0; }
+  .fulltest-topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 1.5rem; border-bottom: 0.5px solid #1e1e1c; flex-shrink: 0;
+  }
+  .fulltest-meta { font-size: 13px; color: #888780; }
+  .fulltest-meta span { color: #EF9F27; font-weight: 600; }
+  .fulltest-body { flex: 1; padding: 1.5rem; max-width: 640px; margin: 0 auto; width: 100%; }
+  .ft-progress-bar { height: 3px; background: #1e1e1c; }
+  .ft-progress-fill { height: 3px; background: #EF9F27; transition: width 0.3s; }
 
-/* Takvim */
-.cal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-.cal-month {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-.cal-nav {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 14px;
-  color: var(--text-primary);
-}
-.cal-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-.cal-day-name {
-  text-align: center;
-  font-size: 11px;
-  color: var(--text-secondary);
-  font-weight: 500;
-  padding: 4px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.cal-day {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.cal-day:hover { background: var(--item-bg); }
-.cal-day.today { background: var(--accent-dim); color: var(--accent); }
-.cal-day.selected { background: var(--accent); color: var(--bg); font-weight: 700; }
-.cal-day.empty { pointer-events: none; }
-.cal-day.has-task::after {
-  content: '';
-  position: absolute;
-  bottom: 3px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-.cal-day { position: relative; }
+  /* CEVAPLAR EKRANI */
+  #allq { padding: 1.5rem; flex-direction: column; }
+  .allq-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+  .back-btn {
+    background: #1a1a18; border: 0.5px solid #2a2a28; border-radius: 8px;
+    padding: 8px 14px; font-size: 13px; color: #888780; cursor: pointer;
+  }
+  .back-btn:hover { color: #F1EFE8; }
+  .allq-title { font-size: 18px; font-weight: 500; color: #F1EFE8; }
 
-/* Form elemanları */
-.form-group { margin-bottom: 14px; }
-.form-label {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
-  display: block;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-.form-input {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: var(--input-bg);
-  border: 0.5px solid var(--input-border);
-  color: var(--text-primary);
-  font-size: 14px;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.form-input:focus { border-color: var(--accent); }
-.time-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.btn-primary {
-  width: 100%;
-  padding: 12px;
-  border-radius: 14px;
-  background: var(--accent);
-  color: var(--bg);
-  font-size: 15px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  margin-top: 4px;
-  transition: opacity 0.15s;
-}
-.btn-primary:active { opacity: 0.8; }
-.btn-secondary {
-  width: 100%;
-  padding: 11px;
-  border-radius: 14px;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 14px;
-  font-weight: 500;
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  font-family: inherit;
-  margin-top: 8px;
-  transition: opacity 0.15s;
-}
-.btn-secondary:active { opacity: 0.6; }
+  .q-item { background: #141413; border: 0.5px solid #2a2a28; border-radius: 12px; padding: 1.25rem; margin-bottom: 12px; max-width: 720px; }
+  .q-num { font-size: 11px; color: #EF9F27; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .q-text { font-size: 14px; color: #D3D1C7; line-height: 1.6; margin-bottom: 10px; }
+  .q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+  .q-opt { font-size: 12px; color: #888780; padding: 6px 10px; background: #1a1a18; border-radius: 6px; border: 0.5px solid #2a2a28; line-height: 1.4; }
+  .q-opt.is-correct { color: #9FE1CB; background: rgba(29,158,117,0.1); border-color: rgba(29,158,117,0.3); font-weight: 500; }
+  .q-gerekce { font-size: 12px; color: #888780; background: #181817; border-left: 2px solid #EF9F27; padding: 8px 12px; border-radius: 0 6px 6px 0; line-height: 1.6; }
 
-/* Tema seçici */
-.theme-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 8px;
-}
-.theme-option {
-  border-radius: 14px;
-  padding: 12px 8px;
-  border: 1.5px solid transparent;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.2s;
-}
-.theme-option.active { border-color: var(--accent); }
-.theme-swatch {
-  width: 100%;
-  height: 36px;
-  border-radius: 8px;
-  margin-bottom: 6px;
-}
-.theme-name {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-/* Detay modal */
-.detail-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-}
-.btn-danger {
-  flex: 1;
-  padding: 11px;
-  border-radius: 14px;
-  background: transparent;
-  color: #e05555;
-  font-size: 14px;
-  font-weight: 500;
-  border: 0.5px solid rgba(224,85,85,0.3);
-  cursor: pointer;
-  font-family: inherit;
-  transition: opacity 0.15s;
-}
-.detail-info {
-  background: var(--item-bg);
-  border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 12px;
-}
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 0;
-  border-bottom: 0.5px solid var(--divider);
-}
-.detail-row:last-child { border-bottom: none; }
-.detail-key { font-size: 13px; color: var(--text-secondary); }
-.detail-val { font-size: 13px; color: var(--text-primary); font-weight: 500; }
-
-/* Haftalık rutin düzenleme */
-.week-tabs {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 14px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.week-tabs::-webkit-scrollbar { display: none; }
-.week-tab {
-  flex-shrink: 0;
-  padding: 6px 12px;
-  border-radius: 10px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.week-tab.active {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-}
-
-
-/* ═══════════════════════════════════════
-   AUTH EKRANI
-═══════════════════════════════════════ */
-#auth-screen {
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 24px;
-  max-width: 430px;
-  margin: 0 auto;
-}
-#auth-screen.hidden { display: none; }
-.auth-logo {
-  font-size: 48px;
-  margin-bottom: 8px;
-}
-.auth-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.03em;
-  margin-bottom: 4px;
-}
-.auth-subtitle {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-bottom: 40px;
-  text-align: center;
-}
-.auth-card {
-  width: 100%;
-  background: var(--card-bg);
-  border-radius: 24px;
-  border: 0.5px solid var(--border);
-  padding: 24px;
-}
-.auth-tabs {
-  display: flex;
-  gap: 4px;
-  background: var(--item-bg);
-  border-radius: 12px;
-  padding: 4px;
-  margin-bottom: 24px;
-}
-.auth-tab {
-  flex: 1;
-  padding: 9px;
-  border-radius: 9px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.auth-tab.active {
-  background: var(--card-bg);
-  color: var(--accent);
-  border: 0.5px solid var(--border);
-}
-.auth-form { display: flex; flex-direction: column; gap: 12px; }
-.auth-error {
-  font-size: 13px;
-  color: #e05555;
-  text-align: center;
-  padding: 10px;
-  background: rgba(224,85,85,0.1);
-  border-radius: 10px;
-  border: 0.5px solid rgba(224,85,85,0.2);
-  display: none;
-}
-.auth-error.show { display: block; }
-.auth-forgot {
-  font-size: 12px;
-  color: var(--accent);
-  text-align: right;
-  cursor: pointer;
-  margin-top: -4px;
-}
-.btn-google {
-  width: 100%;
-  padding: 12px;
-  border-radius: 14px;
-  background: transparent;
-  color: var(--text-primary);
-  font-size: 14px;
-  font-weight: 600;
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  font-family: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: background 0.15s;
-}
-.btn-google:active { opacity: 0.7; }
-.btn-google:hover { background: var(--item-bg); }
-.google-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-.auth-divider {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 4px 0;
-}
-.auth-divider::before,
-.auth-divider::after {
-  content: '';
-  flex: 1;
-  height: 0.5px;
-  background: var(--border);
-}
-.auth-divider span {
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-.auth-loading {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-.auth-loading.show { display: flex; }
-.spinner {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* Kullanıcı profil butonu */
-#user-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: var(--item-bg);
-  border: 0.5px solid var(--border);
-  cursor: pointer;
-  font-size: 16px;
-}
-#user-email { display: none; }
-
-.modal-sheet button, .modal-sheet .add-btn, .modal-sheet .week-tab, .modal-sheet .cal-day, .modal-sheet .theme-option, .modal-sheet .time-toggle-btn, .modal-sheet .auth-tab {
-  position: relative;
-  z-index: 5;
-}
-.modal-sheet {
-  position: relative;
-  z-index: 101;
-}
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
-  gap: 6px;
-}
-.empty-state-text {
-  font-size: 13px;
-  color: var(--text-secondary);
-}
+  /* RESULT */
+  #result { align-items: center; justify-content: center; padding: 2rem 1.5rem; text-align: center; }
+  .result-inner { max-width: 480px; width: 100%; }
+  .result-score { font-size: 64px; font-weight: 700; color: #EF9F27; line-height: 1; margin-bottom: 0.25rem; }
+  .result-label { font-size: 14px; color: #888780; margin-bottom: 2rem; }
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
+  .result-card { background: #1a1a18; border: 0.5px solid #2a2a28; border-radius: 10px; padding: 1rem; }
+  .result-card .num { font-size: 24px; font-weight: 600; color: #F1EFE8; }
+  .result-card .lbl { font-size: 12px; color: #666664; margin-top: 2px; }
+  .result-card.green .num { color: #1D9E75; }
+  .result-card.red .num { color: #E24B4A; }
+  .weak-section { text-align: left; margin-bottom: 1.5rem; }
+  .weak-title { font-size: 12px; color: #888780; letter-spacing: 0.04em; margin-bottom: 8px; }
+  .weak-item { font-size: 12px; color: #B4B2A9; background: #1a1a18; border: 0.5px solid #2a2a28; border-left: 2px solid #E24B4A; border-radius: 0 8px 8px 0; padding: 8px 12px; margin-bottom: 6px; line-height: 1.5; }
 </style>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
-<!-- AUTH EKRANI -->
 
-<div id="auth-screen">
-  <div class="auth-logo">✓</div>
-  <div class="auth-title">RGT App</div>
-  <div class="auth-subtitle">Günlük rutinlerini ve görevlerini takip et</div>
-  <div class="auth-card">
-    <div class="auth-tabs">
-      <div class="auth-tab active" id="login-tab" onclick="switchAuthTab(&#39;login&#39;)">Giriş Yap</div>
-      <div class="auth-tab" id="register-tab" onclick="switchAuthTab(&#39;register&#39;)">Kayıt Ol</div>
-    </div>
-    <div class="auth-form">
-      <input class="form-input" id="auth-email" type="email" placeholder="E-posta adresi" autocomplete="email">
-      <input class="form-input" id="auth-password" type="password" placeholder="Şifre" autocomplete="current-password">
-      <input class="form-input" id="auth-password2" type="password" placeholder="Şifre tekrar" style="display:none;" autocomplete="new-password">
-      <div class="auth-forgot" id="forgot-btn" onclick="forgotPassword()">Şifremi unuttum</div>
-      <div class="auth-error" id="auth-error"></div>
-      <div class="auth-loading" id="auth-loading"><div class="spinner"></div> Lütfen bekle...</div>
-      <button class="btn-primary" id="auth-submit-btn" onclick="handleAuth()" style="display: block;">Giriş Yap</button>
-      <div class="auth-divider"><span>veya</span></div>
-      <button class="btn-google" onclick="handleGoogleAuth()">
-        <svg class="google-icon" viewBox="0 0 24 24">
-          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path>
-          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path>
-          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"></path>
-          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"></path>
-        </svg>
-        Google ile Giriş Yap
-      </button>
-      <div style="text-align:center;margin-top:4px;">
-        <span onclick="handleGuestMode()" style="font-size:12px;color:var(--text-secondary);cursor:pointer;text-decoration:underline;opacity:0.7;">Oturum açmadan devam et</span>
+<!-- HOME -->
+<div id="home" class="screen active">
+  <div class="home-inner">
+    <div class="home-badge">PSİKOLOJİ TARİHİ</div>
+    <h1 class="home-title">Sınav Hazırlık</h1>
+    <p class="home-sub">46 çıkmış soru · Sonsuz mod · Akıllı tekrar algoritması</p>
+
+    <div id="mastery-block" class="mastery-block" style="display:none">
+      <div class="mastery-header">
+        <span class="mastery-title">EZBER DURUMU</span>
+        <span class="mastery-pct" id="mastery-pct">0%</span>
+      </div>
+      <div class="mastery-bar-bg"><div class="mastery-bar-fill" id="mastery-bar" style="width:0%"></div></div>
+      <div class="mastery-stats">
+        <div class="mstat"><div class="mstat-num green" id="ms-correct">0</div><div class="mstat-lbl">Öğrendim</div></div>
+        <div class="mstat"><div class="mstat-num red" id="ms-wrong">0</div><div class="mstat-lbl">Çalışıyorum</div></div>
+        <div class="mstat"><div class="mstat-num" id="ms-total">0</div><div class="mstat-lbl">Toplam Cevap</div></div>
       </div>
     </div>
+
+    <div class="name-label">ADINIZ</div>
+    <input class="name-input" id="name-input" type="text" placeholder="Adınızı girin..." maxlength="30">
+    <button class="btn-primary" onclick="startQuiz()">▶ Sonsuz Mod — Teste Başla</button>
+    <button class="btn-outline-orange" onclick="startFullTest()">◈ 46 Soruyu Çöz</button>
+    <button class="btn-secondary" onclick="showAllQuestions()">Cevapları Gör</button>
   </div>
 </div>
 
-<div id="app">
-  <!-- HEADER -->
-  <div id="header">
-    <div id="date-display">
-      <span id="day-name"></span>
-      <span id="date-full"></span>
-    </div>
-    <div id="header-actions">
-      <div class="header-btn" id="cal-btn" title="Takvim">📅</div>
-      <div class="header-btn" id="theme-btn" title="Tema">🎨</div>
-      <div class="header-btn" id="template-btn" title="Şablonlar">📋</div>
-      <div class="header-btn" id="user-btn" title="Hesap" onclick="openUserModal()">👤<span id="user-email" style="display:none;"></span></div>
+<!-- SONSUZ MOD -->
+<div id="quiz" class="screen">
+  <div class="quiz-topbar">
+    <div class="quiz-meta" id="quiz-meta">PSİKOLOJİ TARİHİ</div>
+    <div class="quiz-streak">
+      <span style="color:#EF9F27">◆</span>
+      <span id="streak-count">0 seri</span>
     </div>
   </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
 
-  <!-- GÜN NAVİGASYON -->
-  <div id="day-nav"></div>
-
-  <!-- KARTLAR -->
-  <div id="cards-wrapper">
-    <div id="cards-track"></div>
-  </div>
-</div>
-
-
-<!-- ŞABLON MODAL -->
-<div class="modal-overlay" id="template-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
-      <div class="modal-title" style="margin-bottom:0;">Haftalık Şablonlar</div>
-      <div class="add-btn" id="add-template-btn" style="width:32px;height:32px;font-size:20px;">+</div>
+  <div class="quiz-body">
+    <div class="level-badge">
+      <div class="level-dot" id="ld1"></div><div class="level-dot" id="ld2"></div>
+      <div class="level-dot" id="ld3"></div><div class="level-dot" id="ld4"></div>
+      <div class="level-dot" id="ld5"></div>
+      <span id="level-text" style="margin-left:4px;font-size:11px;color:#666664;"></span>
     </div>
-    <div id="template-list"></div>
-    <button class="btn-secondary" id="close-template-modal-btn">Kapat</button>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options-container"></div>
+    <div id="explanation-box" style="display:none" class="explanation-box">
+      <div class="exp-result" id="exp-result"></div>
+      <div class="exp-text" id="exp-text"></div>
+    </div>
+  </div>
+  <div class="quiz-footer">
+    <button class="next-btn" id="next-btn" style="display:none" onclick="nextQuestion()">Sonraki Soru →</button>
+    <button class="btn-secondary" onclick="goHome()">Ana Sayfaya Dön</button>
   </div>
 </div>
 
-<!-- ŞABLON OLUŞTUR MODAL -->
-<div class="modal-overlay" id="create-template-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="create-template-title">Yeni Şablon</div>
-    <div class="form-group">
-      <label class="form-label">Şablon Adı</label>
-      <input class="form-input" id="template-name-input" placeholder="Örn: Sınav Haftası, Tatil..." type="text">
+<!-- 46 SORULUK TAM TEST -->
+<div id="fulltest" class="screen">
+  <div class="ft-progress-bar"><div class="ft-progress-fill" id="ft-progress-fill" style="width:0%"></div></div>
+  <div class="fulltest-topbar">
+    <div class="fulltest-meta">Soru <span id="ft-current">1</span> / 46</div>
+    <button class="back-btn" onclick="goHome()">✕ Çık</button>
+  </div>
+  <div class="fulltest-body">
+    <div class="question-text" id="ft-question-text"></div>
+    <div class="options" id="ft-options-container"></div>
+    <div id="ft-explanation-box" style="display:none" class="explanation-box">
+      <div class="exp-result" id="ft-exp-result"></div>
+      <div class="exp-text" id="ft-exp-text"></div>
     </div>
-    <div class="week-tabs" id="template-week-tabs"></div>
-    <div id="template-routine-list"></div>
-    <button class="btn-primary" id="add-template-routine-btn">+ Rutin Ekle</button>
-    <div style="display:flex;gap:8px;margin-top:8px;">
-      <button class="btn-primary" id="save-template-btn" style="flex:2;">Kaydet</button>
-      <button class="btn-secondary" id="cancel-template-btn" style="flex:1;margin-top:0;">Vazgeç</button>
-    </div>
+  </div>
+  <div class="quiz-footer">
+    <button class="next-btn" id="ft-next-btn" style="display:none" onclick="ftNext()">Sonraki →</button>
+    <button class="btn-secondary" onclick="goHome()">Ana Sayfaya Dön</button>
   </div>
 </div>
 
-<!-- ŞABLON RUTİN EKLE MODAL -->
-<div class="modal-overlay" id="add-template-routine-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title">Rutin Ekle</div>
-    <div class="form-group">
-      <label class="form-label">Rutin Adı</label>
-      <input class="form-input" id="tpl-routine-name" placeholder="Rutin adı..." type="text">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Saat (isteğe bağlı)</label>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <div class="time-toggle-btn active" id="tpl-range-btn" onclick="tplTimeToggle('range')" style="flex:1;font-size:14px;padding:11px;">Saat</div>
-        <div class="time-toggle-btn" id="tpl-no-time-btn" onclick="tplTimeToggle('none')" style="flex:0 0 auto;font-size:11px;padding:8px 12px;opacity:0.6;">Saat yok</div>
-      </div>
-      <div id="tpl-time-pickers" style="display:none;">
-        <div style="display:flex;gap:16px;justify-content:center;">
-          <div class="time-picker-col">
-            <div class="time-picker-label">Başlangıç</div>
-            <div class="time-picker-wrap">
-              <div class="time-picker-col"><div class="drum" id="tpl-hour-drum"></div></div>
-              <div class="sep">:</div>
-              <div class="time-picker-col"><div class="drum" id="tpl-min-drum"></div></div>
-            </div>
-          </div>
-          <div class="time-picker-col" id="tpl-end-col" style="display:none;">
-            <div class="time-picker-label">Bitiş</div>
-            <div class="time-picker-wrap">
-              <div class="time-picker-col"><div class="drum" id="tpl-hour-end-drum"></div></div>
-              <div class="sep">:</div>
-              <div class="time-picker-col"><div class="drum" id="tpl-min-end-drum"></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="btn-primary" id="save-tpl-routine-btn">Ekle</button>
-    <button class="btn-secondary" id="cancel-tpl-routine-btn">Vazgeç</button>
+<!-- CEVAPLAR -->
+<div id="allq" class="screen">
+  <div class="allq-header">
+    <button class="back-btn" onclick="goHome()">← Geri</button>
+    <span class="allq-title">Cevaplar ve Açıklamalar (46)</span>
   </div>
+  <div id="allq-list"></div>
 </div>
 
-<!-- TAKVİM MODAL -->
-<div class="modal-overlay" id="cal-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="cal-header">
-      <div class="cal-nav" id="cal-prev">‹</div>
-      <div class="cal-month" id="cal-month-label"></div>
-      <div class="cal-nav" id="cal-next">›</div>
+<!-- SONUÇ -->
+<div id="result" class="screen">
+  <div class="result-inner">
+    <div class="result-score" id="res-score">0%</div>
+    <div class="result-label" id="res-label"></div>
+    <div class="result-grid">
+      <div class="result-card green"><div class="num" id="res-correct">0</div><div class="lbl">Doğru</div></div>
+      <div class="result-card red"><div class="num" id="res-wrong">0</div><div class="lbl">Yanlış</div></div>
+      <div class="result-card"><div class="num" id="res-total">0</div><div class="lbl">Toplam</div></div>
+      <div class="result-card"><div class="num" id="res-streak">0</div><div class="lbl">En Uzun Seri</div></div>
     </div>
-    <div class="cal-grid" id="cal-grid"></div>
-  </div>
-</div>
-
-<!-- KULLANICI MODAL -->
-<div class="modal-overlay" id="user-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title">Hesabım</div>
-    <div class="detail-info" id="user-info-box">
-      <div class="detail-row">
-        <span class="detail-key">E-posta</span>
-        <span class="detail-val" id="user-info-email">-</span>
-      </div>
-    </div>
-    <button class="btn-danger" id="logout-btn" style="width:100%;margin-top:8px;flex:none;display:block;position:relative;z-index:10;" onclick="handleLogout()">Çıkış Yap</button>
-    <button class="btn-secondary" style="position:relative;z-index:10;" onclick="closeModal(&#39;user-modal&#39;)">Kapat</button>
-  </div>
-</div>
-
-<!-- TEMA MODAL -->
-<div class="modal-overlay" id="theme-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title">Tema Seç</div>
-    <div class="theme-grid" id="theme-grid"></div>
-  </div>
-</div>
-
-<!-- GÖREV EKLE MODAL -->
-<div class="modal-overlay" id="add-task-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="add-task-title">Görev Ekle</div>
-    <div class="form-group">
-      <label class="form-label">Görev Adı</label>
-      <input class="form-input" id="task-name-input" placeholder="Ne yapacaksın?" type="text">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Saat (isteğe bağlı)</label>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
-        <div class="time-toggle-btn active" id="task-range-btn" onclick="taskTimeToggle(&#39;range&#39;)" style="flex:1;font-size:14px;padding:11px;">Saat</div>
-        <div class="time-toggle-btn" id="task-no-time-btn" onclick="taskTimeToggle(&#39;none&#39;)" style="flex:0 0 auto;font-size:11px;padding:8px 12px;opacity:0.6;">Saat yok</div>
-      </div>
-      <div id="task-time-pickers" style="display:none;">
-        <div style="display:flex;gap:16px;justify-content:center;">
-          <div class="time-picker-col">
-            <div class="time-picker-label" id="task-start-label">Başlangıç</div>
-            <div class="time-picker-wrap">
-              <div class="time-picker-col"><div class="drum" id="task-hour-drum"></div></div>
-              <div class="sep">:</div>
-              <div class="time-picker-col"><div class="drum" id="task-min-drum"></div></div>
-            </div>
-          </div>
-          <div class="time-picker-col" id="task-end-col" style="display:none;">
-            <div class="time-picker-label">Bitiş</div>
-            <div class="time-picker-wrap">
-              <div class="time-picker-col"><div class="drum" id="task-hour-end-drum"></div></div>
-              <div class="sep">:</div>
-              <div class="time-picker-col"><div class="drum" id="task-min-end-drum"></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <input type="hidden" id="task-time-start">
-      <input type="hidden" id="task-time-end">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Not (isteğe bağlı)</label>
-      <input class="form-input" id="task-note-input" placeholder="Hatırlatmak istediğin bir şey..." type="text">
-    </div>
-    <button class="btn-primary" id="save-task-btn">Kaydet</button>
-    <button class="btn-secondary" id="cancel-task-btn">Vazgeç</button>
-  </div>
-</div>
-
-<!-- RUTİN DÜZENLE MODAL -->
-<div class="modal-overlay" id="edit-routine-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title">Rutinleri Düzenle</div>
-    <div class="week-tabs" id="week-tabs"></div>
-    <div id="routine-list-edit"></div>
-    <button class="btn-primary" id="add-routine-inline-btn">+ Yeni Rutin Ekle</button>
-    <button class="btn-secondary" id="close-routine-modal-btn">Kapat</button>
-  </div>
-</div>
-
-<!-- RUTİN EKLE MODAL -->
-<div class="modal-overlay" id="add-routine-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="add-routine-title">Rutin Ekle</div>
-    <div class="form-group">
-      <label class="form-label">Rutin Adı</label>
-      <input class="form-input" id="routine-name-input" placeholder="Her gün ne yapıyorsun?" type="text">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Saat (isteğe bağlı)</label>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
-        <div class="time-toggle-btn active" id="rtn-range-btn" onclick="routineTimeToggle(&#39;range&#39;)" style="flex:1;font-size:14px;padding:11px;">Saat</div>
-        <div class="time-toggle-btn" id="rtn-no-time-btn" onclick="routineTimeToggle(&#39;none&#39;)" style="flex:0 0 auto;font-size:11px;padding:8px 12px;opacity:0.6;">Saat yok</div>
-      </div>
-      <div id="rtn-time-pickers" style="display:none;">
-        <div style="display:flex;gap:16px;justify-content:center;">
-          <div class="time-picker-col">
-            <div class="time-picker-label" id="rtn-start-label">Başlangıç</div>
-            <div class="time-picker-wrap">
-              <div class="time-picker-col"><div class="drum" id="rtn-hour-drum"></div></div>
-              <div class="sep">:</div>
-              <div class="time-picker-col"><div class="drum" id="rtn-min-drum"></div></div>
-            </div>
-          </div>
-          <div class="time-picker-col" id="rtn-end-col" style="display:none;">
-            <div class="time-picker-label">Bitiş</div>
-            <div class="time-picker-wrap">
-              <div class="time-picker-col"><div class="drum" id="rtn-hour-end-drum"></div></div>
-              <div class="sep">:</div>
-              <div class="time-picker-col"><div class="drum" id="rtn-min-end-drum"></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <input type="hidden" id="routine-time-start">
-      <input type="hidden" id="routine-time-end">
-    </div>
-    <button class="btn-primary" id="save-routine-btn">Kaydet</button>
-    <button class="btn-secondary" id="cancel-routine-btn">Vazgeç</button>
-  </div>
-</div>
-
-<!-- DETAY MODAL -->
-<div class="modal-overlay" id="detail-modal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="detail-title"></div>
-    <div class="detail-info" id="detail-info"></div>
-    <div class="detail-actions">
-      <button class="btn-danger" id="detail-delete-btn">Sil</button>
-      <button class="btn-primary" id="detail-done-btn" style="flex:2;">Tamamlandı</button>
-    </div>
-    <button class="btn-secondary" id="detail-close-btn">Kapat</button>
+    <div class="weak-section" id="weak-section"></div>
+    <button class="btn-primary" onclick="startFullTest()">Tekrar Çöz</button>
+    <button class="btn-outline-orange" style="margin-top:0" onclick="startQuiz()">Sonsuz Mod</button>
+    <button class="btn-secondary" style="margin-top:0" onclick="goHome()">Ana Sayfaya Dön</button>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════
-// VERİ
-// ═══════════════════════════════════════
-const DAYS_TR = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
-const DAYS_SHORT = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
-const MONTHS_TR = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-
-// Haftalık rutin şablonu (0=Pazar...6=Cumartesi)
-let routineTemplates = JSON.parse(localStorage.getItem('routineTemplates') || 'null') || {
-  0: [], 1: [
-    {id:'r1', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-    {id:'r2', name:'Egzersiz', timeStart:'08:00', timeEnd:'09:00'},
-  ], 2: [
-    {id:'r3', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-  ], 3: [
-    {id:'r4', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-    {id:'r5', name:'Egzersiz', timeStart:'08:00', timeEnd:'09:00'},
-  ], 4: [
-    {id:'r6', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-  ], 5: [
-    {id:'r7', name:'Sabah rutini', timeStart:'07:00', timeEnd:'07:30'},
-    {id:'r8', name:'Egzersiz', timeStart:'08:00', timeEnd:'09:00'},
-  ], 6: []
-};
-
-// Günlük tamamlanma durumu: { 'YYYY-MM-DD': { routineId: true, ... } }
-let completions = JSON.parse(localStorage.getItem('completions') || '{}');
-
-// Özel görevler: { 'YYYY-MM-DD': [{id, name, timeStart, timeEnd, note, done}] }
-let specialTasks = JSON.parse(localStorage.getItem('specialTasks') || '{}');
-
-// Tema - varsayılan siyah-gri (eski 'default' tema varsa temizle)
-let currentTheme = localStorage.getItem('theme') || 'siyah-gri';
-if (currentTheme === 'default' || !currentTheme) currentTheme = 'siyah-gri';
-localStorage.setItem('theme', currentTheme);
-document.documentElement.setAttribute('data-theme', currentTheme);
-
-const themes = [
-  { id: 'default', name: 'Siyah\nTuruncu', bg: '#111110', accent: '#e8823a' },
-  { id: 'siyah-gri', name: 'Siyah\nGri', bg: '#0a0a0a', accent: '#bbbbbb' },
-  { id: 'siyah-sari', name: 'Siyah\nSarı', bg: '#0d0d0d', accent: '#f5d020' },
-  { id: 'acik-krem', name: 'Açık\nKrem', bg: '#f5f0e8', accent: '#5a5040' },
-  { id: 'gri-beyaz', name: 'Gri\nBeyaz', bg: '#e8e8e8', accent: '#444444' },
-  { id: 'lacivert-cyan', name: 'Lacivert\nCyan', bg: '#0b0f1a', accent: '#4fc3f7' },
+// ══════════════════════════════════════════════
+// SORU VERİTABANI
+// ══════════════════════════════════════════════
+const QUESTIONS = [
+  {
+    id:1,
+    q:'"Başkalarından öğrenme, deneyim ve insanın kendini araştırması şeklinde üç tür bilginin olduğunu savunmuştur. Özellikle insanın kendini araştırmasından gelen bilginin bugün psikoterapide iç görü kavramının ilk örneği olduğu kabul edilmektedir." Yukarıda anlatılan düşünür aşağıdakilerden hangisidir?',
+    opts:['Platon','Epiküros','Sokrates','Anaksimenes','Herakleitos'],
+    answer:2,
+    exp:'Sokrates felsefesinin özü "Kendini bil" ilkesidir. Dışarıdan öğrenme, deney ve özellikle insanın kendi içine dönerek ulaştığı öz-sorgulama bilgisi; modern psikoterapideki "içgörü" (insight) kavramının felsefi kökü kabul edilir. Platon (A) bilgiyi idealar dünyasına bağlar ve Sokrates\'in öğrencisidir. Epiküros (B) mutluluk ve hazdaki denge ile ilgilenir. Anaksimenes (D) arkheyi havaya bağlar, Herakleitos (E) ise sürekli değişim ve logos kavramıyla tanınır.'
+  },
+  {
+    id:2,
+    q:'"İnsan bir makine" isimli bir kitap yazmıştır. Bu kitapta insan bedenin bir makine, beynin ise çalışma ve kop uygun bir düşünme organı olduğu anlatılmaktadır. Bu eserin en önemli özelliği mekanistik dünya görüşünün bedene de uygulanmasını savunmasındadır. Yukarıda hakkında bilgi verilen filozof hangisidir?',
+    opts:['de La Mettrie',"d'Hollbach",'Descartes','Gassendi','Locke'],
+    answer:0,
+    exp:'"L\'Homme Machine" (İnsan Bir Makinedir) adlı ünlü eser Julien Offray de La Mettrie\'ye aittir; insanı tamamen materyalist ve mekanik bir sistem olarak ele alır. Descartes (C) bedeni makine gibi görse de ruhu ayrı ve aşkın tutar (dualizm); beden-ruh ayrımı Descartes\'a aittir. d\'Hollbach (B) de materyalisttir ama bu eserin yazarı değildir. Gassendi (D) atomcu materyalizmi, Locke (E) ise ampirizmi temsil eder.'
+  },
+  {
+    id:3,
+    q:'"Aşağıdaki düşüncelerden hangisi Demokritos\'a atfedilemez?"',
+    opts:['Determinizm','Amprizm','Atomculuk','Materyalizm','Nativizm'],
+    answer:4,
+    exp:'Demokritos, her şeyin bölünemez fiziksel parçacıklardan (atomlar) oluştuğunu ve bu atomların mekanik çarpışmalarla her şeyi belirlediğini (determinizm) savunur; bu nedenle atomculuk (C) ve materyalizm (D) ona aittir. Duyumların fiziksel atom izlenimleri aracılığıyla oluştuğunu söylediğinden ampirist bir damar da taşır (B). Nativizm (Doğuştancılık) ise zihinsel içeriklerin doğuştan geldiğini savunur; bu, atomcunun duyum temelli düşüncesiyle doğrudan çelişir.'
+  },
+  {
+    id:4,
+    q:'"EEG\'nin temelini atan bilim insanı hangisidir?"',
+    opts:['Lasley','EAdrian','Gall','Berger','Müller'],
+    answer:3,
+    exp:'Hans Berger, insan beyninin elektriksel aktivitesini ilk kez kaydeden ve EEG cihazını geliştiren kişidir (1924). Lashley (A) beyin ve bellek ilişkisinde eşpotansiyellik yasasıyla, Adrian (B) sinir liflerindeki impuls iletimi çalışmalarıyla, Gall (C) frenoloji ile, Müller (E) sinirlerin özel enerjisi yasasıyla tanınır.'
+  },
+  {
+    id:5,
+    q:'"Aşağıda Thales konusunda verilen bilgilerden hangisi yanlıştır?"',
+    opts:['Arhke arayışını başlatmıştır.','Tümevarımsal bir mantık gutmuştur','Doğa felsefesi anlayışı hakimdir','Evrenin ana maddesinin su olduğunu savunmuştur','Bilgi sorunu konusunda fikir üretmiştir'],
+    answer:1,
+    exp:'Thales, arkhe olarak suyu seçerek rasyonel-kozmolojik bir iddia ortaya koymuştur; ancak modern anlamda sistematik bir tümevarımsal mantık yürütmemiştir. Tümevarım (gözlemlerden genele gitmek) daha çok Aristoteles ve sonrasında bilimsel yöntemle olgunlaşmıştır. Doğa felsefesi (C), arkhe arayışı (A) ve su teorisi (D) kesinlikle ona aittir.'
+  },
+  {
+    id:6,
+    q:'"Eğitime verdikleri önem ile eğitim psikolojisinin ilk temsilcileri olarak kabul edilen düşünürler hangisidir?"',
+    opts:['Pythagorasçılar','Sofistler','Pluralistler','Milet okulu','Elea okulu'],
+    answer:1,
+    exp:'Sofistler, antik dünyada ücret karşılığı ders veren, hitabet ve ikna sanatını öğreten ilk profesyonel öğretmenlerdir. İnsan davranışı, öğrenme ve zihni nasıl etkileyeceğine odaklandıkları için eğitim psikolojisinin öncüleri sayılırlar. Pythagorasçılar (A) sayı ve ahenk gibi matematiksel ilkelere, Milet okulu (D) doğanın maddesel temeline, Elea okulu (E) değişmez varlık ilkesine yönelir.'
+  },
+  {
+    id:7,
+    q:'"Aşağıdakilerden hangisi Descartes ile ilişkilendirilemez?"',
+    opts:['Metodik şüphe','Nominalist düşünce','Rasyonalist düşunce','Kesin ve mutlak bilgi arayışı','Mekanik ruh'],
+    answer:1,
+    exp:'Descartes, şüphe edilemeyen kesin bilgiye ulaşmak için her şeyden şüphe etmiş (metodik şüphe) ve "Düşünüyorum, öyleyse varım" ilkesiyle rasyonalizmin temelini atmıştır. Nominalizm (Adcılık) ise tümellerin sadece isimler olduğunu ve gerçek dünyada var olmadığını savunan bir Orta Çağ akımıdır; Descartes doğuştan gelen ideaların gerçekliğine inandığından nominalist değil realisttir.'
+  },
+  {
+    id:8,
+    q:'"Aşağıdakilerden hangisi 16. ve 17. yy\'da ortaya çıkan ve psikolojinin bir bilim olmasında önemli rol oynayan düşüncelerden biri değildir?"',
+    opts:['Mekanizm','Panpsişizm','Ampirizm','İndirgernecilik','Determinizm'],
+    answer:1,
+    exp:'16-17. yüzyılda psikolojinin bilimleşmesini hazırlayan akımlar; bedenin mekanik bir sistem olduğunu savunan Mekanizm (A), bilginin deneyimden geldiğini söyleyen Ampirizm (C), karmaşıkları basit bileşenlerine indirgeyen İndirgemecilik (D) ve her olayın nedensel zincirle belirlendiğini söyleyen Determinizm (E)\'dir. Panpsişizm ise her şeyin ruhsal bir boyutu olduğunu savunur; materyalist ve deneysel bilimin tam tersi yönde seyrettiği için bu döneme katkısı yoktur.'
+  },
+  {
+    id:9,
+    q:'"Günümüzde bilişsel davranışçı terapi sürecinde \'yönlendirilmiş keşif\' olarak adlandırılan kavramın ilk öncülü olan ve Sokrates\'in kullandığı yöntem hangisidir?"',
+    opts:['Konvensiyonalizm','Profesyonalizm','Apiriori','Fenomenalizm','Maoitik'],
+    answer:4,
+    exp:'Maiotik (Doğurtma/Ebelik) yöntemi; Sokrates\'in muhatabını sorularla yönlendirerek içinde zaten var olan bilgiyi açığa çıkarma tekniğidir. Günümüz BDT\'sindeki "Sokratik sorgulama" ve "yönlendirilmiş keşif" bu yöntemin doğrudan mirasçısıdır. A priori (C) deneyimden bağımsız bilgiyi, fenomenalizm (D) algısal görünüşleri temel alan felsefi tutumu ifade eder; bunlar farklı kavramlardır.'
+  },
+  {
+    id:10,
+    q:'"A priori anlayışına ve zihinsel mekanizmalar yaklaşımına tarihte ilk kez hangi düşünürün görüşlerinde rastlanmaktadır?"',
+    opts:['Sokrates','Platinos','Herakleitos','Dernokritos','Thales'],
+    answer:0,
+    exp:'Meno diyaloğunda Sokrates, eğitimsiz bir köle çocuğunu yalnızca sorularla geometri problemine yönlendirerek bilginin zaten zihinde gizli olduğunu gösterir. Bu, a priori bilginin (deneyimden önce var olan) ve zihinsel mekanizmaların (soru-cevapla açığa çıkarma) felsefi tarihte ilk sistematik örneğidir. Platinos (B) çok sonraki dönemde Neoplatonizm\'i kurmuştur.'
+  },
+  {
+    id:11,
+    q:'"Aşağıdakilerden hangisi İngiliz Görgülcü ve Çağrışımcı felsefesi ile ilişkilendirilemez?"',
+    opts:['Atomizin','Çağrışımcılık','Determinizm','İdealizm','Sensualizm'],
+    answer:3,
+    exp:'İngiliz Ampirizmi; zihni duyumsal deneyime dayandırır (sensualizm), fikirlerin çağrışımla bağlandığını savunur, olayları nedensellikle açıklar (determinizm) ve zihinsel içerikleri atomsal birimlerden oluşur kabul eder (atomizm). İdealizm ise gerçekliğin zihinsel ya da düşünsel olduğunu savunur; bu, duyum temelli ve madde odaklı İngiliz ampirizmiyle çelişir. (Not: Berkeley bir istisnadır; hem ampirist hem idealisttir, ancak genel İngiliz ampirizmi materyalist-duyumcu bir çizgide ilerler.)'
+  },
+  {
+    id:12,
+    q:'"Aşağıdakilerden hangisi rasyonalist düşünürlerden biri değildir?"',
+    opts:['Kant','Descartes','Berkeley','Leibniz','Spinoza'],
+    answer:2,
+    exp:'George Berkeley "Var olmak algılanmış olmaktır" (esse est percipi) diyerek maddenin bağımsız varlığını reddeden radikal bir İngiliz Ampiristidir. Bilginin kaynağını duyum ve algıya dayandırır; bu nedenle rasyonalist değil ampiristtir. Kant (A) saf aklın sınırlarını çizmiş, Descartes (B) cogito\'yla rasyonalizmin temelini atmış, Leibniz (D) monadlar kuramıyla, Spinoza (E) töz felsefesiyle rasyonalizmi temsil eder.'
+  },
+  {
+    id:13,
+    q:'"Aşağıdakilerden hangisi İngiliz ampirik felsefecilerinden biri değildir?"',
+    opts:['Locke','Mill','Herbart','Berkeley','Hartley'],
+    answer:2,
+    exp:'Johann Friedrich Herbart, Alman felsefecisidir; psikolojik olayları matematiksel formüllerle açıklamaya çalışmış ve zihinsel dinamikler üzerine rasyonalist bir sistem kurmuştur. Locke (A) tabula rasa, Mill (B) yararcılık ve tümevarımsal mantık, Berkeley (D) idealist ampirizm, Hartley (E) titreşim teorisi ve çağrışımcılık ile İngiliz ampirik geleneğini temsil eder.'
+  },
+  {
+    id:14,
+    q:'"Aşağıdakilerden hangısı 1. Kuşak Alman felsefesinin özelliklerinden biri değildir?"',
+    opts:['Rasyonalizm','A priori düşüncesi','Fonksiyonalizm','Aktif zihin','Doguştan gelen fikirler öğretisim'],
+    answer:2,
+    exp:'Leibniz ve Kant\'ın öncülük ettiği 1. kuşak Alman felsefesi; aklı ve doğuştan gelen bilgiyi (a priori) ön plana çıkarır, zihni aktif ve yapılandırıcı olarak görür. Fonksiyonalizm (İşlevselcilik) ise 19. yüzyıl sonunda Amerika\'da Darwin\'in evrim teorisinin etkisiyle ortaya çıkan ve zihnin işlevleri üzerine yoğunlaşan psikoloji akımıdır; 1. kuşak Alman felsefesiyle doğrudan ilgisi yoktur.'
+  },
+  {
+    id:15,
+    q:'"Varlığın kökenine \'aer\' kavramını koyması nedeniyle pneuma öğretisinin kurucusu sayılan düşünür hangisidir?"',
+    opts:['Anaksimandros','Anaksagoras','Thales','Pythagoras','Anaksimenes'],
+    answer:4,
+    exp:'Miletli Anaksimenes, evrenin temel maddesini hava (aer) olarak belirlemiş; havanın seyrekleşip yoğunlaşmasıyla her şeyin oluştuğunu savunmuştur. Havanın aynı zamanda ruh ve yaşam nefesi (pneuma) olduğunu söyleyerek pneuma öğretisinin temelini atmıştır. Anaksimandros (A) sonsuz/belirsiz (apeiron), Thales (C) su, Pythagoras (D) sayı, Anaksagoras (B) nous (akıl) kavramıyla tanınır.'
+  },
+  {
+    id:16,
+    q:'"Aşağıda Platon ile ilgili verilen bilgilerden hangisi yanlıştır?"',
+    opts:['İdealar dünyası görüşünü ortaya atmıştır','Metafiziğin başlatıcısıdır','Rasyonalizmin kurucusudur','Yer merkezli evren düşüncesini savunmuştur','Bilginin kökeninin duyumlar olamayacağını savunmuştur'],
+    answer:3,
+    exp:'Jeosantrik (yer merkezli) evren modelini sistematik olarak geliştiren ve kozmolojiye yerleştiren kişi Platon değil, önce öğrencisi Aristoteles, ardından Batlamyus\'tur. Platon matematik ve astronomiye ilgi duymuş olsa da sistematik bir jeosantrik kozmoloji kurmamıştır. İdealar dünyası (A), metafizik (B), rasyonalizm (C) ve bilginin duyumsal olmadığı görüşü (E) doğrudan Platon\'a aittir.'
+  },
+  {
+    id:17,
+    q:'"Bilginin kaynağının duyumlara dayalı deneyimler olduğunu ilk kez ileri süren düşünür hangisidir?"',
+    opts:['Ksenophanes','Thales','Pythagoras','Herakleitos','Parmenides'],
+    answer:0,
+    exp:'Ksenophanes, bilginin tanrısal bir vahiyle değil, insanların araştırma ve duyusal deneyimler yoluyla edinilebileceğini ilk kez açıkça dile getiren düşünürdür; bu yönüyle ampirist geleneğin en erken temsilcilerinden sayılır. Parmenides (E) tam tersine duyuların aldatıcı olduğunu ve gerçek bilgiye ancak akılla ulaşılabileceğini savunur. Pythagoras (C) bilgiyi sayısal ve mistik ilkelere bağlar.'
+  },
+  {
+    id:18,
+    q:'"Aşağıdaki düşüncelerden hangisi sayesinde \'duyumlanmızın mahiyet\' problemi belirsizlikten çıkarılarak ilk defa fiziksel bir temel üzerine oturtulmuştur?"',
+    opts:['Apriori','Atomlizm','Rasyonalizm','Tümeller tartışması','İdealar dünyası'],
+    answer:1,
+    exp:'Demokritos\'un Atomculuk kuramı; nesnelerin yayılan atomların duyu organlarımıza çarpmasıyla algılandığını öne sürerek duyumun nasıl oluştuğu sorusunu ilk kez somut ve fiziksel bir mekanizmaya bağlamıştır. A priori (A) deneyimden bağımsız bilgiye, rasyonalizm (C) akıl yoluyla bilgiye, tümeller tartışması (D) kavramların ontolojik statüsüne, idealar dünyası (E) ise duyuüstü gerçekliğe odaklanır; bunların hiçbiri duyumun fiziksel mekanizmasını açıklamaz.'
+  },
+  {
+    id:19,
+    q:'"Aşağıdakilerden hangisi Descartes\'in psikoloji akımları üzerindeki etkilerinden biri değildir?"',
+    opts:['Mekanik beden görüşü','Ruh-beden sorunu','Ampirizm','Zihnin işlevlerinin bedendeki yeri','Doğuştan gelen fikirler öğretisi'],
+    answer:2,
+    exp:'Descartes katı bir rasyonalisttir; doğuştan gelen ideaların (innate ideas) varlığına inanır ve kesin bilgiye duyulardan değil akıldan ulaşılacağını savunur. Ampirizm ise bilginin yalnızca duyular ve deneyim yoluyla edinildiğini öne süren ve Descartes\'a karşı cephe alan Locke, Hobbes gibi İngiliz düşünürlerin akımıdır. Bedenin mekanik işleyişi (A), ruh-beden düalizmi (B), pineal bez üzerinden zihin-beden etkileşimi (D) ve innate ideas (E) Descartes\'ın psikolojiye doğrudan katkılarıdır.'
+  },
+  {
+    id:20,
+    q:'"Aşağıda Aristoteles ile ilgili verilen bilgilerden hangisi yanlıştır?"',
+    opts:['Tümdengelimsel mantık kullanmıştır','Bilginin deneyimler ile kazanıldığını savunmuştur','Bugün psikolojinin araştırma sahasına giren birçok konuyla ilgili görüşterinin yer aldığı Phaidon (Rul Üzerine) adlı bir eseri vardır','İnsan ruhunun 3 basamağı olduğunu ve en üstte nousun bulunduğunu savunur','İlk psikoloji kitabı olarak kabul edilen Peri Psykhe (Psişe Üzerine) eserini yazmıştır'],
+    answer:2,
+    exp:'Phaidon (Ruh Üzerine) eseri Aristoteles\'e değil, hocası Platon\'a aittir; bu diyalog Sokrates\'in ölüm öncesi ruhun ölümsüzlüğünü tartışmasını anlatır. Aristoteles\'in ruh üzerine yazdığı temel eser "Peri Psykhe" (De Anima)\'dir; psikolojinin ilk kitabı kabul edilir ve seçenek (E)\'de doğru verilmiştir. Tümdengelimsel mantık (A), deneyimle bilgi (B) ve ruhun üç basamağı (D) Aristoteles\'e aittir.'
+  },
+  {
+    id:21,
+    q:'"Aşağıdaki bilim insanlarından hangisi lokalizasyoncu görüşü benimsemez?"',
+    opts:['Wernicke','Spurzheim','Broca','Lashley','Gall'],
+    answer:3,
+    exp:'Karl Lashley, sıçanlar üzerinde yaptığı deney serilerinde beyin hasarının konumundan çok miktarının öğrenmeyi etkilediğini göstermiş; bu bulgu beynin bütünsel çalıştığını destekler. Lashley\'in "eşpotansiyellik" ve "kitlesel eylem" ilkeleri anti-lokalizasyonculuğun temel taşlarıdır. Wernicke (A) duyusal konuşma, Spurzheim (B) frenoloji, Broca (C) motor konuşma, Gall (E) kafatası ve beyin bölgeleri haritalama çalışmalarıyla lokalizasyonculuğu temsil eder.'
+  },
+  {
+    id:22,
+    q:'"Aşağıda verilenlerden hangisi Hume ile ilişkilendirilemez?"',
+    opts:['İşevurukçuluğun oluşumda etkili olmuştur.','Bilgi üzerine felsefe yapmıştır.','Çağrışımı oluşturan ilkelerin benzeyiş, zamanda ve uzamda bitişiklik ve neden-sonuç ilkeleri olduğunu öne sürer.','Zihinsel kimya görüşünü savunmuştur.','Tüm bilgilerimizin kaynağının duyumlara dayanan algılar olduğunu ileri sürmüştür.'],
+    answer:3,
+    exp:'"Zihinsel kimya" (mental chemistry) kavramı John Stuart Mill\'e aittir; Mill, basit fikirlerin birleşerek nitel olarak yeni ve farklı bileşik fikirler oluşturabileceğini söyler; tıpkı kimyasal elementlerin yeni bileşikler oluşturması gibi. Hume ise çağrışım ilkelerini (benzeyiş, bitişiklik, neden-sonuç) sistemleştirmiş (C), ampirist bilgi kuramı geliştirmiş (B, E) ve işevurukçuluğu (pragmatizmi) dolaylı olarak etkilemiştir (A).'
+  },
+  {
+    id:23,
+    q:'"Ruh-beden sorunu zamanla hangi sorunlara doğru değişim göstermemiştir?"',
+    opts:['Zihin-beden','Biliş-beden','Bilinç-beden','Biliş-ruh','Zihin-davranış'],
+    answer:3,
+    exp:'Psikoloji bilimselleştikçe "ruh" kavramı terk edilmiş; yerini zihin, bilinç, biliş ve davranış gibi ölçülebilir ve gözlemlenebilir kavramlar almıştır. Bu nedenle tartışma Zihin-beden (A), Biliş-beden (B), Bilinç-beden (C) ve Zihin-davranış (E) gibi modern çiftelere dönüşmüştür. "Biliş-Ruh" ise hem bilişsel (bilimsel) hem de ruhsal (spekülatif) bir terimi bir arada barındırdığından bu bilimsel dönüşüm zincirinin içinde yer almaz.'
+  },
+  {
+    id:24,
+    q:'"Fikirlerin bilince girmesi konusunda birbirlerine ne derece yardım edebileceğinin hesaplanabileceğini öne sürerek deneysel psikolojinin önünü açan düşünür aşağıdakilerden hangisidir?"',
+    opts:['Mill','Locke','Herbart','Hobbes','Hartley'],
+    answer:2,
+    exp:'Johann Friedrich Herbart, zihindeki tasarımların (fikirlerin) birbiriyle yarışarak bilince çıkma eşiklerini matematiksel denklemlerle ifade etmeye çalışmıştır. Bu girişim psikolojik süreçlerin nicel ve ölçülebilir olabileceğini göstererek deneysel psikolojiye önemli bir zemin hazırlamıştır. Locke (B) tabula rasa ve ampirizm, Hartley (E) titreşim ve çağrışım teorisiyle, Mill (A) ve Hobbes (D) farklı katkılarla bilinir.'
+  },
+  {
+    id:25,
+    q:'"Aşağıdaki bilim insanlarından hangisi yaptığı fizyolojik çalışmalarla psikolojinin gelişiminde rol oynamamıştır?"',
+    opts:['j. Müller','E.D. Adrian','Flourens','Wundt','Helmholtz'],
+    answer:3,
+    exp:'Wundt fizyoloji eğitimi almış olsa da asıl katkısı psikolojiyi fizyoloji ve felsefeden bağımsız bir bilim olarak kurmaktır; onu fizyolojist değil psikolojinin kurucusu olarak tanımlarız. J. Müller (A) sinirlerin özel enerjisi yasası, Adrian (B) sinir impulslarının kodlanması, Flourens (C) beyin ablasyon deneyleri, Helmholtz (E) sinir akımı hızının ölçümüyle psikolojinin fizyolojik temellerine doğrudan katkı sağlamıştır.'
+  },
+  {
+    id:26,
+    q:'"Tüm zihinsel faaliyet türlerini çağrışım öğretisini kullanarak açıklamaya çalışan ilk düşünür hangisidir?"',
+    opts:['Hobbes','Hartley','Locke','Berkeley','Kant'],
+    answer:1,
+    exp:'David Hartley, çağrışımcılığı yalnızca bilgi teorisi olmaktan çıkarıp sinir titreşimleri (vibrations) ve çağrışım ilkeleri aracılığıyla algı, düşünce, hafıza, duygu ve hatta ahlakı da açıklamaya çalışan kapsamlı bir psikoloji sistemi kurmuştur. Bu nedenle tüm zihinsel faaliyetleri çağrışımla açıklamaya girişen ilk kişi Hartley\'dir. Hobbes (A) çağrışıma değindi ama sistematikleştirmedi. Locke (C) ampirizmin, Kant (E) aklın sınırlarının filozofudur.'
+  },
+  {
+    id:27,
+    q:'"İnsan zihninin doğuşta boş bir levha olduğunu savunan düşünür hangisidir?"',
+    opts:['Herbart','Hartley','Hobbes','Locke','Hume'],
+    answer:3,
+    exp:'"Tabula Rasa" (boş levha) kavramının sembol ismi John Locke\'tur. Locke\'a göre zihin doğuşta tamamen boştur; bütün bilgiler duyular ve deneyim yoluyla sonradan yazılır. Bu görüş doğuştan gelen fikirlerin varlığını savunan rasyonalistlere (Descartes, Leibniz) karşı ampirizmin temel argümanıdır. Hume (E) Locke\'un izinden gider ama Tabula Rasa\'nın sembol ismi değildir.'
+  },
+  {
+    id:28,
+    q:'"Aşağıda verilen fizyolojik çalışma ve çalışmayı yapan bilim insanı eşleştirmesi yanlıştır?"',
+    opts:['Jackson-Sensoryal afezi','Müller-Sinirlerin özel enerjisi','Helmholtz-Sinir akımı hızı','M. Hall-Omurilik işlevi','M.Dax-Dil'],
+    answer:0,
+    exp:'Sensoryal (duyusal) afezi, yani konuşulanı anlayamamayı beynin belirli bölgesiyle ilişkilendiren kişi Hughlings Jackson değil Carl Wernicke\'dir (Wernicke alanı). Hughlings Jackson, epileptik nöbetleri ve beyin işlevlerinin hiyerarşik örgütlenmesini araştırmıştır. Müller-sinirlerin özel enerjisi (B), Helmholtz-sinir akım hızı (C), Hall-omurilik refleksleri (D), Dax-dil ve sol hemisfer (E) eşleştirmeleri doğrudur.'
+  },
+  {
+    id:29,
+    q:'"Açıklanması zor sofistike bir olguyu daha basit bir yapıya benzeterek açıklama aşağıdakilerden hangisinin tanımıdır?"',
+    opts:['Atornizm','Reductionism','Determinizm','Amprizm','Mekanizm'],
+    answer:1,
+    exp:'Reductionism (İndirgemecilik): karmaşık bir olguyu daha temel, daha basit bileşenlerine veya düzeylerine indirgeyerek açıklama stratejisidir. Örneğin zihinsel olayları nöronal ateşlemelere, nöronal ateşlemeleri kimyaya indirgemek gibi. Atomizm (A) maddenin en küçük yapı taşlarına odaklanır, mekanizm (E) işleyişi mekanik nedensellikle açıklar; bunlar indirgemecilik ile örtüşebilse de tanım doğrudan Reductionism\'e aittir.'
+  },
+  {
+    id:30,
+    q:'"Evrim düşüncesinin ilk örneği sayılan düşünce hangi düşünüre aittir?"',
+    opts:['Anaksimandros','Aristoteles','Anaksimenes','Anaksagoras','Alkmeion'],
+    answer:0,
+    exp:'Anaksimandros, insanların başlangıçta denizde yaşayan balık benzeri yaratıklardan türediğini ve karasal ortama uyum sağladığını öne sürmüştür; bu, Darwin\'den yaklaşık 2400 yıl önce dile getirilen ilk evrimsel düşüncedir. Aristoteles (B) tür kavramını kullanmış olsa da türleri sabit ve değişmez kabul eder; evrimci değildir. Alkmeion (E) tıp ve beyin araştırmalarıyla tanınır.'
+  },
+  {
+    id:31,
+    q:'"Bilimin deneyle başladığını, gözlenen olayların hipotezler yoluyla termellendirilmesi ve bu hipotezlerin tekrar gözlemlerle test edilmesi gerektiğini ileri sürmüştür. Bilimsel araştırmayı induktif (tümevarımsal)-deduktif (tümden gelimsel) bir model olarak tasarlamıştır." Yukarıda görüşleri verilen düşünür aşağıdakilerden hangisidir?',
+    opts:['Abelardus','St. Agustinus','R. Grossateste','Thomas Aquinas','Albertus Magnus'],
+    answer:2,
+    exp:'Robert Grosseteste (Oxford okulu kurucusu), gözlem → hipotez → test döngüsünü ve tümevarım-tümdengelim birlikteliğini ilk kez sistematik biçimde çerçeveleyen Orta Çağ düşünürüdür. Bu yaklaşım modern bilimsel yöntemin habercisidir. Thomas Aquinas (D) Aristoteles felsefesini Hristiyanlıkla sentezlemiş, Agustinus (B) iç-gözlem ve ruh konularında çalışmış, Albertus Magnus (E) doğa bilimine katkı yapmıştır; ancak tanımdaki bütünleşik yöntem modeli Grosseteste\'ye aittir.'
+  },
+  {
+    id:32,
+    q:'"Konuşmanın beyindeki bölgesini ilk gösteren ve o alana kendi adı verilen bilim adamı kimdir?"',
+    opts:['Gall','Spurzheim','Hall','Broca','Wernicke'],
+    answer:3,
+    exp:'Paul Broca, 1861\'de "Tan" lakaplı hastasını inceleyerek sol ön lobdaki belirli bir bölgenin hasar görmesi durumunda konuşma üretiminin bozulduğunu göstermiş ve bu bölge "Broca Alanı" olarak adlandırılmıştır. Wernicke (E) konuşmayı anlamayı, Gall (A) frenoloji çerçevesinde kafatası haritalamasını, Spurzheim (B) Gall\'ün öğrencisi olarak frenoloji sistemini geliştirmiştir.'
+  },
+  {
+    id:33,
+    q:'"Ruh-beden sorununu madde-form ilişkisi olarak ele alan ilk düşünür hangisidir?"',
+    opts:['Aristoteles','Anaksimenes','Anaksimandros','Platon','Thales'],
+    answer:0,
+    exp:'Aristoteles\'e göre ruh bedenin formudur (biçimi, organizasyon ilkesi), beden ise maddedir; ikisi birbirinden ayrılamaz ve birlikte anlam kazanır (Hilemorfizm). Bu yaklaşım Platon\'un ruh-beden düalizminin (ruh bedende hapsedilmiş) karşısında monist-organik bir çözümdür. Platon (D) ruhu bedenden bağımsız ve ölümsüz görürken Aristoteles ikisini birleşik bir bütün olarak ele alır.'
+  },
+  {
+    id:34,
+    q:'"Aristoteles felsefesinin tümdengelimsel yöntemine karşı çıkarak tümevarımsal yöntemi savunan ve doğa felsefesi anlayışını benimseyerek İngiliz Ampirik felsefesinin oluşumunda önemli bir rolü olan düşünür aşağıdakilerden hangisidir?"',
+    opts:['D. Hume','J. Mill','T. Hobbes','G. Berkeley','F. Bacon'],
+    answer:4,
+    exp:'Francis Bacon, Aristoteles\'in tümdengelimci Organon\'una karşı Novum Organum\'u yazarak "önce gözlem ve deney, sonra genelleme" ilkesini sistemleştirmiştir. Bu tümevarımsal bilim anlayışı İngiliz ampirizminin ve modern deneysel bilimin temel taşını oluşturur. Hume (A) bilgi kuramı ve çağrışımcılıkla, Mill (B) tümevarımsal mantığı geliştirerek, Hobbes (C) madde ve hareket temelinde materyalizmi kurmakla öne çıkar; ama İngiliz ampirizmi ve tümevarımsal bilimin kurucu figürü Bacon\'dır.'
+  },
+  {
+    id:35,
+    q:'"Ruh-beden sorunu tartışmasının kökeninde hangi tartışmalar yatmaktadır?"',
+    opts:['Varlığın kökeni nedir-ruhun kökeni nedir?','Ahlakın kökeni nedir-ruhun kökeni nedir?','Ruhun kökeni nedir-maddenin kökeni nedir?','Varlığın kökeni nedir-bilginin kökeni nedir?','Ahlakın kökeni nedir-bilginin kökeni nedir?'],
+    answer:3,
+    exp:'Ruh-beden sorunu özünde iki büyük felsefi sorunun kesişimidir: Ontoloji (varlık bilimi) — "Gerçekte ne var: madde mi, ruh mu, ikisi birden mi?" ve Epistemoloji (bilgi kuramı) — "Bu varlığı nasıl biliriz: duyularla mı, akılla mı?" Bu iki soru bir arada ele alındığında ruh-beden tartışması kaçınılmaz biçimde ortaya çıkar. Ahlak sorusu (etik) ise bu çiftin içinde değildir.'
+  },
+  {
+    id:36,
+    q:'"Psikolojinin gelişim sürecinde önemli bir tartışma olan tümeller tartışmasının temelinde aşağıdaki ilişkilerden hangisi yatmaktadır?"',
+    opts:['Arkhe-ruh ilişkisi','Madde-form ilişkisi','Akıl-ruh ilişkisi','Monizm-dualizm ilişkisi','Varlık-bilgi ilişkisi'],
+    answer:4,
+    exp:'Tümeller tartışması şu soruyu sorar: "İnsan, köpek, güzellik gibi genel kavramlar gerçekten var mıdır (realizm) yoksa sadece zihnimizde kullandığımız isimler midir (nominalizm)?" Bu, hem "neyin var olduğu" (ontoloji/varlık) hem de "onu nasıl bildiğimiz" (epistemoloji/bilgi) sorusunu içerir. Psikoloji tarihi açısından bu tartışma; zihinsel içeriklerin gerçekliği ve bilginin kaynağı meselesinin çekirdeğidir.'
+  },
+  {
+    id:37,
+    q:'"İslam felsefesinde psikosomatik rahatsızlıklar ile ilgili görüşler ortaya koyan düşünür hangisidir?"',
+    opts:['Ebu Bekir Razi','Farabi','Gazali','İbn Sina','İbn Rüşd'],
+    answer:3,
+    exp:'İbn Sina, el-Kanun fi\'t-Tıbb adlı ansiklopedik tıp eserinde zihinsel durumların (aşk, korku, keder, stres) fiziksel belirtilere ve hastalıklara yol açtığını sistematik biçimde belgeleyen ilk hekimlerden biridir; bu yaklaşım modern psikosomatik tıbbın öncülüdür. Farabi (B) felsefe ve müzik, Gazali (C) tasavvuf ve din psikolojisi, Ebu Bekir Razi (A) klinik tıp, İbn Rüşd (E) Aristoteles yorumları alanında öne çıkar.'
+  },
+  {
+    id:38,
+    q:'"Aşağıda Fechner ile ilgili verilen bilgilerden hangisi yanlıştır?"',
+    opts:['Eşpotansiyellik yasasını ortaya koymuştur','Ruh-beden sorunu üzerine çalışmıştır','Duyumun şiddetini ölçme ile ilgili bir kuram ortaya atmıştır','Psikofiziiğin kurucularındandır','Deneysel psikolojinin kurucularındandır'],
+    answer:0,
+    exp:'Eşpotansiyellik (Equipotentiality) yasası Fechner\'e değil Karl Lashley\'e aittir; Lashley, beyin hasarı miktarının konumundan daha belirleyici olduğunu göstermiştir. Fechner ise; ruh-beden sorununa panpsişist çözüm aramış (B), Weber\'in bulgularını matematikleştirerek "uyaran ile duyum arasındaki ilişki logaritmiktir" diyen Weber-Fechner yasasını kurmuş (C), psikofizik bilim dalını kurmuş (D) ve bu çalışmalarıyla Wundt\'un laboratuvar psikolojisine zemin hazırlamıştır (E).'
+  },
+  {
+    id:39,
+    q:'"Ablasyon ve lezyon yöntemlerini kullanarak güvercinler ve kurbağalar üzerinde çalışmalar yapmıştır. Kurbağalar üzerinde yaptığı deneylerde beyin fonksiyonlarının beyine eşit olarak böltündüğünü göstermişor. Yukarıda anlatılan bilim insanı aşağıdakilerden hangisidir?"',
+    opts:['Swemmerdan','Flourens','Weber','Müller','Lashley'],
+    answer:1,
+    exp:'Pierre Flourens, güvercin ve kurbağaların beyin bölgelerini cerrahi olarak çıkararak (ablasyon) Gall\'ün frenoloji iddialarını deneysel olarak çürütmüş; beyin bölgeleri tek tek çıkarıldığında işlevlerin tamamen yok olmadığını, beynin bütün olarak çalıştığını göstermiştir. Lashley (E) benzer sonuçlara çok sonra sıçanlar üzerinde ulaşmıştır. Weber (C) eşik deneyleri, Müller (D) sinir fizyolojisi, Swammerdam (A) sinir-kas hazırlıklarıyla tanınır.'
+  },
+  {
+    id:40,
+    q:'"Psikoloji tarihi açısından önemli olan İngiliz Görgülcü ve Çağrışımı düşüncesinin temelini atan Orta Çağ düşünürü hangisidir?"',
+    opts:['a) Ockhamlı William','b) R. Bacon','c) Anselmus','d) Thomas Aquinas','e) R. Grossateste'],
+    answer:0,
+    exp:'Ockhamlı William (William of Ockham), geliştirdiği nominalizm (adcılık) felsefesiyle soyut tümellerin yalnızca zihinsel isimler olduğunu, gerçek bilginin tekil nesnelerin doğrudan gözleminden elde edileceğini savunmuştur. Bu düşünce İngiliz ampirizmi ve çağrışımcılığının Orta Çağ\'daki öncüsü sayılır. "Ockham\'ın usturası" (Varlıklar gereksiz yere çoğaltılmamalı) da onun ilkesidir. Grosseteste (E) bilimsel yönteme, Roger Bacon (B) deneysel araştırmaya, Aquinas (D) Aristoteles-Hristiyanlık sentezine katkı yapmıştır.'
+  },
+  {
+    id:41,
+    q:'"Aşağıdakilerden hangisinin psikolojinin bilim olmasında bir etkisinin olduğu söylenemez?"',
+    opts:['İndirgemecilik','İdealizm','Determinizm','Mekanizm','Pozitivizm'],
+    answer:1,
+    exp:'Psikolojinin pozitif bir bilim haline gelmesi; olguların ölçülüp test edilebildiği materyalist, mekanik ve determinist bir yaklaşımla mümkün olmuştur. İdealizm ise gerçekliği zihinsel ya da soyut düşünsel içeriklere indirger; maddeyi, ölçümü ve deneyi ikinci plana atar. Bu nedenle İdealizm psikolojinin bilimleşme sürecini kolaylaştırmak bir yana, geciktirmiş bir felsefedir. Pozitivizm (E), indirgemecilik (A), determinizm (C) ve mekanizm (D) bilimselleşmeye katkı sağlamıştır.'
+  },
+  {
+    id:42,
+    q:'"Beynin bir bütün halinde çalıştığını savunan görüş hangisidir?"',
+    opts:['Düalizm','Determinizm','Monizm','Lokalizasyonculuk','Anti-lokalizasyonculuk'],
+    answer:4,
+    exp:'Anti-lokalizasyonculuk (bütüncül/tümcül görüş); beyin işlevlerinin belirli alanlara sıkışmadığını, tüm beyin dokusunun birlikte işlev gördüğünü savunur. Flourens ve Lashley bu görüşün önemli temsilcileridir. Monizm (C) varlığın tek bir özden (madde ya da zihin) oluştuğunu savunan genel bir metafizik tutumla ilgilidir; beynin bütüncül işleyişiyle karıştırılmamalıdır. Lokalizasyonculuk (D) ise Broca, Wernicke ve Gall gibi isimlerle temsil edilen karşı görüştür.'
+  },
+  {
+    id:43,
+    q:'"Fizik nesne ile akıl arasında ilk kez açıkça bir ayım yapan düşünür hangisidir?"',
+    opts:['Anaksimenes','Aristippos','Anaksagoras','Aristoteles','Anaksimandros'],
+    answer:2,
+    exp:'Anaksagoras, evreni yöneten, maddeden bağımsız, saf ve düzenleyici bir zihinsel ilke olan Nous (Akıl/Zihin) kavramını ortaya atmıştır. Nous, maddi karışımın içinde yer almaz ve onu dışarıdan düzenler; böylece fiziksel dünya ile zihinsel dünya arasındaki felsefi ayrım tarihte ilk kez net biçimde ifade edilmiştir. Aristoteles (D) daha sonra bu ayrımı derinleştirmiş, Anaksimenes (A) havayı, Anaksimandros (E) apeironı temel almıştır.'
+  },
+  {
+    id:44,
+    q:'"Aşağıdakilerden hangısı zihin-beden sorunu tartışmasındaki mega kuramlardan biri değildir?"',
+    opts:['Monizm','Epifenomenalizm','Dualizm','Çift görünum ve özdeşlik kuramı','Rasyonalizm'],
+    answer:4,
+    exp:'Zihin-beden tartışmasındaki "mega kuramlar" zihin ile bedenin ontolojik ilişkisini açıklayan görüşlerdir: Monizm (A) — ikisi tek bir özdür; Dualizm (C) — ikisi ayrı varoluşlardır; Epifenomenalizm (B) — zihin bedenin yan ürünüdür; Çift görünüm ve özdeşlik (D) — aynı olgunun iki yüzüdür. Rasyonalizm (E) ise "bilginin kaynağı akıldır" diyen bir epistemoloji kuramıdır; zihin-beden ontolojisine değil bilginin nasıl edinildiğine odaklanır.'
+  },
+  {
+    id:45,
+    q:'"Aşağıdakilerden hangisi duyumların yanıltıcı olduğunu, doğru bilginin tek kaynağının akıl olduğunu ileri süren düşünürlerden biri değildir?"',
+    opts:['Herakleitos','Aristoteles','Sokrates','Platon','Parmenides'],
+    answer:1,
+    exp:'Herakleitos (A), Sokrates (C), Platon (D) ve Parmenides (E); duyuların yanılgılı, akılsa güvenilir olduğunu çeşitli biçimlerde savunmuş düşünürlerdir. Aristoteles ise rasyonalist bir mantık sistemi kursa da bilginin ham maddesinin duyumlardan geldiğini, kavramların duyusal deneyimden soyutlanarak elde edildiğini savunur. Bu yönüyle Aristoteles duyuları tamamen reddeden bir rasyonalist değil, ampirist bir damarı da olan sentezci bir filozoftur.'
+  },
+  {
+    id:46,
+    q:'"Göz-ışın kuramını ilk kez yanlışlayan düşünür aşağıdakilerden hangisidir?"',
+    opts:['İbn Sina','İbn El Heysem','İbn Rüşd','Farabi','Ebu Bekir Razi'],
+    answer:1,
+    exp:'Antik dönemden beri süregelen "göz ışın yayar ve bu ışınlar nesnelere çarparak görmeyi sağlar" teorisini deneysel olarak çürüten İbn el-Heysem\'dir (Alhazen). Karanlık oda (camera obscura) deneyleriyle ışığın nesnelerden yansıyarak gözümüze geldiğini ispatlayan İbn el-Heysem, modern optiğin kurucusu sayılır. İbn Sina (A) tıp ve psikosomatik, İbn Rüşd (C) Aristo yorumları, Farabi (D) müzik ve felsefe, Ebu Bekir Razi (E) klinik tıp alanlarında öne çıkar.'
+  }
 ];
 
-// Aktif gün indeksi (merkez = bugün)
-const today = new Date();
-today.setHours(0,0,0,0);
-let activeDayOffset = 0; // bugünden fark (gün sayısı)
-const WINDOW = 365; // her yönde 30 gün
-
-function getDateByOffset(offset) {
-  const d = new Date(today);
-  d.setDate(d.getDate() + offset);
-  return d;
-}
-function dateKey(date) {
-  return date.toISOString().split('T')[0];
-}
-// saveData is defined later with cloud sync support
-
-// ═══════════════════════════════════════
-// KART RENDER
-// ═══════════════════════════════════════
-function buildCard(offset) {
-  const date = getDateByOffset(offset);
-  const key = dateKey(date);
-  const dow = date.getDay();
-
-  const card = document.createElement('div');
-  card.className = 'day-card';
-  card.dataset.offset = offset;
-
-  // Rutinler
-  const routines = routineTemplates[dow] || [];
-  const comp = completions[key] || {};
-  const tasks = specialTasks[key] || [];
-
-  // Sırala: saatli önce, saatsiz sona
-  const sortItems = (items, isDone) => {
-    return [...items].sort((a,b) => {
-      if (a.timeStart && b.timeStart) return a.timeStart.localeCompare(b.timeStart);
-      if (a.timeStart) return -1;
-      if (b.timeStart) return 1;
-      return 0;
-    });
-  };
-
-  // --- RUTİN YARISI ---
-  const rHalf = document.createElement('div');
-  rHalf.className = 'card-half';
-
-  const rHeader = document.createElement('div');
-  rHeader.className = 'half-header';
-  const rTitleWrap = document.createElement('div');
-  rTitleWrap.style.cssText = 'display:flex;align-items:center;gap:10px;flex:1;';
-  const rTitle = document.createElement('span');
-  rTitle.className = 'half-title';
-  rTitle.textContent = 'Rutinler';
-  const rTotal = routines.length;
-  const rDone = routines.filter(r => comp[r.id]).length;
-  const rPct = rTotal > 0 ? Math.round((rDone / rTotal) * 100) : 0;
-  const rBarWrap = document.createElement('div');
-  rBarWrap.style.cssText = 'position:relative;width:80px;height:14px;background:var(--accent-dim);border-radius:7px;overflow:hidden;flex-shrink:0;';
-  const rBarFill = document.createElement('div');
-  rBarFill.style.cssText = `width:${rPct}%;height:100%;background:var(--accent);border-radius:7px;transition:width 0.4s ease;`;
-  const rBarText = document.createElement('span');
-  rBarText.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;font-weight:600;color:var(--bg);letter-spacing:0.03em;';
-  rBarText.textContent = rTotal > 0 ? rPct + '%' : '';
-  rBarWrap.appendChild(rBarFill);
-  rBarWrap.appendChild(rBarText);
-  rTitleWrap.appendChild(rTitle);
-  rTitleWrap.appendChild(rBarWrap);
-  rHeader.appendChild(rTitleWrap);
-  const rAddBtn = document.createElement('div');
-  rAddBtn.className = 'add-btn';
-  rAddBtn.textContent = '+';
-  rAddBtn.addEventListener('click', () => openEditRoutineModal(dow));
-  rHeader.appendChild(rAddBtn);
-  rHalf.appendChild(rHeader);
-
-  const rScroll = document.createElement('div');
-  rScroll.className = 'items-scroll';
-
-  const pendingRoutines = sortItems(routines.filter(r => !comp[r.id]));
-  const doneRoutines = sortItems(routines.filter(r => comp[r.id]));
-
-  pendingRoutines.forEach(r => {
-    rScroll.appendChild(makeTaskEl(r, false, 'routine', key, offset));
-  });
-
-  if (doneRoutines.length > 0) {
-    // Tamamlananlar listenin altında soluk görünsün
-    doneRoutines.forEach(r => {
-      rScroll.appendChild(makeTaskEl(r, true, 'routine', key, offset));
-    });
-  }
-
-  if (routines.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'empty-state';
-    empty.innerHTML = `<span class="empty-state-text">Bu gün için rutin yok</span>`;
-    rScroll.appendChild(empty);
-  }
-
-  rHalf.appendChild(rScroll);
-
-  // --- GÖREV YARISI ---
-  const tHalf = document.createElement('div');
-  tHalf.className = 'card-half';
-
-  const tHeader = document.createElement('div');
-  tHeader.className = 'half-header';
-  const tTitleWrap = document.createElement('div');
-  tTitleWrap.style.cssText = 'display:flex;align-items:center;gap:10px;flex:1;';
-  const tTitle = document.createElement('span');
-  tTitle.className = 'half-title';
-  tTitle.textContent = 'Görevler';
-  const tTotal = tasks.length;
-  const tDone = tasks.filter(t => t.done).length;
-  const tPct = tTotal > 0 ? Math.round((tDone / tTotal) * 100) : 0;
-  const tBarWrap = document.createElement('div');
-  tBarWrap.style.cssText = 'position:relative;width:80px;height:14px;background:var(--accent-dim);border-radius:7px;overflow:hidden;flex-shrink:0;';
-  const tBarFill = document.createElement('div');
-  tBarFill.style.cssText = `width:${tPct}%;height:100%;background:var(--accent);border-radius:7px;transition:width 0.4s ease;`;
-  const tBarText = document.createElement('span');
-  tBarText.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;font-weight:600;color:var(--bg);letter-spacing:0.03em;';
-  tBarText.textContent = tTotal > 0 ? tPct + '%' : '';
-  tBarWrap.appendChild(tBarFill);
-  tBarWrap.appendChild(tBarText);
-  tTitleWrap.appendChild(tTitle);
-  tTitleWrap.appendChild(tBarWrap);
-  tHeader.appendChild(tTitleWrap);
-  const tAddBtn = document.createElement('div');
-  tAddBtn.className = 'add-btn';
-  tAddBtn.textContent = '+';
-  tAddBtn.addEventListener('click', () => openAddTaskModal(key));
-  tHeader.appendChild(tAddBtn);
-  tHalf.appendChild(tHeader);
-
-  const tScroll = document.createElement('div');
-  tScroll.className = 'items-scroll';
-
-  const pendingTasks = sortItems(tasks.filter(t => !t.done));
-  const doneTasks = sortItems(tasks.filter(t => t.done));
-
-  pendingTasks.forEach(t => {
-    tScroll.appendChild(makeTaskEl(t, false, 'task', key, offset));
-  });
-  doneTasks.forEach(t => {
-    tScroll.appendChild(makeTaskEl(t, true, 'task', key, offset));
-  });
-
-  if (tasks.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'empty-state';
-    empty.innerHTML = `<span class="empty-state-text">Bu gün için özel görev yok</span>`;
-    tScroll.appendChild(empty);
-  }
-
-  tHalf.appendChild(tScroll);
-
-  card.appendChild(rHalf);
-  card.appendChild(tHalf);
-  return card;
-}
-
-function makeTaskEl(item, isDone, type, dateKey, offset) {
-  const el = document.createElement('div');
-  el.className = 'task-item' + (isDone ? ' done' : '');
-  el.dataset.id = item.id;
-  el.dataset.type = type;
-
-  let timeHtml = '';
-  if (item.timeStart) {
-    const t = item.timeEnd ? `${item.timeStart} – ${item.timeEnd}` : item.timeStart;
-    timeHtml = `<span class="task-time">${t}</span>`;
-  }
-
-  el.innerHTML = `
-    ${timeHtml}
-    <span class="task-name">${item.name}</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  `;
-
-  // Detay butonu
-  el.querySelector('.task-detail-btn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    openDetailModal(item, type, dateKey, isDone);
-  });
-
-  // Swipe to complete
-  let startX = 0, startY = 0, swiping = false;
-  el.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    swiping = false;
-  }, {passive: true});
-  el.addEventListener('touchmove', e => {
-    const dx = e.touches[0].clientX - startX;
-    const dy = e.touches[0].clientY - startY;
-    if (Math.abs(dx) > Math.abs(dy) * 1.5 && dx > 60) {
-      swiping = true;
-      el.classList.add('swiping');
-      e.stopPropagation();
-    }
-  }, {passive: true});
-  el.addEventListener('touchend', e => {
-    if (swiping) {
-      e.stopPropagation();
-      el.classList.remove('swiping');
-      toggleDone(item, type, dateKey, offset);
-    }
-    swiping = false;
-  });
-
-  // Click to complete (masaüstü)
-  el.addEventListener('click', (e) => {
-    if (e.target.classList.contains('task-detail-btn')) return;
-    toggleDone(item, type, dateKey, offset);
-  });
-
-  return el;
-}
-
-function toggleDone(item, type, dateKey, offset) {
-  if (type === 'routine') {
-    if (!completions[dateKey]) completions[dateKey] = {};
-    if (completions[dateKey][item.id]) {
-      delete completions[dateKey][item.id];
-    } else {
-      completions[dateKey][item.id] = true;
-    }
-  } else {
-    const tasks = specialTasks[dateKey] || [];
-    const t = tasks.find(t => t.id === item.id);
-    if (t) t.done = !t.done;
-    specialTasks[dateKey] = tasks;
-  }
-  saveData();
-  refreshCard(offset);
-}
-
-function refreshCard(offset) {
-  const track = document.getElementById('cards-track');
-  const existing = track.querySelector(`[data-offset="${offset}"]`);
-  if (existing) {
-    const wasActive = existing.classList.contains('active-card');
-    const newCard = buildCard(offset);
-    if (wasActive) newCard.classList.add('active-card');
-    track.replaceChild(newCard, existing);
-  }
-  updateDayNav();
-}
-
-// ═══════════════════════════════════════
-// TRACK & SWIPE
-// ═══════════════════════════════════════
-function initTrack() {
-  const track = document.getElementById('cards-track');
-  track.innerHTML = '';
-  for (let i = -WINDOW; i <= WINDOW; i++) {
-    track.appendChild(buildCard(i));
-  }
-  setTrackOffset(activeDayOffset, false);
-}
-
-function getCardWidth() {
-  const wrapper = document.getElementById('cards-wrapper');
-  return wrapper.offsetWidth - 64 + 16; // kart genişliği: wrapper - peek padding + margins
-}
-
-function setTrackOffset(offset, animate = true) {
-  const track = document.getElementById('cards-track');
-  const idx = offset + WINDOW;
-  const cardW = getCardWidth();
-  // Kartları ortala: sol peek 24px
-  const translateX = -(idx * cardW) + 24;
-  if (!animate) track.style.transition = 'none';
-  track.style.transform = `translateX(${translateX}px)`;
-  if (!animate) setTimeout(() => { track.style.transition = ''; }, 50);
-
-  // Aktif kart vurgusu
-  track.querySelectorAll('.day-card').forEach((c, i) => {
-    if (i === idx) c.classList.add('active-card');
-    else c.classList.remove('active-card');
-  });
-}
-
-function goToOffset(offset) {
-  activeDayOffset = offset;
-  setTrackOffset(offset);
-  updateHeader();
-  updateDayNav();
-}
-
-// Touch swipe
-let touchStartX = 0, touchStartY = 0, isDragging = false;
-const wrapper = document.getElementById('cards-wrapper');
-
-wrapper.addEventListener('touchstart', e => {
-  touchStartX = e.touches[0].clientX;
-  touchStartY = e.touches[0].clientY;
-  isDragging = false;
-}, {passive: true});
-
-wrapper.addEventListener('touchmove', e => {
-  if (e.target.closest('.task-item')) return;
-  const dx = e.touches[0].clientX - touchStartX;
-  const dy = e.touches[0].clientY - touchStartY;
-  if (!isDragging && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
-    isDragging = true;
-  }
-}, {passive: true});
-
-wrapper.addEventListener('touchend', e => {
-  if (!isDragging) return;
-  if (e.target.closest('.task-item')) { isDragging = false; return; }
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  const threshold = getCardWidth() * 0.25;
-  if (Math.abs(dx) > threshold) {
-    const newOffset = activeDayOffset + (dx < 0 ? 1 : -1);
-    if (newOffset >= -WINDOW && newOffset <= WINDOW) goToOffset(newOffset);
-  }
-  isDragging = false;
-});
-
-// ═══════════════════════════════════════
-// HEADER & NAV
-// ═══════════════════════════════════════
-function updateHeader() {
-  const date = getDateByOffset(activeDayOffset);
-  document.getElementById('day-name').textContent = DAYS_TR[date.getDay()];
-  document.getElementById('date-full').textContent =
-    `${date.getDate()} ${MONTHS_TR[date.getMonth()]} ${date.getFullYear()}`;
-}
-
-function updateDayNav() {
-  const nav = document.getElementById('day-nav');
-  nav.innerHTML = '';
-  for (let i = -15; i <= 15; i++) {
-    const d = getDateByOffset(i);
-    const chip = document.createElement('div');
-    chip.className = 'day-chip' + (i === activeDayOffset ? ' active' : '');
-    chip.textContent = i === 0 ? 'Bugün' : DAYS_SHORT[d.getDay()] + ' ' + d.getDate();
-    chip.addEventListener('click', () => goToOffset(i));
-    nav.appendChild(chip);
-  }
-  // Scroll aktif chip'e
-  setTimeout(() => {
-    const active = nav.querySelector('.active');
-    if (active) active.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
-  }, 50);
-}
-
-// ═══════════════════════════════════════
-// TAKVİM
-// ═══════════════════════════════════════
-let calViewYear = today.getFullYear();
-let calViewMonth = today.getMonth();
-
-document.getElementById('cal-btn').addEventListener('click', () => {
-  calViewYear = today.getFullYear();
-  calViewMonth = today.getMonth();
-  renderCal();
-  openModal('cal-modal');
-});
-document.getElementById('cal-prev').addEventListener('click', () => {
-  calViewMonth--;
-  if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; }
-  renderCal();
-});
-document.getElementById('cal-next').addEventListener('click', () => {
-  calViewMonth++;
-  if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; }
-  renderCal();
-});
-
-function renderCal() {
-  const _ml=document.getElementById('cal-month-label');
-  _ml.innerHTML='<span onclick="openMonthPicker()" style="cursor:pointer;font-size:16px;font-weight:700;padding:4px 8px;border-radius:8px;background:var(--accent-dim);">'+MONTHS_TR[calViewMonth]+'</span> <span onclick="openYearPicker()" style="cursor:pointer;font-size:16px;font-weight:700;padding:4px 8px;border-radius:8px;background:var(--accent-dim);">'+calViewYear+'</span>';
-  const grid = document.getElementById('cal-grid');
-  grid.innerHTML = '';
-  const dayNames = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
-  dayNames.forEach(d => {
-    const el = document.createElement('div');
-    el.className = 'cal-day-name';
-    el.textContent = d;
-    grid.appendChild(el);
-  });
-  const first = new Date(calViewYear, calViewMonth, 1);
-  let startDow = first.getDay(); // 0=Sun
-  startDow = startDow === 0 ? 6 : startDow - 1; // Mon=0
-  for (let i = 0; i < startDow; i++) {
-    const el = document.createElement('div');
-    el.className = 'cal-day empty';
-    grid.appendChild(el);
-  }
-  const daysInMonth = new Date(calViewYear, calViewMonth + 1, 0).getDate();
-  for (let d = 1; d <= daysInMonth; d++) {
-    const el = document.createElement('div');
-    el.className = 'cal-day';
-    el.textContent = d;
-    const thisDate = new Date(calViewYear, calViewMonth, d);
-    thisDate.setHours(0,0,0,0);
-    const key = dateKey(thisDate);
-    const diff = Math.round((thisDate - today) / 86400000);
-    if (thisDate.getTime() === today.getTime()) el.classList.add('today');
-    if (diff === activeDayOffset) el.classList.add('selected');
-    if (specialTasks[key] && specialTasks[key].length > 0) el.classList.add('has-task');
-    el.addEventListener('click', () => {
-      if (diff >= -WINDOW && diff <= WINDOW) {
-        goToOffset(diff);
-      } else {
-        // Tarih WINDOW dışında - sadece takvimi kapat, o tarihe git
-        activeDayOffset = diff;
-        // WINDOW'u geç bir tarihe gidince kartı rebuild etme, sadece header güncelle
-        updateHeader();
-        updateDayNav();
-      }
-      closeModal('cal-modal');
-    });
-    grid.appendChild(el);
-  }
-}
-
-// ═══════════════════════════════════════
-// TEMA
-// ═══════════════════════════════════════
-document.getElementById('theme-btn').addEventListener('click', () => {
-  renderThemeGrid();
-  openModal('theme-modal');
-});
-
-function renderThemeGrid() {
-  const grid = document.getElementById('theme-grid');
-  grid.innerHTML = '';
-  themes.forEach(t => {
-    const el = document.createElement('div');
-    el.className = 'theme-option' + (currentTheme === t.id ? ' active' : '');
-    el.innerHTML = `
-      <div class="theme-swatch" style="background:${t.bg}; border: 2px solid ${t.accent};"></div>
-      <div class="theme-name" style="white-space:pre-line;">${t.name}</div>
-    `;
-    el.addEventListener('click', () => {
-      currentTheme = t.id;
-      localStorage.setItem('theme', t.id);
-      document.documentElement.setAttribute('data-theme', t.id === 'default' ? '' : t.id);
-      renderThemeGrid();
-      initTrack();
-    });
-    grid.appendChild(el);
-  });
-}
-
-// ═══════════════════════════════════════
-// GÖREV EKLE
-// ═══════════════════════════════════════
-let addTaskForKey = '';
-
-function openAddTaskModal(key) {
-  addTaskForKey = key;
-  taskDrumsInited = false;
-  const date = new Date(key + 'T12:00:00');
-  document.getElementById('add-task-title').textContent =
-    `Görev Ekle — ${date.getDate()} ${MONTHS_TR[date.getMonth()]}`;
-  document.getElementById('task-name-input').value = '';
-  document.getElementById('task-note-input').value = '';
-  taskTimeToggle('range');
-  openModal('add-task-modal');
-  setTimeout(() => document.getElementById('task-name-input').focus(), 300);
-}
-
-document.getElementById('save-task-btn').addEventListener('click', () => {
-  const name = document.getElementById('task-name-input').value.trim();
-  if (!name) return;
-  if (!specialTasks[addTaskForKey]) specialTasks[addTaskForKey] = [];
-  let ts = '', te = '';
-  if (taskTimeMode !== 'none') {
-    ts = getPickerTime('task');
-    if (taskTimeMode === 'range') te = getPickerEndTime('task');
-  }
-  specialTasks[addTaskForKey].push({
-    id: 't' + Date.now(),
-    name,
-    timeStart: ts,
-    timeEnd: te,
-    note: document.getElementById('task-note-input').value.trim(),
-    done: false
-  });
-  saveData();
-  const date = new Date(addTaskForKey);
-  date.setHours(0,0,0,0);
-  const diff = Math.round((date - today) / 86400000);
-  refreshCard(diff);
-  closeModal('add-task-modal');
-});
-document.getElementById('cancel-task-btn').addEventListener('click', () => closeModal('add-task-modal'));
-
-// ═══════════════════════════════════════
-// RUTİN DÜZENLE
-// ═══════════════════════════════════════
-let editRoutineDow = 1;
-
-function openEditRoutineModal(dow) {
-  editRoutineDow = dow;
-  renderRoutineEditList();
-  renderWeekTabs();
-  openModal('edit-routine-modal');
-}
-
-function renderWeekTabs() {
-  const tabs = document.getElementById('week-tabs');
-  tabs.innerHTML = '';
-  const dowNames = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
-  for (let i = 1; i <= 7; i++) {
-    const d = i % 7;
-    const tab = document.createElement('div');
-    tab.className = 'week-tab' + (d === editRoutineDow ? ' active' : '');
-    tab.textContent = dowNames[d];
-    tab.addEventListener('click', () => {
-      editRoutineDow = d;
-      renderWeekTabs();
-      renderRoutineEditList();
-    });
-    tabs.appendChild(tab);
-  }
-}
-
-function renderRoutineEditList() {
-  const list = document.getElementById('routine-list-edit');
-  list.innerHTML = '';
-  const routines = routineTemplates[editRoutineDow] || [];
-  if (routines.length === 0) {
-    list.innerHTML = `<div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div>`;
-    return;
-  }
-  routines.forEach(r => {
-    const el = document.createElement('div');
-    el.className = 'task-item';
-    el.style.marginBottom = '8px';
-    let timeStr = r.timeStart ? `${r.timeStart}${r.timeEnd ? ' – '+r.timeEnd : ''}` : '';
-    el.innerHTML = `
-      ${timeStr ? `<span class="task-time">${timeStr}</span>` : ''}
-      <span class="task-name">${r.name}</span>
-      <div class="task-detail-btn" style="color:#e05555;">✕</div>
-    `;
-    el.querySelector('.task-detail-btn').addEventListener('click', () => {
-      routineTemplates[editRoutineDow] = routineTemplates[editRoutineDow].filter(x => x.id !== r.id);
-      saveData();
-      renderRoutineEditList();
-      // Tüm kartları yenile
-      for (let i = -WINDOW; i <= WINDOW; i++) {
-        const date = getDateByOffset(i);
-        if (date.getDay() === editRoutineDow) refreshCard(i);
-      }
-    });
-    list.appendChild(el);
-  });
-}
-
-document.getElementById('add-routine-inline-btn').addEventListener('click', () => {
-  rtnDrumsInited = false;
-  document.getElementById('routine-name-input').value = '';
-  routineTimeToggle('range');
-  openModal('add-routine-modal');
-  setTimeout(() => document.getElementById('routine-name-input').focus(), 300);
-});
-document.getElementById('close-routine-modal-btn').addEventListener('click', () => closeModal('edit-routine-modal'));
-
-document.getElementById('save-routine-btn').addEventListener('click', () => {
-  const name = document.getElementById('routine-name-input').value.trim();
-  if (!name) return;
-  if (!routineTemplates[editRoutineDow]) routineTemplates[editRoutineDow] = [];
-  let ts = '', te = '';
-  if (rtnTimeMode !== 'none') {
-    ts = getPickerTime('rtn');
-    if (rtnTimeMode === 'range') te = getPickerEndTime('rtn');
-  }
-  routineTemplates[editRoutineDow].push({
-    id: 'r' + Date.now(),
-    name,
-    timeStart: ts,
-    timeEnd: te,
-  });
-  saveData();
-  renderRoutineEditList();
-  // Tüm o günün kartlarını yenile
-  for (let i = -WINDOW; i <= WINDOW; i++) {
-    const date = getDateByOffset(i);
-    if (date.getDay() === editRoutineDow) refreshCard(i);
-  }
-  closeModal('add-routine-modal');
-});
-document.getElementById('cancel-routine-btn').addEventListener('click', () => closeModal('add-routine-modal'));
-
-// ═══════════════════════════════════════
-// DETAY MODAL
-// ═══════════════════════════════════════
-let detailItem = null, detailType = '', detailKey = '';
-
-function openDetailModal(item, type, key, isDone) {
-  detailItem = item;
-  detailType = type;
-  detailKey = key;
-  document.getElementById('detail-title').textContent = item.name;
-  const info = document.getElementById('detail-info');
-  let rows = '';
-  if (item.timeStart) {
-    const t = item.timeEnd ? `${item.timeStart} – ${item.timeEnd}` : item.timeStart;
-    rows += `<div class="detail-row"><span class="detail-key">Saat</span><span class="detail-val">${t}</span></div>`;
-  }
-  if (item.note) {
-    rows += `<div class="detail-row"><span class="detail-key">Not</span><span class="detail-val">${item.note}</span></div>`;
-  }
-  const date = new Date(key + 'T12:00:00');
-  rows += `<div class="detail-row"><span class="detail-key">Tarih</span><span class="detail-val">${date.getDate()} ${MONTHS_TR[date.getMonth()]} ${date.getFullYear()}</span></div>`;
-  rows += `<div class="detail-row"><span class="detail-key">Tür</span><span class="detail-val">${type === 'routine' ? 'Rutin' : 'Özel Görev'}</span></div>`;
-  rows += `<div class="detail-row"><span class="detail-key">Durum</span><span class="detail-val">${isDone ? '✓ Tamamlandı' : 'Bekliyor'}</span></div>`;
-  if (!rows) rows = '<div class="detail-row"><span class="detail-key">Not yok</span></div>';
-  info.innerHTML = rows;
-  document.getElementById('detail-done-btn').textContent = isDone ? 'Tamamlanmadı' : 'Tamamlandı';
-  document.getElementById('detail-delete-btn').style.display = type === 'task' ? 'block' : 'none';
-  openModal('detail-modal');
-}
-
-document.getElementById('detail-done-btn').addEventListener('click', () => {
-  const date = new Date(detailKey);
-  date.setHours(0,0,0,0);
-  const diff = Math.round((date - today) / 86400000);
-  toggleDone(detailItem, detailType, detailKey, diff);
-  closeModal('detail-modal');
-});
-
-document.getElementById('detail-delete-btn').addEventListener('click', () => {
-  specialTasks[detailKey] = (specialTasks[detailKey] || []).filter(t => t.id !== detailItem.id);
-  saveData();
-  const date = new Date(detailKey);
-  date.setHours(0,0,0,0);
-  const diff = Math.round((date - today) / 86400000);
-  refreshCard(diff);
-  closeModal('detail-modal');
-});
-document.getElementById('detail-close-btn').addEventListener('click', () => closeModal('detail-modal'));
-
-// ═══════════════════════════════════════
-// MODAL YARDIMCILARI
-// ═══════════════════════════════════════
-function openModal(id) {
-  document.getElementById(id).classList.add('open');
-}
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-}
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) closeModal(overlay.id);
-  });
-});
-
-
-// ═══════════════════════════════════════
-// DRUM PICKER
-// ═══════════════════════════════════════
-function buildDrum(drumEl, items, defaultVal) {
-  drumEl.innerHTML = '';
-  // Üst phantom
-  const topPhantom = document.createElement('div');
-  topPhantom.className = 'drum-item phantom';
-  topPhantom.style.height = '48px';
-  drumEl.appendChild(topPhantom);
-
-  items.forEach(val => {
-    const item = document.createElement('div');
-    item.className = 'drum-item';
-    item.textContent = val;
-    item.dataset.val = val;
-    drumEl.appendChild(item);
-  });
-
-  // Alt phantom
-  const botPhantom = document.createElement('div');
-  botPhantom.className = 'drum-item phantom';
-  botPhantom.style.height = '48px';
-  drumEl.appendChild(botPhantom);
-
-  // Scroll listener
-  let scrollTimer;
-  drumEl.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => snapDrum(drumEl), 80);
-  }, {passive: true});
-
-  // Başlangıç değeri
-  const idx = items.indexOf(defaultVal);
-  if (idx >= 0) {
-    setTimeout(() => {
-      drumEl.scrollTop = idx * 44;
-      highlightDrum(drumEl);
-    }, 50);
-  }
-}
-
-function snapDrum(drumEl) {
-  const idx = Math.round(drumEl.scrollTop / 44);
-  drumEl.scrollTo({top: idx * 44, behavior: 'smooth'});
-  setTimeout(() => highlightDrum(drumEl), 120);
-}
-
-function highlightDrum(drumEl) {
-  const idx = Math.round(drumEl.scrollTop / 44);
-  drumEl.querySelectorAll('.drum-item:not(.phantom)').forEach((el, i) => {
-    el.classList.toggle('selected', i === idx);
-  });
-}
-
-function getDrumVal(drumEl) {
-  const idx = Math.round(drumEl.scrollTop / 44);
-  const items = drumEl.querySelectorAll('.drum-item:not(.phantom)');
-  return items[idx] ? items[idx].dataset.val : '00';
-}
-
-const HOURS = Array.from({length:24}, (_,i) => String(i).padStart(2,'0'));
-const MINS  = Array.from({length:60}, (_,i) => String(i).padStart(2,'0'));
-
-function initDrums(prefix, defaultH='08', defaultM='00', defaultEH='09', defaultEM='00') {
-  buildDrum(document.getElementById(prefix+'-hour-drum'), HOURS, defaultH);
-  buildDrum(document.getElementById(prefix+'-min-drum'),  MINS,  defaultM);
-  if (document.getElementById(prefix+'-hour-end-drum')) {
-    buildDrum(document.getElementById(prefix+'-hour-end-drum'), HOURS, defaultEH);
-    buildDrum(document.getElementById(prefix+'-min-end-drum'),  MINS,  defaultEM);
-  }
-}
-
-function getPickerTime(prefix) {
-  const h = getDrumVal(document.getElementById(prefix+'-hour-drum'));
-  const m = getDrumVal(document.getElementById(prefix+'-min-drum'));
-  return h + ':' + m;
-}
-function getPickerEndTime(prefix) {
-  const el = document.getElementById(prefix+'-hour-end-drum');
-  if (!el) return '';
-  const h = getDrumVal(el);
-  const m = getDrumVal(document.getElementById(prefix+'-min-end-drum'));
-  return h + ':' + m;
-}
-
-// Görev saat toggle
-let taskTimeMode = 'range';
-let taskDrumsInited = false;
-function taskTimeToggle(mode) {
-  taskTimeMode = mode;
-  const rangeBtn = document.getElementById('task-range-btn');
-  const noneBtn = document.getElementById('task-no-time-btn');
-  if (rangeBtn) rangeBtn.classList.toggle('active', mode !== 'none');
-  if (noneBtn) noneBtn.classList.toggle('active', mode === 'none');
-  const pickers = document.getElementById('task-time-pickers');
-  const endCol = document.getElementById('task-end-col');
-  if (mode === 'none') {
-    pickers.style.display = 'none';
-  } else {
-    pickers.style.display = 'block';
-    endCol.style.display = 'flex';
-    if (!taskDrumsInited) {
-      taskDrumsInited = true;
-      setTimeout(() => initDrums('task'), 50);
-    } else {
-      initDrums('task');
-    }
-  }
-}
-
-// Rutin saat toggle
-let rtnTimeMode = 'range';
-let rtnDrumsInited = false;
-function routineTimeToggle(mode) {
-  rtnTimeMode = mode;
-  const rangeBtn = document.getElementById('rtn-range-btn');
-  const noneBtn = document.getElementById('rtn-no-time-btn');
-  if (rangeBtn) rangeBtn.classList.toggle('active', mode !== 'none');
-  if (noneBtn) noneBtn.classList.toggle('active', mode === 'none');
-  const pickers = document.getElementById('rtn-time-pickers');
-  const endCol = document.getElementById('rtn-end-col');
-  if (mode === 'none') {
-    pickers.style.display = 'none';
-  } else {
-    pickers.style.display = 'block';
-    endCol.style.display = 'flex';
-    if (!rtnDrumsInited) {
-      rtnDrumsInited = true;
-      setTimeout(() => initDrums('rtn'), 50);
-    } else {
-      initDrums('rtn');
-    }
-  }
-}
-
-
-// ═══════════════════════════════════════
-// FİREBASE YAPILANDIRMA
-// ═══════════════════════════════════════
-const firebaseConfig = {
-  apiKey: "AIzaSyBUeNLPUN3uPlW8VEFtXkBBPWUC5-QI9Zc",
-  authDomain: "rgt-app-9142c.firebaseapp.com",
-  projectId: "rgt-app-9142c",
-  storageBucket: "rgt-app-9142c.firebasestorage.app",
-  messagingSenderId: "997235706058",
-  appId: "1:997235706058:web:396e26b087ee3c07f9cc33"
+// ══════════════════════════════════════════
+// DURUM
+// ══════════════════════════════════════════
+let state = {
+  userName: '',
+  levels: {},
+  totalAnswered: 0,
+  totalCorrect: 0,
+  streak: 0,
+  maxStreak: 0,
+  sessionCorrect: 0,
+  sessionWrong: 0,
+  sessionHistory: [],
+  currentQ: null,
+  answered: false,
+  // full test
+  ftIndex: 0,
+  ftOrder: [],
+  ftCorrect: 0,
+  ftWrong: 0,
+  ftMaxStreak: 0,
+  ftStreak: 0,
+  ftWrongIds: [],
+  ftAnswered: false
 };
-// Firebase başlat - window.onload garantisi
-let auth, db;
-window.addEventListener('load', function() {
-  try {
-    firebase.initializeApp(firebaseConfig);
-    auth = firebase.auth();
-    db = firebase.firestore();
-    console.log('Firebase OK');
 
-    // Google redirect sonucunu yakala (Android için)
-    if (localStorage.getItem('googleRedirectPending')) {
-      setAuthLoading(true);
-      localStorage.removeItem('googleRedirectPending');
-    }
-    auth.getRedirectResult().then(result => {
-      if (result && result.user) {
-        console.log('Google redirect login OK');
-        // onAuthStateChanged zaten handle edecek
-      } else {
-        setAuthLoading(false);
-      }
-    }).catch(e => {
-      setAuthLoading(false);
-      if (e.code && e.code !== 'auth/no-current-user' && e.code !== 'auth/null-user') {
-        console.error('Redirect error:', e);
-        showAuthError('Google girişi başarısız: ' + e.message);
-      }
-    });
-
-    // Auth state listener'ı burada başlat
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        currentUser = user;
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('user-email').textContent = user.email ? user.email.split('@')[0] : (user.displayName || 'Kullanıcı');
-        await loadUserData();
-        updateHeader();
-        updateDayNav();
-        initTrack();
-      } else {
-        currentUser = null;
-        document.getElementById('auth-screen').classList.remove('hidden');
-        document.getElementById('user-email').textContent = '...';
-        setAuthLoading(false);
-      }
-    });
-  } catch(e) {
-    console.error('Firebase init hatası:', e);
-    document.getElementById('auth-error').textContent = 'Bağlantı hatası. Sayfayı yenileyin.';
-    document.getElementById('auth-error').classList.add('show');
-  }
-});
-
-let currentUser = null;
-
-// ═══════════════════════════════════════
-// AUTH FONKSİYONLARI
-// ═══════════════════════════════════════
-let authMode = 'login';
-
-function switchAuthTab(mode) {
-  authMode = mode;
-  document.getElementById('login-tab').classList.toggle('active', mode === 'login');
-  document.getElementById('register-tab').classList.toggle('active', mode === 'register');
-  document.getElementById('auth-password2').style.display = mode === 'register' ? 'block' : 'none';
-  document.getElementById('forgot-btn').style.display = mode === 'login' ? 'block' : 'none';
-  document.getElementById('auth-submit-btn').textContent = mode === 'login' ? 'Giriş Yap' : 'Kayıt Ol';
-  hideAuthError();
+function getKey(name) {
+  return 'psytarih_' + (name||'anonim').toLowerCase().replace(/\s+/g,'_');
 }
 
-function showAuthError(msg) {
-  const el = document.getElementById('auth-error');
-  el.textContent = msg;
-  el.classList.add('show');
-}
-function hideAuthError() {
-  document.getElementById('auth-error').classList.remove('show');
-}
-function setAuthLoading(show) {
-  document.getElementById('auth-loading').classList.toggle('show', show);
-  document.getElementById('auth-submit-btn').style.display = show ? 'none' : 'block';
-}
-
-async function handleAuth() {
-  const email = document.getElementById('auth-email').value.trim();
-  const password = document.getElementById('auth-password').value;
-  const password2 = document.getElementById('auth-password2').value;
-  hideAuthError();
-
-  if (!email || !password) { showAuthError('E-posta ve şifre gerekli.'); return; }
-  if (authMode === 'register') {
-    if (password.length < 6) { showAuthError('Şifre en az 6 karakter olmalı.'); return; }
-    if (password !== password2) { showAuthError('Şifreler eşleşmiyor.'); return; }
-  }
-
-  setAuthLoading(true);
-  try {
-    if (authMode === 'login') {
-      await auth.signInWithEmailAndPassword(email, password);
-    } else {
-      await auth.createUserWithEmailAndPassword(email, password);
-    }
-  } catch(e) {
-    setAuthLoading(false);
-    const msgs = {
-      'auth/user-not-found': 'Bu e-posta ile kayıtlı hesap yok.',
-      'auth/wrong-password': 'Şifre yanlış.',
-      'auth/email-already-in-use': 'Bu e-posta zaten kayıtlı.',
-      'auth/invalid-email': 'Geçersiz e-posta adresi.',
-      'auth/too-many-requests': 'Çok fazla deneme. Lütfen bekle.',
-      'auth/invalid-credential': 'E-posta veya şifre hatalı.',
-    };
-    showAuthError(msgs[e.code] || 'Bir hata oluştu: ' + e.message);
-  }
-}
-
-
-async function handleGoogleAuth() {
-  hideAuthError();
-  setAuthLoading(true);
-  try {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: 'select_account' });
-    // Mobilde redirect, masaüstünde popup (popup başarısız olursa redirect dene)
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) {
-      localStorage.setItem('googleRedirectPending', '1');
-      await auth.signInWithRedirect(provider);
-    } else {
-      try {
-        await auth.signInWithPopup(provider);
-      } catch(popupErr) {
-        if (popupErr.code === 'auth/popup-blocked' || popupErr.code === 'auth/operation-not-supported-in-this-environment') {
-          localStorage.setItem('googleRedirectPending', '1');
-          await auth.signInWithRedirect(provider);
-        } else {
-          throw popupErr;
-        }
-      }
-    }
-  } catch(e) {
-    setAuthLoading(false);
-    const msgs = {
-      'auth/popup-closed-by-user': 'Giriş penceresi kapatıldı.',
-      'auth/popup-blocked': 'Açılır pencere engellendi. Tarayıcı ayarlarını kontrol edin.',
-      'auth/cancelled-popup-request': '',
-      'auth/network-request-failed': 'Ağ bağlantısı hatası.',
-    };
-    const msg = msgs[e.code];
-    if (msg !== undefined && msg !== '') showAuthError(msg || 'Google girişi başarısız: ' + e.message);
-  }
-}
-
-// Google redirect sonucu window.onload içinde yakalanıyor
-
-function handleGuestMode() {
-  // Misafir mod: Firebase olmadan sadece localStorage ile çalış
-  currentUser = null;
-  document.getElementById('auth-screen').classList.add('hidden');
-  document.getElementById('user-email').textContent = 'Misafir';
-  updateHeader();
-  updateDayNav();
-  initTrack();
-}
-
-async function forgotPassword() {
-  const email = document.getElementById('auth-email').value.trim();
-  if (!email) { showAuthError('Önce e-posta adresini gir.'); return; }
-  try {
-    await auth.sendPasswordResetEmail(email);
-    showAuthError('Şifre sıfırlama e-postası gönderildi!');
-    document.getElementById('auth-error').style.color = '#4fc3f7';
-  } catch(e) {
-    showAuthError('E-posta gönderilemedi.');
-  }
-}
-
-function openUserModal() {
-  document.getElementById('user-info-email').textContent = currentUser ? currentUser.email : 'Misafir (veriler sadece bu cihazda)';
-  openModal('user-modal');
-}
-
-function handleLogout() {
-  if (currentUser) {
-    auth.signOut();
+function loadState() {
+  const name = document.getElementById('name-input').value.trim() || 'Anonim';
+  state.userName = name;
+  const saved = localStorage.getItem(getKey(name));
+  if (saved) {
+    const s = JSON.parse(saved);
+    state.levels = s.levels || {};
+    state.totalAnswered = s.totalAnswered || 0;
+    state.totalCorrect = s.totalCorrect || 0;
   } else {
-    // Misafir mod: auth ekranına dön
-    document.getElementById('auth-screen').classList.remove('hidden');
+    state.levels = {};
+    state.totalAnswered = 0;
+    state.totalCorrect = 0;
   }
-  closeModal('user-modal');
-}
-
-// Auth state - window.onload içinde
-
-// Enter tuşu ile giriş
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !document.getElementById('auth-screen').classList.contains('hidden')) {
-    handleAuth();
-  }
-});
-
-// ═══════════════════════════════════════
-// BULUT VERİ YÜKLEME / KAYDETME
-// ═══════════════════════════════════════
-async function loadUserData() {
-  if (!currentUser) return;
-  try {
-    const doc = await db.collection('users').doc(currentUser.uid).get();
-    if (doc.exists) {
-      const data = doc.data();
-      if (data.routineTemplates) routineTemplates = data.routineTemplates;
-      if (data.completions) completions = data.completions;
-      if (data.specialTasks) specialTasks = data.specialTasks;
-      if (data.theme) {
-        currentTheme = data.theme;
-        localStorage.setItem('theme', data.theme);
-        document.documentElement.setAttribute('data-theme', data.theme === 'default' ? '' : data.theme);
-      }
-    }
-  } catch(e) {
-    console.log('Veri yüklenemedi:', e);
-  }
-}
-
-let saveTimer = null;
-async function saveData() {
-  // Yerel depolama
-  localStorage.setItem('routineTemplates', JSON.stringify(routineTemplates));
-  localStorage.setItem('completions', JSON.stringify(completions));
-  localStorage.setItem('specialTasks', JSON.stringify(specialTasks));
-  // Bulut kayıt (debounce - 1.5 saniye bekle)
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(async () => {
-    if (!currentUser) return;
-    try {
-      await db.collection('users').doc(currentUser.uid).set({
-        routineTemplates,
-        completions,
-        specialTasks,
-        theme: currentTheme,
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-    } catch(e) {
-      console.log('Bulut kayıt hatası:', e);
-    }
-  }, 1500);
-}
-
-// ═══════════════════════════════════════
-// BAŞLAT
-// ═══════════════════════════════════════
-// Auth kontrolü yapılıyor, initTrack auth callback'te çağrılacak
-
-
-// Ekran boyutu değişince kartları yeniden hizala
-
-function openMonthPicker(){
-  const ov=document.createElement('div');
-  ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;display:flex;align-items:center;justify-content:center;';
-  const box=document.createElement('div');
-  box.style.cssText='background:var(--modal-bg);border-radius:20px;padding:20px;width:300px;border:0.5px solid var(--border);';
-  box.innerHTML='<div style="font-size:15px;font-weight:600;color:var(--text-primary);margin-bottom:16px;text-align:center;">Ay Seç</div>';
-  const grid=document.createElement('div');
-  grid.style.cssText='display:grid;grid-template-columns:repeat(3,1fr);gap:8px;';
-  MONTHS_TR.forEach((m,i)=>{
-    const btn=document.createElement('div');
-    btn.textContent=m;
-    btn.style.cssText='padding:10px;border-radius:10px;text-align:center;cursor:pointer;font-size:13px;font-weight:500;border:0.5px solid var(--border);';
-    btn.style.background=i===calViewMonth?'var(--accent)':'var(--item-bg)';
-    btn.style.color=i===calViewMonth?'var(--bg)':'var(--text-primary)';
-    btn.addEventListener('click',()=>{calViewMonth=i;document.body.removeChild(ov);renderCal();});
-    grid.appendChild(btn);
+  QUESTIONS.forEach(q => {
+    if (!state.levels[q.id]) state.levels[q.id] = 3;
   });
-  box.appendChild(grid);
-  const cc=document.createElement('div');cc.textContent='Vazgeç';cc.style.cssText='margin-top:12px;text-align:center;color:var(--text-secondary);cursor:pointer;font-size:13px;';
-  cc.addEventListener('click',()=>document.body.removeChild(ov));
-  box.appendChild(cc);ov.appendChild(box);
-  ov.addEventListener('click',e=>{if(e.target===ov)document.body.removeChild(ov);});
-  document.body.appendChild(ov);
 }
-function openYearPicker(){
-  const cy=today.getFullYear();
-  const ov=document.createElement('div');
-  ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;display:flex;align-items:center;justify-content:center;';
-  const box=document.createElement('div');
-  box.style.cssText='background:var(--modal-bg);border-radius:20px;padding:20px;width:300px;border:0.5px solid var(--border);';
-  box.innerHTML='<div style="font-size:15px;font-weight:600;color:var(--text-primary);margin-bottom:16px;text-align:center;">Yıl Seç</div>';
-  const grid=document.createElement('div');
-  grid.style.cssText='display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-height:240px;overflow-y:auto;scrollbar-width:none;';
-  for(let y=cy-2;y<=cy+10;y++){
-    const btn=document.createElement('div');
-    btn.textContent=y;
-    btn.style.cssText='padding:10px;border-radius:10px;text-align:center;cursor:pointer;font-size:13px;font-weight:500;border:0.5px solid var(--border);';
-    btn.style.background=y===calViewYear?'var(--accent)':'var(--item-bg)';
-    btn.style.color=y===calViewYear?'var(--bg)':'var(--text-primary)';
-    btn.addEventListener('click',()=>{calViewYear=y;document.body.removeChild(ov);renderCal();});
-    grid.appendChild(btn);
+
+function saveState() {
+  localStorage.setItem(getKey(state.userName), JSON.stringify({
+    levels: state.levels,
+    totalAnswered: state.totalAnswered,
+    totalCorrect: state.totalCorrect
+  }));
+}
+
+// ══════════════════════════════════════════
+// ALGORİTMA — Hibrit Spaced Repetition
+// Level 1 (çok zor) → her turda gelir
+// Level 2 → her 2 soruda bir
+// Level 3 → her 4 soruda bir
+// Level 4 → her 8 soruda bir
+// Level 5 (iyi biliyor) → her 15 soruda bir — UNUTMAMAK İÇİN GÖRÜNÜR
+// ══════════════════════════════════════════
+function pickNextQuestion() {
+  const weights = { 1: 32, 2: 16, 3: 8, 4: 3, 5: 1 };
+  const recent = state.sessionHistory.slice(-4);
+  const pool = QUESTIONS.filter(q => !recent.includes(q.id));
+  const src = pool.length >= 4 ? pool : QUESTIONS;
+
+  const weighted = [];
+  src.forEach(q => {
+    const lvl = Math.max(1, Math.min(5, state.levels[q.id] || 3));
+    const w = weights[lvl];
+    for (let i = 0; i < w; i++) weighted.push(q);
+  });
+
+  const picked = weighted[Math.floor(Math.random() * weighted.length)];
+  state.sessionHistory.push(picked.id);
+  if (state.sessionHistory.length > 12) state.sessionHistory.shift();
+  return picked;
+}
+
+// ══════════════════════════════════════════
+// EKRAN
+// ══════════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function goHome() {
+  updateMastery();
+  showScreen('home');
+}
+
+function updateMastery() {
+  const name = document.getElementById('name-input').value.trim() || 'Anonim';
+  const saved = localStorage.getItem(getKey(name));
+  if (!saved) return;
+  const s = JSON.parse(saved);
+  if (!s.totalAnswered || s.totalAnswered === 0) return;
+
+  const levels = s.levels || {};
+  let learned = 0;
+  QUESTIONS.forEach(q => {
+    if ((levels[q.id] || 3) >= 4) learned++;
+  });
+  const pct = Math.round(learned / QUESTIONS.length * 100);
+  const working = QUESTIONS.filter(q => (levels[q.id] || 3) <= 2).length;
+
+  document.getElementById('mastery-block').style.display = 'block';
+  document.getElementById('mastery-pct').textContent = pct + '%';
+  document.getElementById('mastery-bar').style.width = pct + '%';
+  document.getElementById('ms-correct').textContent = learned;
+  document.getElementById('ms-wrong').textContent = working;
+  document.getElementById('ms-total').textContent = s.totalAnswered;
+}
+
+document.getElementById('name-input').addEventListener('input', updateMastery);
+
+// ══════════════════════════════════════════
+// SONSUZ MOD
+// ══════════════════════════════════════════
+function startQuiz() {
+  loadState();
+  state.sessionCorrect = 0;
+  state.sessionWrong = 0;
+  state.streak = 0;
+  state.maxStreak = 0;
+  state.sessionHistory = [];
+  showScreen('quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  state.currentQ = pickNextQuestion();
+  state.answered = false;
+  const q = state.currentQ;
+
+  const total = state.sessionCorrect + state.sessionWrong;
+  const pct = total > 0 ? Math.round(state.sessionCorrect / total * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('quiz-meta').textContent = 'PSİKOLOJİ TARİHİ · #' + q.id;
+  document.getElementById('streak-count').textContent = state.streak + ' seri';
+
+  const lvl = Math.max(1, Math.min(5, state.levels[q.id] || 3));
+  for (let i = 1; i <= 5; i++) {
+    document.getElementById('ld' + i).className = 'level-dot' + (i <= lvl ? ' active' : '');
   }
-  box.appendChild(grid);
-  const cc=document.createElement('div');cc.textContent='Vazgeç';cc.style.cssText='margin-top:12px;text-align:center;color:var(--text-secondary);cursor:pointer;font-size:13px;';
-  cc.addEventListener('click',()=>document.body.removeChild(ov));
-  box.appendChild(cc);ov.appendChild(box);
-  ov.addEventListener('click',e=>{if(e.target===ov)document.body.removeChild(ov);});
-  document.body.appendChild(ov);
+  const lvlLabels = ['','Öncelikli','Zor','Orta','İyi','Pekişti'];
+  document.getElementById('level-text').textContent = lvlLabels[lvl];
+
+  document.getElementById('question-text').textContent = q.q;
+  renderOptions('options-container', q, (i) => selectAnswer(i));
+
+  document.getElementById('explanation-box').style.display = 'none';
+  document.getElementById('next-btn').style.display = 'none';
 }
 
+function selectAnswer(chosenIdx) {
+  if (state.answered) return;
+  state.answered = true;
+  const q = state.currentQ;
+  applyAnswerStyles('options-container', q, chosenIdx);
+  const isCorrect = chosenIdx === q.answer;
 
-// ═══════════════════════════════════════
-// HAFTALIK ŞABLON SİSTEMİ
-// ═══════════════════════════════════════
-let templates = JSON.parse(localStorage.getItem('weeklyTemplates') || '[]');
-let editingTemplateId = null;
-let templateEditDow = 1;
-let tplTimeMode = 'range';
-let tplDrumsInited = false;
+  if (isCorrect) {
+    state.levels[q.id] = Math.min(5, (state.levels[q.id] || 3) + 1);
+    state.sessionCorrect++;
+    state.streak++;
+    state.maxStreak = Math.max(state.maxStreak, state.streak);
+  } else {
+    state.levels[q.id] = 1;
+    state.sessionWrong++;
+    state.streak = 0;
+  }
+  state.totalAnswered++;
+  if (isCorrect) state.totalCorrect++;
+  saveState();
+  updateMastery();
 
-document.getElementById('template-btn').addEventListener('click', () => {
-  renderTemplateList();
-  openModal('template-modal');
-});
-document.getElementById('close-template-modal-btn').addEventListener('click', () => closeModal('template-modal'));
-
-document.getElementById('add-template-btn').addEventListener('click', () => {
-  editingTemplateId = null;
-  document.getElementById('template-name-input').value = '';
-  document.getElementById('create-template-title').textContent = 'Yeni Şablon';
-  templateEditDow = 1;
-  initNewTemplate();
-  renderTemplateWeekTabs();
-  renderTemplateRoutineList();
-  closeModal('template-modal');
-  openModal('create-template-modal');
-});
-
-let newTemplateData = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]};
-
-function initNewTemplate() {
-  newTemplateData = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]};
+  document.getElementById('streak-count').textContent = state.streak + ' seri';
+  showExplanation('explanation-box', 'exp-result', 'exp-text', q, chosenIdx, isCorrect);
+  document.getElementById('next-btn').style.display = 'block';
+  setTimeout(() => document.getElementById('explanation-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
-function renderTemplateList() {
-  const list = document.getElementById('template-list');
-  list.innerHTML = '';
-  if (templates.length === 0) {
-    list.innerHTML = '<div class="empty-state"><span class="empty-state-text">Henüz şablon yok</span></div>';
+function nextQuestion() {
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ══════════════════════════════════════════
+// 46 SORULUK TAM TEST
+// ══════════════════════════════════════════
+function startFullTest() {
+  loadState();
+  // Sıralama: önce düşük level (zor/çalışılanlar), sonra yüksek level
+  const sorted = [...QUESTIONS].sort((a, b) => {
+    const la = state.levels[a.id] || 3;
+    const lb = state.levels[b.id] || 3;
+    return la - lb;
+  });
+  state.ftOrder = sorted;
+  state.ftIndex = 0;
+  state.ftCorrect = 0;
+  state.ftWrong = 0;
+  state.ftStreak = 0;
+  state.ftMaxStreak = 0;
+  state.ftWrongIds = [];
+  state.ftAnswered = false;
+  showScreen('fulltest');
+  renderFTQuestion();
+}
+
+function renderFTQuestion() {
+  state.ftAnswered = false;
+  const q = state.ftOrder[state.ftIndex];
+  const pct = Math.round(state.ftIndex / QUESTIONS.length * 100);
+  document.getElementById('ft-progress-fill').style.width = pct + '%';
+  document.getElementById('ft-current').textContent = state.ftIndex + 1;
+  document.getElementById('ft-question-text').textContent = q.q;
+  renderOptions('ft-options-container', q, (i) => ftSelectAnswer(i));
+  document.getElementById('ft-explanation-box').style.display = 'none';
+  document.getElementById('ft-next-btn').style.display = 'none';
+}
+
+function ftSelectAnswer(chosenIdx) {
+  if (state.ftAnswered) return;
+  state.ftAnswered = true;
+  const q = state.ftOrder[state.ftIndex];
+  applyAnswerStyles('ft-options-container', q, chosenIdx);
+  const isCorrect = chosenIdx === q.answer;
+
+  if (isCorrect) {
+    state.levels[q.id] = Math.min(5, (state.levels[q.id] || 3) + 1);
+    state.ftCorrect++;
+    state.ftStreak++;
+    state.ftMaxStreak = Math.max(state.ftMaxStreak, state.ftStreak);
+  } else {
+    state.levels[q.id] = 1;
+    state.ftWrong++;
+    state.ftStreak = 0;
+    state.ftWrongIds.push(q.id);
+  }
+  state.totalAnswered++;
+  if (isCorrect) state.totalCorrect++;
+  saveState();
+  updateMastery();
+
+  showExplanation('ft-explanation-box', 'ft-exp-result', 'ft-exp-text', q, chosenIdx, isCorrect);
+  const isLast = state.ftIndex >= QUESTIONS.length - 1;
+  document.getElementById('ft-next-btn').textContent = isLast ? 'Sonuçları Gör →' : 'Sonraki →';
+  document.getElementById('ft-next-btn').style.display = 'block';
+  setTimeout(() => document.getElementById('ft-explanation-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+function ftNext() {
+  if (state.ftIndex >= QUESTIONS.length - 1) {
+    showResult();
     return;
   }
-  templates.forEach(tpl => {
-    const el = document.createElement('div');
-    el.className = 'task-item';
-    el.style.cssText = 'margin-bottom:8px;cursor:default;';
-    const isActive = tpl.id === localStorage.getItem('activeTemplateId');
-    const nameEl = document.createElement('span');
-    nameEl.className = 'task-name';
-    nameEl.style.fontWeight = '600';
-    nameEl.textContent = tpl.name;
-    el.appendChild(nameEl);
-    if (isActive) {
-      const badge = document.createElement('span');
-      badge.style.cssText = 'font-size:11px;padding:3px 8px;border-radius:6px;background:var(--accent-dim);color:var(--accent);font-weight:600;';
-      badge.textContent = 'Aktif';
-      el.appendChild(badge);
-    }
-    const btnWrap = document.createElement('div');
-    btnWrap.style.cssText = 'display:flex;gap:6px;';
-    if (!isActive) {
-      const applyBtn = document.createElement('div');
-      applyBtn.className = 'task-detail-btn';
-      applyBtn.style.cssText = 'width:auto;padding:0 8px;font-size:11px;color:var(--accent);';
-      applyBtn.textContent = 'Uygula';
-      applyBtn.addEventListener('click', () => activateTemplate(tpl.id));
-      btnWrap.appendChild(applyBtn);
-    }
-    const delBtn = document.createElement('div');
-    delBtn.className = 'task-detail-btn';
-    delBtn.style.color = '#e05555';
-    delBtn.textContent = '✕';
-    delBtn.addEventListener('click', () => deleteTemplate(tpl.id));
-    btnWrap.appendChild(delBtn);
-    el.appendChild(btnWrap);
-    list.appendChild(el);
-  });
+  state.ftIndex++;
+  renderFTQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function activateTemplate(id) {
-  const tpl = templates.find(t => t.id === id);
-  if (!tpl) return;
-  localStorage.setItem('activeTemplateId', id);
-  routineTemplates = JSON.parse(JSON.stringify(tpl.routines));
-  saveData();
-  initTrack();
-  renderTemplateList();
-}
+function showResult() {
+  const total = QUESTIONS.length;
+  const correct = state.ftCorrect;
+  const wrong = state.ftWrong;
+  const pct = Math.round(correct / total * 100);
 
-function deleteTemplate(id) {
-  templates = templates.filter(t => t.id !== id);
-  localStorage.setItem('weeklyTemplates', JSON.stringify(templates));
-  if (localStorage.getItem('activeTemplateId') === id) localStorage.removeItem('activeTemplateId');
-  renderTemplateList();
-}
+  document.getElementById('res-score').textContent = pct + '%';
+  document.getElementById('res-label').textContent = state.userName + ' · ' + correct + ' doğru / ' + wrong + ' yanlış';
+  document.getElementById('res-correct').textContent = correct;
+  document.getElementById('res-wrong').textContent = wrong;
+  document.getElementById('res-total').textContent = total;
+  document.getElementById('res-streak').textContent = state.ftMaxStreak;
 
-function renderTemplateWeekTabs() {
-  const tabs = document.getElementById('template-week-tabs');
-  tabs.innerHTML = '';
-  const dn = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
-  for (let i = 1; i <= 7; i++) {
-    const d = i % 7;
-    const tab = document.createElement('div');
-    tab.className = 'week-tab' + (d === templateEditDow ? ' active' : '');
-    tab.textContent = dn[d];
-    tab.addEventListener('click', () => { templateEditDow = d; renderTemplateWeekTabs(); renderTemplateRoutineList(); });
-    tabs.appendChild(tab);
-  }
-}
-
-function renderTemplateRoutineList() {
-  const list = document.getElementById('template-routine-list');
-  list.innerHTML = '';
-  const routines = newTemplateData[templateEditDow] || [];
-  if (routines.length === 0) {
-    list.innerHTML = '<div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div>';
-    return;
-  }
-  routines.forEach((r, idx) => {
-    const el = document.createElement('div');
-    el.className = 'task-item';
-    el.style.marginBottom = '8px';
-    const ts = r.timeStart ? `${r.timeStart}${r.timeEnd ? ' – '+r.timeEnd : ''}` : '';
-    if (ts) {
-      const timeEl = document.createElement('span');
-      timeEl.className = 'task-time';
-      timeEl.textContent = ts;
-      el.appendChild(timeEl);
-    }
-    const nameEl2 = document.createElement('span');
-    nameEl2.className = 'task-name';
-    nameEl2.textContent = r.name;
-    el.appendChild(nameEl2);
-    const delBtn2 = document.createElement('div');
-    delBtn2.className = 'task-detail-btn';
-    delBtn2.style.color = '#e05555';
-    delBtn2.textContent = '✕';
-    delBtn2.addEventListener('click', () => removeTplRoutine(idx));
-    el.appendChild(delBtn2);
-    list.appendChild(el);
-  });
-}
-
-function removeTplRoutine(idx) {
-  newTemplateData[templateEditDow].splice(idx, 1);
-  renderTemplateRoutineList();
-}
-
-document.getElementById('add-template-routine-btn').addEventListener('click', () => {
-  tplDrumsInited = false;
-  document.getElementById('tpl-routine-name').value = '';
-  tplTimeToggle('range');
-  openModal('add-template-routine-modal');
-  setTimeout(() => document.getElementById('tpl-routine-name').focus(), 300);
-});
-
-document.getElementById('save-tpl-routine-btn').addEventListener('click', () => {
-  const name = document.getElementById('tpl-routine-name').value.trim();
-  if (!name) return;
-  let ts = '', te = '';
-  if (tplTimeMode !== 'none') {
-    ts = getPickerTime('tpl');
-    if (tplTimeMode === 'range') te = getPickerEndTime('tpl');
-  }
-  if (!newTemplateData[templateEditDow]) newTemplateData[templateEditDow] = [];
-  newTemplateData[templateEditDow].push({ id: 'tr' + Date.now(), name, timeStart: ts, timeEnd: te });
-  renderTemplateRoutineList();
-  closeModal('add-template-routine-modal');
-});
-document.getElementById('cancel-tpl-routine-btn').addEventListener('click', () => closeModal('add-template-routine-modal'));
-
-document.getElementById('save-template-btn').addEventListener('click', () => {
-  const name = document.getElementById('template-name-input').value.trim();
-  if (!name) return;
-  const tpl = { id: 'tpl' + Date.now(), name, routines: JSON.parse(JSON.stringify(newTemplateData)) };
-  templates.push(tpl);
-  localStorage.setItem('weeklyTemplates', JSON.stringify(templates));
-  closeModal('create-template-modal');
-  renderTemplateList();
-  openModal('template-modal');
-});
-document.getElementById('cancel-template-btn').addEventListener('click', () => {
-  closeModal('create-template-modal');
-  openModal('template-modal');
-});
-
-function tplTimeToggle(mode) {
-  tplTimeMode = mode;
-  document.getElementById('tpl-range-btn').classList.toggle('active', mode !== 'none');
-  document.getElementById('tpl-no-time-btn').classList.toggle('active', mode === 'none');
-  const pickers = document.getElementById('tpl-time-pickers');
-  const endCol = document.getElementById('tpl-end-col');
-  if (mode === 'none') {
-    pickers.style.display = 'none';
+  const weakSec = document.getElementById('weak-section');
+  if (state.ftWrongIds.length > 0) {
+    const items = state.ftWrongIds.map(id => {
+      const q = QUESTIONS.find(x => x.id === id);
+      return `<div class="weak-item"><strong style="color:#EF9F27">Soru ${id}:</strong> ${q.q.substring(0, 80)}...</div>`;
+    }).join('');
+    weakSec.innerHTML = `<div class="weak-title">YANLIŞ YAPILANLAR (${state.ftWrongIds.length})</div>${items}`;
   } else {
-    pickers.style.display = 'block';
-    endCol.style.display = 'flex';
-    if (!tplDrumsInited) {
-      tplDrumsInited = true;
-      setTimeout(() => initDrums('tpl'), 50);
-    } else {
-      initDrums('tpl');
-    }
+    weakSec.innerHTML = '<div style="color:#1D9E75;font-size:14px;margin-bottom:1rem">Tüm soruları doğru yaptın!</div>';
   }
+  showScreen('result');
 }
 
+// ══════════════════════════════════════════
+// CEVAPLAR
+// ══════════════════════════════════════════
+function showAllQuestions() {
+  const list = document.getElementById('allq-list');
+  list.innerHTML = '';
+  const letters = ['A','B','C','D','E'];
+  QUESTIONS.forEach(q => {
+    const item = document.createElement('div');
+    item.className = 'q-item';
+    const optsHtml = q.opts.map((opt, i) =>
+      `<div class="q-opt${i === q.answer ? ' is-correct' : ''}">${letters[i]}) ${opt}</div>`
+    ).join('');
+    item.innerHTML = `
+      <div class="q-num">SORU ${q.id}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-opts">${optsHtml}</div>
+      <div class="q-gerekce"><strong style="color:#EF9F27">Gerekçe:</strong> ${q.exp}</div>
+    `;
+    list.appendChild(item);
+  });
+  showScreen('allq');
+}
 
-window.addEventListener('resize', () => {
-  setTrackOffset(activeDayOffset, false);
-});
+// ══════════════════════════════════════════
+// YARDIMCI FONKSİYONLAR
+// ══════════════════════════════════════════
+function renderOptions(containerId, q, onClick) {
+  const letters = ['A','B','C','D','E'];
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.innerHTML = `<div class="opt-letter">${letters[i]}</div><div class="opt-text">${opt}</div>`;
+    btn.onclick = () => onClick(i);
+    container.appendChild(btn);
+  });
+}
 
+function applyAnswerStyles(containerId, q, chosenIdx) {
+  const btns = document.querySelectorAll('#' + containerId + ' .opt-btn');
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === chosenIdx && i === q.answer) btn.classList.add('selected-correct');
+    else if (i === chosenIdx && i !== q.answer) btn.classList.add('selected-wrong');
+    else if (i === q.answer && i !== chosenIdx) btn.classList.add('show-correct');
+  });
+}
+
+function showExplanation(boxId, resultId, textId, q, chosenIdx, isCorrect) {
+  const letters = ['A','B','C','D','E'];
+  const box = document.getElementById(boxId);
+  const res = document.getElementById(resultId);
+  const txt = document.getElementById(textId);
+  res.className = 'exp-result ' + (isCorrect ? 'correct' : 'wrong');
+  res.textContent = isCorrect
+    ? '✓ Doğru! Cevap: ' + letters[q.answer] + ') ' + q.opts[q.answer]
+    : '✗ Yanlış. Doğru cevap: ' + letters[q.answer] + ') ' + q.opts[q.answer];
+  txt.innerHTML = q.exp;
+  box.style.display = 'block';
+}
+
+window.onload = () => { updateMastery(); };
 </script>
-
-
-</body></html>
+</body>
+</html>
