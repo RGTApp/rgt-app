@@ -5,190 +5,135 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Psikoloji Tarihi — Sınav Hazırlık</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #0e0e0d;
-    color: #e8e6e0;
-    min-height: 100vh;
-  }
-  .screen { display: none; min-height: 100vh; }
-  .screen.active { display: flex; flex-direction: column; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0e0e0d;color:#e8e6e0;min-height:100vh}
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+#home{align-items:center;justify-content:center;padding:2rem 1.5rem}
+.home-inner{width:100%;max-width:480px}
+.home-badge{display:inline-block;font-size:11px;letter-spacing:.1em;color:#EF9F27;background:rgba(239,159,39,.12);border:.5px solid rgba(239,159,39,.3);border-radius:20px;padding:4px 12px;margin-bottom:1.5rem}
+.home-title{font-size:28px;font-weight:600;color:#F1EFE8;line-height:1.2;margin-bottom:.5rem}
+.home-sub{font-size:14px;color:#888780;margin-bottom:2rem;line-height:1.6}
+.mastery-block{background:#141413;border:.5px solid #2a2a28;border-radius:12px;padding:1.25rem;margin-bottom:1.5rem}
+.mastery-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.mastery-title{font-size:12px;color:#888780;letter-spacing:.04em}
+.mastery-pct{font-size:22px;font-weight:600;color:#EF9F27}
+.mastery-bar-bg{height:4px;background:#2a2a28;border-radius:2px;margin-bottom:10px}
+.mastery-bar-fill{height:4px;background:#EF9F27;border-radius:2px;transition:width .5s}
+.mastery-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.mstat{text-align:center}
+.mstat-num{font-size:16px;font-weight:600;color:#D3D1C7}
+.mstat-num.green{color:#1D9E75}
+.mstat-num.red{color:#E24B4A}
+.mstat-lbl{font-size:11px;color:#555553;margin-top:2px}
+.name-label{font-size:12px;color:#888780;letter-spacing:.04em;margin-bottom:8px}
+.name-input{width:100%;background:#1a1a18;border:.5px solid #3a3a38;border-radius:10px;padding:12px 16px;font-size:15px;color:#F1EFE8;outline:none;margin-bottom:1.25rem;transition:border-color .15s}
+.name-input:focus{border-color:#EF9F27}
+.name-input::placeholder{color:#555553}
+.btn-primary{width:100%;background:#EF9F27;color:#0e0e0d;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .15s,transform .1s;margin-bottom:10px}
+.btn-primary:hover{opacity:.9}
+.btn-primary:active{transform:scale(.98)}
+.btn-outline{width:100%;background:transparent;color:#EF9F27;border:.5px solid rgba(239,159,39,.4);border-radius:10px;padding:14px;font-size:15px;cursor:pointer;transition:background .15s;margin-bottom:10px}
+.btn-outline:hover{background:rgba(239,159,39,.08)}
+.btn-secondary{width:100%;background:transparent;color:#888780;border:.5px solid #3a3a38;border-radius:10px;padding:14px;font-size:15px;cursor:pointer;transition:background .15s,color .15s;margin-bottom:10px}
+.btn-secondary:hover{background:#1a1a18;color:#D3D1C7}
 
-  /* HOME */
-  #home { align-items: center; justify-content: center; padding: 2rem 1.5rem; }
-  .home-inner { width: 100%; max-width: 480px; }
-  .home-badge {
-    display: inline-block; font-size: 11px; letter-spacing: 0.1em;
-    color: #EF9F27; background: rgba(239,159,39,0.12);
-    border: 0.5px solid rgba(239,159,39,0.3); border-radius: 20px;
-    padding: 4px 12px; margin-bottom: 1.5rem;
-  }
-  .home-title { font-size: 28px; font-weight: 600; color: #F1EFE8; line-height: 1.2; margin-bottom: 0.5rem; }
-  .home-sub { font-size: 14px; color: #888780; margin-bottom: 2rem; line-height: 1.6; }
+/* SET SEÇİM */
+#setselect{align-items:center;justify-content:center;padding:2rem 1.5rem}
+.setselect-inner{width:100%;max-width:480px}
+.setselect-title{font-size:20px;font-weight:600;color:#F1EFE8;margin-bottom:.4rem}
+.setselect-sub{font-size:13px;color:#666664;margin-bottom:1.5rem}
+.set-card{background:#141413;border:.5px solid #2a2a28;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:10px;cursor:pointer;transition:border-color .15s;display:flex;gap:14px;align-items:flex-start}
+.set-card:hover:not(.disabled){border-color:#4a4a48}
+.set-card.selected{border-color:#EF9F27;background:#1a1710}
+.set-card.disabled{opacity:.45;cursor:default}
+.set-check{width:22px;height:22px;border-radius:6px;border:.5px solid #3a3a38;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all .15s}
+.set-card.selected .set-check{background:#EF9F27;border-color:#EF9F27}
+.set-check-icon{display:none;width:12px;height:12px}
+.set-card.selected .set-check-icon{display:block}
+.set-info{flex:1}
+.set-name{font-size:15px;font-weight:500;color:#F1EFE8;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.set-desc{font-size:12px;color:#666664;line-height:1.5;margin-bottom:6px}
+.set-count{font-size:11px;color:#888780}
+.badge{font-size:10px;border-radius:10px;padding:2px 8px;white-space:nowrap}
+.badge-new{color:#EF9F27;background:rgba(239,159,39,.12);border:.5px solid rgba(239,159,39,.3)}
+.badge-likely{color:#1D9E75;background:rgba(29,158,117,.1);border:.5px solid rgba(29,158,117,.3)}
+.badge-ai{color:#888780;background:#1a1a18;border:.5px solid #3a3a38}
+.set-total-bar{background:#1a1a18;border:.5px solid #2a2a28;border-radius:10px;padding:12px 16px;margin-bottom:1.25rem;display:flex;justify-content:space-between;align-items:center}
+.set-total-label{font-size:13px;color:#888780}
+.set-total-num{font-size:15px;font-weight:600;color:#EF9F27}
+.start-btn{width:100%;background:#EF9F27;color:#0e0e0d;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .15s;margin-bottom:10px}
+.start-btn:hover{opacity:.9}
+.start-btn:disabled{opacity:.4;cursor:default}
 
-  .mastery-block {
-    background: #141413; border: 0.5px solid #2a2a28; border-radius: 12px;
-    padding: 1.25rem; margin-bottom: 1.5rem;
-  }
-  .mastery-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-  .mastery-title { font-size: 12px; color: #888780; letter-spacing: 0.04em; }
-  .mastery-pct { font-size: 22px; font-weight: 600; color: #EF9F27; }
-  .mastery-bar-bg { height: 4px; background: #2a2a28; border-radius: 2px; margin-bottom: 10px; }
-  .mastery-bar-fill { height: 4px; background: #EF9F27; border-radius: 2px; transition: width 0.5s; }
-  .mastery-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-  .mstat { text-align: center; }
-  .mstat-num { font-size: 16px; font-weight: 600; color: #D3D1C7; }
-  .mstat-num.green { color: #1D9E75; }
-  .mstat-num.red { color: #E24B4A; }
-  .mstat-lbl { font-size: 11px; color: #555553; margin-top: 2px; }
+/* QUIZ */
+#quiz{padding:0}
+.quiz-topbar{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem .75rem;border-bottom:.5px solid #1e1e1c}
+.quiz-meta{font-size:12px;color:#666664;letter-spacing:.04em}
+.quiz-streak{display:flex;align-items:center;gap:6px;font-size:12px;color:#888780}
+.progress-bar{height:2px;background:#1e1e1c}
+.progress-fill{height:2px;background:#EF9F27;transition:width .4s ease}
+.quiz-body{flex:1;padding:1.5rem;max-width:640px;margin:0 auto;width:100%}
+.level-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#666664;margin-bottom:1rem}
+.level-dot{width:6px;height:6px;border-radius:50%;background:#2a2a28}
+.level-dot.active{background:#EF9F27}
+.question-text{font-size:16px;font-weight:500;color:#F1EFE8;line-height:1.65;margin-bottom:1.5rem}
+.options{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+.opt-btn{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;background:#141413;border:.5px solid #2a2a28;border-radius:10px;cursor:pointer;text-align:left;transition:border-color .12s,background .12s;width:100%}
+.opt-btn:hover:not(:disabled){border-color:#4a4a48;background:#1a1a18}
+.opt-btn:disabled{cursor:default}
+.opt-letter{width:26px;height:26px;border-radius:50%;border:.5px solid #3a3a38;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#888780;flex-shrink:0;transition:all .15s;margin-top:1px}
+.opt-text{font-size:14px;color:#C8C6C0;line-height:1.5}
+.opt-btn.sel-ok{border-color:#1D9E75;background:rgba(29,158,117,.08)}
+.opt-btn.sel-ok .opt-letter{background:#1D9E75;border-color:#1D9E75;color:#fff}
+.opt-btn.sel-ok .opt-text{color:#9FE1CB}
+.opt-btn.sel-wrong{border-color:#E24B4A;background:rgba(226,75,74,.08)}
+.opt-btn.sel-wrong .opt-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.opt-btn.sel-wrong .opt-text{color:#F09595}
+.opt-btn.show-ok{border-color:#1D9E75;background:rgba(29,158,117,.06)}
+.opt-btn.show-ok .opt-letter{background:#1D9E75;border-color:#1D9E75;color:#fff}
+.opt-btn.show-ok .opt-text{color:#9FE1CB}
+.exp-box{background:#181817;border:.5px solid #2a2a28;border-left:3px solid #EF9F27;border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin-bottom:1.25rem;animation:su .25s ease}
+@keyframes su{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.exp-result{font-size:13px;font-weight:600;margin-bottom:.5rem}
+.exp-result.ok{color:#1D9E75}
+.exp-result.wrong{color:#E24B4A}
+.exp-text{font-size:13px;color:#B4B2A9;line-height:1.65}
+.quiz-footer{padding:0 1.5rem 1.5rem;max-width:640px;margin:0 auto;width:100%}
+.next-btn{width:100%;background:#EF9F27;color:#0e0e0d;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:10px}
 
-  .name-label { font-size: 12px; color: #888780; letter-spacing: 0.04em; margin-bottom: 8px; }
-  .name-input {
-    width: 100%; background: #1a1a18; border: 0.5px solid #3a3a38; border-radius: 10px;
-    padding: 12px 16px; font-size: 15px; color: #F1EFE8; outline: none; margin-bottom: 1.25rem;
-    transition: border-color 0.15s;
-  }
-  .name-input:focus { border-color: #EF9F27; }
-  .name-input::placeholder { color: #555553; }
+/* CEVAPLAR */
+#allq{padding:1.5rem;flex-direction:column}
+.allq-header{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
+.back-btn{background:#1a1a18;border:.5px solid #2a2a28;border-radius:8px;padding:8px 14px;font-size:13px;color:#888780;cursor:pointer}
+.back-btn:hover{color:#F1EFE8}
+.allq-title{font-size:18px;font-weight:500;color:#F1EFE8}
+.q-item{background:#141413;border:.5px solid #2a2a28;border-radius:12px;padding:1.25rem;margin-bottom:12px;max-width:720px}
+.q-num{font-size:11px;color:#EF9F27;font-weight:600;letter-spacing:.06em}
+.q-rel{font-size:11px;padding:2px 8px;border-radius:6px;display:inline-block;margin-left:6px}
+.q-rel-high{color:#1D9E75;background:rgba(29,158,117,.1);border:.5px solid rgba(29,158,117,.2)}
+.q-rel-med{color:#888780;background:#1a1a18;border:.5px solid #2a2a28}
+.q-text{font-size:14px;color:#D3D1C7;line-height:1.6;margin:8px 0 10px}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.q-opt{font-size:12px;color:#888780;padding:6px 10px;background:#1a1a18;border-radius:6px;border:.5px solid #2a2a28;line-height:1.4}
+.q-opt.correct{color:#9FE1CB;background:rgba(29,158,117,.1);border-color:rgba(29,158,117,.3);font-weight:500}
+.q-gerekce{font-size:12px;color:#888780;background:#181817;border-left:2px solid #EF9F27;padding:8px 12px;border-radius:0 6px 6px 0;line-height:1.6}
 
-  .btn-primary {
-    width: 100%; background: #EF9F27; color: #0e0e0d; border: none; border-radius: 10px;
-    padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s; margin-bottom: 10px;
-  }
-  .btn-primary:hover { opacity: 0.9; }
-  .btn-primary:active { transform: scale(0.98); }
-  .btn-secondary {
-    width: 100%; background: transparent; color: #888780;
-    border: 0.5px solid #3a3a38; border-radius: 10px;
-    padding: 14px; font-size: 15px; cursor: pointer;
-    transition: background 0.15s, color 0.15s; margin-bottom: 10px;
-  }
-  .btn-secondary:hover { background: #1a1a18; color: #D3D1C7; }
-  .btn-outline-orange {
-    width: 100%; background: transparent; color: #EF9F27;
-    border: 0.5px solid rgba(239,159,39,0.4); border-radius: 10px;
-    padding: 14px; font-size: 15px; cursor: pointer;
-    transition: background 0.15s; margin-bottom: 10px;
-  }
-  .btn-outline-orange:hover { background: rgba(239,159,39,0.08); }
-
-  /* QUIZ SCREEN */
-  #quiz { padding: 0; }
-  .quiz-topbar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.25rem 1.5rem 0.75rem; border-bottom: 0.5px solid #1e1e1c;
-  }
-  .quiz-meta { font-size: 12px; color: #666664; letter-spacing: 0.04em; }
-  .quiz-streak { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888780; }
-  .progress-bar { height: 2px; background: #1e1e1c; flex-shrink: 0; }
-  .progress-fill { height: 2px; background: #EF9F27; transition: width 0.4s ease; }
-
-  .quiz-body { flex: 1; padding: 1.5rem; max-width: 640px; margin: 0 auto; width: 100%; }
-  .level-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: #666664; margin-bottom: 1rem; }
-  .level-dot { width: 6px; height: 6px; border-radius: 50%; background: #2a2a28; }
-  .level-dot.active { background: #EF9F27; }
-
-  .question-text { font-size: 16px; font-weight: 500; color: #F1EFE8; line-height: 1.65; margin-bottom: 1.5rem; }
-  .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
-  .opt-btn {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 13px 16px; background: #141413;
-    border: 0.5px solid #2a2a28; border-radius: 10px;
-    cursor: pointer; text-align: left;
-    transition: border-color 0.12s, background 0.12s; width: 100%;
-  }
-  .opt-btn:hover:not(:disabled) { border-color: #4a4a48; background: #1a1a18; }
-  .opt-btn:disabled { cursor: default; }
-  .opt-letter {
-    width: 26px; height: 26px; border-radius: 50%; border: 0.5px solid #3a3a38;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 500; color: #888780; flex-shrink: 0;
-    transition: all 0.15s; margin-top: 1px;
-  }
-  .opt-text { font-size: 14px; color: #C8C6C0; line-height: 1.5; }
-
-  .opt-btn.selected-correct { border-color: #1D9E75; background: rgba(29,158,117,0.08); }
-  .opt-btn.selected-correct .opt-letter { background: #1D9E75; border-color: #1D9E75; color: #fff; }
-  .opt-btn.selected-correct .opt-text { color: #9FE1CB; }
-
-  .opt-btn.selected-wrong { border-color: #E24B4A; background: rgba(226,75,74,0.08); }
-  .opt-btn.selected-wrong .opt-letter { background: #E24B4A; border-color: #E24B4A; color: #fff; }
-  .opt-btn.selected-wrong .opt-text { color: #F09595; }
-
-  .opt-btn.show-correct { border-color: #1D9E75; background: rgba(29,158,117,0.06); }
-  .opt-btn.show-correct .opt-letter { background: #1D9E75; border-color: #1D9E75; color: #fff; }
-  .opt-btn.show-correct .opt-text { color: #9FE1CB; }
-
-  .explanation-box {
-    background: #181817; border: 0.5px solid #2a2a28;
-    border-left: 3px solid #EF9F27; border-radius: 0 10px 10px 0;
-    padding: 1rem 1.25rem; margin-bottom: 1.25rem;
-    animation: slideUp 0.25s ease;
-  }
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .exp-result { font-size: 13px; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 6px; }
-  .exp-result.correct { color: #1D9E75; }
-  .exp-result.wrong { color: #E24B4A; }
-  .exp-text { font-size: 13px; color: #B4B2A9; line-height: 1.65; }
-  .exp-text strong { color: #EF9F27; font-weight: 500; }
-
-  .quiz-footer { padding: 0 1.5rem 1.5rem; max-width: 640px; margin: 0 auto; width: 100%; }
-  .next-btn {
-    width: 100%; background: #EF9F27; color: #0e0e0d; border: none; border-radius: 10px;
-    padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer;
-    transition: opacity 0.15s; margin-bottom: 10px;
-  }
-  .next-btn:hover { opacity: 0.9; }
-
-  /* 46 SORULAR EKRANI */
-  #fulltest { padding: 0; }
-  .fulltest-topbar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1rem 1.5rem; border-bottom: 0.5px solid #1e1e1c; flex-shrink: 0;
-  }
-  .fulltest-meta { font-size: 13px; color: #888780; }
-  .fulltest-meta span { color: #EF9F27; font-weight: 600; }
-  .fulltest-body { flex: 1; padding: 1.5rem; max-width: 640px; margin: 0 auto; width: 100%; }
-  .ft-progress-bar { height: 3px; background: #1e1e1c; }
-  .ft-progress-fill { height: 3px; background: #EF9F27; transition: width 0.3s; }
-
-  /* CEVAPLAR EKRANI */
-  #allq { padding: 1.5rem; flex-direction: column; }
-  .allq-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
-  .back-btn {
-    background: #1a1a18; border: 0.5px solid #2a2a28; border-radius: 8px;
-    padding: 8px 14px; font-size: 13px; color: #888780; cursor: pointer;
-  }
-  .back-btn:hover { color: #F1EFE8; }
-  .allq-title { font-size: 18px; font-weight: 500; color: #F1EFE8; }
-
-  .q-item { background: #141413; border: 0.5px solid #2a2a28; border-radius: 12px; padding: 1.25rem; margin-bottom: 12px; max-width: 720px; }
-  .q-num { font-size: 11px; color: #EF9F27; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 8px; }
-  .q-text { font-size: 14px; color: #D3D1C7; line-height: 1.6; margin-bottom: 10px; }
-  .q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
-  .q-opt { font-size: 12px; color: #888780; padding: 6px 10px; background: #1a1a18; border-radius: 6px; border: 0.5px solid #2a2a28; line-height: 1.4; }
-  .q-opt.is-correct { color: #9FE1CB; background: rgba(29,158,117,0.1); border-color: rgba(29,158,117,0.3); font-weight: 500; }
-  .q-gerekce { font-size: 12px; color: #888780; background: #181817; border-left: 2px solid #EF9F27; padding: 8px 12px; border-radius: 0 6px 6px 0; line-height: 1.6; }
-
-  /* RESULT */
-  #result { align-items: center; justify-content: center; padding: 2rem 1.5rem; text-align: center; }
-  .result-inner { max-width: 480px; width: 100%; }
-  .result-score { font-size: 64px; font-weight: 700; color: #EF9F27; line-height: 1; margin-bottom: 0.25rem; }
-  .result-label { font-size: 14px; color: #888780; margin-bottom: 2rem; }
-  .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
-  .result-card { background: #1a1a18; border: 0.5px solid #2a2a28; border-radius: 10px; padding: 1rem; }
-  .result-card .num { font-size: 24px; font-weight: 600; color: #F1EFE8; }
-  .result-card .lbl { font-size: 12px; color: #666664; margin-top: 2px; }
-  .result-card.green .num { color: #1D9E75; }
-  .result-card.red .num { color: #E24B4A; }
-  .weak-section { text-align: left; margin-bottom: 1.5rem; }
-  .weak-title { font-size: 12px; color: #888780; letter-spacing: 0.04em; margin-bottom: 8px; }
-  .weak-item { font-size: 12px; color: #B4B2A9; background: #1a1a18; border: 0.5px solid #2a2a28; border-left: 2px solid #E24B4A; border-radius: 0 8px 8px 0; padding: 8px 12px; margin-bottom: 6px; line-height: 1.5; }
+/* SONUÇ */
+#result{align-items:center;justify-content:center;padding:2rem 1.5rem;text-align:center}
+.result-inner{max-width:480px;width:100%}
+.res-score{font-size:64px;font-weight:700;color:#EF9F27;line-height:1;margin-bottom:.25rem}
+.res-label{font-size:14px;color:#888780;margin-bottom:2rem}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+.res-card{background:#1a1a18;border:.5px solid #2a2a28;border-radius:10px;padding:1rem}
+.res-card .num{font-size:24px;font-weight:600;color:#F1EFE8}
+.res-card .lbl{font-size:12px;color:#666664;margin-top:2px}
+.res-card.green .num{color:#1D9E75}
+.res-card.red .num{color:#E24B4A}
+.weak-sec{text-align:left;margin-bottom:1.5rem}
+.weak-title{font-size:12px;color:#888780;letter-spacing:.04em;margin-bottom:8px}
+.weak-item{font-size:12px;color:#B4B2A9;background:#1a1a18;border:.5px solid #2a2a28;border-left:2px solid #E24B4A;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:6px;line-height:1.5}
+.set-card-btn{background:#EF9F27;color:#0e0e0d;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer}
 </style>
 </head>
 <body>
@@ -198,8 +143,7 @@
   <div class="home-inner">
     <div class="home-badge">PSİKOLOJİ TARİHİ</div>
     <h1 class="home-title">Sınav Hazırlık</h1>
-    <p class="home-sub">46 çıkmış soru · Sonsuz mod · Akıllı tekrar algoritması</p>
-
+    <p class="home-sub">70 soru · 3 kaynak · Akıllı tekrar algoritması</p>
     <div id="mastery-block" class="mastery-block" style="display:none">
       <div class="mastery-header">
         <span class="mastery-title">EZBER DURUMU</span>
@@ -207,68 +151,139 @@
       </div>
       <div class="mastery-bar-bg"><div class="mastery-bar-fill" id="mastery-bar" style="width:0%"></div></div>
       <div class="mastery-stats">
-        <div class="mstat"><div class="mstat-num green" id="ms-correct">0</div><div class="mstat-lbl">Öğrendim</div></div>
-        <div class="mstat"><div class="mstat-num red" id="ms-wrong">0</div><div class="mstat-lbl">Çalışıyorum</div></div>
+        <div class="mstat"><div class="mstat-num green" id="ms-learned">0</div><div class="mstat-lbl">Öğrendim</div></div>
+        <div class="mstat"><div class="mstat-num red" id="ms-working">0</div><div class="mstat-lbl">Çalışıyorum</div></div>
         <div class="mstat"><div class="mstat-num" id="ms-total">0</div><div class="mstat-lbl">Toplam Cevap</div></div>
       </div>
     </div>
-
     <div class="name-label">ADINIZ</div>
     <input class="name-input" id="name-input" type="text" placeholder="Adınızı girin..." maxlength="30">
-    <button class="btn-primary" onclick="startQuiz()">▶ Sonsuz Mod — Teste Başla</button>
-    <button class="btn-outline-orange" onclick="startFullTest()">◈ 46 Soruyu Çöz</button>
-    <button class="btn-secondary" onclick="showAllQuestions()">Cevapları Gör</button>
+    <button class="btn-primary" onclick="openSelect('sonsuz')">▶ Sonsuz Mod</button>
+    <button class="btn-outline" onclick="openSimpleSelect('coz')">◈ Soruları Çöz</button>
+    <button class="btn-secondary" onclick="openSimpleSelect('cevap')">Cevapları Gör</button>
   </div>
 </div>
 
-<!-- SONSUZ MOD -->
+<!-- SET SEÇİM -->
+<div id="setselect" class="screen">
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem">
+  <div class="setselect-inner">
+    <div class="setselect-title" id="ss-title">Set Seç</div>
+    <div class="setselect-sub" id="ss-sub">Birden fazla seçebilirsin</div>
+
+    <div class="set-card selected" id="sc-cikmis" onclick="toggleSet('cikmis')">
+      <div class="set-check">
+        <svg class="set-check-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0e0e0d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="set-info">
+        <div class="set-name">Çıkmış Sorular <span class="badge badge-new">FİNAL</span></div>
+        <div class="set-desc">Final sınavından çıkmış sorular — en yüksek öncelik</div>
+        <div class="set-count">30 soru</div>
+      </div>
+    </div>
+
+    <div class="set-card" id="sc-muhtemel" onclick="toggleSet('muhtemel')">
+      <div class="set-check">
+        <svg class="set-check-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0e0e0d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="set-info">
+        <div class="set-name">Muhtemel Sorular <span class="badge badge-likely">OLASI</span></div>
+        <div class="set-desc">Önceki dönemden çıkması muhtemel sorular · 12 doğrudan ilgili, 8 kısmen ilgili</div>
+        <div class="set-count">20 soru</div>
+      </div>
+    </div>
+
+    <div class="set-card" id="sc-ai" onclick="toggleSet('ai')">
+      <div class="set-check">
+        <svg class="set-check-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0e0e0d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="set-info">
+        <div class="set-name">Yapay Zeka Tahminleri <span class="badge badge-ai">YENİ</span></div>
+        <div class="set-desc">Yapay zeka tarafından çıkması muhtemel sorular — henüz çıkmamış</div>
+        <div class="set-count">20 soru</div>
+      </div>
+    </div>
+
+    <div class="set-total-bar">
+      <span class="set-total-label">Seçili toplam</span>
+      <span class="set-total-num" id="ss-total">31 soru</span>
+    </div>
+
+    <button class="start-btn" id="ss-start-btn" onclick="startSelected()">Başla</button>
+    <button class="btn-secondary" onclick="goHome()">← Geri</button>
+  </div>
+  </div>
+</div>
+
+
+<!-- SİMPLE SEÇİM (Çöz / Cevap) -->
+<div id="simpleselect" class="screen">
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem">
+  <div class="setselect-inner">
+    <div class="setselect-title" id="ss2-title">Set Seç</div>
+    <div class="setselect-sub" id="ss2-sub">Hangi seti çalışmak istiyorsun?</div>
+
+    <div class="set-card" onclick="simpleStart('cikmis')" style="margin-bottom:10px">
+      <div class="set-info">
+        <div class="set-name">Çıkmış Sorular <span class="badge badge-new">FİNAL</span></div>
+        <div class="set-desc">Final sınavından çıkmış sorular — en yüksek öncelik</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+          <span class="set-count">30 soru</span>
+          <button class="set-card-btn" id="ss2-btn-cikmis">Seç</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="set-card" onclick="simpleStart('muhtemel')" style="margin-bottom:10px">
+      <div class="set-info">
+        <div class="set-name">Muhtemel Sorular <span class="badge badge-likely">OLASI</span></div>
+        <div class="set-desc">Önceki dönemden çıkması muhtemel sorular · 12 doğrudan ilgili, 8 kısmen ilgili</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+          <span class="set-count">20 soru</span>
+          <button class="set-card-btn" id="ss2-btn-muhtemel">Seç</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="set-card" onclick="simpleStart('ai')" style="margin-bottom:10px">
+      <div class="set-info">
+        <div class="set-name">Yapay Zeka Tahminleri <span class="badge badge-ai">YENİ</span></div>
+        <div class="set-desc">Yapay zeka tarafından çıkması muhtemel sorular — henüz çıkmamış</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+          <span class="set-count">20 soru</span>
+          <button class="set-card-btn" id="ss2-btn-ai">Seç</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-secondary" style="margin-top:8px" onclick="goHome()">← Geri</button>
+  </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
 <div id="quiz" class="screen">
   <div class="quiz-topbar">
     <div class="quiz-meta" id="quiz-meta">PSİKOLOJİ TARİHİ</div>
-    <div class="quiz-streak">
-      <span style="color:#EF9F27">◆</span>
-      <span id="streak-count">0 seri</span>
-    </div>
+    <div class="quiz-streak"><span style="color:#EF9F27">◆</span><span id="streak-count">0 seri</span></div>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-
   <div class="quiz-body">
     <div class="level-badge">
       <div class="level-dot" id="ld1"></div><div class="level-dot" id="ld2"></div>
       <div class="level-dot" id="ld3"></div><div class="level-dot" id="ld4"></div>
       <div class="level-dot" id="ld5"></div>
-      <span id="level-text" style="margin-left:4px;font-size:11px;color:#666664;"></span>
+      <span id="level-text" style="margin-left:4px;font-size:11px;color:#666664"></span>
     </div>
     <div class="question-text" id="question-text"></div>
     <div class="options" id="options-container"></div>
-    <div id="explanation-box" style="display:none" class="explanation-box">
+    <div id="exp-box" style="display:none" class="exp-box">
       <div class="exp-result" id="exp-result"></div>
       <div class="exp-text" id="exp-text"></div>
     </div>
   </div>
   <div class="quiz-footer">
-    <button class="next-btn" id="next-btn" style="display:none" onclick="nextQuestion()">Sonraki Soru →</button>
-    <button class="btn-secondary" onclick="goHome()">Ana Sayfaya Dön</button>
-  </div>
-</div>
-
-<!-- 46 SORULUK TAM TEST -->
-<div id="fulltest" class="screen">
-  <div class="ft-progress-bar"><div class="ft-progress-fill" id="ft-progress-fill" style="width:0%"></div></div>
-  <div class="fulltest-topbar">
-    <div class="fulltest-meta">Soru <span id="ft-current">1</span> / 46</div>
-    <button class="back-btn" onclick="goHome()">✕ Çık</button>
-  </div>
-  <div class="fulltest-body">
-    <div class="question-text" id="ft-question-text"></div>
-    <div class="options" id="ft-options-container"></div>
-    <div id="ft-explanation-box" style="display:none" class="explanation-box">
-      <div class="exp-result" id="ft-exp-result"></div>
-      <div class="exp-text" id="ft-exp-text"></div>
-    </div>
-  </div>
-  <div class="quiz-footer">
-    <button class="next-btn" id="ft-next-btn" style="display:none" onclick="ftNext()">Sonraki →</button>
+    <button class="next-btn" id="next-btn" style="display:none" onclick="nextQ()">Sonraki Soru →</button>
     <button class="btn-secondary" onclick="goHome()">Ana Sayfaya Dön</button>
   </div>
 </div>
@@ -277,7 +292,7 @@
 <div id="allq" class="screen">
   <div class="allq-header">
     <button class="back-btn" onclick="goHome()">← Geri</button>
-    <span class="allq-title">Cevaplar ve Açıklamalar (46)</span>
+    <span class="allq-title" id="allq-title">Cevaplar</span>
   </div>
   <div id="allq-list"></div>
 </div>
@@ -285,710 +300,395 @@
 <!-- SONUÇ -->
 <div id="result" class="screen">
   <div class="result-inner">
-    <div class="result-score" id="res-score">0%</div>
-    <div class="result-label" id="res-label"></div>
-    <div class="result-grid">
-      <div class="result-card green"><div class="num" id="res-correct">0</div><div class="lbl">Doğru</div></div>
-      <div class="result-card red"><div class="num" id="res-wrong">0</div><div class="lbl">Yanlış</div></div>
-      <div class="result-card"><div class="num" id="res-total">0</div><div class="lbl">Toplam</div></div>
-      <div class="result-card"><div class="num" id="res-streak">0</div><div class="lbl">En Uzun Seri</div></div>
+    <div class="res-score" id="res-score">0%</div>
+    <div class="res-label" id="res-label"></div>
+    <div class="res-grid">
+      <div class="res-card green"><div class="num" id="res-correct">0</div><div class="lbl">Doğru</div></div>
+      <div class="res-card red"><div class="num" id="res-wrong">0</div><div class="lbl">Yanlış</div></div>
+      <div class="res-card"><div class="num" id="res-total">0</div><div class="lbl">Toplam</div></div>
+      <div class="res-card"><div class="num" id="res-streak">0</div><div class="lbl">En Uzun Seri</div></div>
     </div>
-    <div class="weak-section" id="weak-section"></div>
-    <button class="btn-primary" onclick="startFullTest()">Tekrar Çöz</button>
-    <button class="btn-outline-orange" style="margin-top:0" onclick="startQuiz()">Sonsuz Mod</button>
-    <button class="btn-secondary" style="margin-top:0" onclick="goHome()">Ana Sayfaya Dön</button>
+    <div class="weak-sec" id="weak-sec"></div>
+    <button class="btn-primary" onclick="openSelect(lastMode)">Tekrar</button>
+    <button class="btn-secondary" onclick="goHome()">Ana Sayfaya Dön</button>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════════════
-// SORU VERİTABANI
-// ══════════════════════════════════════════════
-const QUESTIONS = [
-  {
-    id:1,
-    q:'"Başkalarından öğrenme, deneyim ve insanın kendini araştırması şeklinde üç tür bilginin olduğunu savunmuştur. Özellikle insanın kendini araştırmasından gelen bilginin bugün psikoterapide iç görü kavramının ilk örneği olduğu kabul edilmektedir." Yukarıda anlatılan düşünür aşağıdakilerden hangisidir?',
-    opts:['Platon','Epiküros','Sokrates','Anaksimenes','Herakleitos'],
-    answer:2,
-    exp:'Sokrates felsefesinin özü "Kendini bil" ilkesidir. Dışarıdan öğrenme, deney ve özellikle insanın kendi içine dönerek ulaştığı öz-sorgulama bilgisi; modern psikoterapideki "içgörü" (insight) kavramının felsefi kökü kabul edilir. Platon (A) bilgiyi idealar dünyasına bağlar ve Sokrates\'in öğrencisidir. Epiküros (B) mutluluk ve hazdaki denge ile ilgilenir. Anaksimenes (D) arkheyi havaya bağlar, Herakleitos (E) ise sürekli değişim ve logos kavramıyla tanınır.'
-  },
-  {
-    id:2,
-    q:'"İnsan bir makine" isimli bir kitap yazmıştır. Bu kitapta insan bedenin bir makine, beynin ise çalışma ve kop uygun bir düşünme organı olduğu anlatılmaktadır. Bu eserin en önemli özelliği mekanistik dünya görüşünün bedene de uygulanmasını savunmasındadır. Yukarıda hakkında bilgi verilen filozof hangisidir?',
-    opts:['de La Mettrie',"d'Hollbach",'Descartes','Gassendi','Locke'],
-    answer:0,
-    exp:'"L\'Homme Machine" (İnsan Bir Makinedir) adlı ünlü eser Julien Offray de La Mettrie\'ye aittir; insanı tamamen materyalist ve mekanik bir sistem olarak ele alır. Descartes (C) bedeni makine gibi görse de ruhu ayrı ve aşkın tutar (dualizm); beden-ruh ayrımı Descartes\'a aittir. d\'Hollbach (B) de materyalisttir ama bu eserin yazarı değildir. Gassendi (D) atomcu materyalizmi, Locke (E) ise ampirizmi temsil eder.'
-  },
-  {
-    id:3,
-    q:'"Aşağıdaki düşüncelerden hangisi Demokritos\'a atfedilemez?"',
-    opts:['Determinizm','Amprizm','Atomculuk','Materyalizm','Nativizm'],
-    answer:4,
-    exp:'Demokritos, her şeyin bölünemez fiziksel parçacıklardan (atomlar) oluştuğunu ve bu atomların mekanik çarpışmalarla her şeyi belirlediğini (determinizm) savunur; bu nedenle atomculuk (C) ve materyalizm (D) ona aittir. Duyumların fiziksel atom izlenimleri aracılığıyla oluştuğunu söylediğinden ampirist bir damar da taşır (B). Nativizm (Doğuştancılık) ise zihinsel içeriklerin doğuştan geldiğini savunur; bu, atomcunun duyum temelli düşüncesiyle doğrudan çelişir.'
-  },
-  {
-    id:4,
-    q:'"EEG\'nin temelini atan bilim insanı hangisidir?"',
-    opts:['Lasley','EAdrian','Gall','Berger','Müller'],
-    answer:3,
-    exp:'Hans Berger, insan beyninin elektriksel aktivitesini ilk kez kaydeden ve EEG cihazını geliştiren kişidir (1924). Lashley (A) beyin ve bellek ilişkisinde eşpotansiyellik yasasıyla, Adrian (B) sinir liflerindeki impuls iletimi çalışmalarıyla, Gall (C) frenoloji ile, Müller (E) sinirlerin özel enerjisi yasasıyla tanınır.'
-  },
-  {
-    id:5,
-    q:'"Aşağıda Thales konusunda verilen bilgilerden hangisi yanlıştır?"',
-    opts:['Arhke arayışını başlatmıştır.','Tümevarımsal bir mantık gutmuştur','Doğa felsefesi anlayışı hakimdir','Evrenin ana maddesinin su olduğunu savunmuştur','Bilgi sorunu konusunda fikir üretmiştir'],
-    answer:1,
-    exp:'Thales, arkhe olarak suyu seçerek rasyonel-kozmolojik bir iddia ortaya koymuştur; ancak modern anlamda sistematik bir tümevarımsal mantık yürütmemiştir. Tümevarım (gözlemlerden genele gitmek) daha çok Aristoteles ve sonrasında bilimsel yöntemle olgunlaşmıştır. Doğa felsefesi (C), arkhe arayışı (A) ve su teorisi (D) kesinlikle ona aittir.'
-  },
-  {
-    id:6,
-    q:'"Eğitime verdikleri önem ile eğitim psikolojisinin ilk temsilcileri olarak kabul edilen düşünürler hangisidir?"',
-    opts:['Pythagorasçılar','Sofistler','Pluralistler','Milet okulu','Elea okulu'],
-    answer:1,
-    exp:'Sofistler, antik dünyada ücret karşılığı ders veren, hitabet ve ikna sanatını öğreten ilk profesyonel öğretmenlerdir. İnsan davranışı, öğrenme ve zihni nasıl etkileyeceğine odaklandıkları için eğitim psikolojisinin öncüleri sayılırlar. Pythagorasçılar (A) sayı ve ahenk gibi matematiksel ilkelere, Milet okulu (D) doğanın maddesel temeline, Elea okulu (E) değişmez varlık ilkesine yönelir.'
-  },
-  {
-    id:7,
-    q:'"Aşağıdakilerden hangisi Descartes ile ilişkilendirilemez?"',
-    opts:['Metodik şüphe','Nominalist düşünce','Rasyonalist düşunce','Kesin ve mutlak bilgi arayışı','Mekanik ruh'],
-    answer:1,
-    exp:'Descartes, şüphe edilemeyen kesin bilgiye ulaşmak için her şeyden şüphe etmiş (metodik şüphe) ve "Düşünüyorum, öyleyse varım" ilkesiyle rasyonalizmin temelini atmıştır. Nominalizm (Adcılık) ise tümellerin sadece isimler olduğunu ve gerçek dünyada var olmadığını savunan bir Orta Çağ akımıdır; Descartes doğuştan gelen ideaların gerçekliğine inandığından nominalist değil realisttir.'
-  },
-  {
-    id:8,
-    q:'"Aşağıdakilerden hangisi 16. ve 17. yy\'da ortaya çıkan ve psikolojinin bir bilim olmasında önemli rol oynayan düşüncelerden biri değildir?"',
-    opts:['Mekanizm','Panpsişizm','Ampirizm','İndirgernecilik','Determinizm'],
-    answer:1,
-    exp:'16-17. yüzyılda psikolojinin bilimleşmesini hazırlayan akımlar; bedenin mekanik bir sistem olduğunu savunan Mekanizm (A), bilginin deneyimden geldiğini söyleyen Ampirizm (C), karmaşıkları basit bileşenlerine indirgeyen İndirgemecilik (D) ve her olayın nedensel zincirle belirlendiğini söyleyen Determinizm (E)\'dir. Panpsişizm ise her şeyin ruhsal bir boyutu olduğunu savunur; materyalist ve deneysel bilimin tam tersi yönde seyrettiği için bu döneme katkısı yoktur.'
-  },
-  {
-    id:9,
-    q:'"Günümüzde bilişsel davranışçı terapi sürecinde \'yönlendirilmiş keşif\' olarak adlandırılan kavramın ilk öncülü olan ve Sokrates\'in kullandığı yöntem hangisidir?"',
-    opts:['Konvensiyonalizm','Profesyonalizm','Apiriori','Fenomenalizm','Maoitik'],
-    answer:4,
-    exp:'Maiotik (Doğurtma/Ebelik) yöntemi; Sokrates\'in muhatabını sorularla yönlendirerek içinde zaten var olan bilgiyi açığa çıkarma tekniğidir. Günümüz BDT\'sindeki "Sokratik sorgulama" ve "yönlendirilmiş keşif" bu yöntemin doğrudan mirasçısıdır. A priori (C) deneyimden bağımsız bilgiyi, fenomenalizm (D) algısal görünüşleri temel alan felsefi tutumu ifade eder; bunlar farklı kavramlardır.'
-  },
-  {
-    id:10,
-    q:'"A priori anlayışına ve zihinsel mekanizmalar yaklaşımına tarihte ilk kez hangi düşünürün görüşlerinde rastlanmaktadır?"',
-    opts:['Sokrates','Platinos','Herakleitos','Dernokritos','Thales'],
-    answer:0,
-    exp:'Meno diyaloğunda Sokrates, eğitimsiz bir köle çocuğunu yalnızca sorularla geometri problemine yönlendirerek bilginin zaten zihinde gizli olduğunu gösterir. Bu, a priori bilginin (deneyimden önce var olan) ve zihinsel mekanizmaların (soru-cevapla açığa çıkarma) felsefi tarihte ilk sistematik örneğidir. Platinos (B) çok sonraki dönemde Neoplatonizm\'i kurmuştur.'
-  },
-  {
-    id:11,
-    q:'"Aşağıdakilerden hangisi İngiliz Görgülcü ve Çağrışımcı felsefesi ile ilişkilendirilemez?"',
-    opts:['Atomizin','Çağrışımcılık','Determinizm','İdealizm','Sensualizm'],
-    answer:3,
-    exp:'İngiliz Ampirizmi; zihni duyumsal deneyime dayandırır (sensualizm), fikirlerin çağrışımla bağlandığını savunur, olayları nedensellikle açıklar (determinizm) ve zihinsel içerikleri atomsal birimlerden oluşur kabul eder (atomizm). İdealizm ise gerçekliğin zihinsel ya da düşünsel olduğunu savunur; bu, duyum temelli ve madde odaklı İngiliz ampirizmiyle çelişir. (Not: Berkeley bir istisnadır; hem ampirist hem idealisttir, ancak genel İngiliz ampirizmi materyalist-duyumcu bir çizgide ilerler.)'
-  },
-  {
-    id:12,
-    q:'"Aşağıdakilerden hangisi rasyonalist düşünürlerden biri değildir?"',
-    opts:['Kant','Descartes','Berkeley','Leibniz','Spinoza'],
-    answer:2,
-    exp:'George Berkeley "Var olmak algılanmış olmaktır" (esse est percipi) diyerek maddenin bağımsız varlığını reddeden radikal bir İngiliz Ampiristidir. Bilginin kaynağını duyum ve algıya dayandırır; bu nedenle rasyonalist değil ampiristtir. Kant (A) saf aklın sınırlarını çizmiş, Descartes (B) cogito\'yla rasyonalizmin temelini atmış, Leibniz (D) monadlar kuramıyla, Spinoza (E) töz felsefesiyle rasyonalizmi temsil eder.'
-  },
-  {
-    id:13,
-    q:'"Aşağıdakilerden hangisi İngiliz ampirik felsefecilerinden biri değildir?"',
-    opts:['Locke','Mill','Herbart','Berkeley','Hartley'],
-    answer:2,
-    exp:'Johann Friedrich Herbart, Alman felsefecisidir; psikolojik olayları matematiksel formüllerle açıklamaya çalışmış ve zihinsel dinamikler üzerine rasyonalist bir sistem kurmuştur. Locke (A) tabula rasa, Mill (B) yararcılık ve tümevarımsal mantık, Berkeley (D) idealist ampirizm, Hartley (E) titreşim teorisi ve çağrışımcılık ile İngiliz ampirik geleneğini temsil eder.'
-  },
-  {
-    id:14,
-    q:'"Aşağıdakilerden hangısı 1. Kuşak Alman felsefesinin özelliklerinden biri değildir?"',
-    opts:['Rasyonalizm','A priori düşüncesi','Fonksiyonalizm','Aktif zihin','Doguştan gelen fikirler öğretisim'],
-    answer:2,
-    exp:'Leibniz ve Kant\'ın öncülük ettiği 1. kuşak Alman felsefesi; aklı ve doğuştan gelen bilgiyi (a priori) ön plana çıkarır, zihni aktif ve yapılandırıcı olarak görür. Fonksiyonalizm (İşlevselcilik) ise 19. yüzyıl sonunda Amerika\'da Darwin\'in evrim teorisinin etkisiyle ortaya çıkan ve zihnin işlevleri üzerine yoğunlaşan psikoloji akımıdır; 1. kuşak Alman felsefesiyle doğrudan ilgisi yoktur.'
-  },
-  {
-    id:15,
-    q:'"Varlığın kökenine \'aer\' kavramını koyması nedeniyle pneuma öğretisinin kurucusu sayılan düşünür hangisidir?"',
-    opts:['Anaksimandros','Anaksagoras','Thales','Pythagoras','Anaksimenes'],
-    answer:4,
-    exp:'Miletli Anaksimenes, evrenin temel maddesini hava (aer) olarak belirlemiş; havanın seyrekleşip yoğunlaşmasıyla her şeyin oluştuğunu savunmuştur. Havanın aynı zamanda ruh ve yaşam nefesi (pneuma) olduğunu söyleyerek pneuma öğretisinin temelini atmıştır. Anaksimandros (A) sonsuz/belirsiz (apeiron), Thales (C) su, Pythagoras (D) sayı, Anaksagoras (B) nous (akıl) kavramıyla tanınır.'
-  },
-  {
-    id:16,
-    q:'"Aşağıda Platon ile ilgili verilen bilgilerden hangisi yanlıştır?"',
-    opts:['İdealar dünyası görüşünü ortaya atmıştır','Metafiziğin başlatıcısıdır','Rasyonalizmin kurucusudur','Yer merkezli evren düşüncesini savunmuştur','Bilginin kökeninin duyumlar olamayacağını savunmuştur'],
-    answer:3,
-    exp:'Jeosantrik (yer merkezli) evren modelini sistematik olarak geliştiren ve kozmolojiye yerleştiren kişi Platon değil, önce öğrencisi Aristoteles, ardından Batlamyus\'tur. Platon matematik ve astronomiye ilgi duymuş olsa da sistematik bir jeosantrik kozmoloji kurmamıştır. İdealar dünyası (A), metafizik (B), rasyonalizm (C) ve bilginin duyumsal olmadığı görüşü (E) doğrudan Platon\'a aittir.'
-  },
-  {
-    id:17,
-    q:'"Bilginin kaynağının duyumlara dayalı deneyimler olduğunu ilk kez ileri süren düşünür hangisidir?"',
-    opts:['Ksenophanes','Thales','Pythagoras','Herakleitos','Parmenides'],
-    answer:0,
-    exp:'Ksenophanes, bilginin tanrısal bir vahiyle değil, insanların araştırma ve duyusal deneyimler yoluyla edinilebileceğini ilk kez açıkça dile getiren düşünürdür; bu yönüyle ampirist geleneğin en erken temsilcilerinden sayılır. Parmenides (E) tam tersine duyuların aldatıcı olduğunu ve gerçek bilgiye ancak akılla ulaşılabileceğini savunur. Pythagoras (C) bilgiyi sayısal ve mistik ilkelere bağlar.'
-  },
-  {
-    id:18,
-    q:'"Aşağıdaki düşüncelerden hangisi sayesinde \'duyumlanmızın mahiyet\' problemi belirsizlikten çıkarılarak ilk defa fiziksel bir temel üzerine oturtulmuştur?"',
-    opts:['Apriori','Atomlizm','Rasyonalizm','Tümeller tartışması','İdealar dünyası'],
-    answer:1,
-    exp:'Demokritos\'un Atomculuk kuramı; nesnelerin yayılan atomların duyu organlarımıza çarpmasıyla algılandığını öne sürerek duyumun nasıl oluştuğu sorusunu ilk kez somut ve fiziksel bir mekanizmaya bağlamıştır. A priori (A) deneyimden bağımsız bilgiye, rasyonalizm (C) akıl yoluyla bilgiye, tümeller tartışması (D) kavramların ontolojik statüsüne, idealar dünyası (E) ise duyuüstü gerçekliğe odaklanır; bunların hiçbiri duyumun fiziksel mekanizmasını açıklamaz.'
-  },
-  {
-    id:19,
-    q:'"Aşağıdakilerden hangisi Descartes\'in psikoloji akımları üzerindeki etkilerinden biri değildir?"',
-    opts:['Mekanik beden görüşü','Ruh-beden sorunu','Ampirizm','Zihnin işlevlerinin bedendeki yeri','Doğuştan gelen fikirler öğretisi'],
-    answer:2,
-    exp:'Descartes katı bir rasyonalisttir; doğuştan gelen ideaların (innate ideas) varlığına inanır ve kesin bilgiye duyulardan değil akıldan ulaşılacağını savunur. Ampirizm ise bilginin yalnızca duyular ve deneyim yoluyla edinildiğini öne süren ve Descartes\'a karşı cephe alan Locke, Hobbes gibi İngiliz düşünürlerin akımıdır. Bedenin mekanik işleyişi (A), ruh-beden düalizmi (B), pineal bez üzerinden zihin-beden etkileşimi (D) ve innate ideas (E) Descartes\'ın psikolojiye doğrudan katkılarıdır.'
-  },
-  {
-    id:20,
-    q:'"Aşağıda Aristoteles ile ilgili verilen bilgilerden hangisi yanlıştır?"',
-    opts:['Tümdengelimsel mantık kullanmıştır','Bilginin deneyimler ile kazanıldığını savunmuştur','Bugün psikolojinin araştırma sahasına giren birçok konuyla ilgili görüşterinin yer aldığı Phaidon (Rul Üzerine) adlı bir eseri vardır','İnsan ruhunun 3 basamağı olduğunu ve en üstte nousun bulunduğunu savunur','İlk psikoloji kitabı olarak kabul edilen Peri Psykhe (Psişe Üzerine) eserini yazmıştır'],
-    answer:2,
-    exp:'Phaidon (Ruh Üzerine) eseri Aristoteles\'e değil, hocası Platon\'a aittir; bu diyalog Sokrates\'in ölüm öncesi ruhun ölümsüzlüğünü tartışmasını anlatır. Aristoteles\'in ruh üzerine yazdığı temel eser "Peri Psykhe" (De Anima)\'dir; psikolojinin ilk kitabı kabul edilir ve seçenek (E)\'de doğru verilmiştir. Tümdengelimsel mantık (A), deneyimle bilgi (B) ve ruhun üç basamağı (D) Aristoteles\'e aittir.'
-  },
-  {
-    id:21,
-    q:'"Aşağıdaki bilim insanlarından hangisi lokalizasyoncu görüşü benimsemez?"',
-    opts:['Wernicke','Spurzheim','Broca','Lashley','Gall'],
-    answer:3,
-    exp:'Karl Lashley, sıçanlar üzerinde yaptığı deney serilerinde beyin hasarının konumundan çok miktarının öğrenmeyi etkilediğini göstermiş; bu bulgu beynin bütünsel çalıştığını destekler. Lashley\'in "eşpotansiyellik" ve "kitlesel eylem" ilkeleri anti-lokalizasyonculuğun temel taşlarıdır. Wernicke (A) duyusal konuşma, Spurzheim (B) frenoloji, Broca (C) motor konuşma, Gall (E) kafatası ve beyin bölgeleri haritalama çalışmalarıyla lokalizasyonculuğu temsil eder.'
-  },
-  {
-    id:22,
-    q:'"Aşağıda verilenlerden hangisi Hume ile ilişkilendirilemez?"',
-    opts:['İşevurukçuluğun oluşumda etkili olmuştur.','Bilgi üzerine felsefe yapmıştır.','Çağrışımı oluşturan ilkelerin benzeyiş, zamanda ve uzamda bitişiklik ve neden-sonuç ilkeleri olduğunu öne sürer.','Zihinsel kimya görüşünü savunmuştur.','Tüm bilgilerimizin kaynağının duyumlara dayanan algılar olduğunu ileri sürmüştür.'],
-    answer:3,
-    exp:'"Zihinsel kimya" (mental chemistry) kavramı John Stuart Mill\'e aittir; Mill, basit fikirlerin birleşerek nitel olarak yeni ve farklı bileşik fikirler oluşturabileceğini söyler; tıpkı kimyasal elementlerin yeni bileşikler oluşturması gibi. Hume ise çağrışım ilkelerini (benzeyiş, bitişiklik, neden-sonuç) sistemleştirmiş (C), ampirist bilgi kuramı geliştirmiş (B, E) ve işevurukçuluğu (pragmatizmi) dolaylı olarak etkilemiştir (A).'
-  },
-  {
-    id:23,
-    q:'"Ruh-beden sorunu zamanla hangi sorunlara doğru değişim göstermemiştir?"',
-    opts:['Zihin-beden','Biliş-beden','Bilinç-beden','Biliş-ruh','Zihin-davranış'],
-    answer:3,
-    exp:'Psikoloji bilimselleştikçe "ruh" kavramı terk edilmiş; yerini zihin, bilinç, biliş ve davranış gibi ölçülebilir ve gözlemlenebilir kavramlar almıştır. Bu nedenle tartışma Zihin-beden (A), Biliş-beden (B), Bilinç-beden (C) ve Zihin-davranış (E) gibi modern çiftelere dönüşmüştür. "Biliş-Ruh" ise hem bilişsel (bilimsel) hem de ruhsal (spekülatif) bir terimi bir arada barındırdığından bu bilimsel dönüşüm zincirinin içinde yer almaz.'
-  },
-  {
-    id:24,
-    q:'"Fikirlerin bilince girmesi konusunda birbirlerine ne derece yardım edebileceğinin hesaplanabileceğini öne sürerek deneysel psikolojinin önünü açan düşünür aşağıdakilerden hangisidir?"',
-    opts:['Mill','Locke','Herbart','Hobbes','Hartley'],
-    answer:2,
-    exp:'Johann Friedrich Herbart, zihindeki tasarımların (fikirlerin) birbiriyle yarışarak bilince çıkma eşiklerini matematiksel denklemlerle ifade etmeye çalışmıştır. Bu girişim psikolojik süreçlerin nicel ve ölçülebilir olabileceğini göstererek deneysel psikolojiye önemli bir zemin hazırlamıştır. Locke (B) tabula rasa ve ampirizm, Hartley (E) titreşim ve çağrışım teorisiyle, Mill (A) ve Hobbes (D) farklı katkılarla bilinir.'
-  },
-  {
-    id:25,
-    q:'"Aşağıdaki bilim insanlarından hangisi yaptığı fizyolojik çalışmalarla psikolojinin gelişiminde rol oynamamıştır?"',
-    opts:['j. Müller','E.D. Adrian','Flourens','Wundt','Helmholtz'],
-    answer:3,
-    exp:'Wundt fizyoloji eğitimi almış olsa da asıl katkısı psikolojiyi fizyoloji ve felsefeden bağımsız bir bilim olarak kurmaktır; onu fizyolojist değil psikolojinin kurucusu olarak tanımlarız. J. Müller (A) sinirlerin özel enerjisi yasası, Adrian (B) sinir impulslarının kodlanması, Flourens (C) beyin ablasyon deneyleri, Helmholtz (E) sinir akımı hızının ölçümüyle psikolojinin fizyolojik temellerine doğrudan katkı sağlamıştır.'
-  },
-  {
-    id:26,
-    q:'"Tüm zihinsel faaliyet türlerini çağrışım öğretisini kullanarak açıklamaya çalışan ilk düşünür hangisidir?"',
-    opts:['Hobbes','Hartley','Locke','Berkeley','Kant'],
-    answer:1,
-    exp:'David Hartley, çağrışımcılığı yalnızca bilgi teorisi olmaktan çıkarıp sinir titreşimleri (vibrations) ve çağrışım ilkeleri aracılığıyla algı, düşünce, hafıza, duygu ve hatta ahlakı da açıklamaya çalışan kapsamlı bir psikoloji sistemi kurmuştur. Bu nedenle tüm zihinsel faaliyetleri çağrışımla açıklamaya girişen ilk kişi Hartley\'dir. Hobbes (A) çağrışıma değindi ama sistematikleştirmedi. Locke (C) ampirizmin, Kant (E) aklın sınırlarının filozofudur.'
-  },
-  {
-    id:27,
-    q:'"İnsan zihninin doğuşta boş bir levha olduğunu savunan düşünür hangisidir?"',
-    opts:['Herbart','Hartley','Hobbes','Locke','Hume'],
-    answer:3,
-    exp:'"Tabula Rasa" (boş levha) kavramının sembol ismi John Locke\'tur. Locke\'a göre zihin doğuşta tamamen boştur; bütün bilgiler duyular ve deneyim yoluyla sonradan yazılır. Bu görüş doğuştan gelen fikirlerin varlığını savunan rasyonalistlere (Descartes, Leibniz) karşı ampirizmin temel argümanıdır. Hume (E) Locke\'un izinden gider ama Tabula Rasa\'nın sembol ismi değildir.'
-  },
-  {
-    id:28,
-    q:'"Aşağıda verilen fizyolojik çalışma ve çalışmayı yapan bilim insanı eşleştirmesi yanlıştır?"',
-    opts:['Jackson-Sensoryal afezi','Müller-Sinirlerin özel enerjisi','Helmholtz-Sinir akımı hızı','M. Hall-Omurilik işlevi','M.Dax-Dil'],
-    answer:0,
-    exp:'Sensoryal (duyusal) afezi, yani konuşulanı anlayamamayı beynin belirli bölgesiyle ilişkilendiren kişi Hughlings Jackson değil Carl Wernicke\'dir (Wernicke alanı). Hughlings Jackson, epileptik nöbetleri ve beyin işlevlerinin hiyerarşik örgütlenmesini araştırmıştır. Müller-sinirlerin özel enerjisi (B), Helmholtz-sinir akım hızı (C), Hall-omurilik refleksleri (D), Dax-dil ve sol hemisfer (E) eşleştirmeleri doğrudur.'
-  },
-  {
-    id:29,
-    q:'"Açıklanması zor sofistike bir olguyu daha basit bir yapıya benzeterek açıklama aşağıdakilerden hangisinin tanımıdır?"',
-    opts:['Atornizm','Reductionism','Determinizm','Amprizm','Mekanizm'],
-    answer:1,
-    exp:'Reductionism (İndirgemecilik): karmaşık bir olguyu daha temel, daha basit bileşenlerine veya düzeylerine indirgeyerek açıklama stratejisidir. Örneğin zihinsel olayları nöronal ateşlemelere, nöronal ateşlemeleri kimyaya indirgemek gibi. Atomizm (A) maddenin en küçük yapı taşlarına odaklanır, mekanizm (E) işleyişi mekanik nedensellikle açıklar; bunlar indirgemecilik ile örtüşebilse de tanım doğrudan Reductionism\'e aittir.'
-  },
-  {
-    id:30,
-    q:'"Evrim düşüncesinin ilk örneği sayılan düşünce hangi düşünüre aittir?"',
-    opts:['Anaksimandros','Aristoteles','Anaksimenes','Anaksagoras','Alkmeion'],
-    answer:0,
-    exp:'Anaksimandros, insanların başlangıçta denizde yaşayan balık benzeri yaratıklardan türediğini ve karasal ortama uyum sağladığını öne sürmüştür; bu, Darwin\'den yaklaşık 2400 yıl önce dile getirilen ilk evrimsel düşüncedir. Aristoteles (B) tür kavramını kullanmış olsa da türleri sabit ve değişmez kabul eder; evrimci değildir. Alkmeion (E) tıp ve beyin araştırmalarıyla tanınır.'
-  },
-  {
-    id:31,
-    q:'"Bilimin deneyle başladığını, gözlenen olayların hipotezler yoluyla termellendirilmesi ve bu hipotezlerin tekrar gözlemlerle test edilmesi gerektiğini ileri sürmüştür. Bilimsel araştırmayı induktif (tümevarımsal)-deduktif (tümden gelimsel) bir model olarak tasarlamıştır." Yukarıda görüşleri verilen düşünür aşağıdakilerden hangisidir?',
-    opts:['Abelardus','St. Agustinus','R. Grossateste','Thomas Aquinas','Albertus Magnus'],
-    answer:2,
-    exp:'Robert Grosseteste (Oxford okulu kurucusu), gözlem → hipotez → test döngüsünü ve tümevarım-tümdengelim birlikteliğini ilk kez sistematik biçimde çerçeveleyen Orta Çağ düşünürüdür. Bu yaklaşım modern bilimsel yöntemin habercisidir. Thomas Aquinas (D) Aristoteles felsefesini Hristiyanlıkla sentezlemiş, Agustinus (B) iç-gözlem ve ruh konularında çalışmış, Albertus Magnus (E) doğa bilimine katkı yapmıştır; ancak tanımdaki bütünleşik yöntem modeli Grosseteste\'ye aittir.'
-  },
-  {
-    id:32,
-    q:'"Konuşmanın beyindeki bölgesini ilk gösteren ve o alana kendi adı verilen bilim adamı kimdir?"',
-    opts:['Gall','Spurzheim','Hall','Broca','Wernicke'],
-    answer:3,
-    exp:'Paul Broca, 1861\'de "Tan" lakaplı hastasını inceleyerek sol ön lobdaki belirli bir bölgenin hasar görmesi durumunda konuşma üretiminin bozulduğunu göstermiş ve bu bölge "Broca Alanı" olarak adlandırılmıştır. Wernicke (E) konuşmayı anlamayı, Gall (A) frenoloji çerçevesinde kafatası haritalamasını, Spurzheim (B) Gall\'ün öğrencisi olarak frenoloji sistemini geliştirmiştir.'
-  },
-  {
-    id:33,
-    q:'"Ruh-beden sorununu madde-form ilişkisi olarak ele alan ilk düşünür hangisidir?"',
-    opts:['Aristoteles','Anaksimenes','Anaksimandros','Platon','Thales'],
-    answer:0,
-    exp:'Aristoteles\'e göre ruh bedenin formudur (biçimi, organizasyon ilkesi), beden ise maddedir; ikisi birbirinden ayrılamaz ve birlikte anlam kazanır (Hilemorfizm). Bu yaklaşım Platon\'un ruh-beden düalizminin (ruh bedende hapsedilmiş) karşısında monist-organik bir çözümdür. Platon (D) ruhu bedenden bağımsız ve ölümsüz görürken Aristoteles ikisini birleşik bir bütün olarak ele alır.'
-  },
-  {
-    id:34,
-    q:'"Aristoteles felsefesinin tümdengelimsel yöntemine karşı çıkarak tümevarımsal yöntemi savunan ve doğa felsefesi anlayışını benimseyerek İngiliz Ampirik felsefesinin oluşumunda önemli bir rolü olan düşünür aşağıdakilerden hangisidir?"',
-    opts:['D. Hume','J. Mill','T. Hobbes','G. Berkeley','F. Bacon'],
-    answer:4,
-    exp:'Francis Bacon, Aristoteles\'in tümdengelimci Organon\'una karşı Novum Organum\'u yazarak "önce gözlem ve deney, sonra genelleme" ilkesini sistemleştirmiştir. Bu tümevarımsal bilim anlayışı İngiliz ampirizminin ve modern deneysel bilimin temel taşını oluşturur. Hume (A) bilgi kuramı ve çağrışımcılıkla, Mill (B) tümevarımsal mantığı geliştirerek, Hobbes (C) madde ve hareket temelinde materyalizmi kurmakla öne çıkar; ama İngiliz ampirizmi ve tümevarımsal bilimin kurucu figürü Bacon\'dır.'
-  },
-  {
-    id:35,
-    q:'"Ruh-beden sorunu tartışmasının kökeninde hangi tartışmalar yatmaktadır?"',
-    opts:['Varlığın kökeni nedir-ruhun kökeni nedir?','Ahlakın kökeni nedir-ruhun kökeni nedir?','Ruhun kökeni nedir-maddenin kökeni nedir?','Varlığın kökeni nedir-bilginin kökeni nedir?','Ahlakın kökeni nedir-bilginin kökeni nedir?'],
-    answer:3,
-    exp:'Ruh-beden sorunu özünde iki büyük felsefi sorunun kesişimidir: Ontoloji (varlık bilimi) — "Gerçekte ne var: madde mi, ruh mu, ikisi birden mi?" ve Epistemoloji (bilgi kuramı) — "Bu varlığı nasıl biliriz: duyularla mı, akılla mı?" Bu iki soru bir arada ele alındığında ruh-beden tartışması kaçınılmaz biçimde ortaya çıkar. Ahlak sorusu (etik) ise bu çiftin içinde değildir.'
-  },
-  {
-    id:36,
-    q:'"Psikolojinin gelişim sürecinde önemli bir tartışma olan tümeller tartışmasının temelinde aşağıdaki ilişkilerden hangisi yatmaktadır?"',
-    opts:['Arkhe-ruh ilişkisi','Madde-form ilişkisi','Akıl-ruh ilişkisi','Monizm-dualizm ilişkisi','Varlık-bilgi ilişkisi'],
-    answer:4,
-    exp:'Tümeller tartışması şu soruyu sorar: "İnsan, köpek, güzellik gibi genel kavramlar gerçekten var mıdır (realizm) yoksa sadece zihnimizde kullandığımız isimler midir (nominalizm)?" Bu, hem "neyin var olduğu" (ontoloji/varlık) hem de "onu nasıl bildiğimiz" (epistemoloji/bilgi) sorusunu içerir. Psikoloji tarihi açısından bu tartışma; zihinsel içeriklerin gerçekliği ve bilginin kaynağı meselesinin çekirdeğidir.'
-  },
-  {
-    id:37,
-    q:'"İslam felsefesinde psikosomatik rahatsızlıklar ile ilgili görüşler ortaya koyan düşünür hangisidir?"',
-    opts:['Ebu Bekir Razi','Farabi','Gazali','İbn Sina','İbn Rüşd'],
-    answer:3,
-    exp:'İbn Sina, el-Kanun fi\'t-Tıbb adlı ansiklopedik tıp eserinde zihinsel durumların (aşk, korku, keder, stres) fiziksel belirtilere ve hastalıklara yol açtığını sistematik biçimde belgeleyen ilk hekimlerden biridir; bu yaklaşım modern psikosomatik tıbbın öncülüdür. Farabi (B) felsefe ve müzik, Gazali (C) tasavvuf ve din psikolojisi, Ebu Bekir Razi (A) klinik tıp, İbn Rüşd (E) Aristoteles yorumları alanında öne çıkar.'
-  },
-  {
-    id:38,
-    q:'"Aşağıda Fechner ile ilgili verilen bilgilerden hangisi yanlıştır?"',
-    opts:['Eşpotansiyellik yasasını ortaya koymuştur','Ruh-beden sorunu üzerine çalışmıştır','Duyumun şiddetini ölçme ile ilgili bir kuram ortaya atmıştır','Psikofiziiğin kurucularındandır','Deneysel psikolojinin kurucularındandır'],
-    answer:0,
-    exp:'Eşpotansiyellik (Equipotentiality) yasası Fechner\'e değil Karl Lashley\'e aittir; Lashley, beyin hasarı miktarının konumundan daha belirleyici olduğunu göstermiştir. Fechner ise; ruh-beden sorununa panpsişist çözüm aramış (B), Weber\'in bulgularını matematikleştirerek "uyaran ile duyum arasındaki ilişki logaritmiktir" diyen Weber-Fechner yasasını kurmuş (C), psikofizik bilim dalını kurmuş (D) ve bu çalışmalarıyla Wundt\'un laboratuvar psikolojisine zemin hazırlamıştır (E).'
-  },
-  {
-    id:39,
-    q:'"Ablasyon ve lezyon yöntemlerini kullanarak güvercinler ve kurbağalar üzerinde çalışmalar yapmıştır. Kurbağalar üzerinde yaptığı deneylerde beyin fonksiyonlarının beyine eşit olarak böltündüğünü göstermişor. Yukarıda anlatılan bilim insanı aşağıdakilerden hangisidir?"',
-    opts:['Swemmerdan','Flourens','Weber','Müller','Lashley'],
-    answer:1,
-    exp:'Pierre Flourens, güvercin ve kurbağaların beyin bölgelerini cerrahi olarak çıkararak (ablasyon) Gall\'ün frenoloji iddialarını deneysel olarak çürütmüş; beyin bölgeleri tek tek çıkarıldığında işlevlerin tamamen yok olmadığını, beynin bütün olarak çalıştığını göstermiştir. Lashley (E) benzer sonuçlara çok sonra sıçanlar üzerinde ulaşmıştır. Weber (C) eşik deneyleri, Müller (D) sinir fizyolojisi, Swammerdam (A) sinir-kas hazırlıklarıyla tanınır.'
-  },
-  {
-    id:40,
-    q:'"Psikoloji tarihi açısından önemli olan İngiliz Görgülcü ve Çağrışımı düşüncesinin temelini atan Orta Çağ düşünürü hangisidir?"',
-    opts:['a) Ockhamlı William','b) R. Bacon','c) Anselmus','d) Thomas Aquinas','e) R. Grossateste'],
-    answer:0,
-    exp:'Ockhamlı William (William of Ockham), geliştirdiği nominalizm (adcılık) felsefesiyle soyut tümellerin yalnızca zihinsel isimler olduğunu, gerçek bilginin tekil nesnelerin doğrudan gözleminden elde edileceğini savunmuştur. Bu düşünce İngiliz ampirizmi ve çağrışımcılığının Orta Çağ\'daki öncüsü sayılır. "Ockham\'ın usturası" (Varlıklar gereksiz yere çoğaltılmamalı) da onun ilkesidir. Grosseteste (E) bilimsel yönteme, Roger Bacon (B) deneysel araştırmaya, Aquinas (D) Aristoteles-Hristiyanlık sentezine katkı yapmıştır.'
-  },
-  {
-    id:41,
-    q:'"Aşağıdakilerden hangisinin psikolojinin bilim olmasında bir etkisinin olduğu söylenemez?"',
-    opts:['İndirgemecilik','İdealizm','Determinizm','Mekanizm','Pozitivizm'],
-    answer:1,
-    exp:'Psikolojinin pozitif bir bilim haline gelmesi; olguların ölçülüp test edilebildiği materyalist, mekanik ve determinist bir yaklaşımla mümkün olmuştur. İdealizm ise gerçekliği zihinsel ya da soyut düşünsel içeriklere indirger; maddeyi, ölçümü ve deneyi ikinci plana atar. Bu nedenle İdealizm psikolojinin bilimleşme sürecini kolaylaştırmak bir yana, geciktirmiş bir felsefedir. Pozitivizm (E), indirgemecilik (A), determinizm (C) ve mekanizm (D) bilimselleşmeye katkı sağlamıştır.'
-  },
-  {
-    id:42,
-    q:'"Beynin bir bütün halinde çalıştığını savunan görüş hangisidir?"',
-    opts:['Düalizm','Determinizm','Monizm','Lokalizasyonculuk','Anti-lokalizasyonculuk'],
-    answer:4,
-    exp:'Anti-lokalizasyonculuk (bütüncül/tümcül görüş); beyin işlevlerinin belirli alanlara sıkışmadığını, tüm beyin dokusunun birlikte işlev gördüğünü savunur. Flourens ve Lashley bu görüşün önemli temsilcileridir. Monizm (C) varlığın tek bir özden (madde ya da zihin) oluştuğunu savunan genel bir metafizik tutumla ilgilidir; beynin bütüncül işleyişiyle karıştırılmamalıdır. Lokalizasyonculuk (D) ise Broca, Wernicke ve Gall gibi isimlerle temsil edilen karşı görüştür.'
-  },
-  {
-    id:43,
-    q:'"Fizik nesne ile akıl arasında ilk kez açıkça bir ayım yapan düşünür hangisidir?"',
-    opts:['Anaksimenes','Aristippos','Anaksagoras','Aristoteles','Anaksimandros'],
-    answer:2,
-    exp:'Anaksagoras, evreni yöneten, maddeden bağımsız, saf ve düzenleyici bir zihinsel ilke olan Nous (Akıl/Zihin) kavramını ortaya atmıştır. Nous, maddi karışımın içinde yer almaz ve onu dışarıdan düzenler; böylece fiziksel dünya ile zihinsel dünya arasındaki felsefi ayrım tarihte ilk kez net biçimde ifade edilmiştir. Aristoteles (D) daha sonra bu ayrımı derinleştirmiş, Anaksimenes (A) havayı, Anaksimandros (E) apeironı temel almıştır.'
-  },
-  {
-    id:44,
-    q:'"Aşağıdakilerden hangısı zihin-beden sorunu tartışmasındaki mega kuramlardan biri değildir?"',
-    opts:['Monizm','Epifenomenalizm','Dualizm','Çift görünum ve özdeşlik kuramı','Rasyonalizm'],
-    answer:4,
-    exp:'Zihin-beden tartışmasındaki "mega kuramlar" zihin ile bedenin ontolojik ilişkisini açıklayan görüşlerdir: Monizm (A) — ikisi tek bir özdür; Dualizm (C) — ikisi ayrı varoluşlardır; Epifenomenalizm (B) — zihin bedenin yan ürünüdür; Çift görünüm ve özdeşlik (D) — aynı olgunun iki yüzüdür. Rasyonalizm (E) ise "bilginin kaynağı akıldır" diyen bir epistemoloji kuramıdır; zihin-beden ontolojisine değil bilginin nasıl edinildiğine odaklanır.'
-  },
-  {
-    id:45,
-    q:'"Aşağıdakilerden hangisi duyumların yanıltıcı olduğunu, doğru bilginin tek kaynağının akıl olduğunu ileri süren düşünürlerden biri değildir?"',
-    opts:['Herakleitos','Aristoteles','Sokrates','Platon','Parmenides'],
-    answer:1,
-    exp:'Herakleitos (A), Sokrates (C), Platon (D) ve Parmenides (E); duyuların yanılgılı, akılsa güvenilir olduğunu çeşitli biçimlerde savunmuş düşünürlerdir. Aristoteles ise rasyonalist bir mantık sistemi kursa da bilginin ham maddesinin duyumlardan geldiğini, kavramların duyusal deneyimden soyutlanarak elde edildiğini savunur. Bu yönüyle Aristoteles duyuları tamamen reddeden bir rasyonalist değil, ampirist bir damarı da olan sentezci bir filozoftur.'
-  },
-  {
-    id:46,
-    q:'"Göz-ışın kuramını ilk kez yanlışlayan düşünür aşağıdakilerden hangisidir?"',
-    opts:['İbn Sina','İbn El Heysem','İbn Rüşd','Farabi','Ebu Bekir Razi'],
-    answer:1,
-    exp:'Antik dönemden beri süregelen "göz ışın yayar ve bu ışınlar nesnelere çarparak görmeyi sağlar" teorisini deneysel olarak çürüten İbn el-Heysem\'dir (Alhazen). Karanlık oda (camera obscura) deneyleriyle ışığın nesnelerden yansıyarak gözümüze geldiğini ispatlayan İbn el-Heysem, modern optiğin kurucusu sayılır. İbn Sina (A) tıp ve psikosomatik, İbn Rüşd (C) Aristo yorumları, Farabi (D) müzik ve felsefe, Ebu Bekir Razi (E) klinik tıp alanlarında öne çıkar.'
-  }
+const SET_CIKMIS=[
+{id:'c1',q:'Wundt\'un çalışmalarıyla bağdaşmaz hangisi?',opts:['Duyumlar ve hayaller arasında önemli bir fark olduğunu savunmak','Duyumları yoğunluklarına, süreklilikleri ve duyum boyutuna göre sınıflandırmak','Bilinç süreçlerini en temel elemanlarına analiz etmek','Psikofizik paralelcilik','Duyumları deneyimlerin başlangıcı olarak kabul etmek'],answer:0,exp:`Wundt'un psikoloji sistemi üç temel bilinç ögesi üzerine kuruludur: duyumlar, imgeler (hayaller) ve duygular. Wundt'a göre duyumlar ile imgeler arasında yapısal bir fark YOKTUR — her ikisi de beyin kabuğunun uyarılmasıyla ortaya çıkar; yalnızca uyarıcının kaynağı bakımından ayrışırlar. Bu görüşü Titchener da benimsemiş, iki ögeyi birbirinden yalnızca "canlılık" derecesiyle ayırt etmiştir. — (A) YANLIŞ: "Önemli bir fark olduğunu savunmak" Wundt'a atfedilemez; o tam tersini söylemiştir. — (B) DOĞRU: Wundt duyumları yoğunluk, süre ve nitelik gibi boyutlara göre sınıflandırmıştır. — (C) TARTIŞMALI: Bilinci temel elemanlara ayırma Titchener'a daha çok yakışır; ancak Wundt da bu analizi yapmıştır, bu yüzden "bağdaşmaz" denemez. — (D) DOĞRU: Psikofizik paralelcilik (ruhsal ve fiziksel olayların birbirini etkilemeksizin paralel gittiği görüşü) Wundt'un benimsediği ruh-beden anlayışıdır. — (E) DOĞRU: Wundt duyumları tüm deneyimlerin ham maddesi ve başlangıç noktası olarak kabul eder.'un doğrudan görüşleridir. (C) Titchener'a daha yakın olmakla birlikte Wundt da bilinç elementlerini analiz etmiştir.`},
+{id:'c2',q:'Brentano ile ilişkilendirilemez hangisi?',opts:['Yöntemi ampirik','Tecrübe etme fiilinin psikolojinin gerçek konusu','Psikolojinin konusunun zihinsel faaliyetler olduğu','Psikolojinin bilinçli yaşantıların içeriğini araştırması gerekir','Yaklaşımı "eylem psikolojisi" olarak adlandırılır'],answer:3,exp:`Franz Brentano (1838-1917) "Eylem Psikolojisi" (Act Psychology) adıyla anılan yaklaşımıyla Wundt'un yapısalcı çizgisine karşı çıktı. Brentano'ya göre psikoloji, zihinsel içerikleri değil zihinsel EYLEMLERİ (act) incelemelidir. Örneğin "kırmızı görüyorum" dediğimizde kırmızı rengin kendisi (içerik) değil, GÖRME EYLEMİ psikolojinin konusudur. Brentano bu yöntemi ampirik (ama laboratuvar deneyi gerektirmeyen) olarak tanımladı ve zihinsel faaliyetlerin kasıtlılık (intentionality) özelliği taşıdığını savundu. — (A) DOĞRU: Brentano ampirik bir yöntem benimsedi, ancak Wundt'un laboratuvar deneyselciliğinden farklı olarak doğal gözlemi tercih etti. — (B) DOĞRU: "Tecrübe etme fiili" yani bir şeyi deneyimleme eylemi psikolojinin gerçek konusudur. — (C) DOĞRU: Zihinsel faaliyetler (görmek, duymak, yargılamak) Brentano'nun inceleme alanıdır. — (D) YANLIŞ: Bilinçli yaşantıların İÇERİĞİNİ araştırmak Titchener'ın Yapısalcılığının görevidir. Brentano içerikle değil eylemle ilgilenir. — (E) DOĞRU: "Eylem psikolojisi" (act psychology) Brentano'nun ekolüne verilen isimdir.'ın yapısalcılığının görevidir. (A)(B)(C)(E) doğrudan Brentano ile ilgilidir.`},
+{id:'c3',q:'Hayvan davranışını en basit açıklamayla yorumla diyen kim?',opts:['E.B. Titchener','H. Spencer','G.J. Romanes','C.L. Morgan','F. Galton'],answer:3,exp:`George John Romanes (1848-1894) Darwin'in yakın arkadaşıydı ve hayvan davranışlarını insanın zihinsel durumlarına benzeterek yorumlayan "anekdot metodu"nu kullandı. Örneğin bir köpeğin belirli bir davranışına "kıskançlık duydu" gibi insan duyguları atfediyordu. Conwy Lloyd Morgan (1852-1936) bu aşırı anthropomorphic (insanbiçimci) yoruma karşı çıkarak 1894'te "Morgan Kanonu"nu ortaya koydu: "Bir davranış daha basit bir zihinsel süreçle açıklanabiliyorsa, daha gelişmiş ya da daha üst düzey bir zihinsel sürece atfedilmemelidir." Bu ilke bilimde parsimony (tutumlu açıklama) ilkesinin davranış bilimine uygulamasıdır ve karşılaştırmalı psikolojinin temelini oluşturur. — (A) Titchener yapısalcılıkla, (B) Spencer sosyal Darwinizmle, (C) Romanes hayvan zihni aşırı yorumculuğuyla, (E) Galton zeka ölçümü ve kalıtımla tanınır; hiçbiri Morgan Kanonu'yla ilgili değildir.`},
+{id:'c4',q:'Zihinsel kimya anlayışını psikolojiye uygulayan ekol?',opts:['Yapısalcılık','Gestalt','Davranışçılık','İşlevselcilik','Hümanizm'],answer:0,exp:`John Stuart Mill "zihinsel kimya" (mental chemistry) kavramıyla basit fikirlerin birleşmesinin yeni özellikler ortaya çıkarabileceğini öne sürdü — tıpkı kimyasal elementlerin birleşip tamamen farklı bileşikler oluşturması gibi. Edward Bradford Titchener bu mantığı psikolojiye uyguladı: bilinç de kimyasal elementler gibi en temel ögelere (duyum, imge, duygu) ayrılabilir ve bu ögeler analiz edilip sınıflandırılabilir. — (A) DOĞRU: Yapısalcılık (Titchener) bilinç elementlerini kimyasal elementler gibi kategorize eder. — (B) YANLIŞ: Gestalt "bütün parçaların toplamından fazladır" diyerek zihinsel kimya anlayışının tam karşısında durur; indirgemecilik ve elemanlara bölme yaklaşımını reddeder. — (C) YANLIŞ: Davranışçılık zihinsel içeriklerle ilgilenmez, yalnızca gözlenebilir davranışı inceler. — (D) YANLIŞ: İşlevselcilik zihnin "ne yaptığını" sorar, nasıl yapılandığını değil. — (E) YANLIŞ: Hümanizm bütünsel ve fenomenolojik bir anlayışı benimser, elementlere bölmeyi reddeder.'in geliştirdiği "zihinsel kimya" kavramı, basit zihinsel elementlerin birleşmesiyle yeni özellikler kazandığını öne sürer. Titchener'ın Yapısalcılığı bu mantığı kullanır: bilinç elementlerini kimyasal elementler gibi sınıflandırır. Gestalt (B) tam TERSİNİ savunur: "Bütün parçaların toplamından fazladır." (C)(D)(E) bu kavramla ilgisi yoktur.`},
+{id:'c5',q:'Psikolojinin doğaya uyum üzerine olması gerektiğini savunan ekol?',opts:['Yapısalcılık','Gestalt','Psikoanalizm','İşlevselcilik','Davranışçılık'],answer:3,exp:`Charles Darwin'in evrim teorisi (1859) psikolojiye derin izler bıraktı. İşlevselcilik (Functionalism) bu etkinin doğrudan ürünüdür: eğer organizmalar çevreye uyum sağlamak için evrimleşiyorsa, zihin de uyum aracı olarak incelenmelidir. William James, John Dewey, James Angell ve Harvey Carr gibi isimler işlevselciliği geliştirdi. Harvey Carr'ın tanımına göre psikoloji "organizmanın çevreyle uyumunu sağlayan zihinsel etkinlikleri inceler." — (A) YANLIŞ: Yapısalcılık "zihin nedir, nasıl yapılanmıştır?" sorusunu sorar; uyum ve işlev onun ilgi alanı dışındadır. — (B) YANLIŞ: Gestalt algının örüntülenmesi ve örgütlenmesiyle ilgilenir. — (C) YANLIŞ: Psikoanalizm bilinçdışı çatışmalar, savunma mekanizmaları ve libidoyla ilgilenir. — (D) DOĞRU: İşlevselcilik. — (E) YANLIŞ: Davranışçılık yalnızca gözlenebilir uyarıcı-tepki bağıyla ilgilenir, "uyum" kavramı bile içsel olduğu için davranışçılar için şüphelidir.'in evrim teorisinden beslenen İşlevselcilik, bilincin temel amacının organizmanın çevresine uyum sağlaması olduğunu savunur. Zihnin ne olduğu (Yapısalcılık) değil, NE YAPTIĞI (uyum sağlama işlevi) önemlidir. Yapısalcılık (A) "zihnin ne olduğunu" sorar. Gestalt (B) algı ve örüntüyle, Psikoanalizm (C) bilinçdışı çatışmalarla ilgilenir.`},
+{id:'c6',q:'Würzburg Okulu hakkında yanlış olan hangisi?',opts:['Psikolojinin yönünün fizyolojik çalışmalara kaymasını sağlamıştır','Ekolün gelişiminde eleştiri deneysel çalışmalar önemli rol oynar','Yapısalcılığın çöküşünü hızlandırmıştır','Diğer ekolların çıkışında önemli rolü vardır','Bir ekol ancak kendi içerisinden çıkanlar tarafından çürütülür'],answer:4,exp:`Oswald Külpe öncülüğünde Würzburg'da kurulan bu okul (1901-1909), Wundt'un içgözlem yöntemini daha karmaşık zihinsel süreçlere (düşünme, yargılama, karar verme) uyguladı. "İmgesiz düşünce" (imageless thought) keşfi — yani bazı düşüncelerin duyum ya da imge gerektirmeksizin gerçekleşebileceği — Yapısalcılığın temelini sarstı. — (A) TARTIŞMALI: Würzburg fizyolojik değil daha çok bilişsel bir yönelim taşır; ancak dolaylı olarak fizyolojik çalışmalara yönelim kazandırdığı savunulabilir. — (B) DOĞRU: Eleştirici deneysel çalışmalar Würzburg'un yönteminin özüdür. — (C) DOĞRU: Yapısalcılığın "her şeyin imgesi vardır" tezini çürüterek çöküşünü hızlandırdı. — (D) DOĞRU: Gestalt ve İşlevselcilik gibi sonraki ekolların ortaya çıkmasında önemli rol oynadı. — (E) YANLIŞ: Bu iddia yanlıştır. Tarihsel süreçte pek çok ekol dışarıdan gelen eleştirilerle çürütülmüştür; Würzburg da Yapısalcılığı dışarıdan çürüten bir örnektir.'un laboratuvarından yetişmiş ama ona karşı çıkan bir okuldur — yani DIŞARIDAN Yapısalcılığı çürüttü. "Bir ekolün ancak kendi içerisinden çürütülebileceği" iddiası tarihsel olarak yanlıştır. (B)(C)(D) Würzburg'un gerçek katkılarıdır.`},
+{id:'c7',q:'Beynin bütün halinde çalıştığını savunan görüş?',opts:['Psikofizik etkileşimcilik','Lokalizasyonculuk','Anti-lokalizasyonculuk','Panpsişizm','Materyalizm'],answer:2,exp:`Beyin araştırmalarında iki temel görüş çatışır: Lokalizasyonculuk — her zihinsel işlevin beynin belirli bir bölgesinde temsil edildiğini savunur (Gall'ün frenolojisi, Broca alanı, Wernicke alanı). Anti-lokalizasyonculuk (bütüncül/holistic görüş) — beynin tüm bölgelerinin işlevleri birlikte üstlendiğini, bir bölgenin hasar görmesi durumunda diğer bölgelerin telafi ettiğini savunur. Flourens'in güvercin ablasyon deneyleri ve Lashley'in fare labirent deneyleri anti-lokalizasyonun temel deneysel destekleridir. — (A) YANLIŞ: Psikofizik etkileşimcilik, ruhun bedensel süreçleri etkilediğini savunan ruh-beden görüşüdür; beyin işlevleriyle değil. — (B) YANLIŞ: Lokalizasyonculuk tam tersini savunur. — (C) DOĞRU: Anti-lokalizasyonculuk. — (D) YANLIŞ: Panpsişizm her şeyin zihinsel bir boyutu olduğunu savunur; beyin örgütlenmesiyle ilgili değil. — (E) YANLIŞ: Materyalizm ontolojik bir görüştür.`},
+{id:'c8',q:'Ebbinghaus ile ilişkilendirilemez hangisi?',opts:['Çağrışımların oluşumu ile ilgilenmiştir','Öğrenme ve hafızayı deneysel inceleyen ilk psikolog','Öğrenme tasarruf metodunu ortaya koymuştur','Nativist bir yaklaşımı benimsemiştir','Unutma eğrisi ortaya koymuştur'],answer:3,exp:`Hermann Ebbinghaus (1850-1909) anlamsız heceler kullanarak kendi kendine hafıza deneyleri yaptı ve öğrenmenin tamamen tekrar ve deneyime dayalı olduğunu gösterdi. "Tasarruf metodu" (savings method): bir listeyi öğrendikten sonra belirli süre geçince yeniden öğrenmek için kaç tekrar gerektiğini ölçer; aradaki fark ne kadar hatırlandığını gösterir. Unutma eğrisi: öğrenmenin hemen ardından hızlı, sonrasında yavaş bir unutma süreci yaşandığını ortaya koymuştur. — (A) DOĞRU: Ebbinghaus daha önce oluşmuş çağrışımların yenileri üzerindeki etkisini inceledi. — (B) DOĞRU: Öğrenme ve hafızayı sistematik deneysel yöntemlerle inceleyen ilk kişidir. — (C) DOĞRU: Tasarruf metodu Ebbinghaus'un en özgün katkısıdır. — (D) YANLIŞ: Nativizm bilginin doğuştan geldiğini savunur. Ebbinghaus'un bulguları tam tersini gösterir: öğrenme deneyime dayalıdır. — (E) DOĞRU: Unutma eğrisi onun en bilinen keşfidir.'un tam tersidir. (B)(C)(E) doğrudan Ebbinghaus ile ilgilidir.`},
+{id:'c9',q:'"Yaşantı öğelerine bölünemez, örüntüler oluşturur" hangi ekol?',opts:['İşlevselcilik','Yapısalcılık','Psikoanalizm','Gestalt','Davranışçılık'],answer:3,exp:`Gestalt psikolojisi 1912'de Max Wertheimer'ın hareket algısı (phi fenomeni) üzerine yaptığı çalışmayla doğdu; Wolfgang Köhler ve Kurt Koffka bu ekolün diğer kurucularıdır. Temel ilke: "Das Ganze ist mehr als die Summe seiner Teile" — Bütün, parçaların toplamından fazladır. Algı, ayrı unsurların montajı değil, örgütlenmiş bir bütün olarak gelir. Örneğin bir melodiyi oluşturan notaları tek tek duymakla melodiyi duymak birbirinden tamamen farklı deneyimlerdir. — (A) YANLIŞ: İşlevselcilik "zihin ne yapar, nasıl uyum sağlar" sorusunu sorar; örüntüler ve bölünemezlik Gestalt'ın kavramlarıdır. — (B) YANLIŞ: Yapısalcılık bilinçi en küçük elemanlara böler — Gestalt'ın tam karşısındadır. — (C) YANLIŞ: Psikoanalizm bilinçdışı güdüler ve çatışmalarla ilgilenir. — (D) DOĞRU: Gestalt. — (E) YANLIŞ: Davranışçılık yalnızca gözlenebilir uyarıcı-tepki bağlarıyla ilgilenir; "yaşantı" kavramını kullanmaz.'ın imzasıdır.`},
+{id:'c10',q:'Ablasyon/lezyon ile güvercin ve kurbağalar üzerinde çalışan kim?',opts:['Broca','Müller','Swemmerdan','Willis','Flourens'],answer:4,exp:`Pierre Flourens (1794-1867) Frans ız fizyolog ve nörobilimci, ablasyon yöntemini (belirli beyin dokusunu cerrahi olarak çıkarma) sistematik biçimde kullanan ilk araştırmacıdır. Güvercinlerin ve kurbağaların beyin bölgelerini tek tek çıkararak hangi işlevin nasıl etkilendiğini gözlemledi. Sonuçlar Gall'ün frenoloji iddialarını çürüttü: beyin işlevleri belirli noktalarda değil, tüm kortekse dağılmış biçimde gerçekleşiyordu. — (A) YANLIŞ: Broca konuşma merkezini hasta otopsilerinden tespit etti; hayvan deneyi yapmadı. — (B) YANLIŞ: Müller özgül sinir enerjisi yasasıyla tanınır; ablasyon deneyleri yapmamıştır. — (C) YANLIŞ: Swammerdam sinir-kas deneyleriyle tanınır; güvercin/kurbağa ablasyon deneyi değil. — (D) YANLIŞ: Willis beyin anatomisi atlasıyla ünlüdür, deneysel ablasyon çalışması değil. — (E) DOĞRU: Flourens.`},
+{id:'c11',q:'"Bir şey neyle ölçülüyorsa onunla tanımlanmalıdır" hangisi?',opts:['Mantıksal pozitivizm','Betimleme','Operasyonalizm','Doğa felsefesi yaklaşımı','Yordama'],answer:2,exp:`Percy Bridgman (1882-1961) Nobel ödüllü fizikçi, 1927'de "The Logic of Modern Physics" adlı eserinde operasyonalizm ilkesini ortaya koydu. İlkenin özü: bir kavram, onu ölçmek için kullanılan işlemlerle (operasyonlarla) tanımlanmalıdır. Uzunluk nedir? Cetvel ve ölçme eylemidir. Zeka nedir? IQ testiyle elde edilen puandır. Bu ilke özellikle Davranışçılıkla bütünleşti: "açlık" gibi içsel durumlar bile "son yemekten bu yana geçen süre" gibi gözlemlenebilir operasyonlarla tanımlandı. — (A) YANLIŞ: Mantıksal pozitivizm doğrulanabilirlik (verification) ilkesiyle ilgilenir; bir önermenin anlamlı olabilmesi için doğrulanabilir olması gerekir. Farklı ama ilişkili bir kavram. — (B) YANLIŞ: Betimleme bilimin amaçlarından biridir (ne olduğunu tanımlama), ama "ölçümle tanım" formülü operasyonalizmdir. — (D) YANLIŞ: Doğa felsefesi yaklaşımı tamamen farklı bir alan. — (E) YANLIŞ: Yordama (tahmin) bilimin amaçlarından biridir, ama tanımlama yöntemiyle ilgili değildir.'ın fizikten psikolojiye uyarladığı bu ilkeye göre bir kavram, onu ölçmek için kullanılan işlemlerle tanımlanır. Örneğin "zeka" Stanford-Binet IQ testiyle ölçülüyorsa, zeka "Stanford-Binet'ten alınan puandır." Davranışçılıkla çok ilgilidir.`},
+{id:'c12',q:'Ekol açıklamalarından hangisi yanlıştır?',opts:['II - İşlevselci = zihnin niye çalıştığı','III - Gestalt = indirgemeci temel','IV - Davranışçı = davranışı incele','I - Yapısal = ne olduğu','V - Psikanalitik = bilinçdışı'],answer:1,exp:`Bu soru ekoller hakkındaki kısa açıklamaların doğruluğunu sınar. Gestalt psikolojisi indirgemeciliğin (reductionism) kesin karşısındadır. İndirgemecilik karmaşık olayları daha basit birimlere indirgeyerek açıklamayı öngörür; Yapısalcılık ve Davranışçılık bu eğilimi taşır. Gestalt ise "bütün parçaların toplamından fazladır" diyerek indirgemeciliği reddetmekte, holistic (bütüncül) bir yaklaşımı savunmaktadır. — (A) DOĞRU: İşlevselcilik zihnin neden ve nasıl çalıştığını sorar. — (B) YANLIŞ: Gestalt indirgemeci değil anti-indirgemeci bir ekolür. — (C) DOĞRU: Davranışçılık gözlenebilir davranışı inceler. — (D) DOĞRU: Yapısalcılık bilincin yapısını ve ne olduğunu araştırır. — (E) DOĞRU: Psikanalizm bilinçdışı süreçleri araştırır.'ı "indirgemeci" olarak tanımlamak yanlıştır. Diğer eşleştirmeler (I,IV,V) doğrudur.`},
+{id:'c13',q:'İç geçerlik ve dış geçerlikle ilişkili bilim ölçütleri?',opts:['Gözlenebilirlik-Ölçülebilirlik','Gözlenebilirlik-İletilebilirlik','Betimleme-Açıklama','İletilebilirlik-Yordanabilirlik','Tekrarlanabilirlik-Sağdanabilirlik'],answer:4,exp:`Araştırma geçerliği iki boyutlu incelenir. İÇ GEÇERLİK: Bir araştırmanın gerçekten ölçmek istediği değişkeni ölçüp ölçmediği; başka bir deyişle sonuçların güvenilir ve tekrar edilebilir olması. Sağdanabilirlik (reliability/güvenilirlik): aynı koşullarda aynı sonucun elde edilmesidir ve iç geçerliği destekler. Tekrarlanabilirlik de iç geçerliğin temelidir. DIŞ GEÇERLİK: Araştırma bulgularının başka örneklemlere, ortamlara ve zamanlara genellenebilirliği (ekolojik geçerlik). — (A) YANLIŞ: Gözlenebilirlik ve ölçülebilirlik bilimin genel kriterleridir; iç/dış geçerlik ayrımıyla doğrudan ilgili değildir. — (B) YANLIŞ: İletilebilirlik dış geçerlikle daha çok ilişkilidir ama bu çift doğru değildir. — (C) YANLIŞ: Betimleme ve açıklama bilimin amaçlarıdır, geçerlik türleri değil. — (D) YANLIŞ: Yordanabilirlik bilimin amacıdır; iç/dış geçerlik ayrımını karşılamaz. — (E) DOĞRU: Tekrarlanabilirlik iç geçerlik, sağdanabilirlik de iç geçerlikle ilişkilendirilir.`},
+{id:'c14',q:'Fizyolojik çalışmalarıyla psikoloji gelişimine katkı sağlamayan?',opts:['Wundt','Lashley','E.D. Adrian','Helmholtz','Hall'],answer:4,exp:`G. Stanley Hall (1844-1924) Amerikan psikolojisinin kurucu figürlerinden biridir. Katkıları kurumsal ve gelişimsel ağırlıklıdır: Amerika'nın ilk psikoloji laboratuvarını kurdu (Johns Hopkins, 1883), American Journal of Psychology'yi kurdu, American Psychological Association'ı (APA) kurdu ve ilk başkanlığını yaptı, Freud ve Jung'u ABD'ye davet etti (1909 Clark Konferansı), ergenlik dönemini akademik olarak ilk sistematize eden kişidir. — (A) YANLIŞ: Wundt psikofizik ve deneysel psikolojinin kurucusudur; fizyolojik çalışmalarla psikolojiyi kurmuştur. — (B) YANLIŞ: Lashley beyin ablasyon deneyleriyle öğrenme ve belleği araştırmış, eşpotansiyellik ilkesini ortaya koymuştur. — (C) YANLIŞ: E.D. Adrian sinir liflerindeki impuls iletimini araştırmış, 1932 Nobel Ödülü'nü almıştır. — (D) YANLIŞ: Helmholtz sinir akım hızını ölçmüş, görme ve işitme fizyolojisiyle ilgilenmiştir. — (E) DOĞRU: Hall'ün katkısı fizyolojik değil kurumsal ve gelişimsel-evrimseldir.'un katkısı: APA kurucusu, ilk lab, ilk dergi, gelişim psikolojisi, Freud'u ABD'ye davet. Wundt (A) psikofizyoloji, Lashley (B) beyin hasarı, Adrian (C) sinir impulsları (Nobel 1932), Helmholtz (D) sinir iletim hızı.`},
+{id:'c15',q:'Yapısalcılık (Strukturalizm) ekolü temsilcisi hangisi?',opts:['Ebbinghaus','Levin','Koffka','Kohler','Fechner'],answer:4,exp:`Yapısalcılık (Structuralism) iki isimle özdeşleşir: Wilhelm Wundt (kurucu, Leipzig) ve Edward Bradford Titchener (sistemleştirici, Cornell). Gustav Theodor Fechner (1801-1887) ise hem bu ekolün fizyolojik temellerini atan hem de deneysel psikolojinin öncüsü sayılan kişidir. Fechner'in "Elemente der Psychophysik" (1860) adlı eseri, duyumun şiddetini uyarıcının fiziksel büyüklüğüne bağlayan Weber-Fechner yasasını içerir ve psikolojiyi ilk kez matematiksel ölçüme dayandırır. — (A) YANLIŞ: Ebbinghaus bağımsız araştırmacıdır; Yapısalcılık ekolünün üyesi sayılmaz. Wundt'un yöntemini eleştirmiştir. — (B) YANLIŞ: Kurt Lewin alan teorisi ve grup dinamiği/sosyal psikoloji alanında çalışmıştır. — (C) YANLIŞ: Kurt Koffka Gestalt psikolojisinin kurucularından ve en önemli temsilcilerinden biridir. — (D) YANLIŞ: Wolfgang Köhler Gestalt psikolojisinin kurucularından; içgörüyle öğrenme (chimpanzee Sultan deneyleri) ile tanınır. — (E) DOĞRU: Fechner.'ın fizyolojik temellerini atmıştır. Psikofizik yöntemleri ile "deneysel psikolojinin babası" unvanıyla Yapısalcılık'ın doğrudan öncüsü sayılır. Koffka (C) ve Kohler (D) Gestalt psikolojisinin temsilcileridir. Lewin (B) alan teorisi. Ebbinghaus (A) bağımsız bellek araştırmaları.`},
+{id:'c16',q:'Psikolojinin oluşumuna katkısı olmayan tartışma hangisi?',opts:['Ruhun kökeni nedir','Ruh-beden sorunu','Tümeller','Bilginin kökeni nedir','Varlığın kökeni nedir'],answer:4,exp:`Modern psikoloji önce felsefeden doğdu. Hangi felsefi tartışmaların psikolojiyi şekillendirdiğini bilmek önemlidir. Ruh-beden sorunu (Descartes, Spinoza): zihin ve bedenin nasıl ilişkilendiği doğrudan psikolojinin konusu oldu. Bilginin kökeni (Locke, Hume, Kant): empirizm-rasyonalizm tartışması deneysel psikolojinin epistemolojik zeminini oluşturdu. Tümeller tartışması (Platon vs. Nominalistler): soyut kavramların gerçekliği meselesi bilişin yapısını sorgulatır. Ruhun kökeni: psikolojinin tarihsel çıkış noktasıdır. — (A) DOĞRU ETKİ: Ruhun kökeni psikolojinin ilk sorusudur. — (B) DOĞRU ETKİ: Ruh-beden sorunu Descartes'la bilimsel psikolojiye taşındı. — (C) DOĞRU ETKİ: Tümeller tartışması bilginin yapısını sorgular. — (D) DOĞRU ETKİ: Ampirizm-rasyonalizm tartışması deneysel psikolojinin temelidir. — (E) YANLIŞ: Varlığın kökeni ("neden var da yok değil?") saf metafizik/ontoloji sorusudur; psikolojinin doğrudan konusu değildir.`},
+{id:'c17',q:'"Psikoloji bilinci parçalara ayırarak tanımlamalı" kimin görüşü?',opts:['Levin','Ebbinghaus','Wundt','Koffka','Titchener'],answer:4,exp:`Edward Bradford Titchener (1867-1927) İngiliz asıllı psikolog, Wundt'un öğrencisi olarak eğitim aldıktan sonra Cornell Üniversitesi'nde Yapısalcılığı Kuzey Amerika'ya taşıdı. Titchener'e göre psikolojinin görevi bilincin YAPISINI (structure) ortaya çıkarmaktır — "zihin nedir?" sorusu. Bunun için bilinci en temel ögelere (duyumlar, imgeler, duygusal tonlar) indirgemek ve bu ögeleri nitelik, yoğunluk, süre ve açıklık gibi boyutlarla tanımlamak gerekir. İçgözlem (introspection) temel yöntemdir. — (A) YANLIŞ: Kurt Lewin alan teorisi ve sosyal psikoloji. — (B) YANLIŞ: Ebbinghaus bellek araştırmaları; bilinç analizi yapmamıştır. — (C) YANLIŞ: Wundt bilinci inceler ama tamalgı (apperception) ve yaratıcı sentezi ön plana çıkarır; parçalara bölme onun tek yöntemi değildir. — (D) YANLIŞ: Koffka Gestalt — bilinçi parçalamaya karşıdır. — (E) DOĞRU: Titchener.`},
+{id:'c18',q:'19. yy fizyolojisinin özünü oluşturmayan düşünce?',opts:['Rasyonalizm','Deneyleme ve ölçme','Mekanizm','Materyalizm','Ampirizm'],answer:0,exp:`19. yüzyıl Alman fizyolojisi modern deneysel psikolojinin doğduğu ortamdır. Bu dönemin bilim anlayışı dört temel üzerine kuruludur: Materyalizm (her şey fiziksel/maddeseldir, ruhsal açıklamalara yer yoktur), Mekanizm (canlı organizmalar dahil her şey mekanik yasalara tabidir), Ampirizm (bilgi gözlem ve deneyden elde edilir) ve Deneyleme+Ölçme (nesnel, tekrarlanabilir, sayısal veri). — (A) YANLIŞ: Rasyonalizm aklı ve önceden bilinen (a priori) kavramları temel alır; deney ve gözleme ihtiyaç duymaz. 19. yy fizyolojisi tamamen deneysel ve ampirik bir çizgide ilerlediğinden rasyonalizm bu dönemin özünde yoktur. — (B) DOĞRU: Deney ve ölçme 19. yy fizyolojisinin yöntemidir. — (C) DOĞRU: Mekanizm — beden makine gibi çalışır. — (D) DOĞRU: Materyalizm — fiziksel açıklamalar geçerlidir. — (E) DOĞRU: Ampirizm — bilgi deneyden gelir.`},
+{id:'c19',q:'Galton\'un zeka tanımında temel teşkil eden düşünce?',opts:['Rasyonalizm','Psikofizik etkileşimcilik','Psikofizik paralelcilik','Panpsişizm','Ampirizm'],answer:4,exp:`Francis Galton (1822-1911) Darwin'in kuzeni olup zekayı evrimsel perspektiften ele aldı. Galton'a göre zeka biyolojik kökenlidir ve duyusal kapasiteyle ölçülebilir: daha keskin duyulara sahip olanlar çevreyi daha doğru algılar ve daha zekidir. Bu görüş John Locke'un "nihil est in intellectu quod non fuerit prius in sensu" (zihinde duyulardan gelmemiş hiçbir şey yoktur) ilkesinin doğrudan uygulamasıdır — yani ampirist bir zeka anlayışıdır. Galton Londra'da Antropometrik Laboratuvar kurdu ve duyusal kapasite, tepki süresi gibi testler uyguladı. — (A) YANLIŞ: Rasyonalizm zekayı akıl ve doğuştan gelen kavramlarla açıklar; Galton bunun tam tersi bir anlayıştadır. — (B)(C) YANLIŞ: Psikofizik görüşler ruh-beden ilişkisiyle ilgilidir; Galton'un zeka anlayışıyla bağlantısı yoktur. — (D) YANLIŞ: Panpsişizm her şeyin zihinsel boyutu olduğunu savunur; Galton'un materyalist-ampirist anlayışıyla çelişir. — (E) DOĞRU: Ampirizm.'a göre zeka, duyusal kapasiteyle ölçülür. Bu Locke'un ampirist görüşünün doğrudan uygulamasıdır: "Zihinde duyulardan gelmemiş hiçbir şey yoktur." Galton'un Antropometrik Laboratuvarı duyusal kapasite testleri yapıyordu. Rasyonalizm (A) zekayı akıl ve doğuştanlıkla açıklar.`},
+{id:'c20',q:'Refleks arkının indirgemeciliğine karşı çıkan kim ve hangi ekol?',opts:['Watson - Davranışçılık','Skinner - Davranışçılık','Koffka - Gestalt','James - İşlevselcilik','Dewey - İşlevselcilik'],answer:4,exp:`John Dewey'in "The Reflex Arc Concept in Psychology" (1896) makalesi Amerikan İşlevselciliğinin manifesto metni kabul edilir. Dewey şunu savundu: Wundt ve Titchener bir ateşe dokunan çocuğun davranışını "duyum (ateş) → tepki (çekilme)" şeklinde ikiye bölerek açıklar. Oysa bu yanlıştır; duyum ve tepki kesintisiz, dairesel bir sürecin parçalarıdır — biri bitmeden öteki başlar. Bu bütünlüklü süreci parçalara bölmek yaşantıyı tahrif eder. — (A) YANLIŞ: Watson Davranışçılığın kurucusu; uyarıcı-tepki şemasını kullanır ama bu indirgemeci bir yaklaşımdır. — (B) YANLIŞ: Skinner edimsel koşullanmanın mimarı; davranışçı çizgide. — (C) YANLIŞ: Koffka Gestalt; o da parçalamaya karşıdır ama refleks arkı makalesi Dewey'e aittir. — (D) YANLIŞ: James işlevselciliğin felsefi öncüsü olmakla birlikte refleks arkı makalesini yazan Dewey'dir. — (E) DOĞRU: Dewey — İşlevselcilik.'in Refleks Arkı Makalesi (1896): Dewey, Wundt ve Titchener'ın parçalayıcı yaklaşımına karşı çıktı. Ateşin çocukla temas anında duyum-tepki arkı kesintisiz bir bütündür; parçalara bölünemez. Bu makale İşlevselciliğin dönüm noktası kabul edilir. Watson (A) ve Skinner (B) Davranışçılar.`},
+{id:'c21',q:'Psikolojinin bilim olmasında etkisi OLMAYAN hangisi?',opts:['İdealizm','İndirgemecilik','Pozitivizm','Materyalizm','Determinizm'],answer:0,exp:`Psikolojinin spekülatif felsefeden koparak bağımsız bir deneysel bilim haline gelmesi 19. yüzyılın ikinci yarısında gerçekleşti. Bu dönüşümü mümkün kılan felsefi-bilimsel anlayışlar şunlardır: Materyalizm (zihinsel olayların fiziksel temeli vardır), Determinizm (her zihinsel olayın nedeni araştırılabilir), Pozitivizm (yalnızca gözlenebilir olgular bilimin konusudur), İndirgemecilik (karmaşık olayları basit birimlere indir) ve Mekanizm (zihin ve beden mekanik yasalara tabidir). — (A) YANLIŞ: İdealizm gerçekliğin zihne ya da ruha bağlı olduğunu savunur; maddeyi, deneyi ve ölçümü reddeder. Bu anlayış psikolojiyi bilimleştirmez, felsefi spekülasyonda tutar. — (B) DOĞRU ETKİ: İndirgemecilik karmaşık zihinsel olayları temel birimlere indirgeyerek analiz etmeyi sağlar. — (C) DOĞRU ETKİ: Pozitivizm yalnızca gözlenebilir ve ölçülebilir olguların incelenmesini öngörür. — (D) DOĞRU ETKİ: Materyalizm zihinsel olayların fiziksel temele dayandığını kabul eder. — (E) DOĞRU ETKİ: Determinizm nedensellik olmadan bilim olmaz ilkesiyle psikolojinin deneysel yöntemini destekler.`},
+{id:'c23',q:'Koşullanma ilkelerinden biri OLMAYAN hangisi?',opts:['Edimsel davranış','Ayırt etme','Bitişiklik','Genelleme','Pekiştirme'],answer:0,exp:`Klasik koşullanma Ivan Pavlov'un köpeklerle yaptığı deneylerden ortaya çıktı (1890'lar-1900'ler). Temel süreç: nötr bir uyarıcı (zil) koşulsuz uyarıcıyla (et) tekrar tekrar eşleştirildiğinde başlı başına koşullu tepki (salya) oluşturur. Bu sürecin işleyişini açıklayan ilkeler şunlardır: Bitişiklik — uyarıcı ve tepkinin zaman ve mekanda yakın olması; Pekiştirme — koşullu uyarıcının koşulsuz uyarıcıyla sürekli eşleşmesi; Genelleme — benzer uyarıcılara da tepki verilmesi; Ayırt etme — yalnızca belirli uyarıcıya tepki verilmesi; Sönme — pekiştirme olmadığında tepkinin azalması. — (A) YANLIŞ: Edimsel davranış (operant behavior) Skinner'ın edimsel koşullanma sistemine aittir. Edimsel davranış bir ilke değil, organizmanın çevreye kendiliğinden yaydığı davranış türüdür. — (B)(C)(D)(E) DOĞRU: Hepsi klasik koşullanmanın temel ilkeleridir.'ın edimsel koşullanmasının konusudur — klasik koşullanmanın bir ilkesi değildir. Klasik koşullanmanın temel ilkeleri: bitişiklik (C), genelleme (D), ayırt etme (B) ve pekiştirme (E)'dir.`},
+{id:'c24',q:'Konuşmanın beyindeki bölgesini ilk gösteren kim?',opts:['Gall','Wernicke','Spurzheim','Hall','Broca'],answer:4,exp:`Paul Broca (1824-1880) Fransız nörolog ve antropolog. 1861'de Leborgne lakabıyla bilinen "Tan" hastasını inceledi: hasta yıllardır yalnızca "tan" sesini çıkarabiliyordu, konuşamıyordu ama anlayabiliyordu. Hasta öldükten sonra yapılan otopside sol frontal lobun üçüncü kıvrımında (gyrus frontalis inferior) ciddi hasar tespit edildi. Broca bu bölgenin motor konuşma üretiminden sorumlu olduğunu ilan etti. Bölgeye sonradan "Broca alanı" adı verildi. — (A) YANLIŞ: Gall frenolojinin kurucusudur; kafatası şeklinden kişilik ve yetenek çıkarmaya çalıştı, bilimsel olarak geçersizdir. — (B) YANLIŞ: Carl Wernicke 1874'te konuşmayı anlayan ama konuşamayan değil, konuşabilen ama anlamayan hastaları inceleyerek ANLAMA merkezini buldu (sol temporal lob). — (C) YANLIŞ: Spurzheim Gall'ün öğrencisi; frenoloji sistemini Avrupa ve Amerika'ya yaydı. — (D) YANLIŞ: Hall psikoloji tarihçisi ve kurumsalcı; nöroantomi değil. — (E) DOĞRU: Broca.'dan sonra buldu. Gall (A) ve Spurzheim (C) frenoloji yaptı — bilimsel olarak yanlış.`},
+{id:'c25',q:'"Korktuğumuz için kaçmayız, kaçtığımız için korkarız" hangi kuram?',opts:['Sosyal Darwinizm Kuramı','Schachter-Singer Kuramı','İşlevselci kuram','Davranışçı kuram','James-Lange Kuramı'],answer:4,exp:`William James (1842-1910) ve Danimarkalı Carl Lange (1834-1900) birbirinden bağımsız olarak aynı duygu teorisini geliştirdiler. Geleneksel görüş: "Ayıyı görürüm → korkarım → kaçarım." James-Lange: "Ayıyı görürüm → kaçarım (bedensel tepki) → kaçma eyleminin bedensel belirtilerini (kalp hızlanması, titreme) fark ederim → bu farkındalık KORKUDUR." Yani duygu bedensel tepkinin zihinsel yansımasıdır; önce beden tepki verir, sonra duygu gelir. — (A) YANLIŞ: Sosyal Darwinizm toplumsal eşitsizlikleri evrimle meşrulaştıran sosyolojik bir görüştür; duygu teorisiyle ilgisi yoktur. — (B) YANLIŞ: Schachter-Singer (1962) iki faktör teorisi: fizyolojik uyarılma + bilişsel etiketleme = duygu. Farklı bir modeldir. — (C) YANLIŞ: İşlevselcilik genel bir ekol; duygu teorisi değil. — (D) YANLIŞ: Davranışçılık iç duygu durumlarını inceleme kapsamı dışında tutar. — (E) DOĞRU: James-Lange Kuramı.`},
+{id:'c26',q:'Evrim kuramının psikoloji etkilerinden biri OLMAYAN hangisi?',opts:['Bireysel farklılıkların tanımlanması ve ölçülmesi','Determinist ve indirgemeci anlayışı benimseme','Bilincin yapısı yerine işlevlerini vurgulama','Metodoloji ve bilgi açısından farklı alanlardan faydalanma','Hayvan psikolojisi üzerine yoğunlaşma'],answer:1,exp:`Darwin'in 1859'da yayımladığı "Türlerin Kökeni" psikoloji tarihini dört temel kanaldan etkiledi: 1) Hayvan psikolojisi ve karşılaştırmalı psikoloji (zihin evrimi araştırılabilir), 2) Bilincin işlevleri vurgusu (Yapısalcılığın "ne" sorusunun yerini "ne için" aldı), 3) Geniş metodoloji (jeoloji, demografiden veri almak), 4) Bireysel farklılıklar (evrim için varyasyon şarttır; Galton'ın bireysel farkları ölçmesi buradan gelir). — (A) DOĞRU ETKİ: Evrim için varyasyon gerektiğinden bireysel farklılıklar önem kazandı. — (B) YANLIŞ: Determinizm ve indirgemecilik 19. yy Alman fizyolojisi ve pozitivizmden gelir; Darwin'in doğrudan etkisi değildir. Darwin'in en önemli katkısı metodolojik çeşitlilik ve bütüncül bakıştır. — (C) DOĞRU ETKİ: İşlevselcilik doğrudan Darwin'den beslenir. — (D) DOĞRU ETKİ: Darwin jeoloji, demografi gibi alanlardan veri alarak çalıştı; bu metodolojik çeşitlilik psikolojiye de yansıdı. — (E) DOĞRU ETKİ: Hayvan psikolojisi ve karşılaştırmalı psikoloji Darwin'in doğrudan mirasıdır.'den değil, 19. yüzyıl fizyolojisi ve pozitivizmden gelir. Darwin'in dört etkisi: 1) Hayvan psikolojisi, 2) Bilincin işlevi vurgusu, 3) Geniş metodoloji, 4) Bireysel farklılıklar. (A)(C)(D)(E) Darwin'in doğrudan psikoloji etkileridir.`},
+{id:'c27',q:'İçgözlem kurallarından DEĞİL hangisi? [Dikkat: şıklarda yazım hatası mevcut]',opts:['Gözlemciler sürecin ne zaman biteceğini belirleyebilmek zorundadır','Gözlemi birkaç defa tekrar etmek mümkün olmalıdır','Deneysel koşullar uyarıcının kontrollu manipülasyonu açısından değişikliklere elverişli olmak zorundadır','Hiçbiri','Gözlemciler sürecin ne zaman biteceğini belirleyebilmek zorundadır'],answer:3,exp:`Wilhelm Wundt içgözlemi (introspection) bilimsel bir yönteme dönüştürmek için dört kural belirledi: 1) Gözlemci sürecin ne zaman BAŞLAYACAĞINI önceden belirleyebilmelidir (dikkat hazırlığı). 2) Gözlemci tam dikkat ve hazır oluş halinde olmalıdır. 3) Gözlem tekrar edilebilmelidir (aynı koşullarda aynı sonuç). 4) Koşullar kontrollü biçimde değiştirilebilmelidir. — NOT: Bu soru sınavda HATALI olarak sorulmuştur. (A) ve (E) şıkları birebir aynıdır; her ikisinde de "biteceğini" yazılmıştır, oysa kuralın doğrusu "başlayacağını"dır. Sınavda cevap (D) "Hiçbiri" olarak verilmiştir çünkü sunulan şıkların hiçbiri Wundt'un gerçek kurallarını doğru biçimde yansıtmamaktadır. Gerçek kural: "gözlemci sürecin ne zaman BAŞLAYACAĞINI belirleyebilmelidir."'un içgözlem 4 kuralı: (1) Gözlemciler sürecin ne zaman BAŞLAYACAĞINI belirleyebilmeli, (2) Hazır olma/dikkat kesilme durumunda olmak, (3) Gözlem tekrar edilebilmeli, (4) Koşullar değiştirilebilmeli. Sınavda (D) "Hiçbiri" doğru cevap olarak verilmiştir.`},
+{id:'c28',q:'Yanlış ekol-temsilci eşleşmesi hangisi?',opts:['Fonksiyonalizm - Woodworth','Gestalt - Kulpe','Strukturalizm - Titchener','Psikoanalizm - Horney','Davranışcılık - Watson'],answer:1,exp:`Psikoloji tarihindeki ana ekoller ve kurucuları/temsilcileri: Yapısalcılık — Wundt (kurucu), Titchener (sistematize); İşlevselcilik — James (felsefi öncü), Dewey, Angell, Woodworth (Columbia okulu); Gestalt — Wertheimer (kurucu), Köhler, Koffka; Davranışçılık — Watson (kurucu), Skinner, Thorndike; Psikanaliz — Freud (kurucu), Adler, Jung, Horney (neo-Freudcu); Würzburg Okulu — Külpe (kurucu). — (A) DOĞRU: Robert Woodworth Columbia İşlevselciliğinin temsilcisidir. — (B) YANLIŞ: Gestalt-Külpe eşleşmesi yanlıştır. Külpe Würzburg Okulu'nun kurucusudur; Gestalt'la ilgisi ancak "imgesiz düşünce" bulgusunun Gestalt'ı dolaylı biçimde hazırlamasında kurulabilir. — (C) DOĞRU: Titchener Yapısalcılık. — (D) DOĞRU: Karen Horney neo-Freudcu psikanalizin önemli ismidir; kadın psikolojisi ve kültürel faktörlere vurgusuyla bilinir. — (E) DOĞRU: Watson Davranışçılığın kurucusudur.'nun kurucusudur, Gestalt'ın değil. Gestalt'ın kurucusu Wertheimer, temsilcileri Köhler ve Koffka'dır. Woodworth (A) İşlevselcilik-Columbia okulu, Titchener (C) Yapısalcılık, Horney (D) neo-Freudcu psikanaliz, Watson (E) Davranışçılık — hepsi doğrudur.`},
+{id:'c29',q:'Unutmanın bozucu etkiler teorisini İLK gösteren kim?',opts:['Wundt','Müller','Titchener','Fechner','Ebbinghaus'],answer:1,exp:`Hermann Ebbinghaus unutmanın pasif bir çözülme (decay) süreciyle gerçekleştiğini düşünüyordu: zamanla iz zayıflar. Georg Elias Müller (1850-1934) bunu sorguladı. Müller ve Pilzecker'ın 1900 tarihli çalışması şunu gösterdi: yeni bilgi öğrenildiğinde eski bilgiyi aktif biçimde bozabilir (retroaktif girişim) ya da eski bilgi yenisini öğrenmeyi zorlaştırabilir (proaktif girişim). Unutmanın temel nedeni zamanın geçmesi değil, bilgiler arasındaki girişim (interference) etkisidir. — (A) YANLIŞ: Wundt tamalgı ve bilinç çalışmalarıyla tanınır; girişim teorisiyle bağlantısı yoktur. — (B) DOĞRU: Müller. — (C) YANLIŞ: Titchener yapısalcılık ve içgözlem; bellek girişimiyle ilgili değildir. — (D) YANLIŞ: Fechner psikofizik; bellek araştırması değil. — (E) YANLIŞ: Ebbinghaus unutma eğrisini ve tasarruf metodunu keşfetti; girişim teorisini değil.'dir.`},
+{id:'c30',q:'Stanley Hall hakkında yanlış olan hangisi?',opts:['Evrim kuramından etkilenmiştir','Çocuk ve ergen psikolojisi üzerine çalışmalar yapmıştır','Genetik psikolog olarak anılır','Çocuk çalışmaları hareketine önderlik etmiştir','Psikolojiyi bir biyolojik bilim olarak ele almıştır'],answer:4,exp:`Granville Stanley Hall (1844-1924) "ruhun Darwini" lakabını hak etmiştir. Hall evrimci ve gelişimsel bir psikoloji anlayışı benimsedi. "Rekapitülasyon teorisi"ne göre bireysel gelişim (ontogeni) türün evrimsel tarihini (filogeni) kısaca tekrar eder. "Genetik psikolog" unvanı onun gelişimsel odağını yansıtır (genesis = kök/kaynak). — (A) DOĞRU: Hall'ın tüm çalışmaları evrim kuramının etkisini taşır. — (B) DOĞRU: Çocuk ve ergen psikolojisi Hall'ın uzmanlık alanıdır; "Adolescence" (1904) ergenliği ilk kez akademik olarak ele alan kapsamlı eserdir. — (C) DOĞRU: "Genetik psikolog" unvanı — gelişimin köklerini araştıran anlamında. — (D) DOĞRU: Çocuk çalışmaları (child study) hareketine liderlik etti. — (E) YANLIŞ: "Biyolojik bilim" ifadesi fizyoloji laboratuvarı çalışmasını çağrıştırır. Hall psikolojiyi GELİŞİMSEL ve EVRİMSEL bir bilim olarak gördü; biyoloji laboratuvarı deneyleri yapmadı.`},
+{id:'c31',q:'Aşağıdakilerden hangisi Wundt ile Titchener arasındaki farklardan biri değildir?',opts:['Wundt iradecilik (voluntarizm) sistemini savunurken Titchener pasif çağrışım anlayışını benimsemiştir','Wundt niceliksel içgözlemi desteklerken Titchener niteliksel içgözlemi desteklemiştir','Wundt 3 boyutlu duygu teorisini savunurken Titchener yalnızca 1 boyutu kabul etmiştir','Wundt kültürel psikolojiyi psikolojinin dışında tutarken Titchener onu benimsemiştir','Wundt tamalgı ve yaratıcı sentezi vurgularken Titchener bilinci pasif elemanlara bölerek incelemiştir'],answer:3,exp:`Wundt ve Titchener aynı dönemde yaşamış, Titchener Wundt'un öğrencisi olmuş, ancak iki sistem köklü biçimde ayrışmıştır. Temel farklar: 1) Wundt iradecilik (voluntarizm) — zihin aktif ve iradeli; Titchener pasif çağrışımcılık — zihin gelen uyaranlara pasif tepki verir. 2) Wundt niceliksel (deneysel) içgözlem; Titchener niteliksel anlatımsal içgözlem. 3) Wundt 3 boyutlu duygu teorisi (haz-acı, gerilim-gevşeme, coşku-durgunluk); Titchener yalnızca haz-acı boyutunu kabul eder. 4) Wundt tamalgı ve yaratıcı sentez; Titchener pasif element analizi. 5) Wundt Völkerpsychologie (kültürel psikoloji) — psikolojinin ayrılmaz parçası; Titchener kültürel psikolojiyi görmezden gelir. — (D) YANLIŞ: Tam tersidir. Wundt kültürel psikolojiyi 10 cilt halinde yazmış ve psikolojinin vazgeçilmez parçası saymıştır. Titchener ise yapısalcılıkla bağdaşmadığını düşündüğü için bunu dışlamıştır. (A)(B)(C)(E) gerçek farklardır.`}
 ];
 
-// ══════════════════════════════════════════
+const SET_MUHTEMEL=[
+{id:'m1',q:'Brentano ile ilişkilendirilemez hangisi?',opts:['Yöntemi ampirik','Tecrübe etme fiilinin psikolojinin gerçek konusu olduğunu ileri sürmüştür','Psikolojinin konusunun zihinsel faaliyetler olduğunu ileri sürmüştür','Psikolojinin bilinçli yaşantıların içeriğini araştırması gerekir','Yaklaşımı eylem psikolojisi olarak adlandırılır'],answer:3,relevance:'high',exp:`Brentano zihnin İÇERİĞİNİ değil, zihinsel EYLEMİ (act) psikolojinin konusu olarak gördü. (D) "bilinçli yaşantıların İÇERİĞİNİ araştırmak" Titchener'ın yapısalcılığının görevidir. Final sınavında da aynı soru çıkmıştır. (A)(B)(C)(E) doğrudan Brentano ile ilgilidir.`},
+{id:'m2',q:'16-17. yy psikolojinin bilim olmasında rol oynayan düşüncelerden biri değil?',opts:['Mekanizm','Panpsişizm','Ampirizm','İndirgemecilik','Determinizm'],answer:1,relevance:'high',exp:`Panpsişizm her şeyin zihinsel/ruhsal bir boyutu olduğunu savunur. Bu görüş mekanik ve ampirik bilim anlayışıyla bağdaşmaz. Mekanizm (A), Ampirizm (C), İndirgemecilik (D), Determinizm (E) hepsi 16-17. yy bilim devriminin temellerini oluşturur.`},
+{id:'m3',q:'İngiliz Görgücü ve Çağrışımcı felsefesiyle ilişkilendirilemez hangisi?',opts:['Atomizm','—','Determinizm','İdealizm','Sensualizm'],answer:3,relevance:'high',exp:`İngiliz Ampirizmi genel olarak anti-idealisttir — bilgi duyulardan gelir, zihin boş levha, çağrışım yasaları ve materyalist eğilim temel özelliklerdir. İdealizm gerçekliğin zihinsel/fikirsel olduğunu savunur; bu İngiliz ampirizmiyle çelişir.`},
+{id:'m4',q:'İngiliz ampirik felsefecilerinden biri değildir hangisi?',opts:['Locke','Mill','Herbart','Berkeley','Hartley'],answer:2,relevance:'high',exp:`Herbart Alman felsefecisidir; rasyonalist/matematiksel yaklaşımla psikolojiyi formülleştirmeye çalıştı. Locke (A) tabula rasa, Berkeley (D) ampirist idealist, Hartley (E) çağrışımcılığı sistematize etti, Mill (B) zihinsel kimya kavramını geliştirdi — hepsi İngiliz ampirist geleneğin temsilcileridir.`},
+{id:'m5',q:'Descartes\'in psikoloji akımları üzerindeki etkilerinden biri değildir hangisi?',opts:['Mekanik beden görüşü','Ruh-beden sorunu','Ampirizm','Zihnin işlevlerinin bedendeki yeri','Doğuştan gelen fikirler öğretisi'],answer:2,relevance:'high',exp:`Descartes katı bir RASYONALİSTtir; doğuştan gelen ideaların varlığına inanır. Ampirizm Locke, Hume, Berkeley gibi İngiliz düşünürlerin akımıdır — Descartes'a karşı cephe alanların görüşüdür. Mekanik beden (A), ruh-beden düalizmi (B), zihin-beden etkileşimi (D) ve innate ideas (E) Descartes'ın katkılarıdır.`},
+{id:'m6',q:'Lokalizasyoncu görüşü benimsemez hangisi?',opts:['Wernicke','Spurzheim','Broca','Lashley','Gall'],answer:3,relevance:'high',exp:`Lashley anti-lokalizasyoncu (eşpotansiyellik ilkesi). Beynin bütünsel çalıştığını, öğrenmenin tek bir bölgeye bağlı olmadığını savundu. Wernicke (A) konuşma anlama merkezi, Spurzheim (B) frenoloji, Broca (C) konuşma üretim merkezi, Gall (E) frenoloji kurucusu — hepsi lokalizasyoncu.`},
+{id:'m7',q:'Hume ile ilişkilendirilemez hangisi?',opts:['İşevurukçuluğun oluşumunda etkili olmuştur','Bilgi üzerine felsefe yapmıştır','Çağrışımı oluşturan ilkelerin benzeyiş, zamanda ve uzamda bitişiklik ve neden-sonuç olduğunu öne sürer','Zihinsel kimya görüşünü savunmuştur','Tüm bilgilerimizin kaynağının duyumlara dayanan algılar olduğunu ileri sürmüştür'],answer:3,relevance:'high',exp:`"Zihinsel kimya" kavramı Hume değil John Stuart Mill'e aittir. Mill: basit çağrışımlar birleştiklerinde orijinal parçalarda olmayan yeni özellikler kazanır. Hume çağrışımın temel ilkelerini tanımladı (C) ve işevurukçuluğun felsefi öncüsü oldu (A).`},
+{id:'m8',q:'Fizyolojik çalışmalarıyla psikolojiye katkı sağlamayan hangisi?',opts:['J. Müller','E.D. Adrian','Flourens','Wundt','Helmholtz'],answer:3,relevance:'high',exp:`Wundt fizyoloji eğitimi almış olsa da asıl katkısı psikolojiyi fizyoloji ve felsefeden bağımsız bir bilim olarak kurmaktır. J. Müller (A) özgül sinir enerjisi yasası, Adrian (B) sinir impulsları (Nobel 1932), Flourens (C) ablasyon deneyleri, Helmholtz (E) sinir iletim hızı ile psikolojinin fizyolojik temellerine katkı sağlamıştır.`},
+{id:'m9',q:'Tüm zihinsel faaliyet türlerini çağrışım öğretisiyle açıklayan ilk düşünür?',opts:['Hobbes','Hartley','Locke','Berkeley','Kant'],answer:1,relevance:'high',exp:`David Hartley çağrışımcılığı yalnızca bilgi teorisi olmaktan çıkarıp tüm zihinsel süreçleri açıklayan sistematik bir psikoloji ekolü haline getiren ilk kişidir. "Observations on Man" (1749). Hobbes (A) çağrışıma değindi ama sistematize etmedi. Locke (C) tabula rasa ile bilinir.`},
+{id:'m10',q:'Konuşmanın beyindeki bölgesini ilk gösteren kim?',opts:['Gall','Spurzheim','Hall','Broca','Wernicke'],answer:3,relevance:'high',exp:`Paul Broca (1824-1880) anlayabilen ama konuşAMAYAN hastaların otopsilerinde sol ön loptaki hasarı tespit etti. Bölgeye "Broca alanı" adı verildi. Wernicke (E) konuşma ANLAMASIYLA ilgili bölgeyi Broca'dan sonra buldu. Gall (A) frenoloji — bilimsel olarak yanlış.`},
+{id:'m11',q:'Fechner ile ilgili yanlış hangisi?',opts:['Eşpotansiyellik yasasını ortaya koymuştur','Ruh-beden sorunu üzerine çalışmıştır','Duyumun şiddetini ölçme ile ilgili bir kuram ortaya atmıştır','Psikofizik\'in kurucularındandır','Deneysel psikolojinin kurucularındandır'],answer:0,relevance:'high',exp:`Eşpotansiyellik (Equipotentiality) yasası Karl Lashley'e aittir. Fechner: ruh-beden ilişkisini inceledi (B), Weber-Fechner yasası ile duyum ölçümünü matematikselleştirdi (C), psikofizik bilim dalını kurdu (D) ve deneysel psikolojinin öncülerinden sayılır (E).`},
+{id:'m12',q:'Ablasyon/lezyon ile güvercin ve kurbağalarda çalışan kim?',opts:['Swemmerdan','Flourens','Weber','Müller','Lashley'],answer:1,relevance:'high',exp:`Pierre Flourens (1794-1867) Gall'ün frenoloji iddialarını çürütmek için ablasyon yöntemini kullandı. Güvercin ve kurbağalarda beyin bölgelerini kaldırarak beynin bir bütün olarak çalıştığını gösterdi. Lashley (E) 20. yy'da fare deneyleriyle anti-lokalizasyonu geliştirdi ama ablasyon/kurbağa betimlemesi Flourens'e aittir.`},
+{id:'m13',q:'Descartes ile ilişkilendirilemez hangisi?',opts:['Metodik şüphe','Nominalist düşünce','Rasyonalist düşünce','Kesin ve mutlak bilgi arayışı','Mekanik ruh'],answer:1,relevance:'med',exp:`Nominalizm (Adcılık) kavramların sadece isimden ibaret olduğunu savunan Orta Çağ felsefesi akımıdır. Descartes rasyonalizmiyle bu akımın hiçbir ilgisi yoktur. Metodik şüphe (A), rasyonalizm (C), kesin bilgi arayışı (D) ve mekanik ruh/beden (E) doğrudan Descartes'a aittir.`},
+{id:'m14',q:'İnsan zihninin doğuşta boş levha olduğunu savunan düşünür hangisidir?',opts:['Herbart','Hartley','Hobbes','Locke','Hume'],answer:3,relevance:'med',exp:`John Locke "Tabula Rasa": insan zihni doğuşta tamamen boş bir levhadır, tüm bilgiler duyular ve deneyimler aracılığıyla sonradan kazanılır. "An Essay Concerning Human Understanding" (1690). Hume (E) skeptisizm ve çağrışım — tabula rasa Locke'un.`},
+{id:'m15',q:'Fizyolojik çalışma-bilim insanı yanlış eşleştirme hangisi?',opts:['Jackson - Sensoryal afezi','Müller - Sinirlerin özel enerjisi','Helmholtz - Sinir akımı hızı','M. Hall - Omurilik işlevi','M. Dax - Dil'],answer:0,relevance:'med',exp:`Sensoryal (duyusal) afezi Carl WERNICKE ile ilişkilendirilir. Hughlings Jackson epilepsi ve beyin hiyerarşik organizasyonu üzerine çalıştı. Müller-sinir enerjisi (B), Helmholtz-sinir hızı (C), Hall-omurilik refleksleri (D), Dax-dil ve sol hemisfer (E) doğru eşleşmelerdir.`},
+{id:'m16',q:'Ruh-beden sorununu madde-form ilişkisi olarak ele alan ilk düşünür hangisidir?',opts:['Aristoteles','Anaksimenes','Anaksimandros','Platon','Thales'],answer:0,relevance:'med',exp:`Aristoteles'e göre ruh bedenin formudur, beden ise maddedir; ikisi ayrılmaz bir bütündür (Hilemorfizm). "Peri Psykhe" psikoloji tarihinin ilk kitabı kabul edilir. Platon (D) ruh-bedeni AYRI şey olarak görür (dualizm) — ruh ölümsüzdür, beden geçicidir.`},
+{id:'m17',q:'Psikolojinin bilim olmasında etkisi olduğu söylenemez hangisi?',opts:['İndirgemecilik','İdealizm','Determinizm','Mekanizm','Pozitivizm'],answer:1,relevance:'med',exp:`İdealizm gerçekliğin zihinsel/ruhsal/fikirsel olduğunu savunur. Bu anlayış olgulari gözlem ve deneyle araştıran pozitif bilimin tam karşıtıdır. Bu soru hem final sınavında hem çıkmış sorularda AYNI ŞEKİLDE çıkmıştır! İndirgemecilik (A), Determinizm (C), Mekanizm (D), Pozitivizm (E) katkı sağlamıştır.`},
+{id:'m18',q:'Beynin bütün halinde çalıştığını savunan görüş hangisidir?',opts:['Düalizm','Determinizm','Monizm','Lokalizasyonculuk','Anti-lokalizasyonculuk'],answer:4,relevance:'med',exp:`Anti-lokalizasyonculuk: "Beyin işlevler için bütünsel çalışır, tek bir merkeze bağlı değil" (Flourens, Lashley). Monizm (C) ruh-beden ilişkisi konusudur, beynin bütünsel işleyişiyle karıştırılmamalıdır. Bu konu birden fazla sınavda karşımıza çıkmaktadır.`},
+{id:'m19',q:'Zihin-beden tartışmasındaki mega kuramlardan biri değildir hangisi?',opts:['Monizm','Epifenomenalizm','Dualizm','Çift görünüm ve özdeşlik kuramı','Rasyonalizm'],answer:4,relevance:'med',exp:`Monizm, Dualizm, Epifenomenalizm ve Özdeşlik kuramları zihin ve bedenin ontolojik ilişkisini açıklayan kuramlar. Rasyonalizm ise bilginin kaynağını sorgulayan epistemolojik bir anlayıştır — zihin-beden ilişkisini açıklamaz.`},
+{id:'m20',q:'Duyumların yanıltıcı olduğunu, doğru bilginin tek kaynağının akıl olduğunu ileri sürenlerden biri değildir hangisi?',opts:['Herakleitos','Aristoteles','Sokrates','Platon','Parmenides'],answer:1,relevance:'med',exp:`Aristoteles rasyonalist bir sistem kursa da bilginin DUYULARLA başladığını savunur. "Hiçbir şey önce duyularda bulunmadan zihinde bulunamaz." Herakleitos (A), Sokrates (C), Platon (D), Parmenides (E) duyulara güvenilemeyeceğini savunmuştur.`}
+];
+
+
+const SET_AI=[
+{id:'ai1',q:`Aşağıdakilerden hangisi Wundt ile Titchener arasındaki farklardan biri değildir?`,opts:[`Wundt iradecilik (voluntarizm) sistemini savunurken Titchener pasif çağrışım anlayışını benimsemiştir`,`Wundt niceliksel içebakışı desteklerken Titchener niteliksel içebakışı desteklemiştir`,`Wundt kültürel psikolojiyi psikolojinin dışında tutarken Titchener onu benimsemiştir`,`Wundt 3 boyutlu duygu teorisini savunurken Titchener yalnızca 1 boyutu kabul etmiştir`,`Wundt tamalgı ve yaratıcı sentezi vurgularken Titchener bilinci pasif elemanlara bölerek incelemiştir`],answer:2,exp:`Wundt sistemi aktif zihin, tamalgı, yaratıcı sentez ve voluntarizm üzerine kuruludur. Titchener ise bilinci en küçük elemanlara bölen pasif yapısalcılık anlayışı geliştirdi. — (A) GERÇEK FARK: Wundt voluntarizm (irade ve dikkat zihinsel süreçleri aktif yönetir), Titchener pasif çağrışım. — (B) GERÇEK FARK: Wundt niceliksel içgözlem; Titchener niteliksel — deneyimin niteliği rapor edilir. — (C) YANLIŞ: Tam tersidir. Wundt Völkerpsychologie 10 cilt yazdı ve psikolojinin vazgeçilmez parçası saydı. Titchener yapısalcılıkla bağdaşmaz bularak görmezden geldi. — (D) GERÇEK FARK: Wundt haz-acı, gerilim-gevşeme, coşku-durgunluk olmak üzere 3 boyutlu duygu teorisi; Titchener yalnızca haz-acı boyutunu kabul eder. — (E) GERÇEK FARK: Wundt tamalgı ve yaratıcı sentez vurgusu, Titchener pasif element analizi.`},
+{id:'ai2',q:`Wundt'un psikolojinin kurucusu kabul edilmesinin en temel gerekçesi aşağıdakilerden hangisidir?`,opts:[`Psikoloji alanında ilk deneysel çalışmayı yapmasıdır`,`Psikofizik'in Elemanları kitabını yazmasıdır`,`Kasıtlı olarak yeni bir bilim kurma amacıyla sistematik organize etmesi, laboratuvar kurması ve dergi çıkarmasıdır`,`Fechner'den 15 yıl önce çalışmalarına başlamasıdır`,`En fazla sayıda psikoloji araştırması yapmasıdır`],answer:2,exp:`Kurma (founding) ile icat etme (originating) arasındaki ayrım psikoloji tarihinde kritiktir. Fechner psikofizikle öncülük yaptı ama yeni bir bilim kurmak niyetinde değildi. Wundt'un kuruculuğu: (1) Leipzig Laboratuvarı 1879, (2) Philosophische Studien dergisi, (3) Sistematik eğitim — dünyanın dört bir yanından öğrenciler yetiştirdi, (4) Psikolojinin sınırlarını çizme girişimi. — (A) YANLIŞ: İlk deneysel çalışma tek başına yeterli değil; Fechner de deneysel çalışmalar yapmıştı. — (B) YANLIŞ: Psikofizik'in Elemanları Fechner'e aittir, Wundt'a değil. — (C) DOĞRU: Kasıt + organizasyon + kurumsallaşma birlikte kuruculuğu oluşturur. — (D) YANLIŞ: Öncelik değil, kasıt ve organizasyon kritiktir. — (E) YANLIŞ: Yayın sayısı değil sistematik kurma kriteridir.`},
+{id:'ai3',q:`Ebbinghaus'un bellek araştırmaları hakkında aşağıdakilerden hangisi doğrudur?`,opts:[`Anlamsız heceler kullanmasının nedeni önceden oluşmuş çağrışımları devreye sokmaktı`,`Bellek çalışmalarında birçok farklı denek kullanarak genel geçerliği artırdı`,`Anlamsız materyal ile anlamlı materyal arasında yaklaşık 9 kat fark olduğunu ortaya koydu`,`Unutma eğrisini Fechner'in verilerinden yararlanarak geliştirdi`,`Tasarruf metodunda mükemmel öğrenmede geçen süreyi temel aldı`],answer:2,exp:`Ebbinghaus 1879-1885 yılları arasında anlamsız hecelerle (CVC) kendi kendine sistematik bellek deneyleri yaptı. — (A) YANLIŞ: Tam tersi. Anlamsız heceler önceki çağrışımları ENGELLEMEK için kullanıldı; saf öğrenme süreci ölçülebildi. — (B) YANLIŞ: Tek denek kendisiydi; bu metodolojik zayıflık olarak sonradan eleştirildi. — (C) DOĞRU: Byron'dan 80 dize = 9 tekrar; 80 anlamsız hece = yaklaşık 80 tekrar. Anlam öğrenmede yaklaşık 9 kat kolaylık sağlar. — (D) YANLIŞ: Unutma eğrisi tamamen kendi verilerinden oluşturuldu. — (E) YANLIŞ: Tasarruf metodunda temel ölçüt SÜRE değil, TEKRAR SAYISIDIR.`},
+{id:'ai4',q:`Titchener'in "uyarıcı hatası" (stimulus error) kavramı aşağıdakilerden hangisini ifade eder?`,opts:[`Deneyde yanlış bir uyarıcı kullanılmasından kaynaklanan ölçüm hatası`,`Gözlemcinin zihinsel süreci değil nesneyi raporlaması`,`Gözlemcinin dikkatini kaybederek yanlış cevap vermesi`,`Uyarıcı şiddeti ile duyum arasındaki orantısızlık`,`İçebakış sırasında başka bir düşüncenin araya girmesi`],answer:1,exp:`Titchener içebakış metodunun en önemli tuzağını "uyarıcı hatası" olarak adlandırdı. Eğitimsiz kişiler içebakışta dolaysız zihinsel deneyimi değil deneyimlenen nesneyi raporlar. Kırmızı elma gösterildiğinde "elma görüyorum" demek HATALI (nesneyi raporlama); "kırmızı, parlak, yuvarlak, soğuk bir his" demek DOĞRU (dolaysız yaşantıyı raporlama). — (A) YANLIŞ: Bu deney tasarımı hatasıdır; uyarıcı hatası içebakış metoduna özgüdür. — (B) DOĞRU: Nesneyi raporlamak, yaşantıyı değil. — (C) YANLIŞ: Dikkat dağınıklığı farklı bir sorun. — (D) YANLIŞ: Bu Weber-Fechner yasasıyla ilgili psikofizik konusudur. — (E) YANLIŞ: Araya giren düşünceler farklı bir sorun kategorisidir.`},
+{id:'ai5',q:`G.E. Müller'in Ebbinghaus'a en önemli katkısı aşağıdakilerden hangisidir?`,opts:[`Anlamsız heceler yöntemini ilk kez kullanması`,`Unutmanın zaman içinde kendiliğinden yok olmayla (decay) açıklandığını kanıtlaması`,`Unutmanın girişim etkisiyle (interference) açıklanabileceğini deneysel olarak göstermesi`,`Tasarruf metodunu geliştirmesi`,`Bellek çalışmalarında birden fazla denek kullanılması gerektiğini savunması`],answer:2,exp:`Ebbinghaus unutma eğrisini keşfetti; zamanla unutmanın arttığını gösterdi (decay teorisi). Georg Elias Müller ve Pilzecker 1900'de retroaktif girişim (retroactive interference) kavramını deneysel olarak kanıtladı: yeni öğrenilen materyal eskileri aktif biçimde bozar. Titchener kendi kitabını Müller'in çalışmasını beklemek için 2 yıl erteledi. — (A) YANLIŞ: Anlamsız heceler Ebbinghaus'a aittir. — (B) YANLIŞ: Tam tersi — Müller decay teorisine karşı çıktı. — (C) DOĞRU: Girişim teorisi (interference theory) Müller'e aittir. — (D) YANLIŞ: Tasarruf metodu da Ebbinghaus'a aittir. — (E) YANLIŞ: Müller'in asıl katkısı girişim teorisidir.`},
+{id:'ai6',q:`Titchener'in "Deneyciler" grubuna kadınları kabul etmemesiyle ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Titchener kadınların bilimsel yeterliliğine güvenmediğinden bu karara varmıştır`,`Dönemin yasaları kadınların bilimsel toplantılara katılmasını yasaklıyordu`,`Titchener kadın almadığı halde Cornell'de doktora öğrencilerinin üçte biri kadındı`,`Bu karar Titchener'in ölümünden sonra değiştirilmiştir`,`Titchener kendi laboratuvarında da kadın çalıştırmaktan kaçınmıştır`],answer:2,exp:`Titchener'in tutumu psikoloji tarihinin en ilginç paradokslarından birini oluşturur. "Deneyciler" grubuna kadınları kabul etmezdi — gerekçe: sigara dumanı dolu ortam. Oysa Cornell'deki 56 doktora öğrencisinin üçte biri kadındı. İlk kadın doktora öğrencisi Margaret Flay Washburn'u da bizzat kabul etmişti. Christine Ladd-Franklin sürekli protesto edince "tavşanlar gibi yeraltında buluşmak zorunda kalacağız" diye espri yaptı. — (A) YANLIŞ: Sigara ve sosyal normları gerekçe gösterdi, yeterlilik meselesi değil. — (B) YANLIŞ: Yasal bir yasak yoktu. — (C) DOĞRU: Grup toplantılarına almıyor ama kendi lab'ında kadın yetiştiriyordu. — (D) YANLIŞ: Deneyciler grubu Titchener 1927'de ölünce zaten dağıldı. — (E) YANLIŞ: Tam tersi — Cornell'de bizzat kadın öğrenci yetiştirdi.`},
+{id:'ai7',q:`Darwin'in psikolojiye katkılarıyla ilgili aşağıdakilerden hangisi yanlıştır?`,opts:[`Hayvan psikolojisi ve karşılaştırmalı psikolojinin gelişmesine zemin hazırladı`,`Bilincin yapısını değil işlevini ön plana çıkardı`,`Psikoloji metodolojisini fizyoloji dışındaki kaynaklara da açtı`,`Bireysel farklılıkların önemini vurgulayarak Galton'u etkiledi`,`Yapısalcılık ekolünün gelişimini doğrudan etkilemiştir`],answer:4,exp:`Darwin'in psikolojiye dört temel etkisi: (1) Hayvan psikolojisi ve karşılaştırmalı psikoloji, (2) Bilincin işlevi vurgusu — zihin ne yapar, ne için var?, (3) Metodoloji genişlemesi, (4) Bireysel farklılıklar — evrim için varyasyon şarttır. — (A)(B)(C)(D) DOĞRU ETKİ: Hepsi Darwin'in kitapta geçen 4 etkisidir. — (E) YANLIŞ: Darwin Yapısalcılığı ETKİLEMEDİ — aksine Yapısalcılığa KARŞI gelişen İşlevselciliğin temeli oldu. Titchener'ın yapısalcılığı Wundt ve İngiliz empiristlerden beslenir, Darwin'den değil.`},
+{id:'ai8',q:`Galton'un istatistik alanına katkılarıyla ilgili aşağıdakilerden hangisi yanlıştır?`,opts:[`Korelasyon katsayısının (r) temelini atmış, r harfi "regresyon" kelimesinden gelmektedir`,`İkizler metoduyla nature vs nurture tartışmasını başlattı (1875)`,`Antropometrik laboratuvarında 9000'den fazla kişiyi test etti`,`IQ terimini ilk kez kullanan kişi Galton'dur`,`Zekanın kalıtımsal olduğunu savunarak soyarıtımı (eugenics) bilimini kurdu`],answer:3,exp:`Francis Galton istatistik tarihinde devrim niteliğinde katkılar yaptı: korelasyon katsayısı (r harfi "regresyon"dan gelir), regresyon analizi, normal dağılım uygulaması, ikizler metodu (1875), Londra'da 9000+ kişiyi test ettiği Antropometrik Laboratuvar ve eugenics biliminin kurulması. — (A) DOĞRU: r harfi regresyondan gelir. — (B) DOĞRU: İkizler metodu 1875. — (C) DOĞRU: 9000+ kişi test edildi. — (D) YANLIŞ: IQ (Intelligence Quotient) terimini ilk kullanan Galton değil, Alman psikolog William STERN'dir (1912). Lewis Terman Stanford-Binet testini ABD'ye uyarlarken bu terimi benimsedi. — (E) DOĞRU: Eugenics biliminin kurucusu Galton'dur.`},
+{id:'ai9',q:`William James'in bilinç teorisiyle ilgili aşağıdakilerden hangisi yanlıştır?`,opts:[`Bilincin sürekli değişen bir yapısı olduğunu savunmuştur`,`Bilincin kesintisiz bir akış şeklinde ilerlediğini öne sürmüştür`,`Zihnin uyarıcılar arasında seçim yapan ve amaç güden bir yapısı olduğunu savunmuştur`,`Basit bireysel duyumların gerçek deneyimlerde bulunabileceğini savunmuştur`,`Bilincin organizmanın çevreye uyum sağlamasına rehberlik ettiğini öne sürmüştür`],answer:3,exp:`William James bilinci dört temel özellikle tanımladı ve Yapısalcılığın parçalayıcı anlayışına kesinlikle karşı çıktı. James'in deyimiyle: "Hiçbir kimse hayatında basit bir duyumun kendisini yaşamamıştır." — (A) DOĞRU: Sürekli değişim — bilinç akışı duraksız değişir. — (B) DOĞRU: Bilinç akışı (stream of consciousness) — kesintisiz sürekli bir nehir gibi akar. — (C) DOĞRU: Seçicilik ve amaçlılık — zihin dikkatini yönlendirerek seçim yapar. — (D) YANLIŞ: James tam tersini savunur. Basit bireysel duyumlar gerçek deneyimlerde BULUNMAZ; bunlar soyutlamanın sonucudur. Yapısalcılığın element anlayışını bu yüzden reddetti. — (E) DOĞRU: Bilincin uyum işlevi — organizmanın çevreye uyumuna rehberlik eder.`},
+{id:'ai10',q:`"En uyumlu olanın hayatta kalması" ifadesiyle ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Bu ifade Darwin'in doğal seçi teorisinin özetidir ve Darwin tarafından kullanılmıştır`,`Bu ifade Herbert Spencer tarafından üretilmiş ve Darwin'in teorisinden ÖNCE yayımlanmıştır`,`Bu ifade Darwin'in Türlerin Kökeni eserinde geçmektedir`,`Bu ifadeyi ilk kullanan Wallace olup Darwin sonradan benimsemiştir`,`Bu ifade Thomas Malthus'un nüfus teorisinden doğrudan alınmıştır`],answer:1,exp:`"Survival of the fittest" ifadesi psikoloji tarihinde sık sorulan bir tuzaktır. Bu ifade Herbert Spencer'a aittir — Darwin'e değil. Spencer bu ifadeyi Darwin'DEN ÖNCE oluşturdu. Darwin "Türlerin Kökeni"nde kendi ifadesi olan "doğal seçi" terimini kullandı; sonraki baskılarda Spencer'ın ifadesini de alıntıladı. — (A) YANLIŞ: Darwin bu ifadeyi kullandı ama üretmedi — Spencer'dan aldı. — (B) DOĞRU: Spencer bu ifadeyi Darwin'den önce geliştirdi. — (C) YANLIŞ: Darwin sonraki baskılarda alıntıladı ama üretmedi. — (D) YANLIŞ: Wallace doğal seçiyi bağımsız keşfetti ama bu ifadeyle ilgisi yoktur. — (E) YANLIŞ: Malthus Darwin'i ETKİLEDİ ama "survival of the fittest" Spencer'a aittir.`},
+{id:'ai11',q:`Mary Whiton Calkins ile ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Harvard'a kadın olduğu halde kaydolarak doktora derecesi aldı`,`Harvard doktora derecesi vermeyi reddedince Radcliffe'in teklifini kabul etti`,`İkili çağrışım tekniğini geliştirerek APA'nın ilk kadın başkanı oldu (1905)`,`William James'in aktif desteği olmaksızın Harvard seminerlerine katıldı`,`APA listesinde ilk 50 psikolog arasında yer alamamıştır`],answer:2,exp:`Mary Whiton Calkins (1863-1930) psikoloji tarihinin en ilginç figürlerinden biridir. William James'in aktif savunuculuğuyla Harvard seminerlerine kabul edildi. Tüm doktora gereklerini tamamladı — Hugo Münsterberg ona "en iyi doktora öğrencim" dedi. Ancak Harvard kadın olduğu için resmi derece vermedi. Radcliffe Koleji derece teklif ettiğinde "Gereklerimi Harvard'da yerine getirdim" diyerek REDDETTİ. — (A) YANLIŞ: Harvard'a hiçbir zaman resmi olarak kaydedilmedi. — (B) YANLIŞ: Radcliffe teklifini REDDETTİ. — (C) DOĞRU: İkili çağrışım tekniği + APA ilk kadın başkanı 1905 + APA ilk 50 listesinde 12. sıra. — (D) YANLIŞ: James aktif olarak onu savundu ve üniversiteyi zorladı. — (E) YANLIŞ: 12. sıradaydı.`},
+{id:'ai12',q:`Leta Stetter Hollingworth ile ilgili aşağıdakilerden hangisi yanlıştır?`,opts:[`Kadınların erkeklere göre daha homojen olduğunu iddia eden değişkenlik hipotezini çürüttü`,`Adet görmenin performansla hiçbir ilgisi olmadığını deneysel olarak kanıtladı`,`Üstün yetenekli (gifted) terimini psikoloji literatürüne kazandırdı`,`Barnard Koleji'nde evlenmediği için öğretmenliğe devam etmesine izin verilmedi`,`Oy hakkı hareketinde aktif rol üstlendi`],answer:3,exp:`Leta Stetter Hollingworth (1886-1939) üç temel katkıyla öne çıkar: (1) Değişkenlik hipotezini çürütme, (2) Adet-performans ilişkisi yok — deneysel olarak kanıtladı, (3) "Gifted" terimini literatüre kazandırdı. — (A)(B)(C)(E) DOĞRU: Hepsi Hollingworth ile doğru eşleşen bilgilerdir. — (D) YANLIŞ: Hollingworth Barnard Koleji'nde evlenDİĞİ İÇİN (evlendikten sonra) öğretmenliğe devam etmesine izin verilmedi. "Evlenmediği için" ifadesi yanlıştır. Dönemin anlayışı: evli kadın ev dışında çalışmamalı.`},
+{id:'ai13',q:`G. Stanley Hall hakkında aşağıdakilerden hangisi yanlıştır?`,opts:[`ABD'deki ilk psikoloji doktorasını alan kişidir`,`ABD'nin ilk psikoloji laboratuvarını Johns Hopkins'te kurdu (1883)`,`APA'nın kurucu ve ilk başkanı olduğu 1892 yılında dergisi de kuruldu`,`Francis Sumner psikolojide doktora alan ilk siyahi Amerikalıdır ve Hall ile çalıştı`,`Freud ve Jung'u 1909'da Clark Üniversitesi'ne davet etti — Freud'un ABD'ye tek ziyareti`],answer:2,exp:`G. Stanley Hall psikoloji tarihindeki ilkler listesinin zirvesindedir: ABD'deki ilk psikoloji doktorası (Harvard, 1878), ABD'nin ilk psikoloji laboratuvarı (Johns Hopkins, 1883), APA kurucu ve ilk başkanı (1892). — (A) DOĞRU: 1878 Harvard. — (B) DOĞRU: 1883 Johns Hopkins. — (C) YANLIŞ: Hall'ın dergisi (American Journal of Psychology) 1892'de değil 1887'de kuruldu — APA'dan tam 5 YIL ÖNCE. Bu kritik tarih farkıdır. — (D) DOĞRU: Francis Sumner psikolojide doktora alan ilk Siyahi Amerikalıdır; Hall'ın öğrencisiydi. — (E) DOĞRU: 1909 Clark Üniversitesi konferansı, Freud'un tek ABD ziyaretiydi.`},
+{id:'ai14',q:`Psikolojik test hareketi kronolojisiyle ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`IQ terimini ilk kullanan Alfred Binet'dir`,`Zihinsel yaş kavramını Terman geliştirdi`,`Ordu Alfa testi okur-yazar olmayanlar için, Ordu Beta testi okur-yazarlar için tasarlandı`,`Binet testi 1904'te Fransız Milli Eğitim Bakanlığı komisyonu gereğince geliştirildi ve Binet kendi iki kızını denek olarak kullandı`,`Stanford-Binet testini geliştiren James McKeen Cattell'dir`],answer:3,exp:`Test hareketi zinciri: Galton (duyusal testler) → Cattell (zihinsel test terimi, 1890) → Binet+Simon (1905, zihinsel yaş kavramı) → Terman (Stanford-Binet, 1916) → WWI Ordu testleri. — (A) YANLIŞ: IQ terimini ilk kullanan Binet değil, Alman psikolog William Stern'dir (1912). — (B) YANLIŞ: Zihinsel yaş kavramını Terman değil Binet geliştirdi. — (C) YANLIŞ: ALFA testi okur-yazarlar için (yazılı), BETA testi okur-yazar olmayanlar için (resimli/sözsüz). Soru tam tersi yazıyor. — (D) DOĞRU: 1904'te Fransız Bakanlığı komisyonu kuruldu. Binet kendi iki kızını denek kullandı. — (E) YANLIŞ: Stanford-Binet'i geliştiren Lewis Terman'dır, Cattell değil.`},
+{id:'ai15',q:`Lightner Witmer ile ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Klinik psikoloji terimini Münsterberg geliştirmiştir, Witmer sadece ilk kliniği açmıştır`,`Dünyanın ilk psikoloji kliniğini 1896'da açarak klinik psikoloji terimini ilk kullanan kişidir`,`Witmer psikoloji kliniğini ekonomik kaygıdan değil tamamen bilimsel ilgiden dolayı kurdu`,`Witmer Wundt'un laboratuvar çalışmalarından çok etkilenerek bu alana yöneldi`,`Witmer'ın ilk vakası görme sorunu olan bir yetişkindi`],answer:1,exp:`Lightner Witmer (1867-1956) psikoloji pratiğinin kurucusudur. 1892'de Wundt'un yanında doktora yaptı. 1896'da dünyanın ilk psikoloji kliniğini açtı; "klinik psikoloji" ve "okul psikolojisi" terimlerini literatüre kazandırdı. — (A) YANLIŞ: Münsterberg "klinik psikoloji" terimini kullanmadı. Hem ilk klinik hem de terim Witmer'a aittir. — (B) DOĞRU: Hem ilk klinik (1896) hem klinik psikoloji terimi Witmer'a aittir. — (C) YANLIŞ: Kitaba göre Witmer psikolojiye ekonomik nedenle girdi. — (D) YANLIŞ: Tam tersi — Wundt'un yoğun laboratuvar çalışmalarından HOŞNUT DEĞİLDİ. — (E) YANLIŞ: İlk vaka 14 yaşında okuma güçlüğü çeken bir çocuktu.`},
+{id:'ai16',q:`James McKeen Cattell hakkında hangisi "tahrif edilmiş tarih" örneği olarak kitapta gösterilmiştir?`,opts:[`Pennsylvania Üniversitesi'ndeki atamasının "dünyanın ilk psikoloji profesörlüğü" olduğu iddiası`,`Leipzig'de Wundt'a "Bir asistana ihtiyacınız varmış, o benim" demiş olduğu hikayesi`,`Wundt'a bir daktilo tanıtmış olduğu hikayesi`,`Columbia'dan savaş karşıtı mektuplar yüzünden kovulmuş olduğu`,`Zihinsel test terimini 1890'da ilk kullanan kişi olduğu`],answer:0,exp:`Cattell ile ilgili iki önemli tahrif örneği vardır: (1) Leipzig asistanlık hikayesi — Sokal (1981) araştırmasıyla çürütüldü. (2) Pennsylvania ataması — aslında felsefe bölümüne atandı ama bunu "dünyanın ilk psikoloji profesörlüğü" olarak sundu. — (A) YANLIŞ OLAN: Pennsylvania ataması aslında felsefe bölümüneydi; "dünyanın ilk psikoloji profesörlüğü" iddiası tahrif edilmiş tarihtir. — (B) YANLIŞ OLAN: Leipzig asistanlık teklifi hikayesi de tahrif edilmiştir. — (D) DOĞRU: Cattell gerçekten Columbia'dan kovuldu; bu tahrif değil gerçektir. — (E) DOĞRU: Zihinsel test terimi 1890'da Cattell'e aittir; bu tahrif değildir.`},
+{id:'ai17',q:`Hugo Münsterberg'in "Şahitlik Kürsüsünde" (1908) eserinin önemi nedir?`,opts:[`Endüstri psikolojisinde personel seçiminin bilimsel temellerini atan ilk eserdir`,`Görgü tanığı ifadelerinin güvenilirliğini ve sahte itirafları araştıran adli psikolojinin öncü eseridir`,`Klinik psikoloji alanında psikoterapinin bilimsel yöntemlerini ortaya koyan ilk kitaptır`,`Reklam psikolojisinde tüketici davranışını inceleyen ilk akademik çalışmadır`,`Bilinçdışı çatışmaların psikolojik bozukluklara yol açtığını kanıtlayan ilk deneysel çalışmadır`],answer:1,exp:`Hugo Münsterberg (1863-1916) Wundt'un öğrencisiydi ve William James'in daveti üzerine Harvard'a geldi. "Şahitlik Kürsüsünde" (On the Witness Stand, 1908) adli psikolojinin temel eseridir: sahte suç anları oluşturarak tanıkları sorguladı, hafızalarında taze olduğu halde bile çelişen ifadeler verdiklerini gösterdi. 1976'ya dek baskısı yapıldı — 68 yıl geçerliliğini korudu. — (A) YANLIŞ: Bu Walter Dill Scott'un alanı. — (B) DOĞRU: Adli psikolojinin öncü eseri. — (C) YANLIŞ: Bu eser adli psikoloji kitabıdır, klinik değil. — (D) YANLIŞ: Münsterberg ve Scott reklam psikolojisi çalıştı ama bu eser o alan değil. — (E) YANLIŞ: Bilinçdışı çatışmalar Freud'undur; Münsterberg bilinçdışının VAR OLMADIĞINI savunuyordu.`},
+{id:'ai18',q:`Robert Woodworth'un "dinamik psikoloji" anlayışıyla ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Woodworth psikolojide sadece gözlenebilir davranışın incelenmesi gerektiğini savunmuştur`,`U-O-T formülü içinde O (organizma) sadece mevcut durumu temsil eder, geçmiş deneyimleri değil`,`Woodworth "dürtü" (drive) terimini psikoloji literatürüne kazandıran ilk kişidir`,`Woodworth motivasyonu merkeze alan dinamik psikolojide mekanizma ve dürünün birbirine dönüşebileceğini savundu`,`Dinamik psikoloji içgözlemi tamamen reddeden davranışçı bir yaklaşımdır`],answer:3,exp:`Robert Woodworth (1869-1962) Columbia İşlevselciliği'nin önemli ismidir. Wundt'un S-R şemasını S-O-R'a genişletti. Organizma hem mevcut hem geçmiş deneyimleriyle aktif karar veren bir yapıdır. Mekanizma (NASIL) ve dürtü (NEDEN) ayrımı yaptı ama ikisinin dönüşebilir olduğunu savundu. — (A) YANLIŞ: Woodworth içgözlemi faydalı buldu; saf davranışçı değil, eklektik bir yaklaşım. — (B) YANLIŞ: O (organizma) HEM mevcut HEM geçmiş deneyimlerle karar verir. — (C) YANLIŞ: "Dürtü" terimini Watson 8 ay önce kullanmıştı — bu da "tahrif edilmiş tarih" örneğidir. — (D) DOĞRU: Mekanizma ve dürünün dönüşebilirliği Woodworth'un özgün katkısıdır. — (E) YANLIŞ: İçgözlemi destekleyen, davranışçılığı reddeden bir yaklaşımdır.`},
+{id:'ai19',q:`Hawthorne araştırmalarının psikoloji tarihindeki önemi nedir?`,opts:[`Fiziksel çalışma ortamının (ısı, ışık) verimlilik üzerindeki etkisini ilk kez ölçmüşlerdir`,`İşyerinde sosyal ve psikolojik koşulların fiziksel koşullardan daha önemli olduğunu ortaya koymuştur`,`Taylor'ın bilimsel yönetim teorisini deneysel olarak doğrulamıştır`,`Hawthorne etkisi çalışanların gözlendiklerini bildiklerinde performanslarını DÜŞÜRDÜĞÜNÜ gösterir`,`Araştırma 1950'lerde Western Electric fabrikasında yapılmıştır`],answer:1,exp:`Hawthorne araştırmaları 1924-1932 yılları arasında Illinois'teki Western Electric fabrikasında yapıldı. Başlangıç amacı fizikseldi: aydınlatma ve ısının verimliliğe etkisi ölçülecekti. Sürpriz sonuç: fiziksel koşullar değiştirildiğinde (daha az ışık bile verilse) verimlilik artıyordu. Gerçek neden: çalışanların gözlendiğini bilmesi ve sosyal grup dinamikleri. — (A) YANLIŞ: Başlangıç amacı buydu ama fiziksel koşulların etkisi beklenen sonucu vermedi. — (B) DOĞRU: Sosyal/psikolojik koşullar > fiziksel koşullar sonucu. — (C) YANLIŞ: Tam tersi — Taylor'ın mekanik anlayışına karşı bulgular çıktı. — (D) YANLIŞ: Performansı ARTIRDI, düşürmedi. — (E) YANLIŞ: 1924-1932 yıllarında yapıldı, 1950'lerde değil.`},
+{id:'ai20',q:`İşlevselcilik terimini psikoloji literatürüne kazandıran kişi aslında kimdir?`,opts:[`William James, bilinç akışı teorisiyle bu terimi oluşturmuştur`,`John Dewey, refleks arkı makalesinde (1896) bu terimi kullanmıştır`,`Harvey Carr, Chicago Okulu'nun anlayışını açıklamak için bu terimi türetti`,`Edward Titchener, yapısalcılığın karşıtı olarak bu terimi yarattı`,`James Rowland Angell, APA başkanlık söylevinde bu terimi ilk kez kullanmıştır`],answer:3,exp:`İşlevselciliğin en büyük ironisi: "işlevselcilik" terimini yaratan kişi, bu ekolün en sert eleştirmenlerinden biri olan Edward Bradford TİTCHENER'dir. Titchener 1898'de "yapısal psikoloji"yi savunurken karşısındaki anlayışa "işlevsel psikoloji" adını verdi. İşlevselciler bu ismi benimsedi. Yani bir ekolün adını, o ekolü en çok eleştiren kişi koydu. — (A) YANLIŞ: James "bilinç akışı"nı geliştirdi ama "işlevselcilik" terimini yaratmadı. — (B) YANLIŞ: Dewey refleks arkı makalesiyle dönüm noktası oluşturdu ama terimi Titchener yarattı. — (C) YANLIŞ: Carr Chicago İşlevselciliğini sistematize etti ama terimi yaratmadı. — (D) DOĞRU: Titchener eleştirirken farkında olmadan net bir kimlik kazandırdı. — (E) YANLIŞ: Angell işlevselciliği güçlü biçimde savundu ama terimi yaratmadı.`}
+];
+
+
+// ═══════════════════════════════════════
 // DURUM
-// ══════════════════════════════════════════
-let state = {
-  userName: '',
-  levels: {},
-  totalAnswered: 0,
-  totalCorrect: 0,
-  streak: 0,
-  maxStreak: 0,
-  sessionCorrect: 0,
-  sessionWrong: 0,
-  sessionHistory: [],
-  currentQ: null,
-  answered: false,
-  // full test
-  ftIndex: 0,
-  ftOrder: [],
-  ftCorrect: 0,
-  ftWrong: 0,
-  ftMaxStreak: 0,
-  ftStreak: 0,
-  ftWrongIds: [],
-  ftAnswered: false
-};
+// ═══════════════════════════════════════
+const SETS={cikmis:SET_CIKMIS,muhtemel:SET_MUHTEMEL,ai:SET_AI};
+const SET_COUNTS={cikmis:30,muhtemel:20,ai:20};
+let selected={cikmis:true,muhtemel:false,ai:false};
+let currentMode='sonsuz';
+let lastMode='sonsuz';
+let activePool=[];
+let state={userName:'',levels:{},totalAnswered:0,totalCorrect:0,streak:0,maxStreak:0,sessionCorrect:0,sessionWrong:0,sessionHistory:[],currentQ:null,answered:false,ftIndex:0,ftOrder:[],ftCorrect:0,ftWrong:0,ftStreak:0,ftMaxStreak:0,ftWrongIds:[],ftAnswered:false};
 
-function getKey(name) {
-  return 'psytarih_' + (name||'anonim').toLowerCase().replace(/\s+/g,'_');
+function getKey(n){return 'psy3_'+(n||'anonim').toLowerCase().replace(/\s+/g,'_')}
+function allQ(){return[...SET_CIKMIS,...SET_MUHTEMEL,...SET_AI]}
+
+function loadSt(){
+  const n=document.getElementById('name-input').value.trim()||'Anonim';
+  state.userName=n;
+  const s=localStorage.getItem(getKey(n));
+  if(s){const d=JSON.parse(s);state.levels=d.levels||{};state.totalAnswered=d.totalAnswered||0;state.totalCorrect=d.totalCorrect||0;}
+  else{state.levels={};state.totalAnswered=0;state.totalCorrect=0;}
+  allQ().forEach(q=>{if(!state.levels[q.id])state.levels[q.id]=3;});
+}
+function saveSt(){localStorage.setItem(getKey(state.userName),JSON.stringify({levels:state.levels,totalAnswered:state.totalAnswered,totalCorrect:state.totalCorrect}));}
+
+function pickNext(pool){
+  const w={1:32,2:16,3:8,4:3,5:1};
+  const rec=state.sessionHistory.slice(-4);
+  const src=pool.filter(q=>!rec.includes(q.id));
+  const base=src.length>=4?src:pool;
+  const wArr=[];
+  base.forEach(q=>{const l=Math.max(1,Math.min(5,state.levels[q.id]||3));for(let i=0;i<w[l];i++)wArr.push(q);});
+  const p=wArr[Math.floor(Math.random()*wArr.length)];
+  state.sessionHistory.push(p.id);
+  if(state.sessionHistory.length>12)state.sessionHistory.shift();
+  return p;
 }
 
-function loadState() {
-  const name = document.getElementById('name-input').value.trim() || 'Anonim';
-  state.userName = name;
-  const saved = localStorage.getItem(getKey(name));
-  if (saved) {
-    const s = JSON.parse(saved);
-    state.levels = s.levels || {};
-    state.totalAnswered = s.totalAnswered || 0;
-    state.totalCorrect = s.totalCorrect || 0;
-  } else {
-    state.levels = {};
-    state.totalAnswered = 0;
-    state.totalCorrect = 0;
-  }
-  QUESTIONS.forEach(q => {
-    if (!state.levels[q.id]) state.levels[q.id] = 3;
-  });
+// ═══════════════════════════════════════
+// EKRANLAR
+// ═══════════════════════════════════════
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function goHome(){updateMastery();showScreen('home');}
+
+function updateMastery(){
+  const n=document.getElementById('name-input').value.trim()||'Anonim';
+  const s=localStorage.getItem(getKey(n));
+  if(!s)return;
+  const d=JSON.parse(s);
+  if(!d.totalAnswered||d.totalAnswered===0)return;
+  const lv=d.levels||{};
+  const all=allQ();
+  let learned=0;
+  all.forEach(q=>{if((lv[q.id]||3)>=4)learned++;});
+  const working=all.filter(q=>(lv[q.id]||3)<=2).length;
+  const pct=Math.round(learned/all.length*100);
+  document.getElementById('mastery-block').style.display='block';
+  document.getElementById('mastery-pct').textContent=pct+'%';
+  document.getElementById('mastery-bar').style.width=pct+'%';
+  document.getElementById('ms-learned').textContent=learned;
+  document.getElementById('ms-working').textContent=working;
+  document.getElementById('ms-total').textContent=d.totalAnswered;
+}
+document.getElementById('name-input').addEventListener('input',updateMastery);
+
+// ═══════════════════════════════════════
+// SET SEÇİM
+// ═══════════════════════════════════════
+function openSelect(mode){
+  currentMode=mode;lastMode=mode;
+  const titles={sonsuz:'Sonsuz Mod — Set Seç',coz:'Soruları Çöz — Set Seç',cevap:'Cevapları Gör — Set Seç'};
+  const subs={sonsuz:'Birden fazla seçebilirsin',coz:'Birden fazla seçebilirsin',cevap:'Birden fazla seçebilirsin'};
+  const btnTxt={sonsuz:'Sonsuz Mod Başla',coz:'Çözmeye Başla',cevap:'Cevapları Gör'};
+  document.getElementById('ss-title').textContent=titles[mode];
+  document.getElementById('ss-sub').textContent=subs[mode];
+  document.getElementById('ss-start-btn').textContent=btnTxt[mode];
+  updateSetTotal();
+  showScreen('setselect');
 }
 
-function saveState() {
-  localStorage.setItem(getKey(state.userName), JSON.stringify({
-    levels: state.levels,
-    totalAnswered: state.totalAnswered,
-    totalCorrect: state.totalCorrect
-  }));
+function toggleSet(key){
+  if(key==='ai')return;
+  selected[key]=!selected[key];
+  const card=document.getElementById('sc-'+key);
+  if(selected[key])card.classList.add('selected');else card.classList.remove('selected');
+  updateSetTotal();
 }
 
-// ══════════════════════════════════════════
-// ALGORİTMA — Hibrit Spaced Repetition
-// Level 1 (çok zor) → her turda gelir
-// Level 2 → her 2 soruda bir
-// Level 3 → her 4 soruda bir
-// Level 4 → her 8 soruda bir
-// Level 5 (iyi biliyor) → her 15 soruda bir — UNUTMAMAK İÇİN GÖRÜNÜR
-// ══════════════════════════════════════════
-function pickNextQuestion() {
-  const weights = { 1: 32, 2: 16, 3: 8, 4: 3, 5: 1 };
-  const recent = state.sessionHistory.slice(-4);
-  const pool = QUESTIONS.filter(q => !recent.includes(q.id));
-  const src = pool.length >= 4 ? pool : QUESTIONS;
-
-  const weighted = [];
-  src.forEach(q => {
-    const lvl = Math.max(1, Math.min(5, state.levels[q.id] || 3));
-    const w = weights[lvl];
-    for (let i = 0; i < w; i++) weighted.push(q);
-  });
-
-  const picked = weighted[Math.floor(Math.random() * weighted.length)];
-  state.sessionHistory.push(picked.id);
-  if (state.sessionHistory.length > 12) state.sessionHistory.shift();
-  return picked;
+function updateSetTotal(){
+  let total=0;
+  Object.keys(selected).forEach(k=>{if(selected[k])total+=SET_COUNTS[k]||0;});
+  document.getElementById('ss-total').textContent=total+' soru';
+  const btn=document.getElementById('ss-start-btn');
+  btn.disabled=total===0;
 }
 
-// ══════════════════════════════════════════
-// EKRAN
-// ══════════════════════════════════════════
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
+function startSelected(){
+  const pool=[];
+  if(selected.cikmis)pool.push(...SET_CIKMIS);
+  if(selected.muhtemel)pool.push(...SET_MUHTEMEL);
+  if(pool.length===0)return;
+  activePool=pool;
+  loadSt();
+  if(currentMode==='cevap'){showAnswers(pool);}
+  else if(currentMode==='coz'){startFullTest(pool);}
+  else{startSonsuz(pool);}
 }
 
-function goHome() {
-  updateMastery();
-  showScreen('home');
-}
-
-function updateMastery() {
-  const name = document.getElementById('name-input').value.trim() || 'Anonim';
-  const saved = localStorage.getItem(getKey(name));
-  if (!saved) return;
-  const s = JSON.parse(saved);
-  if (!s.totalAnswered || s.totalAnswered === 0) return;
-
-  const levels = s.levels || {};
-  let learned = 0;
-  QUESTIONS.forEach(q => {
-    if ((levels[q.id] || 3) >= 4) learned++;
-  });
-  const pct = Math.round(learned / QUESTIONS.length * 100);
-  const working = QUESTIONS.filter(q => (levels[q.id] || 3) <= 2).length;
-
-  document.getElementById('mastery-block').style.display = 'block';
-  document.getElementById('mastery-pct').textContent = pct + '%';
-  document.getElementById('mastery-bar').style.width = pct + '%';
-  document.getElementById('ms-correct').textContent = learned;
-  document.getElementById('ms-wrong').textContent = working;
-  document.getElementById('ms-total').textContent = s.totalAnswered;
-}
-
-document.getElementById('name-input').addEventListener('input', updateMastery);
-
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════
 // SONSUZ MOD
-// ══════════════════════════════════════════
-function startQuiz() {
-  loadState();
-  state.sessionCorrect = 0;
-  state.sessionWrong = 0;
-  state.streak = 0;
-  state.maxStreak = 0;
-  state.sessionHistory = [];
+// ═══════════════════════════════════════
+function startSonsuz(pool){
+  state.sessionCorrect=0;state.sessionWrong=0;state.streak=0;state.maxStreak=0;state.sessionHistory=[];
   showScreen('quiz');
-  renderQuestion();
+  document.getElementById('next-btn').onclick=nextQ;
+  renderQ(pool);
 }
 
-function renderQuestion() {
-  state.currentQ = pickNextQuestion();
-  state.answered = false;
-  const q = state.currentQ;
-
-  const total = state.sessionCorrect + state.sessionWrong;
-  const pct = total > 0 ? Math.round(state.sessionCorrect / total * 100) : 0;
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('quiz-meta').textContent = 'PSİKOLOJİ TARİHİ · #' + q.id;
-  document.getElementById('streak-count').textContent = state.streak + ' seri';
-
-  const lvl = Math.max(1, Math.min(5, state.levels[q.id] || 3));
-  for (let i = 1; i <= 5; i++) {
-    document.getElementById('ld' + i).className = 'level-dot' + (i <= lvl ? ' active' : '');
-  }
-  const lvlLabels = ['','Öncelikli','Zor','Orta','İyi','Pekişti'];
-  document.getElementById('level-text').textContent = lvlLabels[lvl];
-
-  document.getElementById('question-text').textContent = q.q;
-  renderOptions('options-container', q, (i) => selectAnswer(i));
-
-  document.getElementById('explanation-box').style.display = 'none';
-  document.getElementById('next-btn').style.display = 'none';
+function renderQ(pool){
+  state.currentQ=pickNext(pool);
+  state.answered=false;
+  const q=state.currentQ;
+  const tot=state.sessionCorrect+state.sessionWrong;
+  const pct=tot>0?Math.round(state.sessionCorrect/tot*100):0;
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('quiz-meta').textContent='PSİKOLOJİ TARİHİ · #'+q.id;
+  document.getElementById('streak-count').textContent=state.streak+' seri';
+  const lvl=Math.max(1,Math.min(5,state.levels[q.id]||3));
+  for(let i=1;i<=5;i++)document.getElementById('ld'+i).className='level-dot'+(i<=lvl?' active':'');
+  const lbl=['','Öncelikli','Zor','Orta','İyi','Pekişti'];
+  document.getElementById('level-text').textContent=lbl[lvl];
+  document.getElementById('question-text').textContent=q.q;
+  renderOpts('options-container',q,i=>selAnswer(i,pool));
+  document.getElementById('exp-box').style.display='none';
+  document.getElementById('next-btn').style.display='none';
 }
 
-function selectAnswer(chosenIdx) {
-  if (state.answered) return;
-  state.answered = true;
-  const q = state.currentQ;
-  applyAnswerStyles('options-container', q, chosenIdx);
-  const isCorrect = chosenIdx === q.answer;
-
-  if (isCorrect) {
-    state.levels[q.id] = Math.min(5, (state.levels[q.id] || 3) + 1);
-    state.sessionCorrect++;
-    state.streak++;
-    state.maxStreak = Math.max(state.maxStreak, state.streak);
-  } else {
-    state.levels[q.id] = 1;
-    state.sessionWrong++;
-    state.streak = 0;
-  }
-  state.totalAnswered++;
-  if (isCorrect) state.totalCorrect++;
-  saveState();
-  updateMastery();
-
-  document.getElementById('streak-count').textContent = state.streak + ' seri';
-  showExplanation('explanation-box', 'exp-result', 'exp-text', q, chosenIdx, isCorrect);
-  document.getElementById('next-btn').style.display = 'block';
-  setTimeout(() => document.getElementById('explanation-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+function selAnswer(idx,pool){
+  if(state.answered)return;
+  state.answered=true;
+  const q=state.currentQ;
+  applyStyles('options-container',q,idx);
+  const ok=idx===q.answer;
+  if(ok){state.levels[q.id]=Math.min(5,(state.levels[q.id]||3)+1);state.sessionCorrect++;state.streak++;state.maxStreak=Math.max(state.maxStreak,state.streak);}
+  else{state.levels[q.id]=1;state.sessionWrong++;state.streak=0;}
+  state.totalAnswered++;if(ok)state.totalCorrect++;
+  saveSt();updateMastery();
+  document.getElementById('streak-count').textContent=state.streak+' seri';
+  showExp(q,idx,ok);
+  const nb=document.getElementById('next-btn');
+  nb.onclick=()=>renderQ(pool);
+  nb.style.display='block';
+  setTimeout(()=>document.getElementById('exp-box').scrollIntoView({behavior:'smooth',block:'nearest'}),100);
 }
 
-function nextQuestion() {
-  renderQuestion();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function nextQ(){} // placeholder, overridden dynamically
+
+// ═══════════════════════════════════════
+// TAM TEST
+// ═══════════════════════════════════════
+function startFullTest(pool){
+  const sorted=[...pool].sort((a,b)=>(state.levels[a.id]||3)-(state.levels[b.id]||3));
+  state.ftOrder=sorted;state.ftIndex=0;state.ftCorrect=0;state.ftWrong=0;state.ftStreak=0;state.ftMaxStreak=0;state.ftWrongIds=[];state.ftAnswered=false;
+  showScreen('quiz');
+  renderFT();
 }
 
-// ══════════════════════════════════════════
-// 46 SORULUK TAM TEST
-// ══════════════════════════════════════════
-function startFullTest() {
-  loadState();
-  // Sıralama: önce düşük level (zor/çalışılanlar), sonra yüksek level
-  const sorted = [...QUESTIONS].sort((a, b) => {
-    const la = state.levels[a.id] || 3;
-    const lb = state.levels[b.id] || 3;
-    return la - lb;
-  });
-  state.ftOrder = sorted;
-  state.ftIndex = 0;
-  state.ftCorrect = 0;
-  state.ftWrong = 0;
-  state.ftStreak = 0;
-  state.ftMaxStreak = 0;
-  state.ftWrongIds = [];
-  state.ftAnswered = false;
-  showScreen('fulltest');
-  renderFTQuestion();
+function renderFT(){
+  state.ftAnswered=false;
+  const q=state.ftOrder[state.ftIndex];
+  const pct=Math.round(state.ftIndex/state.ftOrder.length*100);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('quiz-meta').textContent='PSİKOLOJİ TARİHİ · '+(state.ftIndex+1)+' / '+state.ftOrder.length;
+  document.getElementById('streak-count').textContent=state.ftStreak+' seri';
+  const lvl=Math.max(1,Math.min(5,state.levels[q.id]||3));
+  for(let i=1;i<=5;i++)document.getElementById('ld'+i).className='level-dot'+(i<=lvl?' active':'');
+  const lbl=['','Öncelikli','Zor','Orta','İyi','Pekişti'];
+  document.getElementById('level-text').textContent=lbl[lvl];
+  document.getElementById('question-text').textContent=q.q;
+  renderOpts('options-container',q,i=>selFT(i));
+  document.getElementById('exp-box').style.display='none';
+  document.getElementById('next-btn').style.display='none';
 }
 
-function renderFTQuestion() {
-  state.ftAnswered = false;
-  const q = state.ftOrder[state.ftIndex];
-  const pct = Math.round(state.ftIndex / QUESTIONS.length * 100);
-  document.getElementById('ft-progress-fill').style.width = pct + '%';
-  document.getElementById('ft-current').textContent = state.ftIndex + 1;
-  document.getElementById('ft-question-text').textContent = q.q;
-  renderOptions('ft-options-container', q, (i) => ftSelectAnswer(i));
-  document.getElementById('ft-explanation-box').style.display = 'none';
-  document.getElementById('ft-next-btn').style.display = 'none';
+function selFT(idx){
+  if(state.ftAnswered)return;
+  state.ftAnswered=true;
+  const q=state.ftOrder[state.ftIndex];
+  applyStyles('options-container',q,idx);
+  const ok=idx===q.answer;
+  if(ok){state.levels[q.id]=Math.min(5,(state.levels[q.id]||3)+1);state.ftCorrect++;state.ftStreak++;state.ftMaxStreak=Math.max(state.ftMaxStreak,state.ftStreak);}
+  else{state.levels[q.id]=1;state.ftWrong++;state.ftStreak=0;state.ftWrongIds.push(q.id);}
+  state.totalAnswered++;if(ok)state.totalCorrect++;
+  saveSt();updateMastery();
+  showExp(q,idx,ok);
+  const isLast=state.ftIndex>=state.ftOrder.length-1;
+  const nb=document.getElementById('next-btn');
+  nb.textContent=isLast?'Sonuçları Gör →':'Sonraki →';
+  nb.onclick=isLast?showResult:ftNext;
+  nb.style.display='block';
+  setTimeout(()=>document.getElementById('exp-box').scrollIntoView({behavior:'smooth',block:'nearest'}),100);
 }
 
-function ftSelectAnswer(chosenIdx) {
-  if (state.ftAnswered) return;
-  state.ftAnswered = true;
-  const q = state.ftOrder[state.ftIndex];
-  applyAnswerStyles('ft-options-container', q, chosenIdx);
-  const isCorrect = chosenIdx === q.answer;
+function ftNext(){state.ftIndex++;renderFT();window.scrollTo({top:0,behavior:'smooth'});}
 
-  if (isCorrect) {
-    state.levels[q.id] = Math.min(5, (state.levels[q.id] || 3) + 1);
-    state.ftCorrect++;
-    state.ftStreak++;
-    state.ftMaxStreak = Math.max(state.ftMaxStreak, state.ftStreak);
-  } else {
-    state.levels[q.id] = 1;
-    state.ftWrong++;
-    state.ftStreak = 0;
-    state.ftWrongIds.push(q.id);
-  }
-  state.totalAnswered++;
-  if (isCorrect) state.totalCorrect++;
-  saveState();
-  updateMastery();
-
-  showExplanation('ft-explanation-box', 'ft-exp-result', 'ft-exp-text', q, chosenIdx, isCorrect);
-  const isLast = state.ftIndex >= QUESTIONS.length - 1;
-  document.getElementById('ft-next-btn').textContent = isLast ? 'Sonuçları Gör →' : 'Sonraki →';
-  document.getElementById('ft-next-btn').style.display = 'block';
-  setTimeout(() => document.getElementById('ft-explanation-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-}
-
-function ftNext() {
-  if (state.ftIndex >= QUESTIONS.length - 1) {
-    showResult();
-    return;
-  }
-  state.ftIndex++;
-  renderFTQuestion();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showResult() {
-  const total = QUESTIONS.length;
-  const correct = state.ftCorrect;
-  const wrong = state.ftWrong;
-  const pct = Math.round(correct / total * 100);
-
-  document.getElementById('res-score').textContent = pct + '%';
-  document.getElementById('res-label').textContent = state.userName + ' · ' + correct + ' doğru / ' + wrong + ' yanlış';
-  document.getElementById('res-correct').textContent = correct;
-  document.getElementById('res-wrong').textContent = wrong;
-  document.getElementById('res-total').textContent = total;
-  document.getElementById('res-streak').textContent = state.ftMaxStreak;
-
-  const weakSec = document.getElementById('weak-section');
-  if (state.ftWrongIds.length > 0) {
-    const items = state.ftWrongIds.map(id => {
-      const q = QUESTIONS.find(x => x.id === id);
-      return `<div class="weak-item"><strong style="color:#EF9F27">Soru ${id}:</strong> ${q.q.substring(0, 80)}...</div>`;
-    }).join('');
-    weakSec.innerHTML = `<div class="weak-title">YANLIŞ YAPILANLAR (${state.ftWrongIds.length})</div>${items}`;
-  } else {
-    weakSec.innerHTML = '<div style="color:#1D9E75;font-size:14px;margin-bottom:1rem">Tüm soruları doğru yaptın!</div>';
-  }
+function showResult(){
+  const tot=state.ftOrder.length;
+  const pct=Math.round(state.ftCorrect/tot*100);
+  document.getElementById('res-score').textContent=pct+'%';
+  document.getElementById('res-label').textContent=state.userName+' · '+state.ftCorrect+' doğru / '+state.ftWrong+' yanlış';
+  document.getElementById('res-correct').textContent=state.ftCorrect;
+  document.getElementById('res-wrong').textContent=state.ftWrong;
+  document.getElementById('res-total').textContent=tot;
+  document.getElementById('res-streak').textContent=state.ftMaxStreak;
+  const ws=document.getElementById('weak-sec');
+  if(state.ftWrongIds.length>0){
+    const items=state.ftWrongIds.map(id=>{const q=allQ().find(x=>x.id===id);return`<div class="weak-item"><strong style="color:#EF9F27">#${id}:</strong> ${q.q.substring(0,80)}...</div>`;}).join('');
+    ws.innerHTML=`<div class="weak-title">YANLIŞ YAPILANLAR (${state.ftWrongIds.length})</div>${items}`;
+  }else{ws.innerHTML='<div style="color:#1D9E75;font-size:14px;margin-bottom:1rem">Tüm soruları doğru yaptın!</div>';}
   showScreen('result');
 }
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════════
 // CEVAPLAR
-// ══════════════════════════════════════════
-function showAllQuestions() {
-  const list = document.getElementById('allq-list');
-  list.innerHTML = '';
-  const letters = ['A','B','C','D','E'];
-  QUESTIONS.forEach(q => {
-    const item = document.createElement('div');
-    item.className = 'q-item';
-    const optsHtml = q.opts.map((opt, i) =>
-      `<div class="q-opt${i === q.answer ? ' is-correct' : ''}">${letters[i]}) ${opt}</div>`
-    ).join('');
-    item.innerHTML = `
-      <div class="q-num">SORU ${q.id}</div>
-      <div class="q-text">${q.q}</div>
-      <div class="q-opts">${optsHtml}</div>
-      <div class="q-gerekce"><strong style="color:#EF9F27">Gerekçe:</strong> ${q.exp}</div>
-    `;
+// ═══════════════════════════════════════
+function showAnswers(pool){
+  const letters=['A','B','C','D','E'];
+  document.getElementById('allq-title').textContent='Cevaplar ve Açıklamalar ('+pool.length+')';
+  const list=document.getElementById('allq-list');
+  list.innerHTML='';
+  pool.forEach((q,idx)=>{
+    const item=document.createElement('div');item.className='q-item';
+    const rel=q.relevance==='high'?'<span class="q-rel q-rel-high">Doğrudan ilgili</span>':q.relevance==='med'?'<span class="q-rel q-rel-med">Kısmen ilgili</span>':'';
+    const opts=q.opts.map((o,i)=>`<div class="q-opt${i===q.answer?' correct':''}">${letters[i]}) ${o}</div>`).join('');
+    item.innerHTML=`<div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:8px"><span class="q-num">SORU ${idx+1}</span>${rel}</div><div class="q-text">${q.q}</div><div class="q-opts">${opts}</div><div class="q-gerekce"><strong style="color:#EF9F27">Gerekçe:</strong> ${q.exp}</div>`;
     list.appendChild(item);
   });
   showScreen('allq');
 }
 
-// ══════════════════════════════════════════
-// YARDIMCI FONKSİYONLAR
-// ══════════════════════════════════════════
-function renderOptions(containerId, q, onClick) {
-  const letters = ['A','B','C','D','E'];
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-  q.opts.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'opt-btn';
-    btn.innerHTML = `<div class="opt-letter">${letters[i]}</div><div class="opt-text">${opt}</div>`;
-    btn.onclick = () => onClick(i);
-    container.appendChild(btn);
+// ═══════════════════════════════════════
+// YARDIMCILAR
+// ═══════════════════════════════════════
+function renderOpts(cId,q,onClick){
+  const L=['A','B','C','D','E'];
+  const c=document.getElementById(cId);c.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const btn=document.createElement('button');btn.className='opt-btn';
+    btn.innerHTML=`<div class="opt-letter">${L[i]}</div><div class="opt-text">${o}</div>`;
+    btn.onclick=()=>onClick(i);c.appendChild(btn);
   });
 }
 
-function applyAnswerStyles(containerId, q, chosenIdx) {
-  const btns = document.querySelectorAll('#' + containerId + ' .opt-btn');
-  btns.forEach((btn, i) => {
-    btn.disabled = true;
-    if (i === chosenIdx && i === q.answer) btn.classList.add('selected-correct');
-    else if (i === chosenIdx && i !== q.answer) btn.classList.add('selected-wrong');
-    else if (i === q.answer && i !== chosenIdx) btn.classList.add('show-correct');
+function applyStyles(cId,q,idx){
+  document.querySelectorAll('#'+cId+' .opt-btn').forEach((btn,i)=>{
+    btn.disabled=true;
+    if(i===idx&&i===q.answer)btn.classList.add('sel-ok');
+    else if(i===idx&&i!==q.answer)btn.classList.add('sel-wrong');
+    else if(i===q.answer&&i!==idx)btn.classList.add('show-ok');
   });
 }
 
-function showExplanation(boxId, resultId, textId, q, chosenIdx, isCorrect) {
-  const letters = ['A','B','C','D','E'];
-  const box = document.getElementById(boxId);
-  const res = document.getElementById(resultId);
-  const txt = document.getElementById(textId);
-  res.className = 'exp-result ' + (isCorrect ? 'correct' : 'wrong');
-  res.textContent = isCorrect
-    ? '✓ Doğru! Cevap: ' + letters[q.answer] + ') ' + q.opts[q.answer]
-    : '✗ Yanlış. Doğru cevap: ' + letters[q.answer] + ') ' + q.opts[q.answer];
-  txt.innerHTML = q.exp;
-  box.style.display = 'block';
+function showExp(q,idx,ok){
+  const L=['A','B','C','D','E'];
+  const r=document.getElementById('exp-result');
+  r.className='exp-result '+(ok?'ok':'wrong');
+  r.textContent=ok?'✓ Doğru! Cevap: '+L[q.answer]+') '+q.opts[q.answer]:'✗ Yanlış. Doğru cevap: '+L[q.answer]+') '+q.opts[q.answer];
+  document.getElementById('exp-text').innerHTML=q.exp;
+  document.getElementById('exp-box').style.display='block';
 }
 
-window.onload = () => { updateMastery(); };
+window.onload=()=>{updateMastery();};
+
+let simpleMode='coz';
+function openSimpleSelect(mode){
+  simpleMode=mode;
+  const titles={coz:'Soruları Çöz — Set Seç',cevap:'Cevapları Gör — Set Seç'};
+  const subs={coz:'Hangi seti çözmek istiyorsun?',cevap:'Hangi setin cevaplarını görmek istiyorsun?'};
+  const btnTxt={coz:'Çözmeye Başla',cevap:'Cevapları Gör'};
+  document.getElementById('ss2-title').textContent=titles[mode];
+  document.getElementById('ss2-sub').textContent=subs[mode];
+  document.getElementById('ss2-btn-cikmis').textContent=btnTxt[mode];
+  document.getElementById('ss2-btn-muhtemel').textContent=btnTxt[mode];
+  if(document.getElementById('ss2-btn-ai'))document.getElementById('ss2-btn-ai').textContent=btnTxt[mode];
+  showScreen('simpleselect');
+}
+
+function simpleStart(setKey){
+  loadSt();
+  const pool=SETS[setKey];
+  activePool=pool;
+  if(simpleMode==='cevap'){showAnswers(pool);}
+  else{startFullTest(pool);}
+}
 </script>
 </body>
 </html>
