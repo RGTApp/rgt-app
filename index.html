@@ -206,7 +206,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
     <div class="set-total-bar">
       <span class="set-total-label">Seçili toplam</span>
-      <span class="set-total-num" id="ss-total">31 soru</span>
+      <span class="set-total-num" id="ss-total">30 soru</span>
     </div>
 
     <button class="start-btn" id="ss-start-btn" onclick="startSelected()">Başla</button>
@@ -493,6 +493,7 @@ function startSelected(){
   const pool=[];
   if(selected.cikmis)pool.push(...SET_CIKMIS);
   if(selected.muhtemel)pool.push(...SET_MUHTEMEL);
+  if(selected.ai)pool.push(...SET_AI);
   if(pool.length===0)return;
   activePool=pool;
   loadSt();
