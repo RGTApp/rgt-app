@@ -1,693 +1,912 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Psikoloji Tarihi — Sınav Hazırlık</title>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0e0e0d;color:#e8e6e0;min-height:100vh}
-.screen{display:none;min-height:100vh}
-.screen.active{display:flex;flex-direction:column}
-#home{align-items:center;justify-content:center;padding:2rem 1.5rem}
-.home-inner{width:100%;max-width:480px}
-.home-badge{display:inline-block;font-size:11px;letter-spacing:.1em;color:#EF9F27;background:rgba(239,159,39,.12);border:.5px solid rgba(239,159,39,.3);border-radius:20px;padding:4px 12px;margin-bottom:1.5rem}
-.home-title{font-size:28px;font-weight:600;color:#F1EFE8;line-height:1.2;margin-bottom:.5rem}
-.home-sub{font-size:14px;color:#888780;margin-bottom:2rem;line-height:1.6}
-.mastery-block{background:#141413;border:.5px solid #2a2a28;border-radius:12px;padding:1.25rem;margin-bottom:1.5rem}
-.mastery-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.mastery-title{font-size:12px;color:#888780;letter-spacing:.04em}
-.mastery-pct{font-size:22px;font-weight:600;color:#EF9F27}
-.mastery-bar-bg{height:4px;background:#2a2a28;border-radius:2px;margin-bottom:10px}
-.mastery-bar-fill{height:4px;background:#EF9F27;border-radius:2px;transition:width .5s}
-.mastery-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.mstat{text-align:center}
-.mstat-num{font-size:16px;font-weight:600;color:#D3D1C7}
-.mstat-num.green{color:#1D9E75}
-.mstat-num.red{color:#E24B4A}
-.mstat-lbl{font-size:11px;color:#555553;margin-top:2px}
-.name-label{font-size:12px;color:#888780;letter-spacing:.04em;margin-bottom:8px}
-.name-input{width:100%;background:#1a1a18;border:.5px solid #3a3a38;border-radius:10px;padding:12px 16px;font-size:15px;color:#F1EFE8;outline:none;margin-bottom:1.25rem;transition:border-color .15s}
-.name-input:focus{border-color:#EF9F27}
-.name-input::placeholder{color:#555553}
-.btn-primary{width:100%;background:#EF9F27;color:#0e0e0d;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .15s,transform .1s;margin-bottom:10px}
-.btn-primary:hover{opacity:.9}
-.btn-primary:active{transform:scale(.98)}
-.btn-outline{width:100%;background:transparent;color:#EF9F27;border:.5px solid rgba(239,159,39,.4);border-radius:10px;padding:14px;font-size:15px;cursor:pointer;transition:background .15s;margin-bottom:10px}
-.btn-outline:hover{background:rgba(239,159,39,.08)}
-.btn-secondary{width:100%;background:transparent;color:#888780;border:.5px solid #3a3a38;border-radius:10px;padding:14px;font-size:15px;cursor:pointer;transition:background .15s,color .15s;margin-bottom:10px}
-.btn-secondary:hover{background:#1a1a18;color:#D3D1C7}
-
-/* SET SEÇİM */
-#setselect{align-items:center;justify-content:center;padding:2rem 1.5rem}
-.setselect-inner{width:100%;max-width:480px}
-.setselect-title{font-size:20px;font-weight:600;color:#F1EFE8;margin-bottom:.4rem}
-.setselect-sub{font-size:13px;color:#666664;margin-bottom:1.5rem}
-.set-card{background:#141413;border:.5px solid #2a2a28;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:10px;cursor:pointer;transition:border-color .15s;display:flex;gap:14px;align-items:flex-start}
-.set-card:hover:not(.disabled){border-color:#4a4a48}
-.set-card.selected{border-color:#EF9F27;background:#1a1710}
-.set-card.disabled{opacity:.45;cursor:default}
-.set-check{width:22px;height:22px;border-radius:6px;border:.5px solid #3a3a38;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all .15s}
-.set-card.selected .set-check{background:#EF9F27;border-color:#EF9F27}
-.set-check-icon{display:none;width:12px;height:12px}
-.set-card.selected .set-check-icon{display:block}
-.set-info{flex:1}
-.set-name{font-size:15px;font-weight:500;color:#F1EFE8;margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.set-desc{font-size:12px;color:#666664;line-height:1.5;margin-bottom:6px}
-.set-count{font-size:11px;color:#888780}
-.badge{font-size:10px;border-radius:10px;padding:2px 8px;white-space:nowrap}
-.badge-new{color:#EF9F27;background:rgba(239,159,39,.12);border:.5px solid rgba(239,159,39,.3)}
-.badge-likely{color:#1D9E75;background:rgba(29,158,117,.1);border:.5px solid rgba(29,158,117,.3)}
-.badge-ai{color:#888780;background:#1a1a18;border:.5px solid #3a3a38}
-.set-total-bar{background:#1a1a18;border:.5px solid #2a2a28;border-radius:10px;padding:12px 16px;margin-bottom:1.25rem;display:flex;justify-content:space-between;align-items:center}
-.set-total-label{font-size:13px;color:#888780}
-.set-total-num{font-size:15px;font-weight:600;color:#EF9F27}
-.start-btn{width:100%;background:#EF9F27;color:#0e0e0d;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .15s;margin-bottom:10px}
-.start-btn:hover{opacity:.9}
-.start-btn:disabled{opacity:.4;cursor:default}
-
-/* QUIZ */
-#quiz{padding:0}
-.quiz-topbar{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem .75rem;border-bottom:.5px solid #1e1e1c}
-.quiz-meta{font-size:12px;color:#666664;letter-spacing:.04em}
-.quiz-streak{display:flex;align-items:center;gap:6px;font-size:12px;color:#888780}
-.progress-bar{height:2px;background:#1e1e1c}
-.progress-fill{height:2px;background:#EF9F27;transition:width .4s ease}
-.quiz-body{flex:1;padding:1.5rem;max-width:640px;margin:0 auto;width:100%}
-.level-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#666664;margin-bottom:1rem}
-.level-dot{width:6px;height:6px;border-radius:50%;background:#2a2a28}
-.level-dot.active{background:#EF9F27}
-.question-text{font-size:16px;font-weight:500;color:#F1EFE8;line-height:1.65;margin-bottom:1.5rem}
-.options{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
-.opt-btn{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;background:#141413;border:.5px solid #2a2a28;border-radius:10px;cursor:pointer;text-align:left;transition:border-color .12s,background .12s;width:100%}
-.opt-btn:hover:not(:disabled){border-color:#4a4a48;background:#1a1a18}
-.opt-btn:disabled{cursor:default}
-.opt-letter{width:26px;height:26px;border-radius:50%;border:.5px solid #3a3a38;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#888780;flex-shrink:0;transition:all .15s;margin-top:1px}
-.opt-text{font-size:14px;color:#C8C6C0;line-height:1.5}
-.opt-btn.sel-ok{border-color:#1D9E75;background:rgba(29,158,117,.08)}
-.opt-btn.sel-ok .opt-letter{background:#1D9E75;border-color:#1D9E75;color:#fff}
-.opt-btn.sel-ok .opt-text{color:#9FE1CB}
-.opt-btn.sel-wrong{border-color:#E24B4A;background:rgba(226,75,74,.08)}
-.opt-btn.sel-wrong .opt-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
-.opt-btn.sel-wrong .opt-text{color:#F09595}
-.opt-btn.show-ok{border-color:#1D9E75;background:rgba(29,158,117,.06)}
-.opt-btn.show-ok .opt-letter{background:#1D9E75;border-color:#1D9E75;color:#fff}
-.opt-btn.show-ok .opt-text{color:#9FE1CB}
-.exp-box{background:#181817;border:.5px solid #2a2a28;border-left:3px solid #EF9F27;border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin-bottom:1.25rem;animation:su .25s ease}
-@keyframes su{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.exp-result{font-size:13px;font-weight:600;margin-bottom:.5rem}
-.exp-result.ok{color:#1D9E75}
-.exp-result.wrong{color:#E24B4A}
-.exp-text{font-size:13px;color:#B4B2A9;line-height:1.65}
-.quiz-footer{padding:0 1.5rem 1.5rem;max-width:640px;margin:0 auto;width:100%}
-.next-btn{width:100%;background:#EF9F27;color:#0e0e0d;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:10px}
-
-/* CEVAPLAR */
-#allq{padding:1.5rem;flex-direction:column}
-.allq-header{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
-.back-btn{background:#1a1a18;border:.5px solid #2a2a28;border-radius:8px;padding:8px 14px;font-size:13px;color:#888780;cursor:pointer}
-.back-btn:hover{color:#F1EFE8}
-.allq-title{font-size:18px;font-weight:500;color:#F1EFE8}
-.q-item{background:#141413;border:.5px solid #2a2a28;border-radius:12px;padding:1.25rem;margin-bottom:12px;max-width:720px}
-.q-num{font-size:11px;color:#EF9F27;font-weight:600;letter-spacing:.06em}
-.q-rel{font-size:11px;padding:2px 8px;border-radius:6px;display:inline-block;margin-left:6px}
-.q-rel-high{color:#1D9E75;background:rgba(29,158,117,.1);border:.5px solid rgba(29,158,117,.2)}
-.q-rel-med{color:#888780;background:#1a1a18;border:.5px solid #2a2a28}
-.q-text{font-size:14px;color:#D3D1C7;line-height:1.6;margin:8px 0 10px}
-.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
-.q-opt{font-size:12px;color:#888780;padding:6px 10px;background:#1a1a18;border-radius:6px;border:.5px solid #2a2a28;line-height:1.4}
-.q-opt.correct{color:#9FE1CB;background:rgba(29,158,117,.1);border-color:rgba(29,158,117,.3);font-weight:500}
-.q-gerekce{font-size:12px;color:#888780;background:#181817;border-left:2px solid #EF9F27;padding:8px 12px;border-radius:0 6px 6px 0;line-height:1.6}
-
-/* SONUÇ */
-#result{align-items:center;justify-content:center;padding:2rem 1.5rem;text-align:center}
-.result-inner{max-width:480px;width:100%}
-.res-score{font-size:64px;font-weight:700;color:#EF9F27;line-height:1;margin-bottom:.25rem}
-.res-label{font-size:14px;color:#888780;margin-bottom:2rem}
-.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
-.res-card{background:#1a1a18;border:.5px solid #2a2a28;border-radius:10px;padding:1rem}
-.res-card .num{font-size:24px;font-weight:600;color:#F1EFE8}
-.res-card .lbl{font-size:12px;color:#666664;margin-top:2px}
-.res-card.green .num{color:#1D9E75}
-.res-card.red .num{color:#E24B4A}
-.weak-sec{text-align:left;margin-bottom:1.5rem}
-.weak-title{font-size:12px;color:#888780;letter-spacing:.04em;margin-bottom:8px}
-.weak-item{font-size:12px;color:#B4B2A9;background:#1a1a18;border:.5px solid #2a2a28;border-left:2px solid #E24B4A;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:6px;line-height:1.5}
-.set-card-btn{background:#EF9F27;color:#0e0e0d;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Haftalık Program</title>
+<meta name="theme-color" content="#100f0e">
+<meta name="description" content="3 haftalık, alt görevli, efektli haftalık program düzenleyici">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Program">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html,body{overscroll-behavior-y:none}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 
-<!-- HOME -->
-<div id="home" class="screen active">
-  <div class="home-inner">
-    <div class="home-badge">PSİKOLOJİ TARİHİ</div>
-    <h1 class="home-title">Sınav Hazırlık</h1>
-    <p class="home-sub">70 soru · 3 kaynak · Akıllı tekrar algoritması</p>
-    <div id="mastery-block" class="mastery-block" style="display:none">
-      <div class="mastery-header">
-        <span class="mastery-title">EZBER DURUMU</span>
-        <span class="mastery-pct" id="mastery-pct">0%</span>
-      </div>
-      <div class="mastery-bar-bg"><div class="mastery-bar-fill" id="mastery-bar" style="width:0%"></div></div>
-      <div class="mastery-stats">
-        <div class="mstat"><div class="mstat-num green" id="ms-learned">0</div><div class="mstat-lbl">Öğrendim</div></div>
-        <div class="mstat"><div class="mstat-num red" id="ms-working">0</div><div class="mstat-lbl">Çalışıyorum</div></div>
-        <div class="mstat"><div class="mstat-num" id="ms-total">0</div><div class="mstat-lbl">Toplam Cevap</div></div>
-      </div>
-    </div>
-    <div class="name-label">ADINIZ</div>
-    <input class="name-input" id="name-input" type="text" placeholder="Adınızı girin..." maxlength="30">
-    <button class="btn-primary" onclick="openSelect('sonsuz')">▶ Sonsuz Mod</button>
-    <button class="btn-outline" onclick="openSimpleSelect('coz')">◈ Soruları Çöz</button>
-    <button class="btn-secondary" onclick="openSimpleSelect('cevap')">Cevapları Gör</button>
-  </div>
-</div>
 
-<!-- SET SEÇİM -->
-<div id="setselect" class="screen">
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem">
-  <div class="setselect-inner">
-    <div class="setselect-title" id="ss-title">Set Seç</div>
-    <div class="setselect-sub" id="ss-sub">Birden fazla seçebilirsin</div>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Press+Start+2P&family=Black+Ops+One&display=swap">
+<style>
+/* Layout: sticky hafta şeridi üstte, altında yana kaydırılan program tablosu; saat sütunu sabit. Koyu temalar, ayarlardan 6 tema. */
+:root{
+  color-scheme:dark;
+  --bg:#171615;--topbg:#100f0e;--surf:#22201e;--empty:#1f1d1b;--line:#2d2a27;
+  --tx:#efe7df;--mut:#9d9389;--acc:#c8692c;--accTx:#1a120c;--track:#2d2a27;
+  --g1:#9e3a36;--g2:#e08a3c;--done:#2f9e63;--chipTx:#1a120c;--danger:#d9483b;
+  --font:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --pix:'Press Start 2P',ui-monospace,monospace;
+  --stamp:'Black Ops One',Impact,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--bg);color:var(--tx)}
+body{font-family:var(--font);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px;overflow-x:hidden;transition:background .3s}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--topbg)}
+button{font-family:inherit;color:inherit}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 
-    <div class="set-card selected" id="sc-cikmis" onclick="toggleSet('cikmis')">
-      <div class="set-check">
-        <svg class="set-check-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0e0e0d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="set-info">
-        <div class="set-name">2024 Çıkmış Sorular <span class="badge badge-new">FİNAL</span></div>
-        <div class="set-desc">2024 Final sınavından çıkmış sorular — en yüksek öncelik</div>
-        <div class="set-count">30 soru</div>
-      </div>
-    </div>
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:25;background:var(--topbg);border-bottom:2px solid var(--line);
+  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px))) calc(-1 * max(16px,env(safe-area-inset-right,0px)));
+  padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+.barIn{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:8px}
+.tabs{display:flex;gap:6px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{min-height:40px;padding:9px 14px;font-size:13px;font-weight:800;white-space:nowrap;border-radius:12px;background:var(--surf);color:var(--mut);border:none;cursor:pointer;display:flex;align-items:center;gap:6px}
+.tab.on{background:var(--acc);color:var(--accTx)}
+.tab.on .ed{opacity:.6;font-size:11px}
+.ib{flex:none;width:40px;height:40px;display:grid;place-items:center;font-size:20px;font-weight:900;border-radius:12px;border:none;cursor:pointer;background:var(--surf);color:var(--tx);transition:transform .2s,background .2s}
+.ib.plus{background:var(--acc);color:var(--accTx);font-size:24px}
+.ib.plus.on{transform:rotate(45deg);background:var(--tx);color:var(--bg)}
+.sync{font-size:11px;font-weight:800;color:var(--mut);white-space:nowrap;display:flex;align-items:center;gap:5px}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--mut);display:block}
+.sync.ok i{background:var(--done)}.sync.saving i{background:var(--g2);animation:blink 1s infinite}.sync.err i{background:var(--danger)}
+@keyframes blink{50%{opacity:.3}}
+@media (max-width:520px){.sync span{display:none}}
 
-    <div class="set-card" id="sc-muhtemel" onclick="toggleSet('muhtemel')">
-      <div class="set-check">
-        <svg class="set-check-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0e0e0d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="set-info">
-        <div class="set-name">Muhtemel Sorular <span class="badge badge-likely">OLASI</span></div>
-        <div class="set-desc">Önceki dönemden çıkması muhtemel sorular · 12 doğrudan ilgili, 8 kısmen ilgili</div>
-        <div class="set-count">20 soru</div>
-      </div>
-    </div>
+.wrap{max-width:1200px;margin:0 auto}
+.hint{margin-top:12px;padding:10px 14px;border-radius:12px;background:var(--surf);font-size:13px;font-weight:700;color:var(--mut)}
+.tblwrap{overflow-x:auto;margin-top:6px;padding-top:22px;padding-bottom:6px;-webkit-overflow-scrolling:touch;position:relative}
+table{border-collapse:separate;border-spacing:6px;width:100%}
+th,td{text-align:center;vertical-align:middle}
+.saat{width:84px;min-width:84px;position:sticky;left:0;z-index:3;background:var(--bg);color:var(--acc);font-weight:900;font-size:13px}
+th.col{min-width:108px;background:var(--surf);border-radius:12px;padding:8px 7px 7px;vertical-align:top;position:relative;transition:box-shadow .3s}
+th.col.cheer{animation:cheer 1.2s ease-out}
+@keyframes cheer{0%{box-shadow:0 0 0 0 var(--g2)}30%{box-shadow:0 0 26px 4px var(--g2)}100%{box-shadow:0 0 0 0 transparent}}
+.dn{display:block;font-size:13px;font-weight:900;margin-bottom:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pbar{height:9px;border-radius:9px;overflow:hidden;background:var(--track)}
+.pbar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--g1),var(--g2));transition:width .6s cubic-bezier(.3,1.4,.5,1)}
+.pc{display:block;font-size:10.5px;font-weight:800;color:var(--mut);margin-top:5px;font-variant-numeric:tabular-nums}
+.colTools{display:flex;justify-content:center;gap:6px;margin-top:6px}
+.mini{border:none;background:var(--line);color:var(--tx);border-radius:8px;font-size:12px;font-weight:800;padding:4px 8px;cursor:pointer}
+.mini.x{background:var(--danger);color:#fff}
+th.addCol{min-width:90px;border:2px dashed var(--line);border-radius:12px;background:transparent;color:var(--mut);font-weight:800;font-size:13px;cursor:pointer}
+.tbtn{background:none;border:none;color:var(--acc);font:900 14px var(--font);font-variant-numeric:tabular-nums;cursor:pointer;padding:8px 2px;width:100%;border-radius:10px}
+.tbtn.none{color:var(--mut);font-weight:700;font-size:12px}
+.tcard{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;height:68px;border-radius:12px;cursor:pointer;color:var(--acc);font:900 14.5px var(--font);font-variant-numeric:tabular-nums;line-height:1.05;background:linear-gradient(var(--surf),var(--surf)) padding-box,linear-gradient(160deg,var(--g1),var(--g2)) border-box;border:2px solid transparent}
+.tnone{display:flex;align-items:center;justify-content:center;width:100%;height:68px;border-radius:12px;border:2px dashed var(--line);background:transparent;color:var(--mut);font:800 11px var(--font);cursor:pointer;padding:0 4px}
+.tnone:hover{border-color:var(--acc);color:var(--acc)}
+.tbtn .t1,.tbtn .t2{display:block;line-height:1.15}
+.tbtn .t2{color:var(--mut);font-size:12px}
+.tbtn .t2::before{content:"– "}
 
-    <div class="set-card" id="sc-ai" onclick="toggleSet('ai')">
-      <div class="set-check">
-        <svg class="set-check-icon" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0e0e0d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="set-info">
-        <div class="set-name">Yapay Zeka Tahminleri <span class="badge badge-ai">YENİ</span></div>
-        <div class="set-desc">Yapay zeka tarafından çıkması muhtemel sorular — henüz çıkmamış</div>
-        <div class="set-count">20 soru</div>
-      </div>
-    </div>
+/* gün bitti: kalıcı görünüm */
+th.col.hgold{background:linear-gradient(135deg,#f6d36b,#c9902c);color:#2a1a00}
+th.col.hgold .pc{color:#5a3d00}th.col.hgold .pbar{background:#00000033}th.col.hgold .pbar i{background:linear-gradient(90deg,#fff3b0,#fff)}
+th.col.hneon{background:#0d1712;color:#b7ffd6;box-shadow:inset 0 0 0 2px #3ddc84,0 0 14px #3ddc8466;text-shadow:0 0 6px #3ddc84}
+th.col.hneon .pc{color:#7fdcae}th.col.hneon .pbar{background:#173126}th.col.hneon .pbar i{background:#3ddc84;box-shadow:0 0 8px #3ddc84}
+th.col.hgneon{background:#1a1406;color:#ffe58a;box-shadow:inset 0 0 0 2px #f6d36b,0 0 16px #f6d36b77;text-shadow:0 0 6px #f6b93b}
+th.col.hgneon .pc{color:#e9c86a}th.col.hgneon .pbar{background:#3a2c0c}th.col.hgneon .pbar i{background:linear-gradient(90deg,#f6d36b,#fff3b0);box-shadow:0 0 8px #f6d36b}
+td.c.c.dg{background:linear-gradient(135deg,#f6d36b,#c9902c)!important;color:#2a1a00!important}
+td.c.c.dn{background:#0d1712!important;color:#b7ffd6!important;box-shadow:inset 0 0 0 2px #3ddc84,0 0 12px #3ddc8455;text-shadow:0 0 6px #3ddc84}
+td.c.c.dgn{background:#1a1406!important;color:#ffe58a!important;box-shadow:inset 0 0 0 2px #f6d36b,0 0 12px #f6d36b66;text-shadow:0 0 6px #f6b93b}
+td.c.c.dgg{background:linear-gradient(135deg,#2f9e63 0%,#2f9e63 35%,#f6d36b 100%)!important;color:#fff!important;box-shadow:inset 0 0 0 2px #b7ffd6aa,0 0 10px #3ddc8455}
+td.c.fillbase.fillbase{background-color:var(--done)!important;background-image:linear-gradient(135deg,#f6d36b,#c9902c)!important;background-repeat:no-repeat!important;background-position:bottom!important;background-size:100% 0%!important;transition:background-size .35s ease-in,color .3s}
+td.c.fillbase.fillbase.full{background-size:100% 100%!important;color:#2a1a00!important}
+.crown{position:absolute;left:50%;top:-24px;transform:translateX(-50%);font-size:24px;line-height:1;filter:drop-shadow(0 3px 5px #0009);z-index:4;pointer-events:none}
+.crown.n{filter:drop-shadow(0 0 6px #3ddc84) drop-shadow(0 0 12px #3ddc84) hue-rotate(60deg)}
+.crown.drop{animation:crownA .7s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes crownA{0%{transform:translate(-50%,-110px) rotate(-20deg);opacity:0}60%{transform:translate(-50%,0) rotate(8deg);opacity:1}80%{transform:translate(-50%,-8px) rotate(-4deg)}100%{transform:translate(-50%,0)}}
+.shine{position:absolute;inset:0;border-radius:12px;overflow:hidden;pointer-events:none}
+.shine::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,#fffa,transparent);animation:shineA .8s ease-out forwards}
+@keyframes shineA{to{left:130%}}
+@keyframes popIn{0%{transform:scale(.85)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes bounce{0%{transform:scale(1)}30%{transform:scale(1.12)}55%{transform:scale(.96)}100%{transform:scale(1)}}
+@keyframes flipX{0%{transform:rotateX(0)}50%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
+.colfx{position:absolute;pointer-events:none;z-index:6}
+.neonF{position:absolute;inset:-3px;border-radius:16px;border:3px solid var(--nc,#3ddc84);box-shadow:0 0 16px var(--nc,#3ddc84),inset 0 0 14px color-mix(in srgb,var(--nc,#3ddc84) 35%,transparent);clip-path:inset(0 0 100% 0);animation:reveal .6s ease-out forwards,fadeOut 1s 2s forwards}
+@keyframes reveal{to{clip-path:inset(0 0 0 0)}}
+.ntxt{position:absolute;left:50%;top:50%;font-family:var(--stamp);font-size:24px;letter-spacing:3px;color:var(--tc,#b7ffd6);text-shadow:0 0 8px var(--nc,#3ddc84),0 0 20px var(--nc,#3ddc84);white-space:nowrap;animation:pinA .4s both,fadeOut .6s 2.1s forwards}
+@keyframes pinA{0%{transform:translate(-50%,-50%) rotate(-25deg) scale(2.4);opacity:0}60%{transform:translate(-50%,-50%) rotate(-8deg) scale(.92);opacity:1}100%{transform:translate(-50%,-50%) rotate(-10deg) scale(1);opacity:1}}
+.dayDemo{position:relative;width:170px;margin:4px auto 10px;padding-top:22px}
+.dayDemo table{width:100%;perspective:600px}
+.dayDemo td.c{height:46px;cursor:default}
+.dayDemo th.col{min-width:0}
+.rowx{display:block;margin:2px auto 0}
 
-    <div class="set-total-bar">
-      <span class="set-total-label">Seçili toplam</span>
-      <span class="set-total-num" id="ss-total">30 soru</span>
-    </div>
+td.c{height:68px;border-radius:12px;background:var(--empty);position:relative;cursor:pointer;padding:6px 8px;transition:background .3s;user-select:none;-webkit-user-select:none}
+td.c.empty{color:var(--mut);box-shadow:inset 0 0 0 1px var(--line)}
+:where(.light) td.c:not(.empty){box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.light .pen{background:rgba(255,255,255,.28)}
+.light .modal{background:rgba(40,30,30,.35)}
+td.c.empty::after{content:"+";font-size:18px;font-weight:700;opacity:.22}
+td.c.empty:hover::after{opacity:.6}
+.ct{display:block;font-weight:800;font-size:13px;line-height:1.2;word-break:break-word}
+.cs{display:block;font-size:10.5px;font-weight:800;opacity:.92;margin-top:3px}
+.pen{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:7px;background:rgba(0,0,0,.18);border:none;color:inherit;font-size:11px;cursor:pointer;display:grid;place-items:center}
+td.c.done{background:var(--done)!important;color:#fff!important}
+.addRow{margin:8px 0 0 72px;padding:12px 18px;border-radius:12px;border:2px dashed var(--line);background:transparent;color:var(--mut);font-weight:800;font-size:13px;cursor:pointer}
 
-    <button class="start-btn" id="ss-start-btn" onclick="startSelected()">Başla</button>
-    <button class="btn-secondary" onclick="goHome()">← Geri</button>
-  </div>
-  </div>
-</div>
+/* modal */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center;padding:16px max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+@media (min-width:640px){.modal{align-items:center}}
+.sheet{background:var(--topbg);border:2px solid var(--line);border-radius:20px;width:100%;max-width:440px;max-height:min(86vh,720px);overflow-y:auto;padding:18px;animation:up .25s ease-out}
+@keyframes up{from{transform:translateY(30px);opacity:0}}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
+.sh h3{margin:0;font-size:17px;font-weight:900}
+.sh small{display:block;font-size:12px;color:var(--mut);font-weight:700;margin-top:2px}
+.close{background:var(--surf);border:none;border-radius:12px;width:44px;height:44px;font-size:16px;cursor:pointer;flex:none}
+.lbl{font-size:12px;font-weight:900;color:var(--mut);margin:16px 0 8px;letter-spacing:.06em;text-transform:uppercase}
+.inp{width:100%;background:var(--surf);border:2px solid transparent;border-radius:12px;padding:11px 13px;color:var(--tx);font:800 15px var(--font)}
+.inp:focus{border-color:var(--acc);outline:none}
+.sw{display:flex;gap:9px;flex-wrap:wrap}
+.sw button{width:34px;height:34px;border-radius:50%;border:3px solid transparent;cursor:pointer;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.sw button.on{border-color:var(--tx)}
+.subs{display:flex;flex-direction:column;gap:6px}
+.sub{display:flex;align-items:center;gap:8px;background:var(--surf);border-radius:12px;padding:4px 4px 4px 6px}
+.chk{display:flex;align-items:center;gap:10px;flex:1;min-width:0;background:none;border:none;text-align:left;font:700 14px var(--font);padding:7px 4px;cursor:pointer}
+.chk b{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--mut);display:grid;place-items:center;font-size:13px;transition:all .2s}
+.chk.on b{background:var(--done);border-color:var(--done);color:#fff}
+.chk.on span{text-decoration:line-through;opacity:.55}
+.chk span{word-break:break-word}
+.subAdd{display:flex;gap:6px;margin-top:8px}
+.subAdd .inp{font-size:14px;padding:9px 12px}
+.btn{width:100%;padding:12px;border:none;border-radius:12px;background:var(--acc);color:var(--accTx);font:900 15px var(--font);cursor:pointer}
+.btn.sm{width:auto;padding:9px 14px;font-size:14px;flex:none}
+.btn.g{background:var(--done);color:#fff}
+.btn.ghost{background:var(--surf);color:var(--tx)}
+.btn.red{background:transparent;color:var(--danger);border:2px solid var(--danger)}
+.btns{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.row2{display:flex;gap:8px}.row2>*{flex:1}
+.prog{font-size:12px;font-weight:800;color:var(--mut)}
 
+.tws{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:4px;user-select:none;-webkit-user-select:none;margin-top:2px}
+.tgrp{display:flex;flex-direction:column;align-items:center}
+.tpair{display:flex;align-items:center}
+.ttag{height:26px;display:flex;align-items:center;padding:0 12px;border-radius:8px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.ttag.s{background:var(--g1);color:#fff}.ttag.e{background:var(--g2);color:var(--chipTx)}
+.tgrp.s .wheel div.sel{color:color-mix(in srgb,var(--g1) 55%,var(--tx))}
+.tgrp.e .wheel div.sel{color:color-mix(in srgb,var(--g2) 55%,var(--tx))}
+.wsep{font:900 18px var(--font);color:var(--mut);z-index:2;padding:0 4px;align-self:flex-end;height:112px}
+.tws .whl{top:auto;bottom:80px}
+.tbar{position:relative;height:34px;margin-top:20px;border-radius:10px;background:repeating-linear-gradient(90deg,var(--surf) 0 calc(100%/24 - 1px),var(--line) calc(100%/24 - 1px) calc(100%/24))}
+.tclip{position:absolute;inset:0;border-radius:10px;overflow:hidden}
+.tseg{position:absolute;top:0;bottom:0;transition:left .2s,width .2s}
+.tseg.occ,.tleg i.occ{background:color-mix(in srgb,var(--tx) 26%,var(--surf))}
+.tseg.pick,.tleg i.pick{background:linear-gradient(90deg,var(--g1),var(--g2))}
+.tseg.pick{box-shadow:0 0 12px color-mix(in srgb,var(--g2) 40%,transparent)}
+.tseg.ovl,.tleg i.ovl{background:color-mix(in srgb,var(--g1) 55%,#000);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--g2) 55%,#fff);border-radius:3px}
+.tseg.ovl{z-index:3}
+.tseg.ovl::after{content:"";position:absolute;left:0;right:0;top:-6px;height:3px;border-radius:3px;background:color-mix(in srgb,var(--g2) 55%,#fff)}
+.tticks{display:flex;justify-content:space-between;font-size:10px;color:var(--mut);font-weight:800;margin:4px 2px 0;font-variant-numeric:tabular-nums}
+.tleg{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;font-size:11px;font-weight:800;color:var(--mut);margin-top:10px}
+.tleg span{display:flex;align-items:center;gap:5px}.tleg i{width:16px;height:10px;border-radius:3px;display:block}
+.tinfo{display:flex;justify-content:center;margin-top:10px}
+.tpill{background:var(--surf);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:900;color:var(--g2)}
+.twarn{background:color-mix(in srgb,var(--g2) 16%,var(--surf));color:var(--tx);border-radius:12px;padding:8px 12px;font-size:12px;font-weight:800;margin-top:10px;text-align:center;line-height:1.45}
+.twarn b{color:color-mix(in srgb,var(--g2) 75%,var(--tx))}
+.twarn.ok{background:var(--surf);color:var(--mut)}
+.wheel{user-select:none;-webkit-user-select:none;height:200px;width:54px;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none;padding-block:80px;-webkit-mask:linear-gradient(transparent,#000 30%,#000 70%,transparent);mask:linear-gradient(transparent,#000 30%,#000 70%,transparent);position:relative;z-index:2}
+.wheel::-webkit-scrollbar{display:none}
+.wheel div{height:40px;display:grid;place-items:center;scroll-snap-align:center;font:800 22px var(--font);color:var(--mut);font-variant-numeric:tabular-nums;transition:color .15s,transform .15s}
+.wheel div.sel{color:var(--tx);transform:scale(1.15)}
+.wcol{font:900 24px var(--font);z-index:2}
+.whl{position:absolute;left:50%;top:80px;transform:translateX(-50%);width:min(100%,310px);height:40px;border-radius:12px;background:var(--surf);z-index:1}
 
-<!-- SİMPLE SEÇİM (Çöz / Cevap) -->
-<div id="simpleselect" class="screen">
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem">
-  <div class="setselect-inner">
-    <div class="setselect-title" id="ss2-title">Set Seç</div>
-    <div class="setselect-sub" id="ss2-sub">Hangi seti çalışmak istiyorsun?</div>
+.themes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.th{border-radius:12px;padding:10px;border:2px solid transparent;cursor:pointer;font-weight:800;font-size:12px;text-align:left;display:flex;align-items:center;gap:9px}
+.th.on{border-color:var(--tx)}
+.th span{display:flex;flex:none}
+.th span i{width:14px;height:14px;border-radius:50%;margin-right:-4px;border:2px solid rgba(255,255,255,.15)}
+.fxl{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.fxb{border:2px solid transparent;background:var(--surf);border-radius:10px;padding:9px 10px;font:800 12.5px var(--font);text-align:left;cursor:pointer;display:flex;gap:6px;align-items:center}
+.fxb em{font-style:normal;color:var(--mut);font-variant-numeric:tabular-nums;width:18px;flex:none}
+.fxb.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 18%,var(--surf))}
+button,td.c,.tab{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.sheet{overscroll-behavior:contain}
+.mini{min-height:32px;min-width:32px}
+.mini.x.ask{background:var(--danger);color:#fff;padding:4px 10px;animation:popIn .3s}
+.ct{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.loading td.c,.loading .tcard,.loading .tnone{opacity:.55}
+/* alt görev noktaları, düzenleyici satırları, kontrol listesi, sıfırlama */
+.sdots{display:flex;justify-content:center;gap:3px;margin-top:4px}
+.sdots i{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.35}
+.sdots i.on{opacity:1}
+.sub.ed{padding:6px 6px 6px 10px;gap:10px;min-height:46px}
+.sub.ed .snum{flex:none;width:22px;height:22px;border-radius:7px;background:var(--line);color:var(--mut);display:grid;place-items:center;font-size:11px;font-weight:900}
+.sub.ed .stx{flex:1;min-width:0;font:700 14px var(--font);word-break:break-word}
+.sub.ed .sdone{color:var(--done);font-weight:900}
+.mini.x2{min-width:36px;min-height:36px}
+h3.ckt{display:flex;align-items:center;gap:8px}
+h3.ckt i{width:14px;height:14px;border-radius:5px;flex:none}
+.ckp{display:flex;align-items:center;gap:10px;margin:2px 0 14px}
+.ckp .pbar{flex:1;height:10px}
+.ckp span{font-weight:900;font-size:13px;color:var(--mut);font-variant-numeric:tabular-nums}
+.ckl{display:flex;flex-direction:column;gap:8px}
+.ckr{display:flex;align-items:center;gap:14px;min-height:58px;padding:10px 14px;border-radius:14px;border:2px solid var(--line);background:var(--surf);color:var(--tx);font:800 15px var(--font);text-align:left;cursor:pointer;transition:background .2s,border-color .2s,transform .12s}
+.ckr:active{transform:scale(.98)}
+.ckr b{flex:none;width:28px;height:28px;border-radius:9px;border:2.5px solid var(--mut);display:grid;place-items:center;font-size:15px;transition:all .2s}
+.ckr span{flex:1;min-width:0;word-break:break-word}
+.ckr.on{border-color:var(--done);background:color-mix(in srgb,var(--done) 14%,var(--surf))}
+.ckr.on b{background:var(--done);border-color:var(--done);color:#fff;animation:popIn .3s}
+.ckr.on span{text-decoration:line-through;opacity:.6}
+.dbtn{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:10px 14px;margin-bottom:8px;border-radius:14px;border:2px solid var(--line);background:var(--surf);color:var(--tx);text-align:left;cursor:pointer;font-family:var(--font)}
+.dbtn span{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--line);font-size:17px}
+.dbtn b{display:block;font-size:14.5px;font-weight:900}
+.dbtn small{display:block;font-size:12px;color:var(--mut);font-weight:700;margin-top:2px}
+.dbtn.red{border-color:color-mix(in srgb,var(--danger) 45%,var(--line))}
+.dbtn.red b{color:var(--danger)}
+.confirm{border-radius:14px;padding:12px;margin-bottom:8px;background:color-mix(in srgb,var(--acc) 12%,var(--surf));border:2px solid var(--acc)}
+.confirm.danger{background:color-mix(in srgb,var(--danger) 12%,var(--surf));border-color:var(--danger)}
+.confirm p{font-size:13px;font-weight:700;line-height:1.5;margin:0 0 10px}
+.confirm .btn{margin:0}
+.btn.dng{background:var(--danger);color:#fff}
+/* özelleştir menüsü — dokunmatik dostu */
+.sheet.wide{max-width:720px}
+@media (max-width:639px){.sheet.wide{max-height:92vh;border-radius:22px 22px 18px 18px}}
+.cHead{position:sticky;top:-18px;z-index:8;background:var(--topbg);margin:-18px -18px 6px;padding:18px 18px 10px;border-bottom:1px solid var(--line)}
+.cHead .sh{margin-bottom:12px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--surf);border-radius:14px;padding:4px}
+.seg button{min-height:46px;border:none;border-radius:11px;background:transparent;color:var(--mut);font:900 13.5px var(--font);cursor:pointer;padding:6px 4px;line-height:1.15}
+.seg button.on{background:var(--acc);color:var(--accTx);box-shadow:0 2px 8px rgba(0,0,0,.2)}
+@media (max-width:520px){.seg .lg{display:none}}
+.cHead .demo{margin:10px 0 0;height:64px}
+.thg{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px}
+.thc{position:relative;display:flex;flex-direction:column;gap:8px;padding:8px;border-radius:14px;border:2px solid var(--line);background:var(--surf);cursor:pointer;text-align:left;min-height:96px;transition:transform .12s,border-color .2s}
+.thc:active{transform:scale(.97)}
+.thc.on{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 25%,transparent)}
+.thc .pv{position:relative;display:block;height:52px;border-radius:9px;background:var(--pbg);overflow:hidden;box-shadow:inset 0 0 0 1px rgba(127,127,127,.25)}
+.thc .pv .pt{position:absolute;left:6px;top:6px;width:38%;height:10px;border-radius:5px;background:var(--pacc)}
+.thc .pv .pb{position:absolute;left:6px;right:6px;bottom:7px;height:7px;border-radius:5px;background:linear-gradient(90deg,var(--pg1),var(--pg2))}
+.thc .pv .pc1,.thc .pv .pc2{position:absolute;top:21px;width:22%;height:14px;border-radius:4px;background:var(--psurf)}
+.thc .pv .pc1{right:32%}.thc .pv .pc2{right:6px}
+.thc .nm{font:800 13px var(--font);color:var(--tx);line-height:1.2}
+.thc .ok{position:absolute;top:4px;right:4px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:var(--accTx);font-size:13px;font-weight:900}
+.fxg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.fxc{display:flex;align-items:center;gap:10px;min-height:52px;padding:8px 12px;border-radius:12px;border:2px solid transparent;background:var(--surf);color:var(--tx);font:800 13.5px var(--font);text-align:left;cursor:pointer;transition:transform .12s}
+.fxc:active{transform:scale(.97)}
+.fxc em{font-style:normal;flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--line);color:var(--mut);font-size:12px;font-weight:900;font-variant-numeric:tabular-nums}
+.fxc.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 16%,var(--surf))}
+.fxc.on em{background:var(--acc);color:var(--accTx)}
+.demo .ct{font-weight:900;font-size:14px}.demo .cs{font-size:11px;font-weight:800;opacity:.9}
+.demo{position:relative;height:70px;border-radius:12px;background:#ef7a2a;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;margin:4px 0 10px;transition:background .3s}
+.demo.done{background:var(--done)}
+.tog{display:flex;justify-content:space-between;align-items:center;background:var(--surf);border-radius:12px;padding:10px 12px;font-weight:800;font-size:14px;margin-bottom:6px;border:none;width:100%;cursor:pointer}
+.tog b{width:44px;height:26px;border-radius:20px;background:var(--line);position:relative;transition:background .2s;flex:none}
+.tog b::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--tx);transition:transform .2s}
+.tog.on b{background:var(--done)}.tog.on b::after{transform:translateX(18px)}
+.note{font-size:12px;color:var(--mut);font-weight:700;line-height:1.5;margin-top:10px}
 
-    <div class="set-card" onclick="simpleStart('cikmis')" style="margin-bottom:10px">
-      <div class="set-info">
-        <div class="set-name">2024 Çıkmış Sorular <span class="badge badge-new">FİNAL</span></div>
-        <div class="set-desc">2024 Final sınavından çıkmış sorular — en yüksek öncelik</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
-          <span class="set-count">30 soru</span>
-          <button class="set-card-btn" id="ss2-btn-cikmis">Seç</button>
-        </div>
-      </div>
-    </div>
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:12px 18px;border-radius:14px;font-weight:900;font-size:14px;z-index:120;box-shadow:0 10px 30px rgba(0,0,0,.4);animation:toast 2.6s ease forwards;white-space:nowrap}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,20px)}10%,85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,10px)}}
 
-    <div class="set-card" onclick="simpleStart('muhtemel')" style="margin-bottom:10px">
-      <div class="set-info">
-        <div class="set-name">Muhtemel Sorular <span class="badge badge-likely">OLASI</span></div>
-        <div class="set-desc">Önceki dönemden çıkması muhtemel sorular · 12 doğrudan ilgili, 8 kısmen ilgili</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
-          <span class="set-count">20 soru</span>
-          <button class="set-card-btn" id="ss2-btn-muhtemel">Seç</button>
-        </div>
-      </div>
-    </div>
+/* ---- efektler ---- */
+.p{position:fixed;pointer-events:none;z-index:110;will-change:transform,opacity}
+.fxo{position:absolute;inset:0;border-radius:12px;pointer-events:none}
+.fxo.clip{overflow:hidden}
+@keyframes fly{0%{transform:translate(0,0) rotate(0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(var(--s,1));opacity:0}}
+@keyframes ring{0%{transform:translate(-50%,-50%) scale(.25);opacity:.95}100%{transform:translate(-50%,-50%) scale(var(--s,3));opacity:0}}
+@keyframes stamp{0%{transform:scale(2.6) rotate(-18deg);opacity:0}55%{transform:scale(.9) rotate(-8deg);opacity:1}75%{transform:scale(1.05) rotate(-8deg)}100%{transform:scale(1) rotate(-8deg);opacity:1}}
+@keyframes shake{0%,100%{transform:translate(0)}20%{transform:translate(-5px,2px)}40%{transform:translate(5px,-2px)}60%{transform:translate(-3px,1px)}80%{transform:translate(2px,-1px)}}
+@keyframes glow{0%{box-shadow:0 0 0 0 #2f9e63}40%{box-shadow:0 0 28px 8px #3ddc84,0 0 60px 18px #2f9e6366}100%{box-shadow:0 0 0 0 #2f9e6300}}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.14)}70%{transform:scale(.95)}100%{transform:scale(1)}}
+@keyframes coin{0%{transform:translate(-50%,0) scaleX(1);opacity:1}25%{transform:translate(-50%,-40px) scaleX(.2)}50%{transform:translate(-50%,-70px) scaleX(1)}75%{transform:translate(-50%,-80px) scaleX(.2)}100%{transform:translate(-50%,-60px) scaleX(1);opacity:0}}
+@keyframes rise{0%{transform:translate(0,0) scale(.6);opacity:0}20%{opacity:1}100%{transform:translate(0,-110px) scale(1.1);opacity:0}}
+@keyframes fadeOut{to{opacity:0}}
+.stampEl{position:absolute;inset:0;display:grid;place-items:center;font-size:30px;font-weight:900;color:#fff;border:4px solid #fff;border-radius:12px;animation:stamp .45s cubic-bezier(.3,1.5,.5,1) forwards,fadeOut .4s 1s forwards}
+.pix{font-family:var(--pix);font-size:11px;color:#facc15;text-shadow:2px 2px 0 #000;white-space:nowrap}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spin{to{--a:360deg}}
+.trace{position:absolute;inset:-3px;border-radius:14px;padding:3px;background:conic-gradient(from var(--a),#3ddc84 0deg,#3ddc84 60deg,transparent 60deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;filter:drop-shadow(0 0 6px #3ddc84);animation:spin .7s linear 2 forwards}
+.traceFull{position:absolute;inset:-3px;border-radius:14px;border:3px solid #3ddc84;box-shadow:0 0 18px #3ddc84,inset 0 0 12px #3ddc8466;animation:fadeOut 1s .9s forwards}
+@keyframes flick{0%,100%{filter:none}10%{filter:brightness(2.2) drop-shadow(0 0 14px #9ef)}20%{filter:brightness(.5)}30%{filter:brightness(2) drop-shadow(0 0 18px #9ef)}45%{filter:brightness(.7)}60%{filter:brightness(1.8) drop-shadow(0 0 10px #3ddc84)}}
+.bolt{position:absolute;font-size:22px;filter:drop-shadow(0 0 6px #9ef);animation:boltA .5s ease-out forwards}
+@keyframes boltA{0%{opacity:0;transform:scale(.4)}30%{opacity:1;transform:scale(1.2)}100%{opacity:0;transform:scale(1)}}
+.laser{position:absolute;left:-10%;right:-10%;height:3px;background:#fff;box-shadow:0 0 8px #ff3b3b,0 0 20px #ff3b3b,0 0 40px #ff3b3b;animation:sweep .45s ease-in-out forwards}
+@keyframes sweep{from{top:0}to{top:100%}}
+.cut{position:absolute;inset:0;background:linear-gradient(#ffffff55,transparent);animation:fadeOut .6s .4s forwards}
+.nstamp{position:absolute;inset:6px;display:grid;place-items:center;border:3px solid #b7ffd6;border-radius:10px;color:#b7ffd6;font-size:28px;font-weight:900;text-shadow:0 0 8px #3ddc84,0 0 18px #3ddc84;box-shadow:0 0 12px #3ddc84,inset 0 0 12px #3ddc84;animation:stampIn .4s cubic-bezier(.3,1.6,.5,1) forwards,fadeOut .5s 1s forwards}
+@keyframes stampIn{0%{transform:scale(2.4) rotate(-15deg);opacity:0}60%{transform:scale(.92) rotate(-6deg);opacity:1}100%{transform:scale(1) rotate(-6deg);opacity:1}}
+.seal{position:absolute;right:-10px;top:-12px;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#e05252,#a51e1e 60%,#7a1010);box-shadow:0 3px 8px #000a,inset 0 0 0 4px #c33,inset 0 0 0 6px #8a1515;display:grid;place-items:center;color:#ffd7d7;font-size:18px;font-weight:900;animation:sealIn .45s cubic-bezier(.3,1.6,.5,1) forwards,fadeOut .5s 2s forwards}
+@keyframes sealIn{0%{transform:scale(2.5) rotate(40deg);opacity:0}60%{transform:scale(.85) rotate(-8deg);opacity:1}100%{transform:scale(1) rotate(-12deg);opacity:1}}
+@keyframes glitch{0%{transform:translate(0);text-shadow:none}10%{transform:translate(-4px,1px);text-shadow:3px 0 #f0f,-3px 0 #0ff}20%{transform:translate(4px,-1px);text-shadow:-4px 0 #f0f,4px 0 #0ff;clip-path:inset(20% 0 40% 0)}30%{transform:translate(-2px,0);clip-path:inset(60% 0 5% 0)}40%{transform:translate(3px,1px);clip-path:none;text-shadow:2px 0 #f0f,-2px 0 #0ff}55%{transform:translate(0);text-shadow:none}70%{transform:translate(-3px,0);text-shadow:3px 0 #f0f,-3px 0 #0ff}80%,100%{transform:none;text-shadow:none}}
+.bars{position:absolute;left:0;right:0;height:8px;background:#0ff8;mix-blend-mode:screen;animation:barA .5s steps(5) forwards}
+@keyframes barA{0%{top:10%}25%{top:60%;background:#f0f8}50%{top:30%}75%{top:80%;background:#3ddc84aa}100%{top:40%;opacity:0}}
+.tape{position:absolute;left:50%;top:50%;padding:3px 10px;font-family:var(--stamp);font-size:14px;letter-spacing:2px;color:#fff;border:3px double #fff;border-radius:4px;white-space:nowrap;background:#1a7a45cc;box-shadow:0 0 0 2px #1a7a45;animation:tapeIn .4s cubic-bezier(.3,1.5,.5,1) forwards,fadeOut .5s 1.2s forwards}
+@keyframes tapeIn{0%{transform:translate(-50%,-50%) scale(2.6) rotate(-25deg);opacity:0}60%{transform:translate(-50%,-50%) scale(.92) rotate(-12deg);opacity:1}100%{transform:translate(-50%,-50%) scale(1) rotate(-12deg);opacity:1}}
+.scan{position:absolute;left:0;right:0;top:0;height:100%;background:linear-gradient(to bottom,transparent 0%,#3ddc8433 80%,#b7ffd6 98%,transparent 100%);animation:scanA .7s ease-in-out forwards}
+@keyframes scanA{from{transform:translateY(-100%)}to{transform:translateY(100%)}}
+.lines{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,#ffffff18 0 1px,transparent 1px 4px);animation:fadeOut .8s .6s forwards}
+@keyframes beat{0%,100%{transform:scale(1);box-shadow:0 0 0 #3ddc84}15%{transform:scale(1.09);box-shadow:0 0 26px #3ddc84}30%{transform:scale(1)}45%{transform:scale(1.07);box-shadow:0 0 20px #3ddc84}60%{transform:scale(1);box-shadow:0 0 0 #3ddc84}}
+.ecg{position:absolute;left:0;right:0;bottom:4px;height:24px;width:100%}
+.ecg path{fill:none;stroke:#b7ffd6;stroke-width:2.5;filter:drop-shadow(0 0 4px #3ddc84);stroke-dasharray:300;stroke-dashoffset:300;animation:draw .9s ease-out forwards,fadeOut .4s 1s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.p{display:none}}
+</style>
 
-    <div class="set-card" onclick="simpleStart('ai')" style="margin-bottom:10px">
-      <div class="set-info">
-        <div class="set-name">Yapay Zeka Tahminleri <span class="badge badge-ai">YENİ</span></div>
-        <div class="set-desc">Yapay zeka tarafından çıkması muhtemel sorular — henüz çıkmamış</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
-          <span class="set-count">20 soru</span>
-          <button class="set-card-btn" id="ss2-btn-ai">Seç</button>
-        </div>
-      </div>
-    </div>
+<header class="bar"><div class="barIn">
+  <nav class="tabs" id="tabs" aria-label="Haftalar"></nav>
+  <span class="sync" id="sync"><i></i><span>Yükleniyor</span></span>
+  <button class="ib" id="brush" data-act="custom" aria-label="Özelleştir: tema ve efektler">🎨</button>
+  <button class="ib" id="gear" data-act="settings" aria-label="Ayarlar">⚙</button>
+  <button class="ib plus" id="plus" data-act="editmode" aria-label="Satır ve sütun ekle">+</button>
+</div></header>
 
-    <button class="btn-secondary" style="margin-top:8px" onclick="goHome()">← Geri</button>
-  </div>
-  </div>
-</div>
+<main class="wrap">
+  <div class="hint" id="hint" hidden>Düzenleme modundasın. Alttan satır, sağdan sütun ekleyebilirsin (en fazla 15 satır, 10 sütun). ✕ ile silebilirsin. Bitince sağ üstteki ✕'e bas.</div>
+  <div class="tblwrap" id="tblwrap"><table id="grid"></table></div>
+  <div id="addRowBox"></div>
+</main>
 
-<!-- QUIZ -->
-<div id="quiz" class="screen">
-  <div class="quiz-topbar">
-    <div class="quiz-meta" id="quiz-meta">PSİKOLOJİ TARİHİ</div>
-    <div class="quiz-streak"><span style="color:#EF9F27">◆</span><span id="streak-count">0 seri</span></div>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-  <div class="quiz-body">
-    <div class="level-badge">
-      <div class="level-dot" id="ld1"></div><div class="level-dot" id="ld2"></div>
-      <div class="level-dot" id="ld3"></div><div class="level-dot" id="ld4"></div>
-      <div class="level-dot" id="ld5"></div>
-      <span id="level-text" style="margin-left:4px;font-size:11px;color:#666664"></span>
-    </div>
-    <div class="question-text" id="question-text"></div>
-    <div class="options" id="options-container"></div>
-    <div id="exp-box" style="display:none" class="exp-box">
-      <div class="exp-result" id="exp-result"></div>
-      <div class="exp-text" id="exp-text"></div>
-    </div>
-  </div>
-  <div class="quiz-footer">
-    <button class="next-btn" id="next-btn" style="display:none" onclick="nextQ()">Sonraki Soru →</button>
-    <button class="btn-secondary" onclick="goHome()">Ana Sayfaya Dön</button>
-  </div>
-</div>
-
-<!-- CEVAPLAR -->
-<div id="allq" class="screen">
-  <div class="allq-header">
-    <button class="back-btn" onclick="goHome()">← Geri</button>
-    <span class="allq-title" id="allq-title">Cevaplar</span>
-  </div>
-  <div id="allq-list"></div>
-</div>
-
-<!-- SONUÇ -->
-<div id="result" class="screen">
-  <div class="result-inner">
-    <div class="res-score" id="res-score">0%</div>
-    <div class="res-label" id="res-label"></div>
-    <div class="res-grid">
-      <div class="res-card green"><div class="num" id="res-correct">0</div><div class="lbl">Doğru</div></div>
-      <div class="res-card red"><div class="num" id="res-wrong">0</div><div class="lbl">Yanlış</div></div>
-      <div class="res-card"><div class="num" id="res-total">0</div><div class="lbl">Toplam</div></div>
-      <div class="res-card"><div class="num" id="res-streak">0</div><div class="lbl">En Uzun Seri</div></div>
-    </div>
-    <div class="weak-sec" id="weak-sec"></div>
-    <button class="btn-primary" onclick="openSelect(lastMode)">Tekrar</button>
-    <button class="btn-secondary" onclick="goHome()">Ana Sayfaya Dön</button>
-  </div>
-</div>
+<div class="modal" id="modal" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
 
 <script>
-const SET_CIKMIS=[
-{id:'c1',q:`Aşağıdakilerden hangisi Wundt'un çalışmaları ile bağdaşmaz?`,opts:[`Duyumlar ve hayaller arasında önemli bir fark olduğunu savunmak`,`Duyumları yoğunluklarına, sürekliliklerine ve duyum boyutuna göre sınıflandırmak`,`Bilinç süreçlerini en temel ve en basit elemanlarına kadar analiz etmek`,`Psikofizik paralelcilik`,`Duyumları, deneyimlerin başlangıcı olarak kabul etmek`],answer:0,exp:`Wundt duyumları ve imgeleri (hayalleri) bilincin temel öğeleri sayıyordu. Aralarında yapısal fark OLMADIĞINI, ikisinin de beyin kabuğunun uyarılmasıyla oluştuğunu savundu. (A) "önemli bir fark olduğunu savunmak" bu yüzden yanlıştır — Wundt tam tersini söylemiştir. Bu görüşü Titchener da benimsedi. — (B) DOĞRU: Wundt duyumları yoğunluk, süre ve nitelik gibi boyutlara göre sınıflandırmıştır. — (C) TARTIŞMALI: Bilinci temel elemanlara ayırma Titchener'a daha yakın; ancak Wundt da bu analizi yapmıştır, dolayısıyla "bağdaşmaz" denemez. — (D) DOĞRU: Psikofizik paralelcilik Wundt'un benimsediği ruh-beden anlayışıdır. — (E) DOĞRU: Wundt duyumları tüm deneyimlerin ham maddesi ve başlangıç noktası olarak kabul eder.`},
-{id:'c2',q:`Aşağıdakilerden hangisi Brentano ile ilişkilendirilemez?`,opts:[`Yöntemi ampiriktir`,`Tecrübe etme fiilinin psikolojinin gerçek konusu olduğunu ileri sürmüştür`,`Psikolojinin konusunun zihinsel faaliyetler olduğunu ileri sürmüştür`,`Psikolojinin bilinçli yaşantıların içeriğinin araştırması gerektiği fikrini kabul eder`,`Onun yaklaşımı "eylem psikolojisi" olarak adlandırılmaktadır`],answer:3,exp:`Brentano zihnin İÇERİĞİ değil, zihinsel EYLEMi (act) psikolojinin konusu olarak gördü. "Kırmızı görüyorum" derken kırmızının içeriği değil, GÖRME EYLEMİ psikolojinin konusudur. — (D) YANLIŞ: "Bilinçli yaşantıların içeriğini araştırmak" Titchener'ın yapısalcılığının görevidir; Brentano tam tersini savundu. — (A) DOĞRU: Ampirik yöntem Brentano'ya aittir. — (B) DOĞRU: Tecrübe etme fiili psikolojinin konusudur. — (C) DOĞRU: Zihinsel faaliyetler Brentano'nun inceleme alanıdır. — (E) DOĞRU: "Eylem psikolojisi" Brentano'nun ekolünün adıdır.`},
-{id:'c3',q:`Hayvan davranışının, basit zihinsel süreçler açısından açıklanabilmesi mümkün iken, gelişmiş bir zihinsel sürecin sonucu olarak yorumlanmaması gerektiğini ifade eden bilim insanı aşağıdakilerden hangisidir?`,opts:[`E. B. Titchener`,`H. Spencer`,`G.J. Romanes`,`C.L. Morgan`,`F. Galton`],answer:3,exp:`Lloyd Morgan Kanonu (1894): Romanes hayvan davranışlarını insana benzeterek yorumluyordu (anthropomorphic yorum). Morgan buna karşı çıkarak "daha basit bir zihinsel süreçle açıklanabiliyorsa, daha gelişmiş bir sürece atfedilmemelidir" ilkesini geliştirdi. Bu parsimony (tutumlu açıklama) ilkesinin psikolojiye uygulamasıdır. — (A) Titchener yapısalcılık, (B) Spencer sosyal Darwinizm, (C) Romanes tam tersini yapardı — aşırı anthropomorphic yorumlar, (E) Galton zeka ölçümüyle tanınır.`},
-{id:'c4',q:`Zihinsel kimya anlayışını psikolojiye uygulayan ekol hangisidir?`,opts:[`Yapısalcılık`,`Geştalt`,`Davranışçılık`,`İşlevselcilik`,`Humanizm`],answer:0,exp:`J.S. Mill'in "zihinsel kimya" kavramı: basit zihinsel elementlerin birleşmesiyle yeni özellikler kazanılır — tıpkı kimyasal bileşikler gibi. Titchener'ın Yapısalcılığı bu mantığı kullanır: bilinç elementlerini kimyasal elementler gibi sınıflandırır ve analiz eder. — (B) Geştalt tam TERSİNİ savunur: "Bütün parçaların toplamından fazladır" — kimyasal analoji anlayışını reddeder. — (C) Davranışçılık zihinsel içeriklerle ilgilenmez. — (D) İşlevselcilik zihnin "ne yaptığını" sorar. — (E) Hümanizm bütüncül bir anlayış benimser.`},
-{id:'c5',q:`Psikolojinin araştırma sahasının doğaya uyum üzerine olması gerektiğini savunan ekol hangisidir?`,opts:[`Yapısalcılık`,`Geştalt`,`Psikoanalizm`,`İşlevselcilik`,`Davranışçılık`],answer:3,exp:`Darwin'in evrim teorisinden beslenen İşlevselcilik, bilincin temel amacının organizmanın çevresine uyum sağlaması olduğunu savunur. Zihnin ne olduğu (Yapısalcılık) değil, NE YAPTIĞI (uyum işlevi) önemlidir. Harvey Carr'ın tanımı: psikoloji organizmanın çevreyle uyumunu inceler. — (A) Yapısalcılık "zihnin ne olduğunu" sorar. — (B) Geştalt algı ve örüntüyle ilgilenir. — (C) Psikoanalizm bilinçdışı çatışmalarla. — (E) Davranışçılık gözlenebilir uyarıcı-tepki bağlarıyla.`},
-{id:'c6',q:`Würzburg Okulu'nun psikoloji tarihi açısından önemi ile ilgili verilen aşağıdaki bilgilerden hangisi yanlıştır?`,opts:[`Psikolojinin yönünün fizyolojik çalışmalara kaymasını sağlamıştır`,`Ekolün gelişiminde eleştirel deneysel çalışmalar önemli bir rol oynar`,`Yapısalcılığın çöküşünü hızlandırmıştır`,`Diğer ekollerin çıkışında önemli bir rolü vardır`,`Bir ekol ancak yine kendi içinden çıkanlar tarafından çürütülebilir`],answer:0,exp:`Würzburg Okulu Wundt'un laboratuvarından yetişmiş ama ona karşı çıkan bir okuldur — yani DIŞARIDAN Yapısalcılığı çürüttü. "Bir ekolün ancak kendi içinden çürütülebileceği" iddiası tarihsel olarak yanlıştır. — (A) Tartışmalı ama diğer seçenekler doğrudur. — (B) DOĞRU: Eleştirel deneysel çalışmalar Würzburg'un yöntemidir. — (C) DOĞRU: "İmgesiz düşünce" bulgusuyla Yapısalcılığı sarstı. — (D) DOĞRU: Gestalt ve İşlevselcilik gibi ekolların çıkışında rol oynadı.`},
-{id:'c7',q:`Beynin bir bütün halinde çalıştığını savunan görüş hangisidir?`,opts:[`Psikofizik etkileşimcilik`,`Lokalizasyonculuk`,`Anti lokalizasyonculuk`,`Panpsişizm`,`Materyalizm`],answer:2,exp:`Anti-lokalizasyonculuk: "Beyin bir bütün olarak çalışır, belirli bölgelere işgörü atanamaz." Flourens güvercin deneyleriyle, Lashley fare deneyleriyle bunu desteklemiştir. — (B) Lokalizasyonculuk tam tersi: her işlev beynin farklı bölgesinde. — (A) Psikofizik etkileşimcilik ruh-beden etkileşimini ele alır. — (D) Panpsişizm her şeyin zihinsel boyutu olduğunu savunur. — (E) Materyalizm maddeyi temel alan ontolojik görüştür.`},
-{id:'c8',q:`Aşağıdakilerden hangisi Ebbinghaus ile ilişkilendirilemez?`,opts:[`Çağrışımların oluşumu ile ilgilenmiştir`,`Öğrenme ve hafıza konularını deneysel olarak inceleyen ilk psikologtur`,`Öğrenmede tasarruf metodunu ortaya koymuştur`,`Nativist bir yaklaşımı benimsemiştir`,`Çalışmaları sonunda bir unutma eğrisi ortaya koymuştur`],answer:3,exp:`Ebbinghaus anlamsız hecelerle bellek deneyleri yaparak öğrenmenin tamamen TECRÜBEYE dayalı olduğunu göstermiştir — ampirist yaklaşım. Nativizm bilginin doğuştanlığını/kalıtım kaynaklı olduğunu savunur; Ebbinghaus'un bulguları tam tersini gösterir. — (A) DOĞRU: Çağrışımların oluşumunu inceledi. — (B) DOĞRU: Öğrenme ve hafızayı deneysel olarak inceleyen ilk psikologdur. — (C) DOĞRU: Tasarruf metodu Ebbinghaus'un en özgün katkısıdır. — (E) DOĞRU: Unutma eğrisi onun en bilinen keşfidir.`},
-{id:'c9',q:`"Onlara göre yaşantı öğelerine bölünemez; yaşantıyı incelerken öğelerin ilişkileri ve etkileşimleri dikkate alınmalıdır. Yaşantılarımız örüntüler veya örgütlenmiş yapılar oluşturmaktadır, alanın bir kısmındaki olaylar diğer kısmındaki olaylardan etkilenir." Yukarıdaki görüş hangi ekole aittir?`,opts:[`İşlevselcilik`,`Yapısalcılık`,`Psikoanalizm`,`Geştalt`,`Davranışçılık`],answer:3,exp:`Gestalt Psikolojisi: "Bütün, parçaların toplamından fazladır." Algı örüntülenmiş bütünler şeklinde gelir, parçalara bölmek yaşantıyı tahrif eder. Wertheimer, Köhler ve Koffka tarafından kuruldu (1912). — (B) Yapısalcılık tam tersini yapar: bilinci en küçük parçalara bölmeye çalışır. — (A) İşlevselcilik işlev ve uyumla ilgilenir. — (C) Psikoanalizm bilinçdışıyla. — (E) Davranışçılık gözlenebilir davranışla.`},
-{id:'c10',q:`Ablasyon ve lezyon yöntemlerini kullanarak güvercinler ve kurbağalar üzerinde çalışmalar yapmıştır. Kurbağalar üzerinde yaptığı deneylerde beyin fonksiyonlarının beyine eşit olarak bölündüğünü göstermiştir. Yukarıda anlatılan bilim insanı aşağıdakilerden hangisidir?`,opts:[`Broca`,`Müller`,`Swemmerdan`,`Willis`,`Flourens`],answer:4,exp:`Pierre Flourens ablasyon (beyin dokusunu cerrahi kaldırma) ve lezyon yöntemlerini kullanarak güvercin ve kurbağalar üzerinde beyin araştırmaları yaptı. Gall'ün frenoloji iddialarını çürüterek beyin işlevlerinin tüm kortekse eşit dağıldığını (anti-lokalizasyon) gösterdi. — (A) Broca konuşma merkezini hasta otopsilerinden tespit etti. — (B) Müller özgül sinir enerjisi yasasıyla tanınır. — (C) Swammerdam sinir-kas deneyleriyle. — (D) Willis beyin anatomisi atlasıyla.`},
-{id:'c11',q:`"Bir şey neyle ölçülüyorsa onunla tanımlanmalıdır" aşağıdakilerden hangisinin tanımıdır?`,opts:[`Mantıksal pozitivizm`,`Betimleme`,`Operasyonalizm`,`Doğa felsefesi yaklaşımı`,`Yordama`],answer:2,exp:`Operasyonalizm: Percy Bridgman'ın fizikten psikolojiye uyarladığı bu ilkeye göre bir kavram, onu ölçmek için kullanılan işlemlerle (operasyonlarla) tanımlanır. "Zeka" Stanford-Binet IQ testiyle ölçülüyorsa, zeka "Stanford-Binet'ten alınan puandır." Davranışçılıkla çok ilgilidir. — (A) Mantıksal pozitivizm doğrulanabilirlik ilkesiyle ilgilenir. — (B) Betimleme bilimin bir amacıdır. — (E) Yordama da bilimin amacı ama tanımlama yöntemi değil. — (D) Doğa felsefesi farklı bir alan.`},
-{id:'c12',q:`"Ekoller döneminde yapısalcı ekol, zihnin "ne" olduğunu (I); işlevselci ekol, zihnin çalışma ilkesinin ne olduğunu, zihnin "niye" öyle çalıştığını (II); Geştalt ekolü, indirgemecik temelinde zihnin çalışma ilkelerini (III); davranışçı ekol, zihni değil gözlenebilir, ölçülebilir olan davranışı incelemeyi (IV); psikanalitik ekol ise, bilinçaltını (V) incelemeyi amaçlamıştır. Yukarıda verilen bilgilerden hangisi yanlıştır?`,opts:[`II`,`III`,`IV`,`I`,`V`],answer:1,exp:`Gestalt psikolojisi indirgemeciliği KESİNLİKLE REDDEDER. "Bütün, parçaların toplamından fazladır" ilkesi, bilinci parçalara indirgeme anlayışına doğrudan karşı çıkıştır. Gestalt anti-indirgemeci bir ekolüdür — (III)'teki "indirgemeci temelinde" ifadesi yanlıştır. — (I) Yapısalcı = ne? DOĞRU. — (II) İşlevselci = niye çalışır? DOĞRU. — (IV) Davranışçı = gözlenebilir davranış. DOĞRU. — (V) Psikanalitik = bilinçaltı. DOĞRU.`},
-{id:'c13',q:`Aşağıda verilen bilimin ölçütlerinden hangileri iç geçerlik ve dış geçerlik ile ilişkilidir?`,opts:[`Gözlenebilirlik-Ölçülebilirlik`,`Gözlenebilirlik-İletilebilirlik`,`Betimleme-Açıklama`,`İletilebilirlik-Yordanabilirlik`,`Tekrarlanabilirlik-Sağdanabilirlik`],answer:4,exp:`İÇ GEÇERLİK: Deneyin gerçekten ölçmek istediğini ölçüp ölçmediği — tekrarlanabilir ve tutarlı sonuçlar (sağdanabilirlik/güvenilirlik). DIŞ GEÇERLİK: Sonuçların başka ortam ve gruplara genellenebilirliği. Tekrarlanabilirlik iç geçerlikle, sağdanabilirlik de iç geçerlikle ilişkilendirilir. — (A) Gözlenebilirlik ve ölçülebilirlik genel bilim kriterleri. — (B)(D) İletilebilirlik dış geçerlikle ilgili ama bu çift tam karşılık değil. — (C) Betimleme-açıklama bilimin amaçlarıdır.`},
-{id:'c14',q:`Aşağıdaki bilim insanlarından hangisi yaptığı fizyolojik çalışmalarla psikolojinin gelişiminde rol oynamamıştır?`,opts:[`Wundt`,`Lashley`,`E.D. Adrian`,`Helmholtz`,`Hall`],answer:0,exp:`Hall psikolojiye katkı sağladı ama bu katkı fizyolojik araştırmalar yoluyla değildi. Hall'un katkıları: APA kurucusu ve ilk başkanı, ABD'nin ilk psikoloji laboratuvarı, ilk dergi, gelişim psikolojisi, Freud'u ABD'ye davet. — (A) Wundt psikofizyoloji ve deneysel psikoloji. — (B) Lashley beyin hasarı ve öğrenme araştırmaları. — (C) Adrian sinir impulsları (Nobel 1932). — (D) Helmholtz sinir iletim hızı, görme ve işitme fizyolojisi.`},
-{id:'c15',q:`Aşağıdakilerden hangisi strukturalizm ekolü temsilcilerindendir?`,opts:[`Ebbinghaus`,`Levin`,`Koffka`,`Köhler`,`Fechner`],answer:1,exp:`Fechner deneysel psikolojinin öncüsü olarak Yapısalcılık'ın fizyolojik temellerini atmıştır. Psikofizik yöntemleri ve "deneysel psikolojinin babası" unvanıyla Yapısalcılık'ın doğrudan öncüsü sayılır. — (C) Koffka ve (D) Köhler Gestalt psikolojisinin temsilcileridir. — (B) Kurt Lewin alan teorisi ve sosyal psikoloji. — (A) Ebbinghaus bağımsız bellek araştırmaları yaptı, Yapısalcı ekol üyesi değil.`},
-{id:'c16',q:`Aşağıdaki tartışmalardan hangisi psikolojinin oluşumda katkısı olan bir tartışma değildir?`,opts:[`Ruhun kökeni nedir`,`Ruh-beden sorunu`,`Tümeller`,`Bilginin kökeni nedir`,`Varlığın kökeni nedir`],answer:0,exp:`Varlığın kökeni ontolojinin ana sorusudur; "neden var da yok değil" metafizik sorusu psikolojinin gelişimiyle doğrudan ilişkisi yoktur. — (A) Ruhun kökeni psikolojinin tarihsel çıkış noktasıdır. — (B) Ruh-beden sorunu Descartes ile bilimsel psikolojiye taşındı. — (C) Tümeller tartışması bilginin yapısıyla ilgilidir, psikoloji epistemolojisini etkiledi. — (D) Ampirizm-rasyonalizm tartışması deneysel psikolojinin temelidir.`},
-{id:'c17',q:`"Ona göre psikolojinin asıl görevi, basit bilinçli deneyimlerin yapısını keşfetmek veya bir diğer ifadeyle bilinci, kendini oluşturan parçalara ayırarak bilinci tanımlamak idi. Dolayısıyla, düşünmenin neden ya da nasıl yerine "ne" olduğu incelenmeliydi." Yukarıda görüşleri verilen aşağıdakilerden hangisidir?`,opts:[`Levin`,`Ebbinghaus`,`Wundt`,`Koffka`,`Titchener`],answer:4,exp:`Titchener psikolojinin amacının bilincin YAPISINI keşfetmek olduğunu savundu. Bilinç en basit elemanlara (duyum, imge, duygu) ayrılarak tanımlanmalı, "ne" sorusu sorulmalıdır. — (C) Wundt bilinci inceler ama tamalgı ve yaratıcı senteze vurgu yapar — sadece parçalamak değildir. — (D) Koffka Gestalt — parçalamaya karşıdır. — (A) Lewin alan teorisi. — (B) Ebbinghaus bellek araştırmaları.`},
-{id:'c18',q:`Aşağıdakilerden hangisi 19. yüzyılda fizyolojinin özünü oluşturan düşüncelerden biri değildir?`,opts:[`Rasyonalizm`,`Deneyleme ve ölçme`,`Mekanizm`,`Materyalizm`,`Amprizm`],answer:0,exp:`19. yüzyıl Alman fizyolojisi deney, ölçme, materyalizm ve mekanizm temelleri üzerine kuruldu. Rasyonalizm ise aklı ve öngörü bilgiyi temel alır; deney ve gözleme ihtiyaç duymaz. 19. yy fizyolojisi tam tersine ampirik ve deneyseldi. — (B) Deneyleme ve ölçme: 19. yy fizyolojisinin yöntemi. — (C) Mekanizm: beden makine gibi çalışır. — (D) Materyalizm: fiziksel açıklamalar geçerlidir. — (E) Ampirizm: bilgi deneyden gelir.`},
-{id:'c19',q:`Galton'un zeka tanımında aşağıdaki hangi düşünce temel teşkil etmiştir?`,opts:[`Rasyonalizm`,`Psikofizik etkileşimcilik`,`Psikofizik paralelcilik`,`Panpsişizm`,`Amprizm`],answer:4,exp:`Galton'a göre zeka, duyusal kapasiteyle ölçülür. Bu Locke'un ampirist görüşünün doğrudan uygulamasıdır: "Zihinde duyulardan gelmemiş hiçbir şey yoktur." Galton'un Antropometrik Laboratuvarı duyusal kapasite testleri yapıyordu. — (A) Rasyonalizm zekayı akıl ve doğuştanlıkla açıklar — Galton bunun tersini savundu. — (B)(C) Psikofizik görüşler ruh-beden ilişkisiyle ilgili. — (D) Panpsişizm her şeyin zihinsel boyutu olduğunu savunur.`},
-{id:'c20',q:`"Refleks arkının uyarıcı tepki arasındaki ayırım nedeniyle ortaya koyduğu psikolojik molekülcülüğe, elementciliğe ve indirgemeci yaklaşıma karşı çıkmıştı. Bunu yaparken ne davranışın ne de bilinçli yaşantının Titchener ve Wundt'un iddia ettiği gibi parçalara veya elementlere indirgenemeyeceğini kanıtlamaya çalışmıştır." Yukarıda anlatılan bilim insanı ve temsilcisi olduğu ekol aşağıdakilerden hangisidir?`,opts:[`Watson-Davranışçılık`,`Skinner-Davranışçılık`,`Kofka-Geştalt`,`James-İşlevselcilik`,`Dewey-İşlevselcilik`],answer:4,exp:`Dewey'in Refleks Arkı Makalesi (1896): Dewey, Wundt ve Titchener'ın parçalayıcı yaklaşımına karşı çıktı. Ateşin çocukla temas anında duyum-tepki arkı kesintisiz bir bütündür; parçalara bölünemez. Bu makale İşlevselciliğin dönüm noktası kabul edilir. — (A)(B) Watson ve Skinner Davranışçılar — U-T şemasıyla parçalama yaparlar. — (C) Koffka Gestalt — o da parçalamaya karşı ama refleks arkı makalesi Dewey'e aittir. — (D) James işlevselciliğin felsefi öncüsü ama bu makaleyi yazan Dewey'dir.`},
-{id:'c21',q:`Aşağıdakilerden hangisinin psikolojinin bilim olmasında bir etkisinin olduğu söylenemez?`,opts:[`İdealizm`,`İndirgemecilik`,`Pozitivizm`,`Materyalizm`,`Determinizm`],answer:0,exp:`İdealizm "gerçeklik zihne bağlıdır, madde temel değildir" der. Bu anlayış deneysel, materyalist psikolojinin tam karşıtıdır; psikolojiyi bilim yapmaya değil felsefeye yakın tutmaya hizmet eder. — (B) İndirgemecilik: karmaşık olayları temel birimlere indir. — (C) Pozitivizm: yalnızca gözlenebilir olguları araştır. — (D) Materyalizm: zihinsel olayların fiziksel temeli vardır. — (E) Determinizm: nedensellik olmadan bilim olmaz.`},
-{id:'c22',q:`Aşağıdakilerden hangisi Wundt ile Titchener arasındaki farklardan biri değildir?`,opts:[`Wundt iradecilik (voluntarizm) sistemini savunurken Titchener pasif çağrışım anlayışını benimsemiştir`,`Wundt niceliksel içebakışı desteklerken Titchener niteliksel içebakışı desteklemiştir`,`Wundt 3 boyutlu duygu teorisini savunurken Titchener yalnızca 1 boyutu (hoş-hoş olmayan) kabul etmiştir`,`Wundt kültürel psikolojiyi psikolojinin dışında tutarken Titchener onu benimsemiştir`,`Wundt tamalgı ve yaratıcı sentezi vurgularken Titchener bilinci pasif elemanlara bölerek incelemiştir`],answer:3,exp:`Wundt sistemi: voluntarizm (aktif zihin), 3 boyutlu duygu teorisi, tamalgı (apperception), yaratıcı sentez, Völkerpsychologie (kültürel psikoloji — 10 cilt). Titchener sistemi: pasif çağrışımcılık, yalnızca haz-acı boyutu, bilinci parçalara bölerek analiz, kültürel psikolojiyi dışlama. — (A) GERÇEK FARK: Wundt voluntarizm, Titchener pasif çağrışım. — (B) GERÇEK FARK: Wundt niceliksel, Titchener niteliksel içgözlem. — (C) GERÇEK FARK: Wundt 3 boyut, Titchener 1 boyut. — (D) YANLIŞ: Tam tersidir — Wundt kültürel psikolojiyi psikolojinin ayrılmaz parçası saydı, Titchener görmezden geldi. — (E) GERÇEK FARK: Wundt tamalgı ve yaratıcı sentez, Titchener pasif element analizi.`},
-{id:'c23',q:`Aşağıdakilerden hangisi koşullanma ilkelerinden biri değildir?`,opts:[`Edimsel davranış`,`Ayırt etme`,`Bitişiklik`,`Genelleme`,`Pekiştirme`],answer:0,exp:`Edimsel davranış (operant behavior) Skinner'ın edimsel koşullanmasının konusudur — klasik koşullanmanın bir ilkesi değildir. Klasik koşullanmanın temel ilkeleri: bitişiklik (C), genelleme (D), ayırt etme (B) ve pekiştirme (E)'dir.`},
-{id:'c24',q:`Konuşmanın beyindeki bölgesini ilk gösteren ve o alana kendi adı verilen bilim adamı kimdir?`,opts:[`Gall`,`Wernicke`,`Spurzheim`,`Hall`,`Broca`],answer:4,exp:`Paul Broca (1824-1880) anlayabilen ama konuşAMAYAN hastaların otopsilerinde sol ön loptaki hasarı tespit etti. Bu bölgeye "Broca alanı" adı verildi — motor konuşma üretiminden sorumludur. — (B) Wernicke konuşma ANLAMASIYLA ilgili bölgeyi Broca'dan sonra buldu (1874). — (A) Gall frenoloji — bilimsel olarak yanlış. — (C) Spurzheim Gall'ün öğrencisi, frenoloji. — (D) Hall psikoloji tarihçisi, nöroanatomi değil.`},
-{id:'c25',q:`Korktuğumuz için kaçmayız, kaçtığımız için korkarız görüşünü savunan kuram hangisidir?`,opts:[`Sosyal Darwinizm Kuramı`,`Schachter-Singer Kuramı`,`İşlevselci kuram`,`Davranışçı kuram`,`James-Lange Kuramı`],answer:4,exp:`James-Lange Duygu Teorisi: Geleneksel görüş "ayı görürüz → korkarız → kaçarız." James-Lange: "Ayı görürüz → kaçarız (bedensel tepki) → kaçma eyleminin bedensel belirtilerini hissederiz = KORKU." Duygu bedensel tepkinin zihinsel yansımasıdır. — (B) Schachter-Singer iki faktör teorisi: fizyolojik uyarılma + bilişsel etiketleme = duygu. Farklı bir modeldir. — (C) İşlevselcilik genel bir ekol. — (D) Davranışçılık iç duygu durumlarını incelemez.`},
-{id:'c26',q:`Aşağıdakilerden hangisi evrim kuramının psikoloji üzerindeki etkilerinden biri değildir?`,opts:[`Bireysel farklılıkların tanımlanması ve ölçülmesine üzerinde durma`,`Determinist ve indirgemeci anlayışı benimseme`,`Bilincin yapısı yerine işlevlerini vurgulanması`,`Metodoloji ve bilgi açısından birçok farklı alandan faydalanma`,`Hayvan psikolojisi üzerine yoğunlaşarak günümüzde karşılaştırmalı psikolojiye temel teşkil etmesi`],answer:1,exp:`Determinizm ve indirgemecilik Darwin'den değil, 19. yüzyıl fizyolojisi ve pozitivizmden gelir. Darwin'in dört etkisi: (1) Hayvan psikolojisi, (2) Bilincin işlevi vurgusu, (3) Geniş metodoloji, (4) Bireysel farklılıklar. — (A)(C)(D)(E) Darwin'in doğrudan psikoloji etkileridir.`},
-{id:'c27',q:`Aşağıdakilerden hangisi entrospeksiyon metodunun kurallarından değildir?`,opts:[`Gözlemciler sürecin ne zaman biteceğini belirmeyebilmek zorundadır`,`Gözlemi birkaç defa tekrar etmek mümkün olmalıdır`,`Deneysel koşullar uyarıcının kontrollu manipulasyonu açısından değişikliklere elverişli olmak zorundadır`,`Hiçbiri`,`Gözlemciler sürecin ne zaman biteceğini belirmeyebilmek zorundadır`],answer:4,exp:`Bu soru hatalıdır: (A) ve (E) şıkları birebir aynıdır. Wundt'un içgözlem 4 kuralı: (1) Gözlemciler sürecin ne zaman BAŞLAYACAĞINI belirleyebilmeli, (2) Hazır olma/dikkat kesilme durumunda olmak, (3) Gözlem tekrar edilebilmeli, (4) Koşullar değiştirilebilmeli. Sınavda (D) "Hiçbiri" doğru cevap olarak verilmiştir çünkü sunulan şıkların hiçbiri Wundt'un gerçek kurallarını doğru yansıtmamaktadır.`},
-{id:'c28',q:`Aşağıdaki ekol-temsilci eşleşmelerinden hangisi yanlıştır?`,opts:[`Fonksiyonalizm-Woodworth`,`Geştalt-Külpe`,`Strukturalizm-Tichener`,`Psikoanalizm-Horney`,`Davranışçılık-Watson`],answer:1,exp:`Külpe Würzburg Okulu'nun kurucusudur, Gestalt'ın değil. Gestalt'ın kurucusu Wertheimer, temsilcileri Köhler ve Koffka'dır. — (A) Woodworth İşlevselcilik-Columbia okulu. DOĞRU. — (C) Titchener Yapısalcılık. DOĞRU. — (D) Karen Horney neo-Freudcu psikanaliz. DOĞRU. — (E) Watson Davranışçılık. DOĞRU.`},
-{id:'c29',q:`Laboratuvarda unutmanın bozucu etkileri teorisini öneri olarak sunan ve gösteren ilk bilim insanı hangisidir?`,opts:[`Wundt`,`Müller`,`Tichener`,`Fechner`,`Ebbinghaus`],answer:1,exp:`G.E. Müller ve Pilzecker (1900) retroaktif girişim (retroactive interference) kavramını deneysel olarak kanıtladı: yeni öğrenilen materyal, önceden öğrenileni aktif biçimde bozar. Titchener kendi kitabını Müller'in çalışmasını beklemek için 2 yıl erteledi. — (E) Ebbinghaus unutma eğrisini ve tasarruf metodunu keşfetti ama girişim teorisini geliştiren Müller'dir. — (A) Wundt tamalgı ve bilinç çalışmaları. — (C) Titchener yapısalcılık. — (D) Fechner psikofizik.`},
-{id:'c30',q:`Stanley Hall ile ilgili aşağıda verilen bilgilerden hangisi yanlıştır?`,opts:[`Evrim kuramından etkilenmiştir`,`Çocuk ve ergen psikoloji üzerine çalışmalar yapmıştır`,`Genetik psikolog olarak anılır`,`Çocuk çalışmaları hareketine önderlik etmiştir`,`Psikolojiyi bir biyolojik bilim olarak ele almıştır`],answer:4,exp:`Hall psikolojiyi biyolojik bir bilim olarak değil, GELİŞİMSEL ve EVRİMSEL bir bilim olarak ele aldı. "Genetik psikolog" unvanı gelişimin kökenlerini araştıran anlamındadır; biyoloji laboratuvarı deneyleri değil. — (A) DOĞRU: Hall'ın tüm çalışmaları evrim kuramının etkisini taşır. — (B) DOĞRU: "Adolescence" (1904) ergenliği ilk kez akademik olarak ele alan kapsamlı eserdir. — (C) DOĞRU: "Genetik psikolog" unvanı. — (D) DOĞRU: Çocuk çalışmaları hareketine liderlik etti.`},
-]
-const SET_MUHTEMEL=[
-{id:'m1',q:'Brentano ile ilişkilendirilemez hangisi?',opts:['Yöntemi ampirik','Tecrübe etme fiilinin psikolojinin gerçek konusu olduğunu ileri sürmüştür','Psikolojinin konusunun zihinsel faaliyetler olduğunu ileri sürmüştür','Psikolojinin bilinçli yaşantıların içeriğini araştırması gerekir','Yaklaşımı eylem psikolojisi olarak adlandırılır'],answer:3,relevance:'high',exp:`Brentano zihnin İÇERİĞİNİ değil, zihinsel EYLEMİ (act) psikolojinin konusu olarak gördü. (D) "bilinçli yaşantıların İÇERİĞİNİ araştırmak" Titchener'ın yapısalcılığının görevidir. Final sınavında da aynı soru çıkmıştır. (A)(B)(C)(E) doğrudan Brentano ile ilgilidir.`},
-{id:'m2',q:'16-17. yy psikolojinin bilim olmasında rol oynayan düşüncelerden biri değil?',opts:['Mekanizm','Panpsişizm','Ampirizm','İndirgemecilik','Determinizm'],answer:1,relevance:'high',exp:`Panpsişizm her şeyin zihinsel/ruhsal bir boyutu olduğunu savunur. Bu görüş mekanik ve ampirik bilim anlayışıyla bağdaşmaz. Mekanizm (A), Ampirizm (C), İndirgemecilik (D), Determinizm (E) hepsi 16-17. yy bilim devriminin temellerini oluşturur.`},
-{id:'m3',q:'İngiliz Görgücü ve Çağrışımcı felsefesiyle ilişkilendirilemez hangisi?',opts:['Atomizm','—','Determinizm','İdealizm','Sensualizm'],answer:3,relevance:'high',exp:`İngiliz Ampirizmi genel olarak anti-idealisttir — bilgi duyulardan gelir, zihin boş levha, çağrışım yasaları ve materyalist eğilim temel özelliklerdir. İdealizm gerçekliğin zihinsel/fikirsel olduğunu savunur; bu İngiliz ampirizmiyle çelişir.`},
-{id:'m4',q:'İngiliz ampirik felsefecilerinden biri değildir hangisi?',opts:['Locke','Mill','Herbart','Berkeley','Hartley'],answer:2,relevance:'high',exp:`Herbart Alman felsefecisidir; rasyonalist/matematiksel yaklaşımla psikolojiyi formülleştirmeye çalıştı. Locke (A) tabula rasa, Berkeley (D) ampirist idealist, Hartley (E) çağrışımcılığı sistematize etti, Mill (B) zihinsel kimya kavramını geliştirdi — hepsi İngiliz ampirist geleneğin temsilcileridir.`},
-{id:'m5',q:'Descartes\'in psikoloji akımları üzerindeki etkilerinden biri değildir hangisi?',opts:['Mekanik beden görüşü','Ruh-beden sorunu','Ampirizm','Zihnin işlevlerinin bedendeki yeri','Doğuştan gelen fikirler öğretisi'],answer:2,relevance:'high',exp:`Descartes katı bir RASYONALİSTtir; doğuştan gelen ideaların varlığına inanır. Ampirizm Locke, Hume, Berkeley gibi İngiliz düşünürlerin akımıdır — Descartes'a karşı cephe alanların görüşüdür. Mekanik beden (A), ruh-beden düalizmi (B), zihin-beden etkileşimi (D) ve innate ideas (E) Descartes'ın katkılarıdır.`},
-{id:'m6',q:'Lokalizasyoncu görüşü benimsemez hangisi?',opts:['Wernicke','Spurzheim','Broca','Lashley','Gall'],answer:3,relevance:'high',exp:`Lashley anti-lokalizasyoncu (eşpotansiyellik ilkesi). Beynin bütünsel çalıştığını, öğrenmenin tek bir bölgeye bağlı olmadığını savundu. Wernicke (A) konuşma anlama merkezi, Spurzheim (B) frenoloji, Broca (C) konuşma üretim merkezi, Gall (E) frenoloji kurucusu — hepsi lokalizasyoncu.`},
-{id:'m7',q:'Hume ile ilişkilendirilemez hangisi?',opts:['İşevurukçuluğun oluşumunda etkili olmuştur','Bilgi üzerine felsefe yapmıştır','Çağrışımı oluşturan ilkelerin benzeyiş, zamanda ve uzamda bitişiklik ve neden-sonuç olduğunu öne sürer','Zihinsel kimya görüşünü savunmuştur','Tüm bilgilerimizin kaynağının duyumlara dayanan algılar olduğunu ileri sürmüştür'],answer:3,relevance:'high',exp:`"Zihinsel kimya" kavramı Hume değil John Stuart Mill'e aittir. Mill: basit çağrışımlar birleştiklerinde orijinal parçalarda olmayan yeni özellikler kazanır. Hume çağrışımın temel ilkelerini tanımladı (C) ve işevurukçuluğun felsefi öncüsü oldu (A).`},
-{id:'m8',q:'Fizyolojik çalışmalarıyla psikolojiye katkı sağlamayan hangisi?',opts:['J. Müller','E.D. Adrian','Flourens','Wundt','Helmholtz'],answer:3,relevance:'high',exp:`Wundt fizyoloji eğitimi almış olsa da asıl katkısı psikolojiyi fizyoloji ve felsefeden bağımsız bir bilim olarak kurmaktır. J. Müller (A) özgül sinir enerjisi yasası, Adrian (B) sinir impulsları (Nobel 1932), Flourens (C) ablasyon deneyleri, Helmholtz (E) sinir iletim hızı ile psikolojinin fizyolojik temellerine katkı sağlamıştır.`},
-{id:'m9',q:'Tüm zihinsel faaliyet türlerini çağrışım öğretisiyle açıklayan ilk düşünür?',opts:['Hobbes','Hartley','Locke','Berkeley','Kant'],answer:1,relevance:'high',exp:`David Hartley çağrışımcılığı yalnızca bilgi teorisi olmaktan çıkarıp tüm zihinsel süreçleri açıklayan sistematik bir psikoloji ekolü haline getiren ilk kişidir. "Observations on Man" (1749). Hobbes (A) çağrışıma değindi ama sistematize etmedi. Locke (C) tabula rasa ile bilinir.`},
-{id:'m10',q:'Konuşmanın beyindeki bölgesini ilk gösteren kim?',opts:['Gall','Spurzheim','Hall','Broca','Wernicke'],answer:3,relevance:'high',exp:`Paul Broca (1824-1880) anlayabilen ama konuşAMAYAN hastaların otopsilerinde sol ön loptaki hasarı tespit etti. Bölgeye "Broca alanı" adı verildi. Wernicke (E) konuşma ANLAMASIYLA ilgili bölgeyi Broca'dan sonra buldu. Gall (A) frenoloji — bilimsel olarak yanlış.`},
-{id:'m11',q:'Fechner ile ilgili yanlış hangisi?',opts:['Eşpotansiyellik yasasını ortaya koymuştur','Ruh-beden sorunu üzerine çalışmıştır','Duyumun şiddetini ölçme ile ilgili bir kuram ortaya atmıştır','Psikofizik\'in kurucularındandır','Deneysel psikolojinin kurucularındandır'],answer:0,relevance:'high',exp:`Eşpotansiyellik (Equipotentiality) yasası Karl Lashley'e aittir. Fechner: ruh-beden ilişkisini inceledi (B), Weber-Fechner yasası ile duyum ölçümünü matematikselleştirdi (C), psikofizik bilim dalını kurdu (D) ve deneysel psikolojinin öncülerinden sayılır (E).`},
-{id:'m12',q:'Ablasyon/lezyon ile güvercin ve kurbağalarda çalışan kim?',opts:['Swemmerdan','Flourens','Weber','Müller','Lashley'],answer:1,relevance:'high',exp:`Pierre Flourens (1794-1867) Gall'ün frenoloji iddialarını çürütmek için ablasyon yöntemini kullandı. Güvercin ve kurbağalarda beyin bölgelerini kaldırarak beynin bir bütün olarak çalıştığını gösterdi. Lashley (E) 20. yy'da fare deneyleriyle anti-lokalizasyonu geliştirdi ama ablasyon/kurbağa betimlemesi Flourens'e aittir.`},
-{id:'m13',q:'Descartes ile ilişkilendirilemez hangisi?',opts:['Metodik şüphe','Nominalist düşünce','Rasyonalist düşünce','Kesin ve mutlak bilgi arayışı','Mekanik ruh'],answer:1,relevance:'med',exp:`Nominalizm (Adcılık) kavramların sadece isimden ibaret olduğunu savunan Orta Çağ felsefesi akımıdır. Descartes rasyonalizmiyle bu akımın hiçbir ilgisi yoktur. Metodik şüphe (A), rasyonalizm (C), kesin bilgi arayışı (D) ve mekanik ruh/beden (E) doğrudan Descartes'a aittir.`},
-{id:'m14',q:'İnsan zihninin doğuşta boş levha olduğunu savunan düşünür hangisidir?',opts:['Herbart','Hartley','Hobbes','Locke','Hume'],answer:3,relevance:'med',exp:`John Locke "Tabula Rasa": insan zihni doğuşta tamamen boş bir levhadır, tüm bilgiler duyular ve deneyimler aracılığıyla sonradan kazanılır. "An Essay Concerning Human Understanding" (1690). Hume (E) skeptisizm ve çağrışım — tabula rasa Locke'un.`},
-{id:'m15',q:'Fizyolojik çalışma-bilim insanı yanlış eşleştirme hangisi?',opts:['Jackson - Sensoryal afezi','Müller - Sinirlerin özel enerjisi','Helmholtz - Sinir akımı hızı','M. Hall - Omurilik işlevi','M. Dax - Dil'],answer:0,relevance:'med',exp:`Sensoryal (duyusal) afezi Carl WERNICKE ile ilişkilendirilir. Hughlings Jackson epilepsi ve beyin hiyerarşik organizasyonu üzerine çalıştı. Müller-sinir enerjisi (B), Helmholtz-sinir hızı (C), Hall-omurilik refleksleri (D), Dax-dil ve sol hemisfer (E) doğru eşleşmelerdir.`},
-{id:'m16',q:'Ruh-beden sorununu madde-form ilişkisi olarak ele alan ilk düşünür hangisidir?',opts:['Aristoteles','Anaksimenes','Anaksimandros','Platon','Thales'],answer:0,relevance:'med',exp:`Aristoteles'e göre ruh bedenin formudur, beden ise maddedir; ikisi ayrılmaz bir bütündür (Hilemorfizm). "Peri Psykhe" psikoloji tarihinin ilk kitabı kabul edilir. Platon (D) ruh-bedeni AYRI şey olarak görür (dualizm) — ruh ölümsüzdür, beden geçicidir.`},
-{id:'m17',q:'Psikolojinin bilim olmasında etkisi olduğu söylenemez hangisi?',opts:['İndirgemecilik','İdealizm','Determinizm','Mekanizm','Pozitivizm'],answer:1,relevance:'med',exp:`İdealizm gerçekliğin zihinsel/ruhsal/fikirsel olduğunu savunur. Bu anlayış olgulari gözlem ve deneyle araştıran pozitif bilimin tam karşıtıdır. Bu soru hem final sınavında hem çıkmış sorularda AYNI ŞEKİLDE çıkmıştır! İndirgemecilik (A), Determinizm (C), Mekanizm (D), Pozitivizm (E) katkı sağlamıştır.`},
-{id:'m18',q:'Beynin bütün halinde çalıştığını savunan görüş hangisidir?',opts:['Düalizm','Determinizm','Monizm','Lokalizasyonculuk','Anti-lokalizasyonculuk'],answer:4,relevance:'med',exp:`Anti-lokalizasyonculuk: "Beyin işlevler için bütünsel çalışır, tek bir merkeze bağlı değil" (Flourens, Lashley). Monizm (C) ruh-beden ilişkisi konusudur, beynin bütünsel işleyişiyle karıştırılmamalıdır. Bu konu birden fazla sınavda karşımıza çıkmaktadır.`},
-{id:'m19',q:'Zihin-beden tartışmasındaki mega kuramlardan biri değildir hangisi?',opts:['Monizm','Epifenomenalizm','Dualizm','Çift görünüm ve özdeşlik kuramı','Rasyonalizm'],answer:4,relevance:'med',exp:`Monizm, Dualizm, Epifenomenalizm ve Özdeşlik kuramları zihin ve bedenin ontolojik ilişkisini açıklayan kuramlar. Rasyonalizm ise bilginin kaynağını sorgulayan epistemolojik bir anlayıştır — zihin-beden ilişkisini açıklamaz.`},
-{id:'m20',q:'Duyumların yanıltıcı olduğunu, doğru bilginin tek kaynağının akıl olduğunu ileri sürenlerden biri değildir hangisi?',opts:['Herakleitos','Aristoteles','Sokrates','Platon','Parmenides'],answer:1,relevance:'med',exp:`Aristoteles rasyonalist bir sistem kursa da bilginin DUYULARLA başladığını savunur. "Hiçbir şey önce duyularda bulunmadan zihinde bulunamaz." Herakleitos (A), Sokrates (C), Platon (D), Parmenides (E) duyulara güvenilemeyeceğini savunmuştur.`}
+(function(){
+"use strict";
+const DAYS=["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"];
+const PAL=[["#d9483b","#fff"],["#ef7a2a","#fff"],["#e9a623","#2a1a00"],["#d94a8c","#fff"],["#8e5bd6","#fff"],["#3f6fd8","#fff"],["#1f9fb8","#fff"],["#9a6b4f","#fff"]];
+const MAX_ROWS=15, MAX_EXTRA=3;
+const THEMES={
+ turuncu:{name:"Siyah · Turuncu",v:{bg:"#171615",topbg:"#100f0e",surf:"#22201e",empty:"#1f1d1b",line:"#2d2a27",tx:"#efe7df",mut:"#9d9389",acc:"#c8692c",accTx:"#1a120c",track:"#2d2a27",g1:"#9e3a36",g2:"#e08a3c"}},
+ kirmizi:{name:"Siyah · Kırmızı",v:{bg:"#141313",topbg:"#0e0d0d",surf:"#1f1d1d",empty:"#1c1a1a",line:"#2a2626",tx:"#ece4e0",mut:"#9a8f8b",acc:"#b0413e",accTx:"#f3e9e6",track:"#2b2626",g1:"#c46a2f",g2:"#c9443f"}},
+ hardal:{name:"Antrasit · Hardal",v:{bg:"#1e1f22",topbg:"#17181a",surf:"#2a2b2f",empty:"#26272b",line:"#33353a",tx:"#ebe8e1",mut:"#9a978f",acc:"#c9a44a",accTx:"#1e1f22",track:"#33353a",g1:"#b8743a",g2:"#d8b452"}},
+ bakir:{name:"Zeytin · Bakır",v:{bg:"#1d201a",topbg:"#161913",surf:"#282c24",empty:"#252921",line:"#323729",tx:"#e9e7dc",mut:"#9a9a88",acc:"#b87344",accTx:"#1d201a",track:"#323729",g1:"#7d8a55",g2:"#c4804c"}},
+ kiremit:{name:"Gece Mavisi · Kiremit",v:{bg:"#161b24",topbg:"#11151c",surf:"#212836",empty:"#1e2430",line:"#2a3242",tx:"#e6e9ef",mut:"#8e97a8",acc:"#c0644a",accTx:"#f3ebe8",track:"#2a3242",g1:"#5f7fa3",g2:"#c9684c"}},
+ adacayi:{name:"Grafit · Adaçayı",v:{bg:"#1a1b1a",topbg:"#131413",surf:"#252725",empty:"#222422",line:"#2e312e",tx:"#e7eae5",mut:"#929891",acc:"#8fa58a",accTx:"#1a1b1a",track:"#2e312e",g1:"#b9876a",g2:"#9db596"}},
+ beyazTuruncu:{light:1,name:"Kar Beyazı · Turuncu",v:{bg:"#f7f7f6",topbg:"#ffffff",surf:"#efedeb",empty:"#ffffff",line:"#e4e1dd",tx:"#221c18",mut:"#8a827b",acc:"#e0702a",accTx:"#ffffff",track:"#e6e2de",g1:"#d9483b",g2:"#f39a3d",chipTx:"#2a1505"}},
+ beyazOkyanus:{light:1,name:"Kar Beyazı · Okyanus",v:{bg:"#f5f7fa",topbg:"#ffffff",surf:"#eaeef4",empty:"#ffffff",line:"#dfe4ec",tx:"#1b2333",mut:"#7a8396",acc:"#3f6fd8",accTx:"#ffffff",track:"#e1e6ef",g1:"#5ab0d6",g2:"#3f6fd8",chipTx:"#ffffff"}},
+ kremKahve:{light:1,name:"Krem · Kahve",v:{bg:"#f5eee2",topbg:"#fbf6ed",surf:"#ece2d1",empty:"#fffaf1",line:"#e2d6c2",tx:"#3a2c21",mut:"#8d7a66",acc:"#8a5a3b",accTx:"#fff8ee",track:"#e6dac6",g1:"#a86a3d",g2:"#dba760",chipTx:"#2e1d0c"}},
+ kremZeytin:{light:1,name:"Krem · Zeytin",v:{bg:"#f3f0e6",topbg:"#faf8f0",surf:"#e7e3d4",empty:"#fdfbf4",line:"#ddd8c6",tx:"#2c3122",mut:"#848770",acc:"#66773a",accTx:"#fbfaf2",track:"#e2ddcb",g1:"#7f9150",g2:"#cfa54a",chipTx:"#2c2408"}},
+ pudraGul:{light:1,name:"Pudra · Gül",v:{bg:"#fbf1f3",topbg:"#fff8f9",surf:"#f5e1e6",empty:"#fffafb",line:"#efd6dd",tx:"#3d2330",mut:"#a37a89",acc:"#d4607f",accTx:"#ffffff",track:"#f2dbe1",g1:"#ef9ab3",g2:"#d4607f",chipTx:"#ffffff"}},
+ pembeLavanta:{light:1,name:"Pembe · Lavanta",v:{bg:"#f8f1f8",topbg:"#fef8fe",surf:"#efe2f1",empty:"#fffbff",line:"#e8d9eb",tx:"#33233d",mut:"#9a86a5",acc:"#9b6bd1",accTx:"#ffffff",track:"#ebdff0",g1:"#f29bc0",g2:"#9b6bd1",chipTx:"#ffffff"}}
+};
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const rid=()=>Math.random().toString(36).slice(2,9);
+const clone=o=>JSON.parse(JSON.stringify(o));
+function stable(o){if(Array.isArray(o))return"["+o.map(stable).join(",")+"]";if(o&&typeof o==="object")return"{"+Object.keys(o).sort().map(k=>JSON.stringify(k)+":"+stable(o[k])).join(",")+"}";return JSON.stringify(o);}
+
+/* ---------- veri ---------- */
+const DEF_ROWS=6;
+const TRE=/^\d{2}:\d{2}$/;
+function defaultWeek(){const rows=[];for(let i=0;i<DEF_ROWS;i++)rows.push({id:rid(),start:"",end:""});return{rows,extras:[],cells:{}};}
+function defaultSettings(){return{theme:"turuncu",effect:9,dayFx:1,sound:true,vib:true,weekNames:["1. Hafta","2. Hafta","3. Hafta"],active:0,named:false};}
+function normWeek(d){
+  const w={rows:[],extras:[],cells:{}};
+  if(d&&Array.isArray(d.rows))w.rows=d.rows.filter(r=>r&&r.id).slice(0,MAX_ROWS).map(r=>{
+    const st=typeof r.start==="string"&&(TRE.test(r.start)||r.start==="")?r.start:(typeof r.time==="string"&&TRE.test(r.time)?r.time:"");
+    let en=typeof r.end==="string"&&TRE.test(r.end)?r.end:"";
+    // eski kayıtlar: bitiş yoksa başlangıç + 1 saat
+    if(st&&!en){const [a,b]=st.split(":").map(Number);const m=Math.min(1440,a*60+b+60);en=String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");}
+    return{id:String(r.id),start:st,end:en};
+  });
+  if(!w.rows.length)return defaultWeek();
+  // ilk sürümün boş 10 satırlık varsayılanı → yeni 6 satırlık boş hafta
+  const oldDefault=w.rows.length===10&&!(d.cells&&Object.keys(d.cells).length)&&!(d.extras&&d.extras.length)&&d.rows.every((r,i)=>r.time===String(8+i).padStart(2,"0")+":00");
+  if(oldDefault)return defaultWeek();
+  if(d&&Array.isArray(d.extras))w.extras=d.extras.filter(x=>x&&x.id).slice(0,MAX_EXTRA).map(x=>({id:String(x.id),name:String(x.name||"Ekstra")}));
+  const okRows=new Set(w.rows.map(r=>r.id)),okCols=new Set(["d0","d1","d2","d3","d4","d5","d6",...w.extras.map(x=>"x"+x.id)]);
+  if(d&&d.cells&&typeof d.cells==="object")for(const k in d.cells){const c=d.cells[k];if(!c||!c.title)continue;const [rk,ckk]=k.split("|");if(!okRows.has(rk)||!okCols.has(ckk))continue;w.cells[k]={title:String(c.title),color:Math.max(0,Math.min(7,+c.color||0)),done:!!c.done,subs:Array.isArray(c.subs)?c.subs.filter(s=>s&&s.t).map(s=>({t:String(s.t),d:!!s.d})):[]};}
+  return w;
+}
+function normSettings(d){
+  const s=defaultSettings();if(!d)return s;
+  if(THEMES[d.theme])s.theme=d.theme;
+  if(typeof d.effect==="number"&&d.effect>=-1&&d.effect<20)s.effect=d.effect;
+  if(typeof d.dayFx==="number"&&d.dayFx>=0&&d.dayFx<8)s.dayFx=d.dayFx;
+  if(typeof d.named==="boolean")s.named=d.named;
+  if(typeof d.sound==="boolean")s.sound=d.sound;
+  if(typeof d.vib==="boolean")s.vib=d.vib;
+  if(Array.isArray(d.weekNames))for(let i=0;i<3;i++)if(d.weekNames[i])s.weekNames[i]=String(d.weekNames[i]).slice(0,30);
+  if(d.active>=0&&d.active<3)s.active=d.active|0;
+  return s;
+}
+const S={settings:defaultSettings(),weeks:[defaultWeek(),defaultWeek(),defaultWeek()]};
+const KEYS=["settings","w0","w1","w2"];
+const dataOf=k=>k==="settings"?S.settings:S.weeks[+k[1]];
+function setData(k,v){if(k==="settings")S.settings=normSettings(v);else S.weeks[+k[1]]=normWeek(v);}
+const W=()=>S.weeks[S.settings.active];
+const wkey=()=>"w"+S.settings.active;
+
+/* ---------- kayıt: bulut (db) + cihaz yedeği ---------- */
+const LS="haftalik-program-v1";
+let db=null,uid=null,hadLocal=false,ready=false;
+function markReady(){if(ready)return;ready=true;document.documentElement.classList.remove("loading");setTimeout(()=>{if(!S.settings.named&&$("modal").hidden)openOnboard();},400);}
+const timers={},writing={},again={},dirty={};
+function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
+function loadLocal(){try{const r=localStorage.getItem(LS);if(!r)return;const d=JSON.parse(r);hadLocal=true;S.settings=normSettings(d.settings);if(Array.isArray(d.weeks))for(let i=0;i<3;i++)S.weeks[i]=normWeek(d.weeks[i]);}catch(e){}}
+function setSync(st){const el=$("sync");el.className="sync "+st;el.querySelector("span").textContent={ok:"Buluta kaydedildi",saving:"Kaydediliyor…",local:"Bu cihazda",err:"Kaydedilemedi",load:"Yükleniyor"}[st];}
+const docPath=k=>"data/users/"+uid+"/"+k;
+function save(k){
+  saveLocal();
+  if(!db){setSync("local");return;}
+  dirty[k]=true;setSync("saving");
+  clearTimeout(timers[k]);timers[k]=setTimeout(()=>flush(k),450);
+}
+async function flush(k){
+  if(writing[k]){again[k]=true;return;}
+  writing[k]=true;dirty[k]=false;
+  try{const body=clone(dataOf(k));if(k==="settings")delete body.active;await db.doc(docPath(k)).set(body);if(!Object.values(dirty).some(Boolean))setSync("ok");}
+  catch(e){setSync("err");}
+  writing[k]=false;
+  if(again[k]){again[k]=false;flush(k);}
+}
+async function initStore(){
+  let d=null,u=null;
+  try{if(window.claude&&window.claude.use){[d,u]=await Promise.all([window.claude.use("db"),window.claude.use("user")]);}}catch(e){}
+  if(d&&u){try{uid=await u.id();}catch(e){uid=null;}}
+  if(!d||!uid){setSync("local");markReady();return;}
+  db=d;setSync("load");
+  const got=new Set();const gotOne=(k,snap)=>{if(snap&&snap.metadata&&snap.metadata.fromCache)return;got.add(k);if(got.size===KEYS.length){setSync("ok");markReady();}};
+  setTimeout(()=>{if(!ready){setSync(got.size?"ok":"err");markReady();}},8000);
+  KEYS.forEach(k=>{
+    let first=true;
+    db.doc(docPath(k)).onSnapshot(snap=>{
+      const wasFirst=first;first=false;
+      try{gotOne(k,snap);}catch(e){}
+      if(snap.metadata&&snap.metadata.hasPendingWrites)return;
+      if(dirty[k]||writing[k])return;
+      if(!snap.exists){if(wasFirst&&hadLocal&&!(snap.metadata&&snap.metadata.fromCache))save(k);return;}
+      const incoming=snap.data();
+      const norm=k==="settings"?normSettings(incoming):normWeek(incoming);
+      if(k==="settings")norm.active=S.settings.active;
+      if(stable(norm)===stable(dataOf(k)))return;
+      setData(k,norm);saveLocal();
+      if(k==="settings"){applyTheme();if(mode==="onboard"&&S.settings.named)closeSheet();}
+      render();
+    },()=>{setSync("err");got.add(k);if(got.size===KEYS.length)markReady();});
+  });
+}
+
+/* ---------- yardımcılar ---------- */
+function cols(){const w=W();return DAYS.map((d,i)=>({key:"d"+i,name:d,extra:false})).concat(w.extras.map(x=>({key:"x"+x.id,name:x.name,extra:true,id:x.id})));}
+function isDone(c){return c.subs&&c.subs.length?c.subs.every(s=>s.d):!!c.done;}
+function colStats(key){const w=W();let t=0,d=0;w.rows.forEach(r=>{const c=w.cells[r.id+"|"+key];if(c){t++;if(isDone(c))d++;}});return{t,d,p:t?Math.round(d/t*100):0};}
+function colName(key){const c=cols().find(x=>x.key===key);return c?c.name:"";}
+function rowOf(id){return W().rows.find(r=>r.id===id);}
+let editMode=false,delAsk=null;
+let animatingCol=null;
+// gün bitince kalıcı görünüm (ayarlardaki gün efektine göre)
+const DAY_FINAL=[
+ {h:"hgold",crown:"g",cell:""},
+ {h:"hgold",crown:"g",cell:"dg"},
+ {h:"hgold",crown:"g",cell:"dg"},
+ {h:"hneon",crown:"",cell:"dn"},
+ {h:"hgneon",crown:"g",cell:"dgn"},
+ {h:"hgold",crown:"g",cell:"dg",text:"★ Gün bitti"},
+ {h:"hgold",crown:"g",cell:"dg"},
+ {h:"hneon",crown:"n",cell:"dgg"}
 ];
 
+function applyTheme(){const t=THEMES[S.settings.theme]||THEMES.turuncu;const r=document.documentElement;r.style.setProperty("--chipTx","#1a120c");Object.entries(t.v).forEach(([k,v])=>r.style.setProperty("--"+k,v));r.style.colorScheme=t.light?"light":"dark";r.classList.toggle("light",!!t.light);}
 
-const SET_AI=[
-{id:'ai1',q:`Aşağıdakilerden hangisi Wundt ile Titchener arasındaki farklardan biri değildir?`,opts:[`Wundt iradecilik (voluntarizm) sistemini savunurken Titchener pasif çağrışım anlayışını benimsemiştir`,`Wundt niceliksel içebakışı desteklerken Titchener niteliksel içebakışı desteklemiştir`,`Wundt kültürel psikolojiyi psikolojinin dışında tutarken Titchener onu benimsemiştir`,`Wundt 3 boyutlu duygu teorisini savunurken Titchener yalnızca 1 boyutu kabul etmiştir`,`Wundt tamalgı ve yaratıcı sentezi vurgularken Titchener bilinci pasif elemanlara bölerek incelemiştir`],answer:2,exp:`Wundt sistemi aktif zihin, tamalgı, yaratıcı sentez ve voluntarizm üzerine kuruludur. Titchener ise bilinci en küçük elemanlara bölen pasif yapısalcılık anlayışı geliştirdi. — (A) GERÇEK FARK: Wundt voluntarizm (irade ve dikkat zihinsel süreçleri aktif yönetir), Titchener pasif çağrışım. — (B) GERÇEK FARK: Wundt niceliksel içgözlem; Titchener niteliksel — deneyimin niteliği rapor edilir. — (C) YANLIŞ: Tam tersidir. Wundt Völkerpsychologie 10 cilt yazdı ve psikolojinin vazgeçilmez parçası saydı. Titchener yapısalcılıkla bağdaşmaz bularak görmezden geldi. — (D) GERÇEK FARK: Wundt haz-acı, gerilim-gevşeme, coşku-durgunluk olmak üzere 3 boyutlu duygu teorisi; Titchener yalnızca haz-acı boyutunu kabul eder. — (E) GERÇEK FARK: Wundt tamalgı ve yaratıcı sentez vurgusu, Titchener pasif element analizi.`},
-{id:'ai2',q:`Wundt'un psikolojinin kurucusu kabul edilmesinin en temel gerekçesi aşağıdakilerden hangisidir?`,opts:[`Psikoloji alanında ilk deneysel çalışmayı yapmasıdır`,`Psikofizik'in Elemanları kitabını yazmasıdır`,`Kasıtlı olarak yeni bir bilim kurma amacıyla sistematik organize etmesi, laboratuvar kurması ve dergi çıkarmasıdır`,`Fechner'den 15 yıl önce çalışmalarına başlamasıdır`,`En fazla sayıda psikoloji araştırması yapmasıdır`],answer:2,exp:`Kurma (founding) ile icat etme (originating) arasındaki ayrım psikoloji tarihinde kritiktir. Fechner psikofizikle öncülük yaptı ama yeni bir bilim kurmak niyetinde değildi. Wundt'un kuruculuğu: (1) Leipzig Laboratuvarı 1879, (2) Philosophische Studien dergisi, (3) Sistematik eğitim — dünyanın dört bir yanından öğrenciler yetiştirdi, (4) Psikolojinin sınırlarını çizme girişimi. — (A) YANLIŞ: İlk deneysel çalışma tek başına yeterli değil; Fechner de deneysel çalışmalar yapmıştı. — (B) YANLIŞ: Psikofizik'in Elemanları Fechner'e aittir, Wundt'a değil. — (C) DOĞRU: Kasıt + organizasyon + kurumsallaşma birlikte kuruculuğu oluşturur. — (D) YANLIŞ: Öncelik değil, kasıt ve organizasyon kritiktir. — (E) YANLIŞ: Yayın sayısı değil sistematik kurma kriteridir.`},
-{id:'ai3',q:`Ebbinghaus'un bellek araştırmaları hakkında aşağıdakilerden hangisi doğrudur?`,opts:[`Anlamsız heceler kullanmasının nedeni önceden oluşmuş çağrışımları devreye sokmaktı`,`Bellek çalışmalarında birçok farklı denek kullanarak genel geçerliği artırdı`,`Anlamsız materyal ile anlamlı materyal arasında yaklaşık 9 kat fark olduğunu ortaya koydu`,`Unutma eğrisini Fechner'in verilerinden yararlanarak geliştirdi`,`Tasarruf metodunda mükemmel öğrenmede geçen süreyi temel aldı`],answer:2,exp:`Ebbinghaus 1879-1885 yılları arasında anlamsız hecelerle (CVC) kendi kendine sistematik bellek deneyleri yaptı. — (A) YANLIŞ: Tam tersi. Anlamsız heceler önceki çağrışımları ENGELLEMEK için kullanıldı; saf öğrenme süreci ölçülebildi. — (B) YANLIŞ: Tek denek kendisiydi; bu metodolojik zayıflık olarak sonradan eleştirildi. — (C) DOĞRU: Byron'dan 80 dize = 9 tekrar; 80 anlamsız hece = yaklaşık 80 tekrar. Anlam öğrenmede yaklaşık 9 kat kolaylık sağlar. — (D) YANLIŞ: Unutma eğrisi tamamen kendi verilerinden oluşturuldu. — (E) YANLIŞ: Tasarruf metodunda temel ölçüt SÜRE değil, TEKRAR SAYISIDIR.`},
-{id:'ai4',q:`Titchener'in "uyarıcı hatası" (stimulus error) kavramı aşağıdakilerden hangisini ifade eder?`,opts:[`Deneyde yanlış bir uyarıcı kullanılmasından kaynaklanan ölçüm hatası`,`Gözlemcinin zihinsel süreci değil nesneyi raporlaması`,`Gözlemcinin dikkatini kaybederek yanlış cevap vermesi`,`Uyarıcı şiddeti ile duyum arasındaki orantısızlık`,`İçebakış sırasında başka bir düşüncenin araya girmesi`],answer:1,exp:`Titchener içebakış metodunun en önemli tuzağını "uyarıcı hatası" olarak adlandırdı. Eğitimsiz kişiler içebakışta dolaysız zihinsel deneyimi değil deneyimlenen nesneyi raporlar. Kırmızı elma gösterildiğinde "elma görüyorum" demek HATALI (nesneyi raporlama); "kırmızı, parlak, yuvarlak, soğuk bir his" demek DOĞRU (dolaysız yaşantıyı raporlama). — (A) YANLIŞ: Bu deney tasarımı hatasıdır; uyarıcı hatası içebakış metoduna özgüdür. — (B) DOĞRU: Nesneyi raporlamak, yaşantıyı değil. — (C) YANLIŞ: Dikkat dağınıklığı farklı bir sorun. — (D) YANLIŞ: Bu Weber-Fechner yasasıyla ilgili psikofizik konusudur. — (E) YANLIŞ: Araya giren düşünceler farklı bir sorun kategorisidir.`},
-{id:'ai5',q:`G.E. Müller'in Ebbinghaus'a en önemli katkısı aşağıdakilerden hangisidir?`,opts:[`Anlamsız heceler yöntemini ilk kez kullanması`,`Unutmanın zaman içinde kendiliğinden yok olmayla (decay) açıklandığını kanıtlaması`,`Unutmanın girişim etkisiyle (interference) açıklanabileceğini deneysel olarak göstermesi`,`Tasarruf metodunu geliştirmesi`,`Bellek çalışmalarında birden fazla denek kullanılması gerektiğini savunması`],answer:2,exp:`Ebbinghaus unutma eğrisini keşfetti; zamanla unutmanın arttığını gösterdi (decay teorisi). Georg Elias Müller ve Pilzecker 1900'de retroaktif girişim (retroactive interference) kavramını deneysel olarak kanıtladı: yeni öğrenilen materyal eskileri aktif biçimde bozar. Titchener kendi kitabını Müller'in çalışmasını beklemek için 2 yıl erteledi. — (A) YANLIŞ: Anlamsız heceler Ebbinghaus'a aittir. — (B) YANLIŞ: Tam tersi — Müller decay teorisine karşı çıktı. — (C) DOĞRU: Girişim teorisi (interference theory) Müller'e aittir. — (D) YANLIŞ: Tasarruf metodu da Ebbinghaus'a aittir. — (E) YANLIŞ: Müller'in asıl katkısı girişim teorisidir.`},
-{id:'ai6',q:`Titchener'in "Deneyciler" grubuna kadınları kabul etmemesiyle ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Titchener kadınların bilimsel yeterliliğine güvenmediğinden bu karara varmıştır`,`Dönemin yasaları kadınların bilimsel toplantılara katılmasını yasaklıyordu`,`Titchener kadın almadığı halde Cornell'de doktora öğrencilerinin üçte biri kadındı`,`Bu karar Titchener'in ölümünden sonra değiştirilmiştir`,`Titchener kendi laboratuvarında da kadın çalıştırmaktan kaçınmıştır`],answer:2,exp:`Titchener'in tutumu psikoloji tarihinin en ilginç paradokslarından birini oluşturur. "Deneyciler" grubuna kadınları kabul etmezdi — gerekçe: sigara dumanı dolu ortam. Oysa Cornell'deki 56 doktora öğrencisinin üçte biri kadındı. İlk kadın doktora öğrencisi Margaret Flay Washburn'u da bizzat kabul etmişti. Christine Ladd-Franklin sürekli protesto edince "tavşanlar gibi yeraltında buluşmak zorunda kalacağız" diye espri yaptı. — (A) YANLIŞ: Sigara ve sosyal normları gerekçe gösterdi, yeterlilik meselesi değil. — (B) YANLIŞ: Yasal bir yasak yoktu. — (C) DOĞRU: Grup toplantılarına almıyor ama kendi lab'ında kadın yetiştiriyordu. — (D) YANLIŞ: Deneyciler grubu Titchener 1927'de ölünce zaten dağıldı. — (E) YANLIŞ: Tam tersi — Cornell'de bizzat kadın öğrenci yetiştirdi.`},
-{id:'ai7',q:`Darwin'in psikolojiye katkılarıyla ilgili aşağıdakilerden hangisi yanlıştır?`,opts:[`Hayvan psikolojisi ve karşılaştırmalı psikolojinin gelişmesine zemin hazırladı`,`Bilincin yapısını değil işlevini ön plana çıkardı`,`Psikoloji metodolojisini fizyoloji dışındaki kaynaklara da açtı`,`Bireysel farklılıkların önemini vurgulayarak Galton'u etkiledi`,`Yapısalcılık ekolünün gelişimini doğrudan etkilemiştir`],answer:4,exp:`Darwin'in psikolojiye dört temel etkisi: (1) Hayvan psikolojisi ve karşılaştırmalı psikoloji, (2) Bilincin işlevi vurgusu — zihin ne yapar, ne için var?, (3) Metodoloji genişlemesi, (4) Bireysel farklılıklar — evrim için varyasyon şarttır. — (A)(B)(C)(D) DOĞRU ETKİ: Hepsi Darwin'in kitapta geçen 4 etkisidir. — (E) YANLIŞ: Darwin Yapısalcılığı ETKİLEMEDİ — aksine Yapısalcılığa KARŞI gelişen İşlevselciliğin temeli oldu. Titchener'ın yapısalcılığı Wundt ve İngiliz empiristlerden beslenir, Darwin'den değil.`},
-{id:'ai8',q:`Galton'un istatistik alanına katkılarıyla ilgili aşağıdakilerden hangisi yanlıştır?`,opts:[`Korelasyon katsayısının (r) temelini atmış, r harfi "regresyon" kelimesinden gelmektedir`,`İkizler metoduyla nature vs nurture tartışmasını başlattı (1875)`,`Antropometrik laboratuvarında 9000'den fazla kişiyi test etti`,`IQ terimini ilk kez kullanan kişi Galton'dur`,`Zekanın kalıtımsal olduğunu savunarak soyarıtımı (eugenics) bilimini kurdu`],answer:3,exp:`Francis Galton istatistik tarihinde devrim niteliğinde katkılar yaptı: korelasyon katsayısı (r harfi "regresyon"dan gelir), regresyon analizi, normal dağılım uygulaması, ikizler metodu (1875), Londra'da 9000+ kişiyi test ettiği Antropometrik Laboratuvar ve eugenics biliminin kurulması. — (A) DOĞRU: r harfi regresyondan gelir. — (B) DOĞRU: İkizler metodu 1875. — (C) DOĞRU: 9000+ kişi test edildi. — (D) YANLIŞ: IQ (Intelligence Quotient) terimini ilk kullanan Galton değil, Alman psikolog William STERN'dir (1912). Lewis Terman Stanford-Binet testini ABD'ye uyarlarken bu terimi benimsedi. — (E) DOĞRU: Eugenics biliminin kurucusu Galton'dur.`},
-{id:'ai9',q:`William James'in bilinç teorisiyle ilgili aşağıdakilerden hangisi yanlıştır?`,opts:[`Bilincin sürekli değişen bir yapısı olduğunu savunmuştur`,`Bilincin kesintisiz bir akış şeklinde ilerlediğini öne sürmüştür`,`Zihnin uyarıcılar arasında seçim yapan ve amaç güden bir yapısı olduğunu savunmuştur`,`Basit bireysel duyumların gerçek deneyimlerde bulunabileceğini savunmuştur`,`Bilincin organizmanın çevreye uyum sağlamasına rehberlik ettiğini öne sürmüştür`],answer:3,exp:`William James bilinci dört temel özellikle tanımladı ve Yapısalcılığın parçalayıcı anlayışına kesinlikle karşı çıktı. James'in deyimiyle: "Hiçbir kimse hayatında basit bir duyumun kendisini yaşamamıştır." — (A) DOĞRU: Sürekli değişim — bilinç akışı duraksız değişir. — (B) DOĞRU: Bilinç akışı (stream of consciousness) — kesintisiz sürekli bir nehir gibi akar. — (C) DOĞRU: Seçicilik ve amaçlılık — zihin dikkatini yönlendirerek seçim yapar. — (D) YANLIŞ: James tam tersini savunur. Basit bireysel duyumlar gerçek deneyimlerde BULUNMAZ; bunlar soyutlamanın sonucudur. Yapısalcılığın element anlayışını bu yüzden reddetti. — (E) DOĞRU: Bilincin uyum işlevi — organizmanın çevreye uyumuna rehberlik eder.`},
-{id:'ai10',q:`"En uyumlu olanın hayatta kalması" ifadesiyle ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Bu ifade Darwin'in doğal seçi teorisinin özetidir ve Darwin tarafından kullanılmıştır`,`Bu ifade Herbert Spencer tarafından üretilmiş ve Darwin'in teorisinden ÖNCE yayımlanmıştır`,`Bu ifade Darwin'in Türlerin Kökeni eserinde geçmektedir`,`Bu ifadeyi ilk kullanan Wallace olup Darwin sonradan benimsemiştir`,`Bu ifade Thomas Malthus'un nüfus teorisinden doğrudan alınmıştır`],answer:1,exp:`"Survival of the fittest" ifadesi psikoloji tarihinde sık sorulan bir tuzaktır. Bu ifade Herbert Spencer'a aittir — Darwin'e değil. Spencer bu ifadeyi Darwin'DEN ÖNCE oluşturdu. Darwin "Türlerin Kökeni"nde kendi ifadesi olan "doğal seçi" terimini kullandı; sonraki baskılarda Spencer'ın ifadesini de alıntıladı. — (A) YANLIŞ: Darwin bu ifadeyi kullandı ama üretmedi — Spencer'dan aldı. — (B) DOĞRU: Spencer bu ifadeyi Darwin'den önce geliştirdi. — (C) YANLIŞ: Darwin sonraki baskılarda alıntıladı ama üretmedi. — (D) YANLIŞ: Wallace doğal seçiyi bağımsız keşfetti ama bu ifadeyle ilgisi yoktur. — (E) YANLIŞ: Malthus Darwin'i ETKİLEDİ ama "survival of the fittest" Spencer'a aittir.`},
-{id:'ai11',q:`Mary Whiton Calkins ile ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Harvard'a kadın olduğu halde kaydolarak doktora derecesi aldı`,`Harvard doktora derecesi vermeyi reddedince Radcliffe'in teklifini kabul etti`,`İkili çağrışım tekniğini geliştirerek APA'nın ilk kadın başkanı oldu (1905)`,`William James'in aktif desteği olmaksızın Harvard seminerlerine katıldı`,`APA listesinde ilk 50 psikolog arasında yer alamamıştır`],answer:2,exp:`Mary Whiton Calkins (1863-1930) psikoloji tarihinin en ilginç figürlerinden biridir. William James'in aktif savunuculuğuyla Harvard seminerlerine kabul edildi. Tüm doktora gereklerini tamamladı — Hugo Münsterberg ona "en iyi doktora öğrencim" dedi. Ancak Harvard kadın olduğu için resmi derece vermedi. Radcliffe Koleji derece teklif ettiğinde "Gereklerimi Harvard'da yerine getirdim" diyerek REDDETTİ. — (A) YANLIŞ: Harvard'a hiçbir zaman resmi olarak kaydedilmedi. — (B) YANLIŞ: Radcliffe teklifini REDDETTİ. — (C) DOĞRU: İkili çağrışım tekniği + APA ilk kadın başkanı 1905 + APA ilk 50 listesinde 12. sıra. — (D) YANLIŞ: James aktif olarak onu savundu ve üniversiteyi zorladı. — (E) YANLIŞ: 12. sıradaydı.`},
-{id:'ai12',q:`Leta Stetter Hollingworth ile ilgili aşağıdakilerden hangisi yanlıştır?`,opts:[`Kadınların erkeklere göre daha homojen olduğunu iddia eden değişkenlik hipotezini çürüttü`,`Adet görmenin performansla hiçbir ilgisi olmadığını deneysel olarak kanıtladı`,`Üstün yetenekli (gifted) terimini psikoloji literatürüne kazandırdı`,`Barnard Koleji'nde evlenmediği için öğretmenliğe devam etmesine izin verilmedi`,`Oy hakkı hareketinde aktif rol üstlendi`],answer:3,exp:`Leta Stetter Hollingworth (1886-1939) üç temel katkıyla öne çıkar: (1) Değişkenlik hipotezini çürütme, (2) Adet-performans ilişkisi yok — deneysel olarak kanıtladı, (3) "Gifted" terimini literatüre kazandırdı. — (A)(B)(C)(E) DOĞRU: Hepsi Hollingworth ile doğru eşleşen bilgilerdir. — (D) YANLIŞ: Hollingworth Barnard Koleji'nde evlenDİĞİ İÇİN (evlendikten sonra) öğretmenliğe devam etmesine izin verilmedi. "Evlenmediği için" ifadesi yanlıştır. Dönemin anlayışı: evli kadın ev dışında çalışmamalı.`},
-{id:'ai13',q:`G. Stanley Hall hakkında aşağıdakilerden hangisi yanlıştır?`,opts:[`ABD'deki ilk psikoloji doktorasını alan kişidir`,`ABD'nin ilk psikoloji laboratuvarını Johns Hopkins'te kurdu (1883)`,`APA'nın kurucu ve ilk başkanı olduğu 1892 yılında dergisi de kuruldu`,`Francis Sumner psikolojide doktora alan ilk siyahi Amerikalıdır ve Hall ile çalıştı`,`Freud ve Jung'u 1909'da Clark Üniversitesi'ne davet etti — Freud'un ABD'ye tek ziyareti`],answer:2,exp:`G. Stanley Hall psikoloji tarihindeki ilkler listesinin zirvesindedir: ABD'deki ilk psikoloji doktorası (Harvard, 1878), ABD'nin ilk psikoloji laboratuvarı (Johns Hopkins, 1883), APA kurucu ve ilk başkanı (1892). — (A) DOĞRU: 1878 Harvard. — (B) DOĞRU: 1883 Johns Hopkins. — (C) YANLIŞ: Hall'ın dergisi (American Journal of Psychology) 1892'de değil 1887'de kuruldu — APA'dan tam 5 YIL ÖNCE. Bu kritik tarih farkıdır. — (D) DOĞRU: Francis Sumner psikolojide doktora alan ilk Siyahi Amerikalıdır; Hall'ın öğrencisiydi. — (E) DOĞRU: 1909 Clark Üniversitesi konferansı, Freud'un tek ABD ziyaretiydi.`},
-{id:'ai14',q:`Psikolojik test hareketi kronolojisiyle ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`IQ terimini ilk kullanan Alfred Binet'dir`,`Zihinsel yaş kavramını Terman geliştirdi`,`Ordu Alfa testi okur-yazar olmayanlar için, Ordu Beta testi okur-yazarlar için tasarlandı`,`Binet testi 1904'te Fransız Milli Eğitim Bakanlığı komisyonu gereğince geliştirildi ve Binet kendi iki kızını denek olarak kullandı`,`Stanford-Binet testini geliştiren James McKeen Cattell'dir`],answer:3,exp:`Test hareketi zinciri: Galton (duyusal testler) → Cattell (zihinsel test terimi, 1890) → Binet+Simon (1905, zihinsel yaş kavramı) → Terman (Stanford-Binet, 1916) → WWI Ordu testleri. — (A) YANLIŞ: IQ terimini ilk kullanan Binet değil, Alman psikolog William Stern'dir (1912). — (B) YANLIŞ: Zihinsel yaş kavramını Terman değil Binet geliştirdi. — (C) YANLIŞ: ALFA testi okur-yazarlar için (yazılı), BETA testi okur-yazar olmayanlar için (resimli/sözsüz). Soru tam tersi yazıyor. — (D) DOĞRU: 1904'te Fransız Bakanlığı komisyonu kuruldu. Binet kendi iki kızını denek kullandı. — (E) YANLIŞ: Stanford-Binet'i geliştiren Lewis Terman'dır, Cattell değil.`},
-{id:'ai15',q:`Lightner Witmer ile ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Klinik psikoloji terimini Münsterberg geliştirmiştir, Witmer sadece ilk kliniği açmıştır`,`Dünyanın ilk psikoloji kliniğini 1896'da açarak klinik psikoloji terimini ilk kullanan kişidir`,`Witmer psikoloji kliniğini ekonomik kaygıdan değil tamamen bilimsel ilgiden dolayı kurdu`,`Witmer Wundt'un laboratuvar çalışmalarından çok etkilenerek bu alana yöneldi`,`Witmer'ın ilk vakası görme sorunu olan bir yetişkindi`],answer:1,exp:`Lightner Witmer (1867-1956) psikoloji pratiğinin kurucusudur. 1892'de Wundt'un yanında doktora yaptı. 1896'da dünyanın ilk psikoloji kliniğini açtı; "klinik psikoloji" ve "okul psikolojisi" terimlerini literatüre kazandırdı. — (A) YANLIŞ: Münsterberg "klinik psikoloji" terimini kullanmadı. Hem ilk klinik hem de terim Witmer'a aittir. — (B) DOĞRU: Hem ilk klinik (1896) hem klinik psikoloji terimi Witmer'a aittir. — (C) YANLIŞ: Kitaba göre Witmer psikolojiye ekonomik nedenle girdi. — (D) YANLIŞ: Tam tersi — Wundt'un yoğun laboratuvar çalışmalarından HOŞNUT DEĞİLDİ. — (E) YANLIŞ: İlk vaka 14 yaşında okuma güçlüğü çeken bir çocuktu.`},
-{id:'ai16',q:`James McKeen Cattell hakkında hangisi "tahrif edilmiş tarih" örneği olarak kitapta gösterilmiştir?`,opts:[`Pennsylvania Üniversitesi'ndeki atamasının "dünyanın ilk psikoloji profesörlüğü" olduğu iddiası`,`Leipzig'de Wundt'a "Bir asistana ihtiyacınız varmış, o benim" demiş olduğu hikayesi`,`Wundt'a bir daktilo tanıtmış olduğu hikayesi`,`Columbia'dan savaş karşıtı mektuplar yüzünden kovulmuş olduğu`,`Zihinsel test terimini 1890'da ilk kullanan kişi olduğu`],answer:0,exp:`Cattell ile ilgili iki önemli tahrif örneği vardır: (1) Leipzig asistanlık hikayesi — Sokal (1981) araştırmasıyla çürütüldü. (2) Pennsylvania ataması — aslında felsefe bölümüne atandı ama bunu "dünyanın ilk psikoloji profesörlüğü" olarak sundu. — (A) YANLIŞ OLAN: Pennsylvania ataması aslında felsefe bölümüneydi; "dünyanın ilk psikoloji profesörlüğü" iddiası tahrif edilmiş tarihtir. — (B) YANLIŞ OLAN: Leipzig asistanlık teklifi hikayesi de tahrif edilmiştir. — (D) DOĞRU: Cattell gerçekten Columbia'dan kovuldu; bu tahrif değil gerçektir. — (E) DOĞRU: Zihinsel test terimi 1890'da Cattell'e aittir; bu tahrif değildir.`},
-{id:'ai17',q:`Hugo Münsterberg'in "Şahitlik Kürsüsünde" (1908) eserinin önemi nedir?`,opts:[`Endüstri psikolojisinde personel seçiminin bilimsel temellerini atan ilk eserdir`,`Görgü tanığı ifadelerinin güvenilirliğini ve sahte itirafları araştıran adli psikolojinin öncü eseridir`,`Klinik psikoloji alanında psikoterapinin bilimsel yöntemlerini ortaya koyan ilk kitaptır`,`Reklam psikolojisinde tüketici davranışını inceleyen ilk akademik çalışmadır`,`Bilinçdışı çatışmaların psikolojik bozukluklara yol açtığını kanıtlayan ilk deneysel çalışmadır`],answer:1,exp:`Hugo Münsterberg (1863-1916) Wundt'un öğrencisiydi ve William James'in daveti üzerine Harvard'a geldi. "Şahitlik Kürsüsünde" (On the Witness Stand, 1908) adli psikolojinin temel eseridir: sahte suç anları oluşturarak tanıkları sorguladı, hafızalarında taze olduğu halde bile çelişen ifadeler verdiklerini gösterdi. 1976'ya dek baskısı yapıldı — 68 yıl geçerliliğini korudu. — (A) YANLIŞ: Bu Walter Dill Scott'un alanı. — (B) DOĞRU: Adli psikolojinin öncü eseri. — (C) YANLIŞ: Bu eser adli psikoloji kitabıdır, klinik değil. — (D) YANLIŞ: Münsterberg ve Scott reklam psikolojisi çalıştı ama bu eser o alan değil. — (E) YANLIŞ: Bilinçdışı çatışmalar Freud'undur; Münsterberg bilinçdışının VAR OLMADIĞINI savunuyordu.`},
-{id:'ai18',q:`Robert Woodworth'un "dinamik psikoloji" anlayışıyla ilgili aşağıdakilerden hangisi doğrudur?`,opts:[`Woodworth psikolojide sadece gözlenebilir davranışın incelenmesi gerektiğini savunmuştur`,`U-O-T formülü içinde O (organizma) sadece mevcut durumu temsil eder, geçmiş deneyimleri değil`,`Woodworth "dürtü" (drive) terimini psikoloji literatürüne kazandıran ilk kişidir`,`Woodworth motivasyonu merkeze alan dinamik psikolojide mekanizma ve dürünün birbirine dönüşebileceğini savundu`,`Dinamik psikoloji içgözlemi tamamen reddeden davranışçı bir yaklaşımdır`],answer:3,exp:`Robert Woodworth (1869-1962) Columbia İşlevselciliği'nin önemli ismidir. Wundt'un S-R şemasını S-O-R'a genişletti. Organizma hem mevcut hem geçmiş deneyimleriyle aktif karar veren bir yapıdır. Mekanizma (NASIL) ve dürtü (NEDEN) ayrımı yaptı ama ikisinin dönüşebilir olduğunu savundu. — (A) YANLIŞ: Woodworth içgözlemi faydalı buldu; saf davranışçı değil, eklektik bir yaklaşım. — (B) YANLIŞ: O (organizma) HEM mevcut HEM geçmiş deneyimlerle karar verir. — (C) YANLIŞ: "Dürtü" terimini Watson 8 ay önce kullanmıştı — bu da "tahrif edilmiş tarih" örneğidir. — (D) DOĞRU: Mekanizma ve dürünün dönüşebilirliği Woodworth'un özgün katkısıdır. — (E) YANLIŞ: İçgözlemi destekleyen, davranışçılığı reddeden bir yaklaşımdır.`},
-{id:'ai19',q:`Hawthorne araştırmalarının psikoloji tarihindeki önemi nedir?`,opts:[`Fiziksel çalışma ortamının (ısı, ışık) verimlilik üzerindeki etkisini ilk kez ölçmüşlerdir`,`İşyerinde sosyal ve psikolojik koşulların fiziksel koşullardan daha önemli olduğunu ortaya koymuştur`,`Taylor'ın bilimsel yönetim teorisini deneysel olarak doğrulamıştır`,`Hawthorne etkisi çalışanların gözlendiklerini bildiklerinde performanslarını DÜŞÜRDÜĞÜNÜ gösterir`,`Araştırma 1950'lerde Western Electric fabrikasında yapılmıştır`],answer:1,exp:`Hawthorne araştırmaları 1924-1932 yılları arasında Illinois'teki Western Electric fabrikasında yapıldı. Başlangıç amacı fizikseldi: aydınlatma ve ısının verimliliğe etkisi ölçülecekti. Sürpriz sonuç: fiziksel koşullar değiştirildiğinde (daha az ışık bile verilse) verimlilik artıyordu. Gerçek neden: çalışanların gözlendiğini bilmesi ve sosyal grup dinamikleri. — (A) YANLIŞ: Başlangıç amacı buydu ama fiziksel koşulların etkisi beklenen sonucu vermedi. — (B) DOĞRU: Sosyal/psikolojik koşullar > fiziksel koşullar sonucu. — (C) YANLIŞ: Tam tersi — Taylor'ın mekanik anlayışına karşı bulgular çıktı. — (D) YANLIŞ: Performansı ARTIRDI, düşürmedi. — (E) YANLIŞ: 1924-1932 yıllarında yapıldı, 1950'lerde değil.`},
-{id:'ai20',q:`İşlevselcilik terimini psikoloji literatürüne kazandıran kişi aslında kimdir?`,opts:[`William James, bilinç akışı teorisiyle bu terimi oluşturmuştur`,`John Dewey, refleks arkı makalesinde (1896) bu terimi kullanmıştır`,`Harvey Carr, Chicago Okulu'nun anlayışını açıklamak için bu terimi türetti`,`Edward Titchener, yapısalcılığın karşıtı olarak bu terimi yarattı`,`James Rowland Angell, APA başkanlık söylevinde bu terimi ilk kez kullanmıştır`],answer:3,exp:`İşlevselciliğin en büyük ironisi: "işlevselcilik" terimini yaratan kişi, bu ekolün en sert eleştirmenlerinden biri olan Edward Bradford TİTCHENER'dir. Titchener 1898'de "yapısal psikoloji"yi savunurken karşısındaki anlayışa "işlevsel psikoloji" adını verdi. İşlevselciler bu ismi benimsedi. Yani bir ekolün adını, o ekolü en çok eleştiren kişi koydu. — (A) YANLIŞ: James "bilinç akışı"nı geliştirdi ama "işlevselcilik" terimini yaratmadı. — (B) YANLIŞ: Dewey refleks arkı makalesiyle dönüm noktası oluşturdu ama terimi Titchener yarattı. — (C) YANLIŞ: Carr Chicago İşlevselciliğini sistematize etti ama terimi yaratmadı. — (D) DOĞRU: Titchener eleştirirken farkında olmadan net bir kimlik kazandırdı. — (E) YANLIŞ: Angell işlevselciliği güçlü biçimde savundu ama terimi yaratmadı.`}
+/* ---------- çizim ---------- */
+function renderTabs(){
+  $("tabs").innerHTML=S.settings.weekNames.map((n,i)=>`<button class="tab ${i===S.settings.active?"on":""}" data-act="tab" data-i="${i}" ${i===S.settings.active?'aria-current="true" title="İsmi değiştirmek için tekrar dokun"':""}>${esc(n)}${i===S.settings.active?'<span class="ed">✎</span>':""}</button>`).join("");
+}
+function renderGrid(){
+  const w=W(),cs=cols();
+  let h=`<thead><tr><th class="saat">Saat</th>`;
+  const fin={};
+  cs.forEach(c=>{
+    const st=colStats(c.key);
+    const F=(st.t>0&&st.d===st.t&&animatingCol!==c.key)?DAY_FINAL[S.settings.dayFx]:null;fin[c.key]=F;
+    h+=`<th class="col ${F?F.h:""}" data-col="${c.key}">${F&&F.crown?`<span class="crown ${F.crown==="n"?"n":""}">👑</span>`:""}<span class="dn" title="${esc(c.name)}">${esc(c.name)}</span><div class="pbar"><i style="width:${st.p}%"></i></div><span class="pc">%${st.p} · ${st.d}/${st.t}</span>`;
+    if(editMode&&c.extra)h+=`<div class="colTools"><button class="mini" data-act="colname" data-id="${c.id}" aria-label="Sütun adını değiştir">✎</button><button class="mini x ${delAsk==="c"+c.id?"ask":""}" data-act="coldel" data-id="${c.id}" aria-label="Sütunu sil">${delAsk==="c"+c.id?"Sil?":"✕"}</button></div>`;
+    h+=`</th>`;
+  });
+  if(editMode&&w.extras.length<MAX_EXTRA)h+=`<th class="addCol" data-act="coladd" role="button" tabindex="0">+ Sütun<br><small>${w.extras.length}/${MAX_EXTRA}</small></th>`;
+  h+=`</tr></thead><tbody>`;
+  w.rows.forEach(r=>{
+    h+=`<tr><td class="saat">${r.start?`<button class="tcard" data-act="time" data-id="${r.id}" aria-label="Saat aralığı ${esc(r.start)} – ${esc(r.end)}, değiştir"><span>${esc(r.start)}</span>${r.end?`<span>${esc(r.end)}</span>`:""}</button>`:`<button class="tnone" data-act="time" data-id="${r.id}">+ Saat ekle</button>`}`;
+    if(editMode&&w.rows.length>1)h+=`<button class="mini x rowx ${delAsk==="r"+r.id?"ask":""}" data-act="rowdel" data-id="${r.id}" aria-label="Satırı sil">${delAsk==="r"+r.id?"Sil?":"✕"}</button>`;
+    h+=`</td>`;
+    cs.forEach(c=>{
+      const k=r.id+"|"+c.key,cell=w.cells[k];
+      if(!cell){h+=`<td class="c empty" data-k="${k}" tabindex="0" role="button" aria-label="Görev ekle"></td>`;return;}
+      const dn=isDone(cell),[bg,fg]=PAL[cell.color]||PAL[0];
+      const ns=cell.subs.length,nd=cell.subs.filter(s=>s.d).length;
+      const F=fin[c.key];
+      const sub=dn?(F&&F.text?F.text:"✓ Tamamlandı"):(ns?`${nd}/${ns} alt görev`:"");
+      const dots=ns&&!dn?`<span class="sdots" aria-hidden="true">${ns<=8?cell.subs.map(s=>`<i class="${s.d?"on":""}"></i>`).join(""):""}</span>`:"";
+      h+=`<td class="c ${dn?"done":""} ${F&&F.cell?F.cell:""}" data-k="${k}" tabindex="0" role="button" aria-label="${esc(cell.title)}${ns?`, ${nd}/${ns} alt görev, listeyi aç`:dn?", tamamlandı":", tamamlamak için dokun"}" style="background:${bg};color:${fg}"><button class="pen" data-act="edit" data-k="${k}" aria-label="Düzenle">✎</button><span class="ct">${esc(cell.title)}</span>${sub?`<span class="cs">${sub}</span>`:""}${dots}</td>`;
+    });
+    if(editMode&&w.extras.length<MAX_EXTRA)h+=`<td></td>`;
+    h+=`</tr>`;
+  });
+  h+=`</tbody>`;
+  $("grid").innerHTML=h;
+  $("addRowBox").innerHTML=editMode&&w.rows.length<MAX_ROWS?`<button class="addRow" data-act="rowadd">+ Satır ekle (${w.rows.length}/${MAX_ROWS})</button>`:"";
+  $("hint").hidden=!editMode;
+  $("plus").classList.toggle("on",editMode);
+  $("plus").setAttribute("aria-label",editMode?"Düzenlemeyi bitir":"Satır ve sütun ekle");
+}
+function render(){renderTabs();renderGrid();}
+
+/* ---------- modal ---------- */
+let mode=null;
+function openSheet(m,html,wide){mode=m;const sh=$("sheet");sh.classList.toggle("wide",!!wide);sh.innerHTML=html;$("modal").hidden=false;}
+function closeSheet(){$("modal").hidden=true;$("sheet").innerHTML="";mode=null;ed=null;tp=null;rn=null;ck=null;pending=null;}
+let pending=null;const setPending=v=>{pending=v;};
+const head=(t,s)=>`<div class="sh"><div><h3>${t}</h3>${s?`<small>${s}</small>`:""}</div><button class="close" data-act="close" aria-label="Kapat">✕</button></div>`;
+
+/* görev düzenleyici */
+let ed=null;
+function openEditor(k){
+  const c=W().cells[k];
+  ed={k,title:c?c.title:"",color:c?c.color:0,subs:c?clone(c.subs):[],done:c?!!c.done:false,isNew:!c,wasDone:c?isDone(c):false,hadSubs:!!(c&&c.subs.length),subDraft:"",delAsk:false};
+  drawEditor(true);
+}
+function drawEditor(first){
+  const [rowId,colKey]=ed.k.split("|");const r=rowOf(rowId);
+  const ns=ed.subs.length,nd=ed.subs.filter(s=>s.d).length;
+  let h=head(ed.isNew?"Yeni görev":"Görevi düzenle",`${esc(colName(colKey))}${r&&r.start?" · "+esc(r.start)+(r.end?"–"+esc(r.end):""):""}`);
+  h+=`<input class="inp" id="eTitle" maxlength="60" placeholder="Görev adı (ör. Sosyal Psikoloji çalış)" value="${esc(ed.title)}">`;
+  h+=`<div class="lbl">Renk</div><div class="sw">${PAL.map((p,i)=>`<button data-act="col" data-i="${i}" class="${i===ed.color?"on":""}" style="background:${p[0]}" aria-label="Renk ${i+1}"></button>`).join("")}</div>`;
+  h+=`<div class="lbl">Alt görevler ${ns?`<span class="prog">· ${nd}/${ns}</span>`:""}</div><div class="subs">`;
+  h+=ed.subs.map((s,i)=>`<div class="sub ed"><span class="snum">${i+1}</span><span class="stx">${esc(s.t)}</span>${s.d?'<span class="sdone">✓</span>':""}<button class="mini x2" data-act="subdel" data-i="${i}" aria-label="Alt görevi sil">✕</button></div>`).join("");
+  h+=`</div><div class="subAdd"><input class="inp" id="subIn" maxlength="60" placeholder="Alt görev ekle" value="${esc(ed.subDraft||"")}"><button class="btn sm" data-act="subadd">Ekle</button></div>`;
+  h+=`<p class="note">Burası sadece düzenleme yeri. Görevi tamamlamak için tablodaki kutuya dokun${ns?", alt görevlerin listesi açılır":""}.</p>`;
+  h+=`<div class="btns">`;
+  h+=`<button class="btn" data-act="edsave">Kaydet</button>`;
+  if(!ed.isNew)h+=ed.delAsk?`<div class="confirm danger"><p><b>Bu görev ve alt görevleri silinecek.</b></p><div class="row2"><button class="btn ghost" data-act="eddelno">Vazgeç</button><button class="btn dng" data-act="eddel">Evet, sil</button></div></div>`:`<button class="btn red" data-act="eddelask">Görevi sil</button>`;
+  h+=`</div>`;
+  openSheet("editor",h);
+  if(first&&ed.isNew)setTimeout(()=>{const t=$("eTitle");t&&t.focus();},50);
+}
+function readTitle(){const t=$("eTitle");if(t&&ed)ed.title=t.value;const si=$("subIn");if(si&&ed)ed.subDraft=si.value;}
+function commitEditor(){
+  readTitle();
+  const pend=(ed.subDraft||"").trim();if(pend){ed.subs.push({t:pend,d:false});ed.subDraft="";}
+  const title=ed.title.trim()||(ed.subs.length?"Görev":"");
+  const k=ed.k,wasDone=ed.wasDone;
+  if(!title){closeSheet();return;}
+  const cell={title,color:ed.color,subs:ed.subs,done:ed.subs.length?ed.subs.every(s=>s.d):(ed.hadSubs?ed.wasDone:ed.done)};
+  W().cells[k]=cell;closeSheet();save(wkey());render();
+  if(!wasDone&&isDone(cell))celebrate(k);
+}
+
+/* alt görev listesi (sadece tamamlama) */
+let ck=null;
+function openChecklist(k){ck={k};drawChecklist();}
+function drawChecklist(){
+  const c=W().cells[ck.k];if(!c){closeSheet();return;}
+  const [rowId,colKey]=ck.k.split("|");const r=rowOf(rowId);
+  const ns=c.subs.length,nd=c.subs.filter(s=>s.d).length,p=ns?Math.round(nd/ns*100):0;
+  const [bg,fg]=PAL[c.color]||PAL[0];
+  let h=`<div class="sh"><div><h3 class="ckt"><i style="background:${bg}"></i>${esc(c.title)}</h3><small>${esc(colName(colKey))}${r&&r.start?" · "+esc(r.start)+(r.end?"–"+esc(r.end):""):""}</small></div><button class="close" data-act="close" aria-label="Kapat">✕</button></div>`;
+  h+=`<div class="ckp"><div class="pbar"><i style="width:${p}%"></i></div><span>${nd}/${ns}</span></div>`;
+  h+=`<div class="ckl">${c.subs.map((s,i)=>`<button class="ckr ${s.d?"on":""}" data-act="ckt" data-i="${i}" aria-pressed="${s.d}"><b>${s.d?"✓":""}</b><span>${esc(s.t)}</span></button>`).join("")}</div>`;
+  h+=`<p class="note" style="text-align:center">Hepsini işaretlediğinde görev tamamlanır.</p>`;
+  openSheet("check",h);
+}
+
+/* saat seçici */
+let tp=null;
+function openTime(rowId){
+  const r=rowOf(rowId);if(!r)return;
+  tp={rowId};
+  // varsayılan: bir önceki satırın bitişi → +1 saat
+  let st=r.start,en=r.end;
+  if(!st){const w=W(),i=w.rows.indexOf(r),prev=i>0?w.rows[i-1]:null;st=prev&&prev.end?(prev.end==="24:00"?"00:00":prev.end):"08:00";}
+  if(!en){const [a,b]=st.split(":").map(Number);en=String(Math.min(24,a+1)).padStart(2,"0")+":"+(a+1>=24?"00":String(b).padStart(2,"0"));}
+  const [sh,sm]=st.split(":").map(Number),[eh,em]=en.split(":").map(Number);
+  const list=(n)=>Array.from({length:n},(_,i)=>`<div>${String(i).padStart(2,"0")}</div>`).join("");
+  // aynı haftadaki diğer satırların dolu saatleri
+  tp.occ=[];W().rows.forEach(o=>{if(o.id===rowId||!o.start||!o.end)return;tp.occ.push(...segsOf(toMin(o.start),toMin(o.end)));});
+  let h=head("Saat aralığı","Gri yerler bu haftanın diğer satırlarında dolu");
+  h+=`<div class="tws"><div class="whl"></div>
+    <div class="tgrp s"><div class="ttag s">Başlangıç</div><div class="tpair"><div class="wheel" id="w1">${list(24)}</div><span class="wcol">:</span><div class="wheel" id="w2">${list(60)}</div></div></div>
+    <span class="wsep">–</span>
+    <div class="tgrp e"><div class="ttag e">Bitiş</div><div class="tpair"><div class="wheel" id="w3">${list(25)}</div><span class="wcol">:</span><div class="wheel" id="w4">${list(60)}</div></div></div></div>`;
+  h+=`<div class="tbar"><div class="tclip" id="tClip"></div><div id="tOvl"></div></div><div class="tticks"><span>00</span><span>03</span><span>06</span><span>09</span><span>12</span><span>15</span><span>18</span><span>21</span><span>24</span></div>`;
+  h+=`<div class="tleg"><span><i class="occ"></i>Dolu</span><span><i class="pick"></i>Seçimin</span><span><i class="ovl"></i>Çakışma</span></div>`;
+  h+=`<div class="tinfo"><span class="tpill" id="tDur"></span></div><div id="tWarn"></div>`;
+  h+=`<div class="btns"><button class="btn" data-act="timeok">Tamam</button><button class="btn ghost" data-act="timeclr">Saati temizle</button></div>`;
+  openSheet("time",h);
+  [["w1",sh],["w2",sm],["w3",eh],["w4",em]].forEach(([id,v])=>{const el=$(id);el.scrollTop=(v||0)*40;markWheel(el);el.addEventListener("scroll",()=>requestAnimationFrame(()=>{markWheel(el);timeWarn();}),{passive:true});});
+  timeWarn();
+}
+const toMin=t=>{const [a,b]=t.split(":").map(Number);return a*60+b;};
+const fmtMin=m=>String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
+function segsOf(s,e){if(e>s)return[[s,e]];if(e===s)return[];return[[s,1440],[0,e]].filter(x=>x[1]>x[0]);}
+function readTimes(){let eh=wheelVal($("w3")),em=wheelVal($("w4"));if(eh===24)em=0;const p=n=>String(n).padStart(2,"0");return{start:p(wheelVal($("w1")))+":"+p(wheelVal($("w2"))),end:p(eh)+":"+p(em)};}
+function timeWarn(){
+  if(!tp||!$("tClip"))return;
+  const w4=$("w4");if(wheelVal($("w3"))===24&&wheelVal(w4)!==0&&!tp.snap){tp.snap=true;w4.scrollTo({top:0,behavior:"smooth"});setTimeout(()=>{if(tp)tp.snap=false;},400);}
+  const t=readTimes(),s=toMin(t.start),e=toMin(t.end),sg=segsOf(s,e);
+  const okBtn=document.querySelector('[data-act="timeok"]');if(okBtn)okBtn.disabled=(s===e);
+  const ov=[];sg.forEach(([a,b])=>tp.occ.forEach(([c,d])=>{const x=Math.max(a,c),y=Math.min(b,d);if(y>x)ov.push([x,y]);}));ov.sort((p,q)=>p[0]-q[0]);
+  const pc=m=>(m/1440*100)+"%",wd=(a,b)=>((b-a)/1440*100)+"%";
+  $("tClip").innerHTML=tp.occ.map(([a,b])=>`<div class="tseg occ" style="left:${pc(a)};width:${wd(a,b)}"></div>`).join("")+sg.map(([a,b])=>`<div class="tseg pick" style="left:${pc(a)};width:${wd(a,b)}"></div>`).join("");
+  $("tOvl").innerHTML=ov.map(([a,b])=>`<div class="tseg ovl" style="left:${pc(a)};width:${wd(a,b)}"></div>`).join("");
+  let d=e-s;if(d<=0)d+=1440;const hh=Math.floor(d/60),mm=d%60;
+  $("tDur").textContent="⏱ "+((hh?hh+" sa ":"")+(mm?mm+" dk":"")||"0 dk");
+  $("tWarn").innerHTML=s===e?`<div class="twarn">Başlangıç ve bitiş aynı olamaz. Bitiş saatini değiştir.</div>`:ov.length?`<div class="twarn">⚠ <b>${ov.map(o=>fmtMin(o[0])+"–"+fmtMin(o[1])).join(", ")}</b> başka bir satırla çakışıyor. Yine de kaydedebilirsin.</div>`:`<div class="twarn ok">Bu aralık boş, çakışma yok ✓</div>`;
+}
+function wheelVal(el){return Math.max(0,Math.min(el.children.length-1,Math.round(el.scrollTop/40)));}
+function markWheel(el){const v=wheelVal(el);[...el.children].forEach((c,i)=>c.classList.toggle("sel",i===v));}
+
+/* yeniden adlandırma */
+let rn=null;
+function openRename(kind,id){
+  rn={kind,id};
+  const cur=kind==="week"?S.settings.weekNames[id]:(W().extras.find(x=>x.id===id)||{}).name;
+  openSheet("rename",head(kind==="week"?"Hafta adı":"Sütun adı",kind==="week"?"Ör. Sınav Haftası, Normal Rutin":"Ör. Ekstra, Tekrar, Notlar")+`<input class="inp" id="rnIn" maxlength="30" value="${esc(cur||"")}"><div class="btns"><button class="btn" data-act="rnok">Kaydet</button></div>`);
+  setTimeout(()=>{const i=$("rnIn");i&&(i.focus(),i.select());},50);
+}
+function commitRename(){
+  const v=($("rnIn").value||"").trim();if(!v){closeSheet();return;}
+  if(rn.kind==="week"){S.settings.weekNames[rn.id]=v;save("settings");}
+  else{const x=W().extras.find(x=>x.id===rn.id);if(x){x.name=v;save(wkey());}}
+  closeSheet();render();
+}
+
+/* ayarlar */
+/* özelleştir: tema / görev efekti / gün efekti */
+let cTab="tema";
+function drawCustom(tab,keepScroll){
+  if(tab)cTab=tab;
+  const s=S.settings;
+  const tabs=[["tema","🎨","Tema",""],["gorev","✨","Görev"," efekti"],["gun","🏆","Gün"," efekti"]];
+  let h=`<div class="cHead">${head("Özelleştir","Seçtiğin her şey hemen uygulanır ve kaydedilir")}<div class="seg" role="tablist">${tabs.map(([k,...l])=>`<button role="tab" aria-selected="${k===cTab}" class="${k===cTab?"on":""}" data-act="ctab" data-t="${k}">${l[0]} ${l[1]}<span class="lg">${l[2]}</span></button>`).join("")}</div>`;
+  if(cTab==="gorev")h+=`<div class="demo" id="demo"><span class="ct">Ders çalış</span><span class="cs">bir efekte dokun, burada dene</span></div>`;
+  h+=`</div>`;
+  if(cTab==="tema"){
+    const card=([k,t])=>`<button class="thc ${k===s.theme?"on":""}" data-act="theme" data-t="${k}" aria-pressed="${k===s.theme}" style="--pbg:${t.v.bg};--psurf:${t.v.surf};--ptx:${t.v.tx};--pacc:${t.v.acc};--pg1:${t.v.g1};--pg2:${t.v.g2}"><span class="pv"><i class="pt"></i><i class="pb"></i><i class="pc1"></i><i class="pc2"></i></span><span class="nm">${t.name}</span>${k===s.theme?'<span class="ok">✓</span>':""}</button>`;
+    const TE=Object.entries(THEMES);
+    h+=`<div class="lbl">Koyu</div><div class="thg">${TE.filter(([,t])=>!t.light).map(card).join("")}</div>`;
+    h+=`<div class="lbl">Açık</div><div class="thg">${TE.filter(([,t])=>t.light).map(card).join("")}</div>`;
+  }else if(cTab==="gorev"){
+    h+=`<p class="note" style="margin:0 0 10px">Bir görevi tamamladığında çalar. Dokunduğun efekt yukarıdaki kutuda oynar.</p>`;
+    h+=`<div class="fxg"><button class="fxc ${s.effect===-1?"on":""}" data-act="fxsel" data-i="-1"><em>🎲</em><span>Her seferinde rastgele</span></button>${FX.map((f,i)=>`<button class="fxc ${s.effect===i?"on":""}" data-act="fxsel" data-i="${i}"><em>${i+1}</em><span>${f.n}</span></button>`).join("")}</div>`;
+  }else{
+    h+=`<p class="note" style="margin:0 0 4px">Bir günün bütün görevleri bitince çalar. Gün, seçtiğin görünümde kalır.</p><div id="dayDemoBox">${dayDemoHTML()}</div>`;
+    h+=`<div class="fxg">${DAYFX.map((f,i)=>`<button class="fxc ${s.dayFx===i?"on":""}" data-act="dayfx" data-i="${i}"><em>${i+1}</em><span>${f.n}</span></button>`).join("")}</div>`;
+  }
+  const sc=keepScroll?$("sheet").scrollTop:0;
+  openSheet("custom",h,true);
+  $("sheet").scrollTop=sc;
+}
+
+function drawSettings(){
+  const s=S.settings;
+  let h=head("Ayarlar","Tema ve efektler için 🎨 Özelleştir'e bak");
+  h+=`<div class="lbl">Ses ve titreşim</div><button class="tog ${s.sound?"on":""}" data-act="sound">🔊 Ses<b></b></button><button class="tog ${s.vib?"on":""}" data-act="vib">📳 Titreşim (telefonda)<b></b></button>`;
+  h+=`<div class="lbl">Hafta isimleri</div><div class="subs">${s.weekNames.map((n,i)=>`<input class="inp" id="wn${i}" data-wn="${i}" maxlength="30" value="${esc(n)}">`).join("")}</div>`;
+  const wn=esc(s.weekNames[s.active]);
+  h+=`<div class="lbl">Veriler</div>`;
+  if(pending==="week")h+=`<div class="confirm"><p><b>${wn}</b> haftasındaki bütün tamamlama işaretleri silinecek. Görevler, saatler ve alt görevler yerinde kalacak.</p><div class="row2"><button class="btn ghost" data-act="resetno">Vazgeç</button><button class="btn" data-act="resetweek">Evet, yeniden başlat</button></div></div>`;
+  else h+=`<button class="dbtn" data-act="resetask" data-w="week"><span>↺</span><div><b>Bu haftayı yeniden başlat</b><small>${wn} haftasının tamamlamalarını temizler, görevler kalır</small></div></button>`;
+  if(pending==="all")h+=`<div class="confirm danger"><p><b>Bütün haftalar, görevler, saatler, hafta isimleri ve ayarlar kalıcı olarak silinecek.</b> Bu işlem geri alınamaz.</p><div class="row2"><button class="btn ghost" data-act="resetno">Vazgeç</button><button class="btn dng" data-act="resetall">Evet, her şeyi sil</button></div></div>`;
+  else h+=`<button class="dbtn red" data-act="resetask" data-w="all"><span>🗑</span><div><b>Her şeyi sıfırla</b><small>Bütün verileri siler, uygulama ilk günkü haline döner</small></div></button>`;
+  h+=`<p class="note">${db?"Programın buluta kaydediliyor. Telefonda ve bilgisayarda aynı Claude hesabıyla açtığında aynı programı görürsün.":"Programın bu telefonda saklanıyor, internet olmadan da çalışır. Uygulamayı silersen ya da tarayıcı verilerini temizlersen program da silinir."}</p>`;
+  const sc=$("sheet").scrollTop;
+  openSheet("settings",h);
+  $("sheet").scrollTop=sc;
+}
+
+function dayDemoHTML(){
+  const rows=[["Kahvaltı",2],["Ders",4],["Spor",0]].map(([t,c])=>`<tr><td class="c done" style="background:${PAL[c][0]}"><span class="ct">${t}</span><span class="cs">✓ Tamamlandı</span></td></tr>`).join("");
+  return `<div class="dayDemo" id="dayDemo"><table><thead><tr><th class="col"><span class="dn">Pazartesi</span><div class="pbar"><i style="width:100%"></i></div><span class="pc">%100 · 3/3</span></th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function previewDay(i){
+  const box=$("dayDemoBox");if(!box)return;box.innerHTML=dayDemoHTML();
+  const dd=$("dayDemo");runDay(dd.querySelector("th"),[...dd.querySelectorAll("td.c")],dd,i);
+}
+
+/* ilk açılış: hafta isimleri */
+function openOnboard(){
+  let h=head("Haftalarına isim ver","Ör. Sınav Haftası, Normal Rutin, Tatil. Sonra da üstteki sekmeye dokunarak değiştirebilirsin.");
+  h+=`<div class="subs">${[0,1,2].map(i=>`<input class="inp" id="ob${i}" maxlength="30" placeholder="${i+1}. Hafta">`).join("")}</div>`;
+  h+=`<div class="btns"><button class="btn" data-act="obok">Başla</button><button class="btn ghost" data-act="obskip">Şimdilik geç</button></div>`;
+  openSheet("onboard",h);
+  setTimeout(()=>{const i=$("ob0");i&&i.focus();},60);
+}
+function finishOnboard(useInputs){
+  for(let i=0;i<3;i++){const v=useInputs?(($("ob"+i)||{}).value||"").trim():"";S.settings.weekNames[i]=v||(i+1)+". Hafta";}
+  S.settings.named=true;save("settings");closeSheet();render();
+}
+
+/* ---------- ses ---------- */
+let A=null;
+function ac(){A=A||new (window.AudioContext||window.webkitAudioContext)();if(A.state==="suspended")A.resume();return A;}
+function tone(f,st,dur,vol,type,f2){const a=ac(),o=a.createOscillator(),g=a.createGain();o.type=type||"sine";o.frequency.setValueAtTime(f,st);if(f2)o.frequency.exponentialRampToValueAtTime(f2,st+dur);g.gain.setValueAtTime(0,st);g.gain.linearRampToValueAtTime(vol,st+.008);g.gain.exponentialRampToValueAtTime(.0001,st+dur);o.connect(g);g.connect(a.destination);o.start(st);o.stop(st+dur+.05);}
+function noise(st,dur,vol,ft,f1,f2){const a=ac(),len=Math.floor(a.sampleRate*dur),b=a.createBuffer(1,len,a.sampleRate),d=b.getChannelData(0);for(let i=0;i<len;i++)d[i]=Math.random()*2-1;const s=a.createBufferSource();s.buffer=b;const fl=a.createBiquadFilter();fl.type=ft||"bandpass";fl.frequency.setValueAtTime(f1,st);if(f2)fl.frequency.exponentialRampToValueAtTime(f2,st+dur);const g=a.createGain();g.gain.setValueAtTime(vol,st);g.gain.exponentialRampToValueAtTime(.0001,st+dur);s.connect(fl);fl.connect(g);g.connect(a.destination);s.start(st);}
+function synth(st,freqs,dur,vol,fa,fb){const a=ac(),f=a.createBiquadFilter(),g=a.createGain();f.type="lowpass";f.frequency.setValueAtTime(fa,st);f.frequency.exponentialRampToValueAtTime(fb,st+dur*.4);f.frequency.exponentialRampToValueAtTime(300,st+dur);g.gain.setValueAtTime(0,st);g.gain.linearRampToValueAtTime(vol,st+dur*.3);g.gain.exponentialRampToValueAtTime(.0001,st+dur);f.connect(g);g.connect(a.destination);freqs.forEach(fr=>{const o=a.createOscillator();o.type="sawtooth";o.frequency.value=fr;o.connect(f);o.start(st);o.stop(st+dur+.05);});}
+function thud(t,v){v=v||1;tone(150,t,.28,.45*v,"sine",45);noise(t,.14,.35*v,"lowpass",900,100);}
+function tick(){if(!S.settings.sound)return;try{const t=ac().currentTime;tone(1320,t,.08,.07,"triangle");tone(1760,t+.04,.1,.05,"sine");}catch(e){}}
+function playDay(){if(!S.settings.sound)return;try{const t=ac().currentTime+.3;[[523,0],[659,.1],[784,.2],[1047,.3],[784,.45],[1047,.55]].forEach(([f,d])=>{tone(f,t+d,.6,.15);tone(f*2,t+d,.3,.03,"triangle");});}catch(e){}}
+
+/* ---------- görsel efekt yardımcıları ---------- */
+const R=(a,b)=>a+Math.random()*(b-a);
+const COLS=["#2f9e63","#ef7a2a","#e9a623","#d94a8c","#3f6fd8","#8e5bd6"];
+function center(el){const r=el.getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2,r];}
+function part(x,y,html,css,anim,dur){const p=document.createElement("div");p.className="p";p.style.left=x+"px";p.style.top=y+"px";p.innerHTML=html||"";for(const k in css||{}){if(k.startsWith("--"))p.style.setProperty(k,css[k]);else p.style[k]=css[k];}p.style.animation=anim;document.body.appendChild(p);setTimeout(()=>p.remove(),dur||1500);return p;}
+function add(el,html,ms,clip){const d=document.createElement("div");d.className="fxo"+(clip?" clip":"");d.innerHTML=html;el.appendChild(d);setTimeout(()=>d.remove(),ms||1500);return d;}
+function anim(el,a,ms){el.style.animation=a;setTimeout(()=>{el.style.animation="";},ms);}
+function ringP(el,color,delay,s,w){setTimeout(()=>{const[x,y]=center(el);part(x,y,"",{width:(w||100)+"px",height:(w||100)+"px",borderRadius:"50%",border:"3px solid "+color,boxShadow:"0 0 14px "+color,"--s":s||3},"ring .8s ease-out forwards",900);},delay||0);}
+function confettiFrom(el,n){const[x,y]=center(el);for(let i=0;i<(n||34);i++)part(x,y,"",{width:"8px",height:"12px",borderRadius:"2px",background:COLS[i%6],"--dx":R(-150,150)+"px","--dy":R(-160,70)+"px","--r":R(200,720)+"deg"},"fly 1.2s ease-out forwards");}
+
+const FX=[
+ {n:"Konfeti + Çan",fx(el){confettiFrom(el)},snd(){const t=ac().currentTime;[[784,0],[988,.08],[1319,.16]].forEach(([f,d])=>{tone(f,t+d,.55,.18);tone(f*2,t+d,.25,.04,"triangle");});}},
+ {n:"Yıldız Parıltısı",fx(el){const[x,y]=center(el);for(let i=0;i<18;i++){const a=i/18*Math.PI*2,r=R(60,120);part(x-8,y-8,"✦",{color:["#ffe066","#fff","#ffd28a"][i%3],fontSize:R(12,22)+"px","--dx":Math.cos(a)*r+"px","--dy":Math.sin(a)*r+"px","--r":"180deg","--s":.3},"fly .9s ease-out forwards");}},snd(){const t=ac().currentTime;[1568,2093,2637,3136,2637,3520].forEach((f,i)=>tone(f,t+i*.045,.35,.07));tone(1046,t,.6,.08,"triangle");}},
+ {n:"Baloncuk Pop",fx(el){anim(el,"pop .35s",400);const[x,y]=center(el);for(let i=0;i<12;i++){const s=R(10,26);part(x-s/2,y-s/2,"",{width:s+"px",height:s+"px",borderRadius:"50%",border:"2px solid #9be7c0",background:"#9be7c022","--dx":R(-110,110)+"px","--dy":R(-110,40)+"px","--r":"0deg","--s":1.4},"fly .8s ease-out forwards");}},snd(){const t=ac().currentTime;[0,.07,.15,.2].forEach(d=>tone(R(500,900),t+d,.09,.22,"sine",R(1200,1800)));}},
+ {n:"Halka Dalgası",fx(el){[0,150,300].forEach(d=>ringP(el,"#3ddc84",d,3.2,90));},snd(){const t=ac().currentTime;tone(196,t,1.8,.22);tone(392,t,1.4,.08);tone(588,t,1,.05);tone(784,t+.02,.6,.03,"triangle");}},
+ {n:"Level Up (8-bit)",fx(el){const[x,y,r]=center(el);part(x-30,r.top,'<span class="pix">+10 XP</span>',{},"rise 1.2s ease-out forwards",1300);for(let i=0;i<10;i++)part(x,y,"",{width:"8px",height:"8px",background:["#facc15","#fff","#22c55e"][i%3],"--dx":R(-100,100)+"px","--dy":R(-110,-20)+"px","--r":"0deg"},"fly .7s steps(6) forwards");},snd(){const t=ac().currentTime;[523,659,784,1047,1319].forEach((f,i)=>tone(f,t+i*.07,.12,.09,"square"));tone(1568,t+.38,.35,.09,"square");}},
+ {n:"Havai Fişek",fx(el){const[x,y,r]=center(el);const top=r.top-40;part(x-2,y,"",{width:"4px",height:"14px",background:"#ffd28a",borderRadius:"2px","--dx":"0px","--dy":(top-y)+"px","--r":"0deg"},"fly .35s ease-in forwards",400);setTimeout(()=>{for(let i=0;i<30;i++){const a=i/30*Math.PI*2,rr=R(50,110);part(x-3,top,"",{width:"6px",height:"6px",borderRadius:"50%",background:COLS[i%6],boxShadow:"0 0 6px "+COLS[i%6],"--dx":Math.cos(a)*rr+"px","--dy":Math.sin(a)*rr+40+"px","--r":"0deg","--s":.4},"fly 1s ease-out forwards");}},330);},snd(){const t=ac().currentTime;tone(400,t,.35,.06,"sine",1800);noise(t+.33,.6,.5,"lowpass",1800,200);tone(90,t+.33,.4,.25,"sine",40);[0,.08,.15,.24].forEach(d=>noise(t+.5+d,.12,.12,"highpass",4000));}},
+ {n:"Onay Damgası",fx(el){add(el,'<div class="stampEl">✓</div>',1500);setTimeout(()=>anim(el,"shake .3s",320),200);},snd(){const t=ac().currentTime+.2;tone(150,t,.25,.4,"sine",50);noise(t,.15,.35,"lowpass",900,100);tone(1200,t+.05,.15,.04,"triangle");}},
+ {n:"Altın Para",fx(el){const[x,,r]=center(el);part(x,r.top,"",{width:"26px",height:"26px",borderRadius:"50%",background:"radial-gradient(circle at 35% 35%,#fff6b0,#f2c230 45%,#b8860b)",border:"2px solid #8a6508"},"coin .8s ease-out forwards",900);},snd(){const t=ac().currentTime;tone(988,t,.09,.12,"square");tone(1319,t+.08,.45,.12,"square");}},
+ {n:"Rüzgâr Çanı",fx(el){const[x,,r]=center(el);for(let i=0;i<12;i++)setTimeout(()=>part(x+R(-90,90),r.top-10,["🍂","🍃","✿"][i%3],{fontSize:R(14,22)+"px","--dx":R(-40,40)+"px","--dy":R(90,150)+"px","--r":R(-180,180)+"deg"},"fly 1.6s ease-in-out forwards",1700),i*60);},snd(){const t=ac().currentTime,p=[1047,1175,1319,1568,1760,2093];for(let i=0;i<6;i++)tone(p[Math.floor(Math.random()*6)],t+i*R(.08,.14),1.2,.06);}},
+ {n:"Neon Parlama",fx(el){anim(el,"glow 1s ease-out",1050);const[x,y]=center(el);part(x,y,"",{width:"120px",height:"80px",borderRadius:"20px",border:"2px solid #3ddc84",boxShadow:"0 0 18px #3ddc84","--s":1.6},"ring .7s ease-out forwards",800);},snd(){const a=ac(),t=a.currentTime,o=a.createOscillator(),o2=a.createOscillator(),f=a.createBiquadFilter(),g=a.createGain();o.type="sawtooth";o2.type="sawtooth";o.frequency.value=330;o2.frequency.value=332.5;f.type="lowpass";f.frequency.setValueAtTime(200,t);f.frequency.exponentialRampToValueAtTime(3500,t+.35);f.frequency.exponentialRampToValueAtTime(300,t+.9);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.12,t+.3);g.gain.exponentialRampToValueAtTime(.0001,t+1);o.connect(f);o2.connect(f);f.connect(g);g.connect(a.destination);o.start(t);o2.start(t);o.stop(t+1.05);o2.stop(t+1.05);tone(660,t+.3,.6,.06);}},
+ {n:"Neon Çerçeve Tarama",fx(el){add(el,'<div class="trace"></div>',1500);setTimeout(()=>add(el,'<div class="traceFull"></div>',2000),1300);},snd(){const t=ac().currentTime;[330,440,554,659,880,1109,1319].forEach((f,i)=>tone(f,t+i*.18,.22,.06,"sawtooth"));synth(t+1.25,[659,663],.9,.1,400,4000);}},
+ {n:"Elektrik Şoku",fx(el){anim(el,"flick .6s",650);[["-12px","-12px"],["-12px","60%"],["82%","-12px"],["82%","60%"]].forEach(([l,t],i)=>setTimeout(()=>add(el,`<div class="bolt" style="left:${l};top:${t}">⚡</div>`,600),i*70));},snd(){const t=ac().currentTime;for(let i=0;i<6;i++)noise(t+i*.06,.05,.35,"highpass",3000);tone(120,t,.45,.12,"sawtooth",60);tone(2400,t+.38,.25,.05,"square",1200);}},
+ {n:"Lazer Kesim",fx(el){add(el,'<div class="laser"></div><div class="cut"></div>',1100,true);},snd(){const t=ac().currentTime;tone(2200,t,.45,.1,"sawtooth",300);tone(2210,t,.45,.06,"square",310);thud(t+.45,.5);}},
+ {n:"Neon Damga",fx(el){add(el,'<div class="nstamp">✓</div>',1600);setTimeout(()=>anim(el,"shake .3s",320),230);},snd(){const t=ac().currentTime+.23;thud(t);synth(t,[440,443,660],.8,.09,600,3500);}},
+ {n:"Mum Mühür",fx(el){add(el,'<div class="seal">✓</div>',2600);setTimeout(()=>anim(el,"shake .25s",270),260);},snd(){const t=ac().currentTime+.26;thud(t,1.1);noise(t+.02,.18,.15,"bandpass",2500,800);tone(80,t,.4,.2,"sine",40);}},
+ {n:"Çift Şok Dalgası",fx(el){ringP(el,"#3ddc84",0,3,110);ringP(el,"#e08a3c",180,4.2,110);anim(el,"shake .3s",320);},snd(){const t=ac().currentTime;tone(110,t,.6,.4,"sine",35);tone(110,t+.18,.6,.3,"sine",30);noise(t,.3,.25,"lowpass",1500,80);tone(880,t+.02,.3,.04,"triangle");}},
+ {n:"Glitch",fx(el){anim(el,"glitch .5s steps(1)",520);add(el,'<div class="bars"></div><div class="bars" style="animation-delay:.1s;height:5px"></div>',700,true);},snd(){const t=ac().currentTime;[1800,400,2600,900,3200,600,1200].forEach((f,i)=>tone(f,t+i*.05,.04,.08,"square"));tone(1320,t+.42,.25,.07,"square");tone(1760,t+.48,.3,.07,"square");}},
+ {n:"ONAYLANDI Damgası",fx(el){add(el,'<div class="tape">ONAYLANDI</div>',1800);setTimeout(()=>anim(el,"shake .3s",320),230);},snd(){const t=ac().currentTime;thud(t+.05,.35);thud(t+.23,1);noise(t+.24,.1,.2,"highpass",2000);}},
+ {n:"Hologram Tarama",fx(el){add(el,'<div class="scan"></div><div class="lines"></div>',1500,true);},snd(){const t=ac().currentTime;tone(600,t,.7,.05,"sine",1400);[0,.12,.24,.36].forEach((d,i)=>tone(1800+i*200,t+d,.05,.06,"square"));tone(1046,t+.65,.4,.08);tone(1568,t+.65,.4,.05);}},
+ {n:"Neon Nabız",fx(el){anim(el,"beat 1s",1050);add(el,'<svg class="ecg" viewBox="0 0 200 26" preserveAspectRatio="none"><path d="M0 18 L50 18 L60 18 L66 4 L74 24 L80 18 L110 18 L118 10 L124 18 L200 18"/></svg>',1500,true);},snd(){const t=ac().currentTime;tone(70,t,.18,.5,"sine",45);tone(65,t+.2,.2,.4,"sine",40);tone(988,t+.25,.15,.06);tone(988,t+.65,.5,.06);}}
 ];
 
-
-// ═══════════════════════════════════════
-// DURUM
-// ═══════════════════════════════════════
-const SETS={cikmis:SET_CIKMIS,muhtemel:SET_MUHTEMEL,ai:SET_AI};
-const SET_COUNTS={cikmis:30,muhtemel:20,ai:20};
-let selected={cikmis:true,muhtemel:false,ai:false};
-let currentMode='sonsuz';
-let lastMode='sonsuz';
-let activePool=[];
-let state={userName:'',levels:{},totalAnswered:0,totalCorrect:0,streak:0,maxStreak:0,sessionCorrect:0,sessionWrong:0,sessionHistory:[],currentQ:null,answered:false,ftIndex:0,ftOrder:[],ftCorrect:0,ftWrong:0,ftStreak:0,ftMaxStreak:0,ftWrongIds:[],ftAnswered:false};
-
-function getKey(n){return 'psy3_'+(n||'anonim').toLowerCase().replace(/\s+/g,'_')}
-function allQ(){return[...SET_CIKMIS,...SET_MUHTEMEL,...SET_AI]}
-
-function loadSt(){
-  const n=document.getElementById('name-input').value.trim()||'Anonim';
-  state.userName=n;
-  const s=localStorage.getItem(getKey(n));
-  if(s){const d=JSON.parse(s);state.levels=d.levels||{};state.totalAnswered=d.totalAnswered||0;state.totalCorrect=d.totalCorrect||0;}
-  else{state.levels={};state.totalAnswered=0;state.totalCorrect=0;}
-  allQ().forEach(q=>{if(!state.levels[q.id])state.levels[q.id]=3;});
+function runEffect(el,idx){
+  let i=idx!=null?idx:S.settings.effect;
+  if(i<0||i>=FX.length)i=Math.floor(Math.random()*FX.length);
+  const f=FX[i];
+  if(S.settings.sound){try{f.snd();}catch(e){}}
+  try{f.fx(el);}catch(e){}
+  if(S.settings.vib&&navigator.vibrate){try{navigator.vibrate([20,40,30]);}catch(e){}}
 }
-function saveSt(){localStorage.setItem(getKey(state.userName),JSON.stringify({levels:state.levels,totalAnswered:state.totalAnswered,totalCorrect:state.totalCorrect}));}
-
-function pickNext(pool){
-  const w={1:32,2:16,3:8,4:3,5:1};
-  const rec=state.sessionHistory.slice(-4);
-  const src=pool.filter(q=>!rec.includes(q.id));
-  const base=src.length>=4?src:pool;
-  const wArr=[];
-  base.forEach(q=>{const l=Math.max(1,Math.min(5,state.levels[q.id]||3));for(let i=0;i<w[l];i++)wArr.push(q);});
-  const p=wArr[Math.floor(Math.random()*wArr.length)];
-  state.sessionHistory.push(p.id);
-  if(state.sessionHistory.length>12)state.sessionHistory.shift();
-  return p;
+function toast(msg){const t=document.createElement("div");t.className="toast";t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2700);}
+/* ---------- gün bitişi efektleri ---------- */
+function chord(t,fs,dur,vol,type){fs.forEach(f=>{tone(f,t,dur,vol,type||"sine");tone(f*2,t,dur*.6,vol*.25,"triangle");});}
+function sparkle(el,color,n){const[x,y]=center(el);n=n||16;for(let i=0;i<n;i++){const a=i/n*Math.PI*2;part(x-6,y-6,"✦",{color:color||"#ffe58a",fontSize:R(12,20)+"px","--dx":Math.cos(a)*R(50,95)+"px","--dy":Math.sin(a)*R(40,85)+"px","--r":"180deg","--s":.3},"fly .9s ease-out forwards");}}
+function addCrown(th,type){if(th.querySelector(".crown"))return;th.insertAdjacentHTML("afterbegin",`<span class="crown drop ${type==="n"?"n":""}">👑</span>`);}
+function shineOn(el){const s=document.createElement("span");s.className="shine";el.appendChild(s);setTimeout(()=>s.remove(),1100);}
+function goldHead(th){th.classList.add("hgold");addCrown(th,"g");shineOn(th);}
+function goldSound(t){tone(1568,t,.4,.05);chord(t+.45,[392,494,587,784],1.8,.08,"triangle");[1568,2093,2637].forEach((f,i)=>tone(f,t+.55+i*.07,.5,.05));}
+function colFrame(host,els,html,ms){const hr=host.getBoundingClientRect();let l=1e9,t=1e9,r=-1e9,b=-1e9;els.forEach(e=>{const q=e.getBoundingClientRect();l=Math.min(l,q.left);t=Math.min(t,q.top);r=Math.max(r,q.right);b=Math.max(b,q.bottom);});const d=document.createElement("div");d.className="colfx";Object.assign(d.style,{left:(l-hr.left+host.scrollLeft)+"px",top:(t-hr.top+host.scrollTop)+"px",width:(r-l)+"px",height:(b-t)+"px"});d.innerHTML=html;host.appendChild(d);setTimeout(()=>d.remove(),ms||3000);return d;}
+const S_ON=()=>S.settings.sound;
+function snd(fn){if(!S_ON())return;try{fn(ac().currentTime);}catch(e){}}
+const DAYFX=[
+ {n:"Sadece başlık altın",run(th,tds){goldHead(th);setTimeout(()=>sparkle(th),450);snd(goldSound);return 1500;}},
+ {n:"Bütün sütun altın",run(th,tds){goldHead(th);snd(t=>{goldSound(t);tds.forEach((_,i)=>tone(1047+i*131,t+.5+i*.14,.3,.05,"triangle"));});
+   tds.forEach((c,i)=>setTimeout(()=>{c.classList.add("dg");shineOn(c);anim(c,"popIn .35s",360);},500+i*140));
+   setTimeout(()=>sparkle(th,"#ffe58a",22),500+tds.length*140);return 500+tds.length*140+900;}},
+ {n:"Neon çerçeve + altın hücreler",run(th,tds,host){colFrame(host,[th,...tds],'<div class="neonF"></div><div class="ntxt">TAMAM</div>',3100);
+   snd(t=>{synth(t,[220,221.5,330],1.2,.1,300,4000);tds.forEach((_,i)=>tone(1320+i*165,t+.15+i*.11,.08,.05,"square"));thud(t+.72);chord(t+.8,[440,554,659],1.2,.05,"sawtooth");});
+   tds.forEach((c,i)=>setTimeout(()=>{anim(c,"flick .3s",320);setTimeout(()=>c.classList.add("dg"),150);},150+i*110));
+   setTimeout(()=>{goldHead(th);anim(th,"bounce .4s",420);},700);return Math.max(3000,150+tds.length*110+700);}},
+ {n:"Neon tabela",run(th,tds,host){snd(t=>synth(t,[110,110.8,165],1.4,.09,300,4000));
+   [th,...tds].forEach((c,i)=>setTimeout(()=>{anim(c,"flick .45s",460);setTimeout(()=>c.classList.add(c===th?"hneon":"dn"),180);snd(t=>{noise(t,.06,.25,"highpass",3000);tone(60,t,.25,.12,"sawtooth");});},i*170));
+   const end=(tds.length+1)*170+100;setTimeout(()=>{colFrame(host,[th,...tds],'<div class="neonF"></div>',3100);snd(t=>chord(t,[440,554,659,880],1.3,.05,"sawtooth"));},end);return end+2000;}},
+ {n:"Altın neon",run(th,tds,host){const f=colFrame(host,[th,...tds],'<div class="neonF" style="--nc:#f6d36b;animation:reveal .6s ease-out forwards"></div>',250+tds.length*120+2200);
+   snd(t=>{synth(t,[262,263.5,392],1.2,.08,300,4000);tds.forEach((_,i)=>tone(1568+i*98,t+.25+i*.12,.25,.05,"triangle"));});
+   tds.forEach((c,i)=>setTimeout(()=>{c.classList.add("dgn");anim(c,"popIn .35s",360);},250+i*120));
+   setTimeout(()=>{th.classList.add("hgneon");addCrown(th,"g");sparkle(th,"#ffe58a",18);snd(goldSound);},800);return 250+tds.length*120+2000;}},
+ {n:"Kart çevirme",run(th,tds,host){colFrame(host,[th,...tds],'<div class="neonF"></div>',3000);
+   tds.forEach((c,i)=>setTimeout(()=>{anim(c,"flipX .5s ease-in-out",520);setTimeout(()=>{c.classList.add("dg");const s=c.querySelector(".cs");if(s)s.textContent="★ Gün bitti";},250);snd(t=>{noise(t+.25,.04,.3,"highpass",2500);tone(880+i*55,t+.25,.12,.06,"triangle");});},i*180));
+   setTimeout(()=>{goldHead(th);snd(goldSound);},tds.length*180+200);return tds.length*180+1600;}},
+ {n:"Altın dolum",run(th,tds,host){const rev=[...tds].reverse();rev.forEach(c=>c.classList.add("fillbase"));
+   rev.forEach((c,i)=>setTimeout(()=>c.classList.add("full"),60+i*330));
+   snd(t=>{const a=ac(),o=a.createOscillator(),g=a.createGain(),d=tds.length*.33+.1;o.type="sine";o.frequency.setValueAtTime(200,t);o.frequency.exponentialRampToValueAtTime(900,t+d);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.08,t+.1);g.gain.linearRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+.05);for(let i=0;i<tds.length*2.5;i++)tone(R(600,1400),t+i*.13,.06,.04,"sine",R(1400,2000));});
+   const end=tds.length*330+120;setTimeout(()=>{goldHead(th);colFrame(host,[th,...tds],'<div class="neonF" style="--nc:#f6d36b"></div>',3100);sparkle(th);snd(goldSound);},end);return end+1800;}},
+ {n:"Neon taç + glitch damga",run(th,tds,host){th.classList.add("hneon");addCrown(th,"n");snd(t=>{synth(t,[330,332,495],1,.08,300,4000);[1800,400,2600,900,3200,600].forEach((f,i)=>tone(f,t+.3+i*.05,.04,.07,"square"));});
+   tds.forEach((c,i)=>setTimeout(()=>{c.classList.add("dgg");anim(c,"glitch .3s steps(1)",320);},300+i*90));
+   const at=300+tds.length*90+150;setTimeout(()=>{const f=colFrame(host,[th,...tds],'<div class="ntxt">TAMAM</div>',2700);const q=f.querySelector(".ntxt");q.style.animation="pinA .4s both, glitch .4s .4s steps(1), fadeOut .6s 2s forwards";snd(t=>{thud(t);tone(1320,t+.1,.25,.07,"square");tone(1760,t+.18,.35,.07,"square");});},at);return at+1500;}}
+];
+function runDay(th,tds,host,idx){
+  const f=DAYFX[idx!=null?idx:S.settings.dayFx]||DAYFX[1];
+  if(S.settings.vib&&navigator.vibrate){try{navigator.vibrate([30,60,30,60,80]);}catch(e){}}
+  try{return f.run(th,tds,host)||2000;}catch(e){return 500;}
 }
-
-// ═══════════════════════════════════════
-// EKRANLAR
-// ═══════════════════════════════════════
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
-function goHome(){updateMastery();showScreen('home');}
-
-function updateMastery(){
-  const n=document.getElementById('name-input').value.trim()||'Anonim';
-  const s=localStorage.getItem(getKey(n));
-  if(!s)return;
-  const d=JSON.parse(s);
-  if(!d.totalAnswered||d.totalAnswered===0)return;
-  const lv=d.levels||{};
-  const all=allQ();
-  let learned=0;
-  all.forEach(q=>{if((lv[q.id]||3)>=4)learned++;});
-  const working=all.filter(q=>(lv[q.id]||3)<=2).length;
-  const pct=Math.round(learned/all.length*100);
-  document.getElementById('mastery-block').style.display='block';
-  document.getElementById('mastery-pct').textContent=pct+'%';
-  document.getElementById('mastery-bar').style.width=pct+'%';
-  document.getElementById('ms-learned').textContent=learned;
-  document.getElementById('ms-working').textContent=working;
-  document.getElementById('ms-total').textContent=d.totalAnswered;
-}
-document.getElementById('name-input').addEventListener('input',updateMastery);
-
-// ═══════════════════════════════════════
-// SET SEÇİM
-// ═══════════════════════════════════════
-function openSelect(mode){
-  currentMode=mode;lastMode=mode;
-  const titles={sonsuz:'Sonsuz Mod — Set Seç',coz:'Soruları Çöz — Set Seç',cevap:'Cevapları Gör — Set Seç'};
-  const subs={sonsuz:'Birden fazla seçebilirsin',coz:'Birden fazla seçebilirsin',cevap:'Birden fazla seçebilirsin'};
-  const btnTxt={sonsuz:'Sonsuz Mod Başla',coz:'Çözmeye Başla',cevap:'Cevapları Gör'};
-  document.getElementById('ss-title').textContent=titles[mode];
-  document.getElementById('ss-sub').textContent=subs[mode];
-  document.getElementById('ss-start-btn').textContent=btnTxt[mode];
-  updateSetTotal();
-  showScreen('setselect');
+function celebrate(k){
+  const colKey=k.split("|")[1],st=colStats(colKey);
+  const complete=st.t>0&&st.d===st.t;
+  if(complete){animatingCol=colKey;render();}
+  const el=document.querySelector(`td[data-k="${CSS.escape(k)}"]`);
+  if(el)runEffect(el);
+  if(!complete)return;
+  setTimeout(()=>{
+    const th=document.querySelector(`th[data-col="${CSS.escape(colKey)}"]`);
+    const tds=[...document.querySelectorAll("td.c")].filter(t=>t.dataset.k.endsWith("|"+colKey)&&!t.classList.contains("empty"));
+    if(!th||animatingCol!==colKey){animatingCol=null;render();return;}
+    const dur=runDay(th,tds,$("tblwrap"));
+    toast(`${colName(colKey)} tamamlandı! 🏆`);
+    setTimeout(()=>{if(animatingCol===colKey){animatingCol=null;render();}},dur);
+  },650);
 }
 
-function toggleSet(key){
-  selected[key]=!selected[key];
-  const card=document.getElementById('sc-'+key);
-  if(selected[key])card.classList.add('selected');else card.classList.remove('selected');
-  updateSetTotal();
+/* ---------- etkileşim ---------- */
+function onCellTap(td){
+  const k=td.dataset.k,c=W().cells[k];
+  if(!c){openEditor(k);return;}
+  if(c.subs.length){openChecklist(k);return;}
+  const was=isDone(c);c.done=!c.done;save(wkey());render();
+  if(!was&&c.done)celebrate(k);
 }
+document.addEventListener("click",e=>{
+  const t=e.target;
+  if(t.id==="modal"){closeSheet();return;}
+  const a=t.closest("[data-act]");
+  if(!ready&&!(a&&a.dataset.act==="close")){if(a||t.closest("td.c")){e.preventDefault();toast("Programın yükleniyor, bir saniye…");}return;}
+  if(!a){const td=t.closest("td.c");if(td)onCellTap(td);return;}
+  const act=a.dataset.act;
+  switch(act){
+    case "close":closeSheet();break;
+    case "tab":{const i=+a.dataset.i;if(i===S.settings.active)openRename("week",i);else{S.settings.active=i;saveLocal();render();}break;}
+    case "settings":pending=null;drawSettings();break;
+    case "editmode":editMode=!editMode;delAsk=null;render();break;
+    case "edit":openEditor(a.dataset.k);break;
+    case "col":readTitle();ed.color=+a.dataset.i;drawEditor();break;
+    case "ckt":{const k=ck.k,c=W().cells[k];if(!c)break;const was=isDone(c);const s=c.subs[+a.dataset.i];s.d=!s.d;if(s.d)tick();save(wkey());
+      if(!was&&isDone(c)){closeSheet();render();celebrate(k);}else{drawChecklist();render();}break;}
+    case "resetask":setPending(a.dataset.w);drawSettings();break;
+    case "resetno":setPending(null);drawSettings();break;
+    case "resetweek":{const w=W();for(const k in w.cells){w.cells[k].done=false;w.cells[k].subs.forEach(s=>s.d=false);}save(wkey());setPending(null);closeSheet();render();toast(`${S.settings.weekNames[S.settings.active]} yeniden başladı ↺`);break;}
+    case "resetall":{S.settings=defaultSettings();S.weeks=[defaultWeek(),defaultWeek(),defaultWeek()];KEYS.forEach(k=>save(k));setPending(null);applyTheme();closeSheet();editMode=false;render();toast("Her şey sıfırlandı");setTimeout(()=>{if($("modal").hidden)openOnboard();},900);break;}
+    case "subdel":readTitle();ed.subs.splice(+a.dataset.i,1);drawEditor();break;
+    case "subadd":addSub();break;
+    case "eddone":readTitle();ed.done=!ed.done;commitEditor();break;
+    case "edsave":commitEditor();break;
+    case "eddelask":readTitle();ed.delAsk=true;drawEditor();setTimeout(()=>{const sh=$("sheet");sh.scrollTop=sh.scrollHeight;},30);break;
+    case "eddelno":readTitle();ed.delAsk=false;drawEditor();break;
+    case "eddel":{const k=ed.k;delete W().cells[k];closeSheet();save(wkey());render();break;}
+    case "time":openTime(a.dataset.id);break;
+    case "timeok":{if(a.disabled)break;const r=rowOf(tp.rowId);if(r){const t=readTimes();if(t.start===t.end)break;r.start=t.start;r.end=t.end;save(wkey());}closeSheet();render();break;}
+    case "timeclr":{const r=rowOf(tp.rowId);if(r){r.start="";r.end="";save(wkey());}closeSheet();render();break;}
+    case "rowadd":{const w=W();if(w.rows.length<MAX_ROWS){w.rows.push({id:rid(),start:"",end:""});save(wkey());render();}break;}
+    case "rowdel":{const w=W(),id=a.dataset.id;const has=Object.keys(w.cells).some(k=>k.startsWith(id+"|"));if(has&&delAsk!=="r"+id){delAsk="r"+id;render();toast("Bu satırda görevler var. Silmek için ✕'e tekrar dokun");break;}delAsk=null;if(w.rows.length>1){w.rows=w.rows.filter(r=>r.id!==id);for(const k in w.cells)if(k.startsWith(id+"|"))delete w.cells[k];save(wkey());render();}break;}
+    case "coladd":{const w=W();if(w.extras.length<MAX_EXTRA){const id=rid();w.extras.push({id,name:"Ekstra "+(w.extras.length+1)});save(wkey());render();openRename("col",id);}break;}
+    case "colname":openRename("col",a.dataset.id);break;
+    case "coldel":{const w=W(),id=a.dataset.id;const has=Object.keys(w.cells).some(k=>k.endsWith("|x"+id));if(has&&delAsk!=="c"+id){delAsk="c"+id;render();toast("Bu sütunda görevler var. Silmek için ✕'e tekrar dokun");break;}delAsk=null;w.extras=w.extras.filter(x=>x.id!==id);for(const k in w.cells)if(k.endsWith("|x"+id))delete w.cells[k];save(wkey());render();break;}
+    case "rnok":commitRename();break;
+    case "custom":drawCustom();break;
+    case "ctab":drawCustom(a.dataset.t);break;
+    case "theme":S.settings.theme=a.dataset.t;applyTheme();save("settings");drawCustom(null,true);break;
+    case "fxsel":{S.settings.effect=+a.dataset.i;save("settings");document.querySelectorAll('[data-act="fxsel"]').forEach(b=>b.classList.toggle("on",+b.dataset.i===S.settings.effect));const d=$("demo");if(d){d.classList.remove("done");void d.offsetWidth;d.classList.add("done");d.querySelector(".cs").textContent="✓ Tamamlandı";runEffect(d,S.settings.effect);clearTimeout(window._dT);window._dT=setTimeout(()=>{const dd=$("demo");if(dd){dd.classList.remove("done");dd.querySelector(".cs").textContent="bir efekte dokun, burada dene";}},1800);}break;}
+    case "dayfx":{S.settings.dayFx=+a.dataset.i;save("settings");document.querySelectorAll('[data-act="dayfx"]').forEach(b=>b.classList.toggle("on",+b.dataset.i===S.settings.dayFx));previewDay(S.settings.dayFx);render();break;}
+    case "obok":finishOnboard(true);break;
+    case "obskip":finishOnboard(false);break;
+    case "sound":S.settings.sound=!S.settings.sound;save("settings");drawSettings();if(S.settings.sound)tick();break;
+    case "vib":S.settings.vib=!S.settings.vib;save("settings");drawSettings();break;
+  }
+});
+function addSub(){readTitle();const v=(ed.subDraft||"").trim();if(!v)return;ed.subs.push({t:v,d:false});ed.subDraft="";drawEditor();setTimeout(()=>{const n=$("subIn");n&&n.focus();},30);}
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&!$("modal").hidden){closeSheet();return;}
+  if(e.key===" "&&e.target.matches&&e.target.matches("td.c")){e.preventDefault();if(ready)onCellTap(e.target);return;}
+  if(e.key==="Enter"){
+    if(e.target.id==="subIn"){e.preventDefault();addSub();return;}
+    if(e.target.id==="eTitle"){e.preventDefault();commitEditor();return;}
+    if(e.target.id==="rnIn"){e.preventDefault();commitRename();return;}
+    if(e.target.tagName==="BUTTON"||e.target.tagName==="INPUT")return;
+    const td=e.target.closest&&e.target.closest("td.c");if(td){e.preventDefault();if(ready)onCellTap(td);return;}
+    const ac2=e.target.closest&&e.target.closest("th[data-act]");if(ac2){ac2.click();}
+  }
+});
+let wnTimer=null;
+document.addEventListener("input",e=>{
+  const i=e.target.dataset&&e.target.dataset.wn;
+  if(i!=null){const v=e.target.value.trim();if(v){S.settings.weekNames[+i]=v;renderTabs();clearTimeout(wnTimer);wnTimer=setTimeout(()=>save("settings"),400);}}
+});
 
-function updateSetTotal(){
-  let total=0;
-  Object.keys(selected).forEach(k=>{if(selected[k])total+=SET_COUNTS[k]||0;});
-  document.getElementById('ss-total').textContent=total+' soru';
-  const btn=document.getElementById('ss-start-btn');
-  btn.disabled=total===0;
-}
+/* başlat */
+setSync("load");loadLocal();applyTheme();render();
+if(!(window.claude&&window.claude.use)){setSync("local");markReady();}else{document.documentElement.classList.add("loading");initStore().catch(()=>{setSync("local");markReady();});}
+})();
+</script>
 
-function startSelected(){
-  const pool=[];
-  if(selected.cikmis)pool.push(...SET_CIKMIS);
-  if(selected.muhtemel)pool.push(...SET_MUHTEMEL);
-  if(selected.ai)pool.push(...SET_AI);
-  if(pool.length===0)return;
-  activePool=pool;
-  loadSt();
-  if(currentMode==='cevap'){showAnswers(pool);}
-  else if(currentMode==='coz'){startFullTest(pool);}
-  else{startSonsuz(pool);}
-}
-
-// ═══════════════════════════════════════
-// SONSUZ MOD
-// ═══════════════════════════════════════
-function startSonsuz(pool){
-  state.sessionCorrect=0;state.sessionWrong=0;state.streak=0;state.maxStreak=0;state.sessionHistory=[];
-  showScreen('quiz');
-  document.getElementById('next-btn').onclick=nextQ;
-  renderQ(pool);
-}
-
-function renderQ(pool){
-  state.currentQ=pickNext(pool);
-  state.answered=false;
-  const q=state.currentQ;
-  const tot=state.sessionCorrect+state.sessionWrong;
-  const pct=tot>0?Math.round(state.sessionCorrect/tot*100):0;
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('quiz-meta').textContent='PSİKOLOJİ TARİHİ · #'+q.id;
-  document.getElementById('streak-count').textContent=state.streak+' seri';
-  const lvl=Math.max(1,Math.min(5,state.levels[q.id]||3));
-  for(let i=1;i<=5;i++)document.getElementById('ld'+i).className='level-dot'+(i<=lvl?' active':'');
-  const lbl=['','Öncelikli','Zor','Orta','İyi','Pekişti'];
-  document.getElementById('level-text').textContent=lbl[lvl];
-  document.getElementById('question-text').textContent=q.q;
-  renderOpts('options-container',q,i=>selAnswer(i,pool));
-  document.getElementById('exp-box').style.display='none';
-  document.getElementById('next-btn').style.display='none';
-}
-
-function selAnswer(idx,pool){
-  if(state.answered)return;
-  state.answered=true;
-  const q=state.currentQ;
-  applyStyles('options-container',q,idx);
-  const ok=idx===q.answer;
-  if(ok){state.levels[q.id]=Math.min(5,(state.levels[q.id]||3)+1);state.sessionCorrect++;state.streak++;state.maxStreak=Math.max(state.maxStreak,state.streak);}
-  else{state.levels[q.id]=1;state.sessionWrong++;state.streak=0;}
-  state.totalAnswered++;if(ok)state.totalCorrect++;
-  saveSt();updateMastery();
-  document.getElementById('streak-count').textContent=state.streak+' seri';
-  showExp(q,idx,ok);
-  const nb=document.getElementById('next-btn');
-  nb.onclick=()=>renderQ(pool);
-  nb.style.display='block';
-  setTimeout(()=>document.getElementById('exp-box').scrollIntoView({behavior:'smooth',block:'nearest'}),100);
-}
-
-function nextQ(){} // placeholder, overridden dynamically
-
-// ═══════════════════════════════════════
-// TAM TEST
-// ═══════════════════════════════════════
-function startFullTest(pool){
-  const sorted=[...pool].sort((a,b)=>(state.levels[a.id]||3)-(state.levels[b.id]||3));
-  state.ftOrder=sorted;state.ftIndex=0;state.ftCorrect=0;state.ftWrong=0;state.ftStreak=0;state.ftMaxStreak=0;state.ftWrongIds=[];state.ftAnswered=false;
-  showScreen('quiz');
-  renderFT();
-}
-
-function renderFT(){
-  state.ftAnswered=false;
-  const q=state.ftOrder[state.ftIndex];
-  const pct=Math.round(state.ftIndex/state.ftOrder.length*100);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('quiz-meta').textContent='PSİKOLOJİ TARİHİ · '+(state.ftIndex+1)+' / '+state.ftOrder.length;
-  document.getElementById('streak-count').textContent=state.ftStreak+' seri';
-  const lvl=Math.max(1,Math.min(5,state.levels[q.id]||3));
-  for(let i=1;i<=5;i++)document.getElementById('ld'+i).className='level-dot'+(i<=lvl?' active':'');
-  const lbl=['','Öncelikli','Zor','Orta','İyi','Pekişti'];
-  document.getElementById('level-text').textContent=lbl[lvl];
-  document.getElementById('question-text').textContent=q.q;
-  renderOpts('options-container',q,i=>selFT(i));
-  document.getElementById('exp-box').style.display='none';
-  document.getElementById('next-btn').style.display='none';
-}
-
-function selFT(idx){
-  if(state.ftAnswered)return;
-  state.ftAnswered=true;
-  const q=state.ftOrder[state.ftIndex];
-  applyStyles('options-container',q,idx);
-  const ok=idx===q.answer;
-  if(ok){state.levels[q.id]=Math.min(5,(state.levels[q.id]||3)+1);state.ftCorrect++;state.ftStreak++;state.ftMaxStreak=Math.max(state.ftMaxStreak,state.ftStreak);}
-  else{state.levels[q.id]=1;state.ftWrong++;state.ftStreak=0;state.ftWrongIds.push(q.id);}
-  state.totalAnswered++;if(ok)state.totalCorrect++;
-  saveSt();updateMastery();
-  showExp(q,idx,ok);
-  const isLast=state.ftIndex>=state.ftOrder.length-1;
-  const nb=document.getElementById('next-btn');
-  nb.textContent=isLast?'Sonuçları Gör →':'Sonraki →';
-  nb.onclick=isLast?showResult:ftNext;
-  nb.style.display='block';
-  setTimeout(()=>document.getElementById('exp-box').scrollIntoView({behavior:'smooth',block:'nearest'}),100);
-}
-
-function ftNext(){state.ftIndex++;renderFT();window.scrollTo({top:0,behavior:'smooth'});}
-
-function showResult(){
-  const tot=state.ftOrder.length;
-  const pct=Math.round(state.ftCorrect/tot*100);
-  document.getElementById('res-score').textContent=pct+'%';
-  document.getElementById('res-label').textContent=state.userName+' · '+state.ftCorrect+' doğru / '+state.ftWrong+' yanlış';
-  document.getElementById('res-correct').textContent=state.ftCorrect;
-  document.getElementById('res-wrong').textContent=state.ftWrong;
-  document.getElementById('res-total').textContent=tot;
-  document.getElementById('res-streak').textContent=state.ftMaxStreak;
-  const ws=document.getElementById('weak-sec');
-  if(state.ftWrongIds.length>0){
-    const items=state.ftWrongIds.map(id=>{const q=allQ().find(x=>x.id===id);return`<div class="weak-item"><strong style="color:#EF9F27">#${id}:</strong> ${q.q.substring(0,80)}...</div>`;}).join('');
-    ws.innerHTML=`<div class="weak-title">YANLIŞ YAPILANLAR (${state.ftWrongIds.length})</div>${items}`;
-  }else{ws.innerHTML='<div style="color:#1D9E75;font-size:14px;margin-bottom:1rem">Tüm soruları doğru yaptın!</div>';}
-  showScreen('result');
-}
-
-// ═══════════════════════════════════════
-// CEVAPLAR
-// ═══════════════════════════════════════
-function showAnswers(pool){
-  const letters=['A','B','C','D','E'];
-  document.getElementById('allq-title').textContent='Cevaplar ve Açıklamalar ('+pool.length+')';
-  const list=document.getElementById('allq-list');
-  list.innerHTML='';
-  pool.forEach((q,idx)=>{
-    const item=document.createElement('div');item.className='q-item';
-    const rel=q.relevance==='high'?'<span class="q-rel q-rel-high">Doğrudan ilgili</span>':q.relevance==='med'?'<span class="q-rel q-rel-med">Kısmen ilgili</span>':'';
-    const opts=q.opts.map((o,i)=>`<div class="q-opt${i===q.answer?' correct':''}">${letters[i]}) ${o}</div>`).join('');
-    item.innerHTML=`<div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:8px"><span class="q-num">SORU ${idx+1}</span>${rel}</div><div class="q-text">${q.q}</div><div class="q-opts">${opts}</div><div class="q-gerekce"><strong style="color:#EF9F27">Gerekçe:</strong> ${q.exp}</div>`;
-    list.appendChild(item);
-  });
-  showScreen('allq');
-}
-
-// ═══════════════════════════════════════
-// YARDIMCILAR
-// ═══════════════════════════════════════
-function renderOpts(cId,q,onClick){
-  const L=['A','B','C','D','E'];
-  const c=document.getElementById(cId);c.innerHTML='';
-  q.opts.forEach((o,i)=>{
-    const btn=document.createElement('button');btn.className='opt-btn';
-    btn.innerHTML=`<div class="opt-letter">${L[i]}</div><div class="opt-text">${o}</div>`;
-    btn.onclick=()=>onClick(i);c.appendChild(btn);
-  });
-}
-
-function applyStyles(cId,q,idx){
-  document.querySelectorAll('#'+cId+' .opt-btn').forEach((btn,i)=>{
-    btn.disabled=true;
-    if(i===idx&&i===q.answer)btn.classList.add('sel-ok');
-    else if(i===idx&&i!==q.answer)btn.classList.add('sel-wrong');
-    else if(i===q.answer&&i!==idx)btn.classList.add('show-ok');
-  });
-}
-
-function showExp(q,idx,ok){
-  const L=['A','B','C','D','E'];
-  const r=document.getElementById('exp-result');
-  r.className='exp-result '+(ok?'ok':'wrong');
-  r.textContent=ok?'✓ Doğru! Cevap: '+L[q.answer]+') '+q.opts[q.answer]:'✗ Yanlış. Doğru cevap: '+L[q.answer]+') '+q.opts[q.answer];
-  document.getElementById('exp-text').innerHTML=q.exp;
-  document.getElementById('exp-box').style.display='block';
-}
-
-window.onload=()=>{updateMastery();};
-
-let simpleMode='coz';
-function openSimpleSelect(mode){
-  simpleMode=mode;
-  const titles={coz:'Soruları Çöz — Set Seç',cevap:'Cevapları Gör — Set Seç'};
-  const subs={coz:'Hangi seti çözmek istiyorsun?',cevap:'Hangi setin cevaplarını görmek istiyorsun?'};
-  const btnTxt={coz:'Çözmeye Başla',cevap:'Cevapları Gör'};
-  document.getElementById('ss2-title').textContent=titles[mode];
-  document.getElementById('ss2-sub').textContent=subs[mode];
-  document.getElementById('ss2-btn-cikmis').textContent=btnTxt[mode];
-  document.getElementById('ss2-btn-muhtemel').textContent=btnTxt[mode];
-  if(document.getElementById('ss2-btn-ai'))document.getElementById('ss2-btn-ai').textContent=btnTxt[mode];
-  showScreen('simpleselect');
-}
-
-function simpleStart(setKey){
-  loadSt();
-  const pool=SETS[setKey];
-  activePool=pool;
-  if(simpleMode==='cevap'){showAnswers(pool);}
-  else{startFullTest(pool);}
-}
+<script>
+// tema rengini tarayıcı çubuğuna da yansıt
+(function(){const m=document.querySelector('meta[name=theme-color]');const up=()=>{const c=getComputedStyle(document.documentElement).getPropertyValue('--topbg').trim();if(c)m.setAttribute('content',c);};up();new MutationObserver(up).observe(document.documentElement,{attributes:true,attributeFilter:['style']});})();
+if("serviceWorker" in navigator&&location.protocol.startsWith("http")){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}
 </script>
 </body>
 </html>
