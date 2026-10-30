@@ -505,6 +505,7 @@ h3.ckt i{width:14px;height:14px;border-radius:5px;flex:none}
 @media (max-width:480px){.dateBtn{width:42px;height:42px;padding:0;justify-content:center;gap:0;overflow:hidden}.dateBtn .cic,.dateBtn small{display:none}.dateBtn .dtx{width:100%}.dateBtn b{display:flex;flex-direction:column;align-items:center;line-height:1}.dateBtn #dMon{order:-1;width:100%;text-align:center;font-size:9px;letter-spacing:.06em;background:var(--acc);color:var(--accTx);padding:2px 0 2px;margin-bottom:3px}.dateBtn #dDay{font-size:17px}.dateBtn{flex-direction:column;align-items:stretch;justify-content:flex-start}}
 @media (max-width:370px){.bar .ib{width:38px;height:38px}.barIn{gap:5px}}
 @media (max-width:400px){.wkBtn{padding:0 6px 0 10px;gap:4px}}
+@media (max-width:520px){.lgrp .logo{display:none}.wkBtn svg{width:13px;height:13px}}
 @media (max-width:640px){.tabs3{display:flex;width:100%}.tabs3 button{flex:1;padding:0 4px;font-size:12.5px;gap:5px}.tabs3 button svg{display:none}.dateBtn{padding:0 10px 0 6px;gap:7px}.dateBtn b{font-size:13.5px}}
 body[data-tab="g"] .wkWrap{display:none!important}
 .tkTop{display:flex;align-items:center;gap:8px;margin-top:10px}
@@ -893,7 +894,7 @@ const shortN=n=>{for(const[r,s]of SHORTN)if(r.test(n))return s;return n;};
 const DEF_ROWS=6;
 const TRE=/^\d{2}:\d{2}$/;
 function defaultWeek(){const rows=[];for(let i=0;i<DEF_ROWS;i++)rows.push({id:rid(),start:"",end:""});return{rows,extras:[],cells:{}};}
-function defaultSettings(){return{theme:"turuncu",effect:9,dayFx:1,sound:true,vib:true,weekNames:["1. Hafta","2. Hafta","3. Hafta"],active:0,named:false};}
+function defaultSettings(){return{theme:"turuncu",effect:9,dayFx:1,sound:true,vib:true,weekNames:["Mevcut hafta","Alternatif 1","Alternatif 2"],active:0,named:false,mig:4};}
 function normWeek(d){
   const w={rows:[],extras:[],cells:{}};
   if(d&&Array.isArray(d.rows))w.rows=d.rows.filter(r=>r&&r.id).slice(0,MAX_ROWS).map(r=>{
@@ -920,12 +921,13 @@ function normSettings(d){
   if(typeof d.named==="boolean")s.named=d.named;
   if(typeof d.sound==="boolean")s.sound=d.sound;
   if(typeof d.vib==="boolean")s.vib=d.vib;
-  if(Array.isArray(d.weekNames))for(let i=0;i<3;i++)if(d.weekNames[i])s.weekNames[i]=String(d.weekNames[i]).slice(0,30);
+  if(Array.isArray(d.weekNames))for(let i=0;i<3;i++){const n=d.weekNames[i];if(n&&String(n).trim()!==(i+1)+". Hafta")s.weekNames[i]=String(n).slice(0,30);}
+  s.mig=typeof d.mig==="number"?d.mig:0;
   if(d.active>=0&&d.active<3)s.active=d.active|0;
   return s;
 }
 function sampleWeek(){const w=defaultWeek();w.rows[0].start="09:00";w.rows[0].end="10:00";w.rows[1].start="18:00";w.rows[1].end="19:00";for(let i=0;i<7;i++){w.cells[w.rows[0].id+"|d"+i]={title:"Örnek rutin "+(2*i+1),color:1,done:false,subs:[]};w.cells[w.rows[1].id+"|d"+i]={title:"Örnek rutin "+(2*i+2),color:2,done:false,subs:[]};}return w;}
-const S={settings:defaultSettings(),weeks:[sampleWeek(),sampleWeek(),sampleWeek()]};
+const S={settings:defaultSettings(),weeks:[sampleWeek(),defaultWeek(),defaultWeek()]};
 const IRE=/^\d{4}-\d{2}-\d{2}$/;
 function normTasks(d){const o={items:[]};if(d&&Array.isArray(d.items))o.items=d.items.filter(x=>x&&x.id&&typeof x.date==="string"&&IRE.test(x.date)&&x.title).slice(0,3000).map(x=>{const tm=typeof x.time==="string"&&TRE.test(x.time)?x.time:"";return{id:String(x.id),date:x.date,time:tm,end:tm&&typeof x.end==="string"&&TRE.test(x.end)?x.end:"",title:String(x.title).slice(0,80),note:typeof x.note==="string"?x.note.slice(0,1000):"",color:Math.max(0,Math.min(7,+x.color||0)),done:!!x.done,subs:Array.isArray(x.subs)?x.subs.filter(q=>q&&q.t).map(q=>{const o={t:String(q.t),d:!!q.d};if(typeof q.n==="string"&&q.n.trim())o.n=q.n.slice(0,500);return o;}):[]};});return o;}
 function sampleTasks(){const m=mondayOf(todayD()),items=[];
@@ -933,16 +935,24 @@ function sampleTasks(){const m=mondayOf(todayD()),items=[];
   return{items};}
 /* eski sürümün örnek verilerini (Kahvaltı, Annemi ara…) yenileriyle değiştir — yalnızca birebir aynı duranları */
 function migrateSamples(){
-  if(lsGet("hp-smp")==="3")return;lsSet("hp-smp","3");
-  // varsayılan görünüm: turuncu tema, neon parlama, bütün sütun altın
-  const st=S.settings;if(st.theme!=="turuncu"||st.effect!==9||st.dayFx!==1){st.theme="turuncu";st.effect=9;st.dayFx=1;save("settings");applyTheme();}
-  const OT={"Diş randevusu":"10:00|3","Market alışverişi":"|2","Proje sunumu":"14:00|5","Annemi ara":"19:30|1"};
-  const n0=S.tasks.items.length;S.tasks.items=S.tasks.items.filter(x=>!(OT[x.title]===x.time+"|"+x.color)&&!/^Örnek görev \d+$/.test(x.title));
-  if(S.tasks.items.length!==n0){S.tasks.items.push(...sampleTasks().items);save("tasks");}
-  const OR={"Kahvaltı":2,"Ders":0,"Spor":1};
-  S.weeks.forEach((w,i)=>{let ch=false;for(const k in w.cells){const c=w.cells[k];if((OR[c.title]===c.color&&/\|d[012]$/.test(k))||/^Örnek rutin \d+$/.test(c.title)){delete w.cells[k];ch=true;}}
-    const empty=!Object.keys(w.cells).length;
-    if(empty&&(ch||(i>0&&w.rows.every(r=>!r.start)))){S.weeks[i]=sampleWeek();save("w"+i);}else if(ch)save("w"+i);});
+  const st=S.settings,v=Math.max(st.mig||0,+(lsGet("hp-smp")||0));
+  if(v>=4){if(st.mig!==4){st.mig=4;save("settings");}return;}
+  lsSet("hp-smp","4");st.mig=4;
+  const isSmp=(k,c)=>/^Örnek rutin \d+$/.test(c.title)||({"Kahvaltı":2,"Ders":0,"Spor":1}[c.title]===c.color&&/\|d[012]$/.test(k));
+  if(v<3){
+    // varsayılan görünüm: turuncu tema, neon parlama, bütün sütun altın
+    if(st.theme!=="turuncu"||st.effect!==9||st.dayFx!==1){st.theme="turuncu";st.effect=9;st.dayFx=1;applyTheme();}
+    const OT={"Diş randevusu":"10:00|3","Market alışverişi":"|2","Proje sunumu":"14:00|5","Annemi ara":"19:30|1"};
+    const n0=S.tasks.items.length;S.tasks.items=S.tasks.items.filter(x=>!(OT[x.title]===x.time+"|"+x.color)&&!/^Örnek görev \d+$/.test(x.title));
+    if(S.tasks.items.length!==n0){S.tasks.items.push(...sampleTasks().items);save("tasks");}
+    // mevcut hafta: eski örnekleri yenileriyle değiştir (kendi eklediklerine dokunma)
+    const w=S.weeks[0];let ch=false;for(const k in w.cells)if(isSmp(k,w.cells[k])){delete w.cells[k];ch=true;}
+    if(ch){if(!Object.keys(w.cells).length)S.weeks[0]=sampleWeek();save("w0");}
+  }
+  // alternatifler örneksiz başlar
+  [1,2].forEach(i=>{const w=S.weeks[i];let ch=false;for(const k in w.cells)if(isSmp(k,w.cells[k])){delete w.cells[k];ch=true;}
+    if(ch){if(!Object.keys(w.cells).length)S.weeks[i]=defaultWeek();save("w"+i);}});
+  save("settings");
 }
 S.tasks=sampleTasks();
 const KEYS=["settings","w0","w1","w2","tasks","log","notes","uev"];
@@ -1026,7 +1036,9 @@ function applyTheme(){const t=THEMES[S.settings.theme]||THEMES.turuncu;const r=d
 
 /* ---------- çizim ---------- */
 function renderTabs(){
-  $("wkName").textContent=S.settings.weekNames[S.settings.active];
+  {const nm=S.settings.weekNames[S.settings.active],el=$("wkName");el.textContent=nm;
+   // dar ekranda sığmazsa kısa hâli: "Mevcut", "Alt. 1"
+   if(el.scrollWidth>el.clientWidth+1){const sh=nm==="Mevcut hafta"?"Mevcut":/^Alternatif \d$/.test(nm)?"Alt. "+nm.slice(-1):null;if(sh)el.textContent=sh;}}
   $("wkBtn").setAttribute("aria-label","Hafta: "+S.settings.weekNames[S.settings.active]+". Değiştirmek için dokun");
   const t=todayD(),mon=tab==="g"?tkMon:mondayOf(t);
   const cur=sameD(tkMon,mondayOf(t))||tab==="b";
@@ -1041,7 +1053,7 @@ function renderTabs(){
 }
 function drawWkMenu(){
   const a=S.settings.active;
-  $("wkMenu").innerHTML=S.settings.weekNames.map((n,i)=>`<div class="wkRow"><button class="wkPick ${i===a?"on":""}" data-act="wkpick" data-i="${i}" aria-current="${i===a}"><b>${i===a?"✓":""}</b><span>${esc(n)}</span></button><button class="wkRen" data-act="wkren" data-i="${i}" aria-label="${esc(n)} adını değiştir">✎</button></div>`).join("")+`<div class="wkHint">Kullanacağın haftayı seç, adını ✎ ile değiştir.</div>`;
+  $("wkMenu").innerHTML=S.settings.weekNames.map((n,i)=>`<div class="wkRow"><button class="wkPick ${i===a?"on":""}" data-act="wkpick" data-i="${i}" aria-current="${i===a}"><b>${i===a?"✓":""}</b><span>${esc(n)}</span></button><button class="wkRen" data-act="wkren" data-i="${i}" aria-label="${esc(n)} adını değiştir">✎</button></div>`).join("")+`<div class="wkHint">Mevcut haftanı ya da bir alternatifini seç, adını ✎ ile değiştir.</div>`;
 }
 function toggleWk(open){const m=$("wkMenu");const o=open==null?m.hidden:open;m.hidden=!o;$("wkBtn").setAttribute("aria-expanded",String(o));$("wkBtn").classList.toggle("open",o);if(o)drawWkMenu();}
 function renderGrid(){
@@ -1856,7 +1868,7 @@ let rn=null;
 function openRename(kind,id){
   rn={kind,id};
   const cur=kind==="week"?S.settings.weekNames[id]:(W().extras.find(x=>x.id===id)||{}).name;
-  openSheet("rename",head(kind==="week"?"Hafta adı":"Sütun adı",kind==="week"?"Ör. Sınav Haftası, Normal Rutin":"Ör. Ekstra, Tekrar, Notlar")+`<input class="inp" id="rnIn" maxlength="30" value="${esc(cur||"")}"><div class="btns"><button class="btn" data-act="rnok">Kaydet</button></div>`);
+  openSheet("rename",head(kind==="week"?"Hafta adı":"Sütun adı",kind==="week"?"Ör. Yoğun hafta, Tatil haftası":"Ör. Ekstra, Tekrar, Notlar")+`<input class="inp" id="rnIn" maxlength="30" value="${esc(cur||"")}"><div class="btns"><button class="btn" data-act="rnok">Kaydet</button></div>`);
   setTimeout(()=>{const i=$("rnIn");i&&(i.focus(),i.select());},50);
 }
 function commitRename(){
@@ -1923,13 +1935,13 @@ function previewDay(i){
 /* ilk açılış: hafta isimleri */
 function openOnboard(){
   let h=head("Haftalarına isim ver","Ör. Sınav Haftası, Normal Rutin, Tatil. Sonra da üstteki sekmeye dokunarak değiştirebilirsin.");
-  h+=`<div class="subs">${[0,1,2].map(i=>`<input class="inp" id="ob${i}" maxlength="30" placeholder="${i+1}. Hafta">`).join("")}</div>`;
+  h+=`<div class="subs">${[0,1,2].map(i=>`<input class="inp" id="ob${i}" maxlength="30" placeholder="${defaultSettings().weekNames[i]}">`).join("")}</div>`;
   h+=`<div class="btns"><button class="btn" data-act="obok">Başla</button><button class="btn ghost" data-act="obskip">Şimdilik geç</button></div>`;
   openSheet("onboard",h);
   setTimeout(()=>{const i=$("ob0");i&&i.focus();},60);
 }
 function finishOnboard(useInputs){
-  for(let i=0;i<3;i++){const v=useInputs?(($("ob"+i)||{}).value||"").trim():"";S.settings.weekNames[i]=v||(i+1)+". Hafta";}
+  for(let i=0;i<3;i++){const v=useInputs?(($("ob"+i)||{}).value||"").trim():"";S.settings.weekNames[i]=v||defaultSettings().weekNames[i];}
   S.settings.named=true;save("settings");closeSheet();render();nextIntro();
 }
 
@@ -2306,7 +2318,7 @@ function showLogin(){
 const TOUR=[
  {card:"hello"},
  {sel:"#tabs3",ic:"🧭",t:"Üç sekme, tek uygulama",d:"<b>Haftalık Rutin</b> her hafta tekrar eden düzenin, <b>Haftalık Görev</b> tarihli işlerin, <b>Bugün</b> ise ikisinin bugünkü hâli. Sekmeler arasında buradan geçersin."},
- {tab:"r",sel:"#wkBtn",ic:"🗂",t:"3 ayrı hafta",d:"Sınav haftası, normal hafta, tatil… 3 farklı rutinin olabilir. Buraya dokunup seçersin, ✎ ile adını değiştirirsin."},
+ {tab:"r",sel:"#wkBtn",ic:"🗂",t:"Mevcut hafta ve alternatifler",d:"Asıl programın <b>Mevcut hafta</b>. Yoğun ya da tatil haftaları için 2 alternatif program daha kurabilirsin. Buraya dokunup birini seçersin, ✎ ile adını değiştirirsin."},
  {tab:"r",sel:"#grid tbody tr:first-child td.c",ic:"✅",t:"Rutin kutuları",d:"Boş kutuya dokun, rutin ekle. Dolu kutuya dokununca tamamlanır, köşedeki ✎ ile düzenlersin. Saat kartından saati, sağ üstteki <b>+</b> ile satır ve sütunları ayarlarsın."},
  {tab:"r",sel:"#grid thead th.col.today, #grid thead th.col",ic:"🏆",t:"Günün ilerlemesi",d:"İşleri bitirdikçe çubuk dolar. Günün hepsi bitince gün altına döner ve taç takılır. Tabloyu iki parmakla büyütüp küçültebilirsin."},
  {sel:"#calBtn",ic:"📅",t:"Takvim",d:"Tarihe dokununca takvim açılır: resmî ve dinî günler mavi, senin özel günlerin pembe. Bir güne dokunup <b>görev</b> ya da <b>doğum günü, yıl dönümü</b> gibi özel gün eklersin. Yanındaki oklarla haftalar arasında gezersin."},
