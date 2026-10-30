@@ -290,6 +290,7 @@ td.c.pasted{animation:popIn .35s}
 .dch.full{opacity:.4;cursor:not-allowed;text-decoration:line-through}
 .dch.q{border-style:dashed;color:var(--mut)}
 #fs .fsOut{display:none}html.isFs #fs .fsIn{display:none}html.isFs #fs .fsOut{display:inline}
+html,body{touch-action:pan-x pan-y}
 #tblwrap{touch-action:pan-x pan-y}
 @media (max-width:420px){.barIn{gap:6px}}
 /* hafta seçici + tarih */
@@ -894,7 +895,9 @@ const shortN=n=>{for(const[r,s]of SHORTN)if(r.test(n))return s;return n;};
 const DEF_ROWS=6;
 const TRE=/^\d{2}:\d{2}$/;
 function defaultWeek(){const rows=[];for(let i=0;i<DEF_ROWS;i++)rows.push({id:rid(),start:"",end:""});return{rows,extras:[],cells:{}};}
-function defaultSettings(){return{theme:"turuncu",effect:9,dayFx:1,sound:true,vib:true,weekNames:["Mevcut hafta","Alternatif 1","Alternatif 2"],active:0,named:false,mig:4};}
+/* RV: herkesin verisini bir kez sıfırlamak için sürüm. Artırılırsa herkes bir kez temiz başlar. */
+const RV=1;
+function defaultSettings(){return{theme:"turuncu",effect:9,dayFx:1,sound:true,vib:true,weekNames:["Mevcut hafta","Alternatif 1","Alternatif 2"],active:0,named:false,mig:4,rv:RV};}
 function normWeek(d){
   const w={rows:[],extras:[],cells:{}};
   if(d&&Array.isArray(d.rows))w.rows=d.rows.filter(r=>r&&r.id).slice(0,MAX_ROWS).map(r=>{
@@ -923,6 +926,7 @@ function normSettings(d){
   if(typeof d.vib==="boolean")s.vib=d.vib;
   if(Array.isArray(d.weekNames))for(let i=0;i<3;i++){const n=d.weekNames[i];if(n&&String(n).trim()!==(i+1)+". Hafta")s.weekNames[i]=String(n).slice(0,30);}
   s.mig=typeof d.mig==="number"?d.mig:0;
+  s.rv=typeof d.rv==="number"?d.rv:0;
   if(d.active>=0&&d.active<3)s.active=d.active|0;
   return s;
 }
@@ -934,7 +938,20 @@ function sampleTasks(){const m=mondayOf(todayD()),items=[];
   for(let i=0;i<7;i++)items.push({id:rid(),date:isoD(addD(m,i)),time:"11:00",end:"12:00",title:"Örnek görev "+(i+1),color:1,done:false,subs:[]});
   return{items};}
 /* eski sürümün örnek verilerini (Kahvaltı, Annemi ara…) yenileriyle değiştir — yalnızca birebir aynı duranları */
+/* tek seferlik tam sıfırlama: eski sürümlerden hiçbir veri kalmaz, örneklerle temiz başlar */
+function fullReset(){
+  S.settings=defaultSettings();S.weeks=[sampleWeek(),defaultWeek(),defaultWeek()];S.tasks=sampleTasks();
+  S.log={days:{}};S.notes={tags:[],days:{}};S.uev={items:[]};
+  KEYS.forEach(k=>save(k));applyTheme();zoom=1;applyZoom();
+}
+function deviceReset(){
+  if(lsGet("hp-rv")===String(RV))return;
+  try{Object.keys(localStorage).forEach(k=>{if(k.startsWith("hp-")||k===LS)localStorage.removeItem(k);});}catch(e){}
+  lsSet("hp-rv",String(RV));
+  zoom=1;applyZoom();
+}
 function migrateSamples(){
+  if(S.settings.rv!==RV){fullReset();lsSet("hp-smp","4");return;}
   const st=S.settings,v=Math.max(st.mig||0,+(lsGet("hp-smp")||0));
   if(v>=4){if(st.mig!==4){st.mig=4;save("settings");}return;}
   lsSet("hp-smp","4");st.mig=4;
@@ -1035,10 +1052,11 @@ const DAY_FINAL=[
 function applyTheme(){const t=THEMES[S.settings.theme]||THEMES.turuncu;const r=document.documentElement;r.style.setProperty("--chipTx","#1a120c");Object.entries(t.v).forEach(([k,v])=>r.style.setProperty("--"+k,v));r.style.colorScheme=t.light?"light":"dark";r.classList.toggle("light",!!t.light);}
 
 /* ---------- çizim ---------- */
+// hafta düğmesi: dar ekranda tam ad sığmazsa kısa hâli ("Mevcut", "Alt. 1")
+function fitWk(){const nm=S.settings.weekNames[S.settings.active],el=$("wkName");el.textContent=nm;
+  if(el.scrollWidth>el.clientWidth){const sh=nm==="Mevcut hafta"?"Mevcut":/^Alternatif \d$/.test(nm)?"Alt. "+nm.slice(-1):null;if(sh)el.textContent=sh;}}
 function renderTabs(){
-  {const nm=S.settings.weekNames[S.settings.active],el=$("wkName");el.textContent=nm;
-   // dar ekranda sığmazsa kısa hâli: "Mevcut", "Alt. 1"
-   if(el.scrollWidth>el.clientWidth+1){const sh=nm==="Mevcut hafta"?"Mevcut":/^Alternatif \d$/.test(nm)?"Alt. "+nm.slice(-1):null;if(sh)el.textContent=sh;}}
+  fitWk();
   $("wkBtn").setAttribute("aria-label","Hafta: "+S.settings.weekNames[S.settings.active]+". Değiştirmek için dokun");
   const t=todayD(),mon=tab==="g"?tkMon:mondayOf(t);
   const cur=sameD(tkMon,mondayOf(t))||tab==="b";
@@ -1050,6 +1068,7 @@ function renderTabs(){
   if(tab==="r"&&!cur){const past=tkMon<mondayOf(t);vb.hidden=false;vb.innerHTML=`<div class="viewBar"><span><b>${rangeText(tkMon)}</b> · ${relWeek(tkMon)}. ${past?"Geçmiş haftaların tikleri henüz kaydedilmiyor, rutinin nasıl göründüğünü görüyorsun.":"Önizleme: tikler o hafta gelince açılır."}</span><button data-act="tknow">Bu haftaya dön</button></div>`;}
   else{vb.hidden=true;vb.innerHTML="";}
   if(!$("wkMenu").hidden)drawWkMenu();
+  requestAnimationFrame(fitWk);
 }
 function drawWkMenu(){
   const a=S.settings.active;
@@ -1154,6 +1173,9 @@ function drawTabs3(){
 function placeSlider(){const box=$("tabs3"),on=box.querySelector("button.on"),sl=box.querySelector(".sl");if(!on||!sl)return;sl.style.left=on.offsetLeft+"px";sl.style.width=on.offsetWidth+"px";if(!sl.classList.contains("anim")&&on.offsetWidth)requestAnimationFrame(()=>sl.classList.add("anim"));}
 try{new ResizeObserver(()=>{placeSlider();}).observe($("tabs3"));}catch(e){}
 addEventListener("resize",()=>{placeSlider();renderTabs();});
+try{document.fonts&&(document.fonts.ready.then(fitWk),document.fonts.addEventListener("loadingdone",()=>fitWk()));}catch(e){}
+try{new ResizeObserver(()=>fitWk()).observe(document.querySelector(".wkWrap"));}catch(e){}
+setTimeout(fitWk,1500);
 /* ---------- haftalık görevler ---------- */
 const isoToD=v=>{const [y,m,d]=v.split("-").map(Number);return new Date(y,m-1,d);};
 const taskById=id=>S.tasks.items.find(x=>x.id===id);
@@ -2449,31 +2471,59 @@ function drawCal(keep){
 // gece yarısı geçince tarihleri yenile
 let lastDay=isoD(todayD());setInterval(()=>{const n=isoD(todayD());if(n!==lastDay){const was=sameD(tkMon,mondayOf(isoToD(lastDay)));lastDay=n;if(was)tkMon=mondayOf(todayD());render();}},60000);
 
-/* ---------- iki parmakla yakınlaştırma (sadece tablo) ---------- */
+/* ---------- iki parmakla yakınlaştırma (sadece tablo) ----------
+   Tablo her yönde eşit büyür/küçülür, parmakların altındaki nokta yerinde kalır.
+   En fazla ekranı dolduracak kadar küçülür (boşluk kalmaz). Bugün sekmesinde kapalı. */
+const ZMAX=1.6;
 let zoom=1;
-function applyZoom(){const z=zoom===1?"":String(zoom);$("grid").style.zoom=z;$("tview").style.zoom=z;}
-function setZoom(z,cx,cy){
-  const tw=$("tblwrap"),old=zoom;
-  const nz=Math.max(.4,Math.min(1.6,Math.round(z*100)/100));if(nz===old)return;
-  const r=tw.getBoundingClientRect();
-  const vx=cx!=null?cx-r.left:tw.clientWidth/2, vy=cy!=null?cy:innerHeight/2;
-  const px=vx+tw.scrollLeft, topPage=r.top+scrollY, py=vy+scrollY-topPage;
+// zoom yüzdeleri büyütmez; tablo genişliğini de aynı oranda ayarla ki her şey eşit büyüsün/küçülsün
+function applyZoom(){const z=zoom===1?"":String(zoom),w=zoom===1?"":(zoom*100)+"%";["grid","tview"].forEach(id=>{const e=$(id);e.style.zoom=z;e.style.width=w;});}
+function zoomable(){return tab!=="b";}
+const zTarget=()=>!$("grid").hidden&&$("grid").offsetParent?$("grid"):$("tview");
+// tablonun ekrana tam sığdığı en küçük oran
+function zMin(){const tw=$("tblwrap"),el=zTarget(),nat=el.getBoundingClientRect().width/zoom;return nat>0?Math.max(.4,Math.min(1,(tw.clientWidth-2)/nat)):.4;}
+// (px,py): ekrandaki nokta (parmakların ortası); o nokta zoom sonrası da aynı yerde kalır
+// an: hareket başındaki tablo noktası (zoom=1 birimiyle); verilirse kayma birikmez
+function commitZoom(nz,px,py,an){
+  const tw=$("tblwrap"),old=zoom;nz=Math.max(zMin(),Math.min(ZMAX,Math.round(nz*100)/100));
+  if(Math.abs(nz-old)<.005)return;
+  if(px==null){const r=tw.getBoundingClientRect();px=r.left+tw.clientWidth/2;py=(Math.max(0,r.top)+Math.min(r.bottom,innerHeight))/2;}
+  const el=zTarget(),g0=el.getBoundingClientRect();
+  const ux=an?an.ux:(px-g0.left)/old,uy=an?an.uy:(py-g0.top)/old;
   zoom=nz;applyZoom();
-  const k=zoom/old;
-  tw.scrollLeft=px*k-vx;
-  window.scrollTo(scrollX,Math.max(0,topPage+py*k-vy));
-  lsSet("hp-zoom",String(zoom));
+  const g1=el.getBoundingClientRect();
+  tw.scrollLeft=Math.max(0,tw.scrollLeft+(g1.left+ux*nz)-px);
+  const g2=el.getBoundingClientRect();
+  window.scrollTo(scrollX,Math.max(0,scrollY+(g2.top+uy*nz)-py));
+  clearTimeout(commitZoom.t);commitZoom.t=setTimeout(()=>lsSet("hp-zoom",String(zoom)),300);
   if($("tour"))placeTour();
 }
+function setZoom(z,cx,cy){commitZoom(z,cx,cy);}
 (function(){
-  const z=parseFloat(lsGet("hp-zoom"));if(z>=.4&&z<=1.6){zoom=z;applyZoom();}
-  const tw=$("tblwrap");let pinch=null;
+  const z=parseFloat(lsGet("hp-zoom"));if(z>=.4&&z<=ZMAX){zoom=z;applyZoom();}
+  const tw=$("tblwrap");let pinch=null,raf=0;
   const dist=(a,b)=>Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
-  tw.addEventListener("touchstart",e=>{if(e.touches.length===2){if(typeof drag!=="undefined"&&drag)endDrag(false);pinch={d:dist(e.touches[0],e.touches[1]),z:zoom};}},{passive:true});
-  tw.addEventListener("touchmove",e=>{if(!pinch||e.touches.length!==2)return;e.preventDefault();const[a,b]=e.touches;setZoom(pinch.z*dist(a,b)/pinch.d,(a.clientX+b.clientX)/2,(a.clientY+b.clientY)/2);},{passive:false});
-  const end=e=>{if(pinch&&e.touches.length<2){pinch=null;dragEndAt=Date.now();}};
+  tw.addEventListener("touchstart",e=>{
+    if(e.touches.length!==2||!zoomable())return;
+    if(typeof drag!=="undefined"&&drag)endDrag(false);
+    const[a,b]=e.touches;
+    pinch={d:dist(a,b)||1,z:zoom,px:(a.clientX+b.clientX)/2,py:(a.clientY+b.clientY)/2,want:zoom};
+    const g=zTarget().getBoundingClientRect();pinch.an={ux:(pinch.px-g.left)/zoom,uy:(pinch.py-g.top)/zoom};
+  },{passive:true});
+  tw.addEventListener("touchmove",e=>{
+    if(!pinch||e.touches.length!==2)return;e.preventDefault();
+    const[a,b]=e.touches;pinch.want=pinch.z*dist(a,b)/pinch.d;
+    // ekranı her karede en fazla bir kez güncelle (akıcı)
+    if(!raf)raf=requestAnimationFrame(()=>{raf=0;if(pinch)commitZoom(pinch.want,pinch.px,pinch.py,pinch.an);});
+  },{passive:false});
+  const end=e=>{if(!pinch||e.touches.length>=2)return;const p=pinch;pinch=null;dragEndAt=Date.now();if(raf){cancelAnimationFrame(raf);raf=0;}commitZoom(p.want,p.px,p.py,p.an);};
   tw.addEventListener("touchend",end,{passive:true});tw.addEventListener("touchcancel",end,{passive:true});
-  tw.addEventListener("wheel",e=>{if(!e.ctrlKey)return;e.preventDefault();setZoom(zoom*Math.exp(-e.deltaY*.01),e.clientX,e.clientY);},{passive:false});
+  // bilgisayar: Ctrl + tekerlek / dokunmatik yüzeyde iki parmak
+  tw.addEventListener("wheel",e=>{if(!e.ctrlKey)return;e.preventDefault();if(!zoomable())return;setZoom(zoom*Math.exp(-e.deltaY*.01),e.clientX,e.clientY);},{passive:false});
+  // tarayıcının kendi sayfa yakınlaştırmasını kapat (iOS)
+  ["gesturestart","gesturechange"].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
+  // ekran döndürülünce / genişleyince tablo ekrandan küçük kalmasın
+  addEventListener("resize",()=>{if(zoom<1&&zoom<zMin()-.005){zoom=Math.min(1,zMin());applyZoom();}});
 })();
 
 /* ---------- tam ekran ---------- */
@@ -2494,7 +2544,7 @@ function toggleFs(){
 })();
 
 /* başlat */
-setSync("load");loadLocal();applyTheme();render();
+setSync("load");deviceReset();loadLocal();applyTheme();render();
 if(lsGet("hp-intro")!=="2"){lsSet("hp-intro","2");lsSet("hp-login-seen","");try{localStorage.removeItem("hp-tour-done");}catch(e){}}
 if(!lsGet("hp-login-seen"))showLogin();
 if(!(window.claude&&window.claude.use)){setSync("local");markReady();}else{document.documentElement.classList.add("loading");initStore().catch(()=>{setSync("local");markReady();});}
