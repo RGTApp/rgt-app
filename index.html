@@ -924,23 +924,25 @@ function normSettings(d){
   if(d.active>=0&&d.active<3)s.active=d.active|0;
   return s;
 }
-function sampleWeek(){const w=defaultWeek();[["09:00","10:00","Örnek rutin 1",0],["18:00","19:00","Örnek rutin 2",2]].forEach(([a,b,t,c],i)=>{w.rows[i].start=a;w.rows[i].end=b;["d0","d1","d2","d3","d4","d5","d6"].forEach(d=>{w.cells[w.rows[i].id+"|"+d]={title:t,color:c,done:false,subs:[]};});});return w;}
+function sampleWeek(){const w=defaultWeek();w.rows[0].start="09:00";w.rows[0].end="10:00";w.rows[1].start="18:00";w.rows[1].end="19:00";for(let i=0;i<7;i++){w.cells[w.rows[0].id+"|d"+i]={title:"Örnek rutin "+(2*i+1),color:1,done:false,subs:[]};w.cells[w.rows[1].id+"|d"+i]={title:"Örnek rutin "+(2*i+2),color:2,done:false,subs:[]};}return w;}
 const S={settings:defaultSettings(),weeks:[sampleWeek(),sampleWeek(),sampleWeek()]};
 const IRE=/^\d{4}-\d{2}-\d{2}$/;
 function normTasks(d){const o={items:[]};if(d&&Array.isArray(d.items))o.items=d.items.filter(x=>x&&x.id&&typeof x.date==="string"&&IRE.test(x.date)&&x.title).slice(0,3000).map(x=>{const tm=typeof x.time==="string"&&TRE.test(x.time)?x.time:"";return{id:String(x.id),date:x.date,time:tm,end:tm&&typeof x.end==="string"&&TRE.test(x.end)?x.end:"",title:String(x.title).slice(0,80),note:typeof x.note==="string"?x.note.slice(0,1000):"",color:Math.max(0,Math.min(7,+x.color||0)),done:!!x.done,subs:Array.isArray(x.subs)?x.subs.filter(q=>q&&q.t).map(q=>{const o={t:String(q.t),d:!!q.d};if(typeof q.n==="string"&&q.n.trim())o.n=q.n.slice(0,500);return o;}):[]};});return o;}
 function sampleTasks(){const m=mondayOf(todayD()),items=[];
-  for(let i=0;i<7;i++){const d=isoD(addD(m,i));items.push({id:rid(),date:d,time:"11:00",end:"12:00",title:"Örnek görev 1",color:5,done:false,subs:[]},{id:rid(),date:d,time:"",end:"",title:"Örnek görev 2",color:3,done:false,subs:[]});}
+  for(let i=0;i<7;i++)items.push({id:rid(),date:isoD(addD(m,i)),time:"11:00",end:"12:00",title:"Örnek görev "+(i+1),color:1,done:false,subs:[]});
   return{items};}
 /* eski sürümün örnek verilerini (Kahvaltı, Annemi ara…) yenileriyle değiştir — yalnızca birebir aynı duranları */
 function migrateSamples(){
-  if(lsGet("hp-smp")==="2")return;lsSet("hp-smp","2");
+  if(lsGet("hp-smp")==="3")return;lsSet("hp-smp","3");
+  // varsayılan görünüm: turuncu tema, neon parlama, bütün sütun altın
+  const st=S.settings;if(st.theme!=="turuncu"||st.effect!==9||st.dayFx!==1){st.theme="turuncu";st.effect=9;st.dayFx=1;save("settings");applyTheme();}
   const OT={"Diş randevusu":"10:00|3","Market alışverişi":"|2","Proje sunumu":"14:00|5","Annemi ara":"19:30|1"};
-  const n0=S.tasks.items.length;S.tasks.items=S.tasks.items.filter(x=>!(OT[x.title]===x.time+"|"+x.color));
-  if(S.tasks.items.length!==n0){if(!S.tasks.items.length)S.tasks=sampleTasks();save("tasks");}
+  const n0=S.tasks.items.length;S.tasks.items=S.tasks.items.filter(x=>!(OT[x.title]===x.time+"|"+x.color)&&!/^Örnek görev \d+$/.test(x.title));
+  if(S.tasks.items.length!==n0){S.tasks.items.push(...sampleTasks().items);save("tasks");}
   const OR={"Kahvaltı":2,"Ders":0,"Spor":1};
-  S.weeks.forEach((w,i)=>{let ch=false;for(const k in w.cells){const c=w.cells[k];if(OR[c.title]===c.color&&/\|d[012]$/.test(k)){delete w.cells[k];ch=true;}}
-    if(ch){if(!Object.keys(w.cells).length)S.weeks[i]=sampleWeek();save("w"+i);}
-    else if(i>0&&!Object.keys(w.cells).length&&w.rows.every(r=>!r.start)){S.weeks[i]=sampleWeek();save("w"+i);}});
+  S.weeks.forEach((w,i)=>{let ch=false;for(const k in w.cells){const c=w.cells[k];if((OR[c.title]===c.color&&/\|d[012]$/.test(k))||/^Örnek rutin \d+$/.test(c.title)){delete w.cells[k];ch=true;}}
+    const empty=!Object.keys(w.cells).length;
+    if(empty&&(ch||(i>0&&w.rows.every(r=>!r.start)))){S.weeks[i]=sampleWeek();save("w"+i);}else if(ch)save("w"+i);});
 }
 S.tasks=sampleTasks();
 const KEYS=["settings","w0","w1","w2","tasks","log","notes","uev"];
@@ -1666,7 +1668,7 @@ let ted=null;
 function openTaskEditor(id,date){
   const x=id?taskById(id):null;
   const t=todayD(),d0=date||(x?x.date:(sameD(tkMon,mondayOf(t))||tab!=="g"?isoD(t):isoD(tkMon)));
-  const dd0=isoToD(d0);ted={id:x?x.id:null,isNew:!x,title:x?x.title:"",note:x?(x.note||""):"",sEdit:-1,snDraft:"",calOpen:false,cal:{y:dd0.getFullYear(),m:dd0.getMonth()},date:d0,time:x?x.time:"",end:x?x.end:"",color:x?x.color:0,subs:x?clone(x.subs):[],done:x?!!x.done:false,wasDone:x?isDone(x):false,hadSubs:!!(x&&x.subs.length),subDraft:"",delAsk:false,wk:mondayOf(isoToD(d0))};
+  const dd0=isoToD(d0);ted={id:x?x.id:null,isNew:!x,title:x?x.title:"",note:x?(x.note||""):"",sEdit:-1,snDraft:"",calOpen:false,cal:{y:dd0.getFullYear(),m:dd0.getMonth()},date:d0,time:x?x.time:"",end:x?x.end:"",color:x?x.color:1,subs:x?clone(x.subs):[],done:x?!!x.done:false,wasDone:x?isDone(x):false,hadSubs:!!(x&&x.subs.length),subDraft:"",delAsk:false,wk:mondayOf(isoToD(d0))};
   drawTaskEditor(true);
 }
 function tRead(){if(!ted)return;const a=$("tTitle");if(a)ted.title=a.value;const b=$("tSubIn");if(b)ted.subDraft=b.value;const c=$("tDet");if(c)ted.note=c.value;const n=$("tSnIn");if(n)ted.snDraft=n.value;}
@@ -1687,7 +1689,7 @@ function edCalHTML(){
 function drawTaskEditor(first){
   const e=ted,t=todayD(),ns=e.subs.length,nd=e.subs.filter(q=>q.d).length;
   let h=head(e.isNew?"Yeni görev":"Görevi düzenle",esc(dayLabel(e.date))+(e.time?" · "+tmText(e):""));
-  h+=`<div class="lbl" style="margin-top:4px">Görev başlığı</div><input class="inp tTitleIn" id="tTitle" maxlength="60" placeholder="Ör. Proje sunumu" value="${esc(e.title)}">`;
+  h+=`<div class="lbl" style="margin-top:4px">Görev başlığı</div><input class="inp tTitleIn" id="tTitle" maxlength="60" placeholder="Görev başlığı" value="${esc(e.title)}">`;
   h+=`<div class="lbl">Görev detayı <span class="opt">(isteğe bağlı)</span></div><textarea class="inp auto" id="tDet" maxlength="1000" rows="2" placeholder="Görevle ilgili eklemek istediğiniz detaylar">${esc(e.note)}</textarea>`;
   const dd=isoToD(e.date),ev=evsOf(e.date);
   h+=`<div class="lbl">Tarih</div><button class="dField ${e.calOpen?"open":""}" data-act="tdfield" aria-expanded="${e.calOpen}"><span class="cic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="3"/><path d="M8 2.5v4M16 2.5v4M3 9.5h18"/><path d="M8.5 15.2l2.4 2.4 4.6-4.8"/></svg></span><span class="tx"><b>${dd.getDate()} ${AY[dd.getMonth()]} ${dd.getFullYear()}, ${DAYS[(dd.getDay()+6)%7]}</b><small>${relDay(dd)}${ev.length?" · "+esc(shortN(ev[0][0])):""}</small></span><svg class="ch" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>${e.calOpen?edCalHTML():""}`;
@@ -1735,14 +1737,14 @@ const head=(t,s)=>`<div class="sh"><div><h3>${t}</h3>${s?`<small>${s}</small>`:"
 let ed=null;
 function openEditor(k){
   const c=W().cells[k];
-  ed={k,title:c?c.title:"",color:c?c.color:0,subs:c?clone(c.subs):[],done:c?!!c.done:false,isNew:!c,wasDone:c?isDone(c):false,hadSubs:!!(c&&c.subs.length),subDraft:"",delAsk:false,also:new Set()};
+  ed={k,title:c?c.title:"",color:c?c.color:1,subs:c?clone(c.subs):[],done:c?!!c.done:false,isNew:!c,wasDone:c?isDone(c):false,hadSubs:!!(c&&c.subs.length),subDraft:"",delAsk:false,also:new Set()};
   drawEditor(true);
 }
 function drawEditor(first){
   const [rowId,colKey]=ed.k.split("|");const r=rowOf(rowId);
   const ns=ed.subs.length,nd=ed.subs.filter(s=>s.d).length;
   let h=head(ed.isNew?"Yeni görev":"Görevi düzenle",`${esc(colName(colKey))}${r&&r.start?" · "+esc(r.start)+(r.end?"–"+esc(r.end):""):""}`);
-  h+=`<input class="inp" id="eTitle" maxlength="60" placeholder="Görev adı (ör. Sosyal Psikoloji çalış)" value="${esc(ed.title)}">`;
+  h+=`<input class="inp" id="eTitle" maxlength="60" placeholder="Görev adı" value="${esc(ed.title)}">`;
   h+=`<div class="lbl">Renk</div><div class="sw">${PAL.map((p,i)=>`<button data-act="col" data-i="${i}" class="${i===ed.color?"on":""}" style="background:${p[0]}" aria-label="Renk ${i+1}"></button>`).join("")}</div>`;
   h+=`<div class="lbl">Alt görevler ${ns?`<span class="prog">· ${nd}/${ns}</span>`:""}</div><div class="subs">`;
   h+=ed.subs.map((s,i)=>`<div class="sub ed"><span class="snum">${i+1}</span><span class="stx">${esc(s.t)}</span>${s.d?'<span class="sdone">✓</span>':""}<button class="mini x2" data-act="subdel" data-i="${i}" aria-label="Alt görevi sil">✕</button></div>`).join("");
