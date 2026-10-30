@@ -675,6 +675,10 @@ body[data-tab="b"] .tblwrap{padding-top:4px}
 .aMsg.old{opacity:.62}
 .aGh{width:26px;flex:none}
 .aMsg.last{animation:aIn .4s ease-out}
+.aGold{font-weight:900;background:linear-gradient(100deg,#b9800f 0%,#f2b400 28%,#ffe27a 45%,#f2b400 62%,#b9800f 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#e6a800;animation:aGoldSh 2.6s linear infinite;filter:drop-shadow(0 0 5px rgba(255,196,40,.35))}
+@keyframes aGoldSh{from{background-position:100% 0}to{background-position:-150% 0}}
+.aMsg.last.gold .aBb{border-color:#e8b931;background:linear-gradient(135deg,color-mix(in srgb,#ffc928 16%,var(--bg)),color-mix(in srgb,#ff9f1a 7%,var(--bg)));box-shadow:0 0 0 1px rgba(232,185,49,.3),0 0 18px rgba(255,196,40,.22);font-size:15.5px}
+@media (prefers-reduced-motion:reduce){.aGold{animation:none}}
 .aMsg.last .aBb{background:color-mix(in srgb,var(--acc) 18%,var(--bg));border:1px solid color-mix(in srgb,var(--acc) 50%,var(--line));font-size:14.5px;font-weight:800;color:var(--tx);padding:10px 13px}
 .aTip{display:block;color:var(--g2);font-size:12.5px;margin-top:4px}
 @keyframes aIn{from{transform:translateY(6px);opacity:.4}}
@@ -920,11 +924,24 @@ function normSettings(d){
   if(d.active>=0&&d.active<3)s.active=d.active|0;
   return s;
 }
-const S={settings:defaultSettings(),weeks:[(()=>{const w=defaultWeek();[["08:00","09:00","Kahvaltı",2],["10:00","12:00","Ders",0],["18:00","19:00","Spor",1]].forEach(([a,b,t,c],i)=>{w.rows[i].start=a;w.rows[i].end=b;["d0","d1","d2"].forEach(d=>{w.cells[w.rows[i].id+"|"+d]={title:t,color:c,done:false,subs:t==="Ders"?[{t:"Konu tekrarı",d:false},{t:"Test çöz",d:false}]:[]};});});return w;})(),defaultWeek(),defaultWeek()]};
+function sampleWeek(){const w=defaultWeek();[["09:00","10:00","Örnek rutin 1",0],["18:00","19:00","Örnek rutin 2",2]].forEach(([a,b,t,c],i)=>{w.rows[i].start=a;w.rows[i].end=b;["d0","d1","d2","d3","d4","d5","d6"].forEach(d=>{w.cells[w.rows[i].id+"|"+d]={title:t,color:c,done:false,subs:[]};});});return w;}
+const S={settings:defaultSettings(),weeks:[sampleWeek(),sampleWeek(),sampleWeek()]};
 const IRE=/^\d{4}-\d{2}-\d{2}$/;
 function normTasks(d){const o={items:[]};if(d&&Array.isArray(d.items))o.items=d.items.filter(x=>x&&x.id&&typeof x.date==="string"&&IRE.test(x.date)&&x.title).slice(0,3000).map(x=>{const tm=typeof x.time==="string"&&TRE.test(x.time)?x.time:"";return{id:String(x.id),date:x.date,time:tm,end:tm&&typeof x.end==="string"&&TRE.test(x.end)?x.end:"",title:String(x.title).slice(0,80),note:typeof x.note==="string"?x.note.slice(0,1000):"",color:Math.max(0,Math.min(7,+x.color||0)),done:!!x.done,subs:Array.isArray(x.subs)?x.subs.filter(q=>q&&q.t).map(q=>{const o={t:String(q.t),d:!!q.d};if(typeof q.n==="string"&&q.n.trim())o.n=q.n.slice(0,500);return o;}):[]};});return o;}
-function sampleTasks(){const t=todayD(),m=mondayOf(t),ti=(t.getDay()+6)%7,at=n=>isoD(addD(m,(ti+n)%7));
-  return{items:[{id:rid(),date:at(0),time:"10:00",end:"11:00",title:"Diş randevusu",color:3,done:false,subs:[]},{id:rid(),date:at(0),time:"",end:"",title:"Market alışverişi",color:2,done:false,subs:[]},{id:rid(),date:at(1),time:"14:00",end:"16:00",title:"Proje sunumu",color:5,done:false,subs:[{t:"Slaytları bitir",d:false},{t:"Prova yap",d:false}]},{id:rid(),date:at(3),time:"19:30",end:"20:30",title:"Annemi ara",color:1,done:false,subs:[]}]};}
+function sampleTasks(){const m=mondayOf(todayD()),items=[];
+  for(let i=0;i<7;i++){const d=isoD(addD(m,i));items.push({id:rid(),date:d,time:"11:00",end:"12:00",title:"Örnek görev 1",color:5,done:false,subs:[]},{id:rid(),date:d,time:"",end:"",title:"Örnek görev 2",color:3,done:false,subs:[]});}
+  return{items};}
+/* eski sürümün örnek verilerini (Kahvaltı, Annemi ara…) yenileriyle değiştir — yalnızca birebir aynı duranları */
+function migrateSamples(){
+  if(lsGet("hp-smp")==="2")return;lsSet("hp-smp","2");
+  const OT={"Diş randevusu":"10:00|3","Market alışverişi":"|2","Proje sunumu":"14:00|5","Annemi ara":"19:30|1"};
+  const n0=S.tasks.items.length;S.tasks.items=S.tasks.items.filter(x=>!(OT[x.title]===x.time+"|"+x.color));
+  if(S.tasks.items.length!==n0){if(!S.tasks.items.length)S.tasks=sampleTasks();save("tasks");}
+  const OR={"Kahvaltı":2,"Ders":0,"Spor":1};
+  S.weeks.forEach((w,i)=>{let ch=false;for(const k in w.cells){const c=w.cells[k];if(OR[c.title]===c.color&&/\|d[012]$/.test(k)){delete w.cells[k];ch=true;}}
+    if(ch){if(!Object.keys(w.cells).length)S.weeks[i]=sampleWeek();save("w"+i);}
+    else if(i>0&&!Object.keys(w.cells).length&&w.rows.every(r=>!r.start)){S.weeks[i]=sampleWeek();save("w"+i);}});
+}
 S.tasks=sampleTasks();
 const KEYS=["settings","w0","w1","w2","tasks","log","notes","uev"];
 const dataOf=k=>k==="settings"?S.settings:k==="tasks"?S.tasks:k==="log"?S.log:k==="notes"?S.notes:k==="uev"?S.uev:S.weeks[+k[1]];
@@ -935,7 +952,7 @@ const wkey=()=>"w"+S.settings.active;
 /* ---------- kayıt: bulut (db) + cihaz yedeği ---------- */
 const LS="haftalik-program-v1";
 let db=null,uid=null,hadLocal=false,ready=false;
-function markReady(){if(ready)return;ready=true;document.documentElement.classList.remove("loading");try{render();}catch(e){}setTimeout(()=>nextIntro(),400);}
+function markReady(){if(ready)return;ready=true;document.documentElement.classList.remove("loading");try{migrateSamples();}catch(e){}try{render();}catch(e){}setTimeout(()=>nextIntro(),400);}
 const timers={},writing={},again={},dirty={};
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
 function loadLocal(){try{const r=localStorage.getItem(LS);if(!r)return;const d=JSON.parse(r);hadLocal=true;S.settings=normSettings(d.settings);if(Array.isArray(d.weeks))for(let i=0;i<3;i++)S.weeks[i]=normWeek(d.weeks[i]);if(d.tasks)S.tasks=normTasks(d.tasks);if(d.log)S.log=normLog(d.log);if(d.notes)S.notes=normNotes(d.notes);if(d.uev)S.uev=normUev(d.uev);}catch(e){}}
@@ -1285,8 +1302,9 @@ const AP={
  p25:["Çeyreği geçtin, ritmi yakaladın.","Fena gitmiyor, biraz daha gayret 💪","Yavaş yavaş giden yol alır, devam!"],
  p50:["Yarısı tamam, iyi gidiyorsun 👏","Günün yarısını devirdin, böyle devam!","Yarı yoldasın, ikinci yarı daha kolay.","Yarıdan fazlası tamam, harika gidiyor."],
  p75:["Neredeyse tamam, harika iş çıkardın!","Son düzlüğe girdin, birkaç iş kaldı 🏁","Bugün gerçekten iyisin, az kaldı.","{r} iş kaldı, bitiş çizgisi görünüyor 🏁"],
- p100m:["Daha öğlen olmadan her şey tamam! Bu ne disiplin 🏆","Sabahtan bitirdin, günün geri kalanı senin 🎉"],
- p100:["Bugünü eksiksiz bitirdin 🏆","Tüm işler tamam! Kendine bir ödül ver 🎉","Mükemmel bir gün, alkışlar senin için 👏👏","Bugün tam not aldın ✅"],
+ p100m:["Daha öğlen olmadan her şey tamam! Bu ne disiplin.","Sabahtan bitirdin, günün geri kalanı senin.","Erken başladın, erken bitirdin. Tebrikler!","Gün yarılanmadan liste bitti, helal olsun!"],
+ p100:["Tebrikler! Bugünü eksiksiz bitirdin.","Tüm işler tamam! Kendine bir ödül ver.","Mükemmel bir gün, alkışlar senin için!","Bugün tam not aldın, harikasın!","Listede tek iş kalmadı, helal olsun!","Hepsi bitti! Bugünün şampiyonu sensin.","Söz verdin, yaptın. Kendinle gurur duy!","Günü altın gibi kapattın, tebrikler!","Yüzde yüz! Bundan iyisi can sağlığı.","Bugün kendini aştın, bravo!","Disiplin böyle olur, tebrikler!","Tüm kutular dolu, bugün senin zaferin!"],
+ goldE:["🏆","🎉","👏","✨","🥇","👑","🌟"],
  ahead:["İşlerini tam zamanında yapıyorsun, takviminin önündesin ⏱","Saatinden önce bitiriyorsun, bu ne disiplin!","Programa harfiyen uyuyorsun, bravo 👏"],
  behind:["Biraz geride kaldın ama telafi edilebilir.","Plan biraz kaydı, bir sonrakine odaklan yeter.","{k} iş biraz gecikti, birer birer halledersin."],
  conflict:["{a} ({ta}) ile {b} ({tb}) çakışıyor. Planını ona göre ayarla.","Dikkat: {a} ve {b} aynı saate denk geliyor ⚠️"],
@@ -1378,7 +1396,7 @@ function brainNow(){
   // 7) boş gün
   if(!tot)add("empty",AP.empty);
   // 8) hepsi bitti
-  if(tot&&dn===tot&&!irony){add("all",M<720?AP.p100m:AP.p100);if(stk.todayFull&&stk.cur>=2)add("stkT",AP.streakT,{n:stk.cur});}
+  if(tot&&dn===tot&&!irony){out.unshift({ty:"all",m:`<span class="aGold">${PICK(M<720?AP.p100m:AP.p100,sd+hashS("all"))}</span> ${PICK(AP.goldE,sd)}`});if(stk.todayFull&&stk.cur>=2)add("stkT",AP.streakT,{n:stk.cur});}
   // 9) geciken
   const late=timed.filter(x=>!x.sdone&&M>=toMin(x.e||x.s)+(x.e?0:30)&&M-toMin(x.e||x.s)<180);
   if(!now&&late.length&&!irony){const l=late[late.length-1];add("late"+l.id,AP.late,{n:B(l.n)});}
@@ -1449,7 +1467,7 @@ function renderAsst(){
   const extra=top&&top.tip?`<span class="aTip">${top.tip}</span>`:"";
   let h=`<div class="aChat"><div class="aChH"><span class="aEmb">${EMB}</span><b>Asistan</b></div>`;
   h+=hist.map(x=>`<div class="aMsg old"><span class="aGh"></span><div class="aBb"><time>${fmM(x.at)}</time>${x.m}</div></div>`).join("");
-  if(top)h+=`<div class="aMsg last"><span class="aEmb">${EMB}</span><div class="aBb"><time>${fmM(M)} · şimdi</time>${top.m}${extra}</div></div>`;
+  if(top)h+=`<div class="aMsg last${top.ty==="all"?" gold":""}"><span class="aEmb">${EMB}</span><div class="aBb"><time>${fmM(M)} · şimdi</time>${top.m}${extra}</div></div>`;
   h+=`</div>`;
   const live=statOf(b.raw),lp=live.t?Math.round(live.d/live.t*100):0;
   h+=`<div class="aTiles"><div class="aTile">${ringSm(lp)}<span class="k">Bugün</span></div><div class="aTile"><span class="v">🔥${b.stk.cur}</span><span class="k">Gün seri</span></div><div class="aTile"><span class="v">${b.wk.p!=null?"%"+b.wk.p:"—"}</span><span class="k">Bu hafta</span></div>`;
@@ -1854,7 +1872,7 @@ function drawCustom(tab,keepScroll){
   const s=S.settings;
   const tabs=[["tema","🎨","Tema",""],["gorev","✨","Görev"," efekti"],["gun","🏆","Gün"," efekti"]];
   let h=`<div class="cHead">${head("Özelleştir","Seçtiğin her şey hemen uygulanır ve kaydedilir")}<div class="seg" role="tablist">${tabs.map(([k,...l])=>`<button role="tab" aria-selected="${k===cTab}" class="${k===cTab?"on":""}" data-act="ctab" data-t="${k}">${l[0]} ${l[1]}<span class="lg">${l[2]}</span></button>`).join("")}</div>`;
-  if(cTab==="gorev")h+=`<div class="demo" id="demo"><span class="ct">Ders çalış</span><span class="cs">bir efekte dokun, burada dene</span></div>`;
+  if(cTab==="gorev")h+=`<div class="demo" id="demo"><span class="ct">Örnek görev</span><span class="cs">bir efekte dokun, burada dene</span></div>`;
   h+=`</div>`;
   if(cTab==="tema"){
     const card=([k,t])=>`<button class="thc ${k===s.theme?"on":""}" data-act="theme" data-t="${k}" aria-pressed="${k===s.theme}" style="--pbg:${t.v.bg};--psurf:${t.v.surf};--ptx:${t.v.tx};--pacc:${t.v.acc};--pg1:${t.v.g1};--pg2:${t.v.g2}"><span class="pv"><i class="pt"></i><i class="pb"></i><i class="pc1"></i><i class="pc2"></i></span><span class="nm">${t.name}</span>${k===s.theme?'<span class="ok">✓</span>':""}</button>`;
@@ -1884,7 +1902,7 @@ function drawSettings(){
   else h+=`<button class="dbtn" data-act="resetask" data-w="week"><span>↺</span><div><b>Bu haftayı yeniden başlat</b><small>${wn} haftasının tamamlamalarını temizler, görevler kalır</small></div></button>`;
   if(pending==="all")h+=`<div class="confirm danger"><p><b>Bütün haftalar, görevler, saatler, hafta isimleri ve ayarlar kalıcı olarak silinecek.</b> Bu işlem geri alınamaz.</p><div class="row2"><button class="btn ghost" data-act="resetno">Vazgeç</button><button class="btn dng" data-act="resetall">Evet, her şeyi sil</button></div></div>`;
   else h+=`<button class="dbtn red" data-act="resetask" data-w="all"><span>🗑</span><div><b>Her şeyi sıfırla</b><small>Bütün verileri siler, uygulama ilk günkü haline döner</small></div></button>`;
-  h+=`<div class="lbl">Tanıtım</div><button class="dbtn" data-act="tour"><span>▶</span><div><b>Tanıtımı tekrar izle</b><small>Düğmelerin ne işe yaradığını sırayla gösterir</small></div></button><button class="dbtn" data-act="showlogin"><span>👤</span><div><b>Giriş ekranını göster</b><small>Hesapla giriş yakında eklenecek</small></div></button>`;
+  h+=`<div class="lbl">Tanıtım</div><button class="dbtn" data-act="tour"><span>▶</span><div><b>Tanıtımı baştan izle</b><small>Giriş ekranından başlayıp tüm bölümleri sırayla gösterir</small></div></button><button class="dbtn" data-act="showlogin"><span>👤</span><div><b>Giriş ekranını göster</b><small>Hesapla giriş yakında eklenecek</small></div></button>`;
   h+=`<p class="note">${db?"Programın buluta kaydediliyor. Telefonda ve bilgisayarda aynı Claude hesabıyla açtığında aynı programı görürsün.":"Şu an sadece bu cihaza kaydediliyor. Buluta kaydetmek için sayfayı Claude hesabınla giriş yapmışken aç."}</p>`;
   const sc=$("sheet").scrollTop;
   openSheet("settings",h);
@@ -1892,7 +1910,7 @@ function drawSettings(){
 }
 
 function dayDemoHTML(){
-  const rows=[["Kahvaltı",2],["Ders",4],["Spor",0]].map(([t,c])=>`<tr><td class="c done" style="background:${PAL[c][0]}"><span class="ct">${t}</span><span class="cs">✓ Tamamlandı</span></td></tr>`).join("");
+  const rows=[["Örnek rutin 1",2],["Örnek rutin 2",4],["Örnek görev 1",0]].map(([t,c])=>`<tr><td class="c done" style="background:${PAL[c][0]}"><span class="ct">${t}</span><span class="cs">✓ Tamamlandı</span></td></tr>`).join("");
   return `<div class="dayDemo" id="dayDemo"><table><thead><tr><th class="col"><span class="dn">Pazartesi</span><div class="pbar"><i style="width:100%"></i></div><span class="pc">%100 · 3/3</span></th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function previewDay(i){
@@ -2188,7 +2206,7 @@ document.addEventListener("click",e=>{
     case "calm":calSt.m=+a.dataset.v;calSt.pick=false;drawCal();break;
     case "calday":{const d=a.dataset.d;const [y,m]=d.split("-").map(Number);calSt.sel=d;if(m-1!==calSt.m||y!==calSt.y){calSt.y=y;calSt.m=m-1;}drawCal();const inf=$("calInfo");if(inf)inf.scrollIntoView({block:"nearest",behavior:"smooth"});break;}
     case "fs":toggleFs();break;
-    case "tour":closeSheet();setTimeout(startTour,150);break;
+    case "tour":closeSheet();try{localStorage.removeItem("hp-tour-done");}catch(e){}setTimeout(showLogin,150);break;
     case "showlogin":closeSheet();lsSet("hp-login-seen","");showLogin();break;
     case "ctab":drawCustom(a.dataset.t);break;
     case "theme":S.settings.theme=a.dataset.t;applyTheme();save("settings");drawCustom(null,true);break;
@@ -2463,6 +2481,7 @@ function toggleFs(){
 
 /* başlat */
 setSync("load");loadLocal();applyTheme();render();
+if(lsGet("hp-intro")!=="2"){lsSet("hp-intro","2");lsSet("hp-login-seen","");try{localStorage.removeItem("hp-tour-done");}catch(e){}}
 if(!lsGet("hp-login-seen"))showLogin();
 if(!(window.claude&&window.claude.use)){setSync("local");markReady();}else{document.documentElement.classList.add("loading");initStore().catch(()=>{setSync("local");markReady();});}
 })();
