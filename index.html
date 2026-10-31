@@ -681,6 +681,114 @@ body[data-tab="b"] .tblwrap{padding-top:4px}
 @keyframes aGoldSh{from{background-position:100% 0}to{background-position:-150% 0}}
 .aMsg.last.gold .aBb{border-color:#e8b931;background:linear-gradient(135deg,color-mix(in srgb,#ffc928 16%,var(--bg)),color-mix(in srgb,#ff9f1a 7%,var(--bg)));box-shadow:0 0 0 1px rgba(232,185,49,.3),0 0 18px rgba(255,196,40,.22);font-size:15.5px}
 @media (prefers-reduced-motion:reduce){.aGold{animation:none}}
+/* ---------- Rota 0.1 ---------- */
+.rota{background:var(--surf);border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;overflow:hidden}
+.rHead{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.rAv{flex:none;width:28px;height:28px;display:block}
+.rAv svg{width:100%;height:100%;display:block;border-radius:8px}
+.rAv.lg{width:38px;height:38px}
+.rHt{flex:1;min-width:0}
+.rHt b{display:block;font-size:15.5px;font-weight:900;line-height:1.1}
+.rSt{font-size:11.5px;font-weight:800;color:var(--mut)}
+.rSt.typing{color:var(--g2)}
+.rBeta{flex:none;font-size:10px;font-weight:900;letter-spacing:.05em;color:var(--g2);border:1px solid color-mix(in srgb,var(--g2) 45%,var(--line));padding:3px 7px;border-radius:999px;white-space:nowrap}
+.rChat{height:clamp(240px,40vh,380px);overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.rPrev{display:flex;flex-direction:column;gap:8px;margin-bottom:2px}
+.rPrevB{align-self:center;border:1px solid var(--line);background:var(--bg);color:var(--mut);font:900 11.5px var(--font);padding:6px 12px;border-radius:999px;cursor:pointer}
+.rPrevL{display:flex;flex-direction:column;gap:8px;opacity:.6}
+.rDay{align-self:center;font-size:10.5px;font-weight:900;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:999px;border:1px solid var(--line)}
+.rEmpty{margin:auto;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--mut);font-weight:800;font-size:12.5px}
+.rEmpty svg{width:44px;height:44px;opacity:.8;border-radius:12px}
+.rM{display:flex;gap:7px;align-items:flex-end;max-width:94%;animation:rIn .25s ease-out}
+@keyframes rIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.rB{min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:15px 15px 15px 5px;padding:8px 11px;font-size:13.5px;font-weight:700;line-height:1.5;color:var(--tx);overflow-wrap:anywhere}
+.rB b{font-weight:900}
+.rB time{display:block;font-size:10px;font-weight:900;color:var(--mut);letter-spacing:.04em;margin-bottom:2px}
+.rM.me{align-self:flex-end}
+.rM.me .rB{background:var(--acc);border-color:var(--acc);color:var(--accTx);border-radius:15px 15px 5px 15px;font-weight:900}
+.rM.me .rB time{color:color-mix(in srgb,var(--accTx) 65%,transparent)}
+.rM.note .rB{border-style:dashed;border-color:color-mix(in srgb,var(--g2) 50%,var(--line));color:color-mix(in srgb,var(--tx) 82%,var(--mut))}
+.rM.gold .rB{border-color:#e8b931;background:linear-gradient(135deg,color-mix(in srgb,#ffc928 15%,var(--bg)),color-mix(in srgb,#ff9f1a 6%,var(--bg)));box-shadow:0 0 0 1px rgba(232,185,49,.25),0 0 16px rgba(255,196,40,.18);font-size:14.5px}
+.rActs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.rActs button{border:1px solid color-mix(in srgb,var(--acc) 60%,var(--line));background:color-mix(in srgb,var(--acc) 14%,var(--surf));color:var(--tx);font:900 12px var(--font);padding:7px 11px;border-radius:999px;cursor:pointer;min-height:34px}
+.rActs button:disabled{opacity:.45;cursor:default}
+.rDots{display:inline-flex;gap:4px;padding:3px 0}
+.rDots i{width:6px;height:6px;border-radius:50%;background:var(--mut);animation:rDt 1s infinite}
+.rDots i:nth-child(2){animation-delay:.15s}.rDots i:nth-child(3){animation-delay:.3s}
+@keyframes rDt{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+.rCur{display:inline-block;width:7px;height:1em;vertical-align:-2px;margin-left:1px;background:var(--g2);border-radius:2px;animation:rBl .7s steps(1) infinite}
+@keyframes rBl{50%{opacity:0}}
+.rChipsW{position:relative;border-top:1px solid var(--line)}
+.rChipsW::after{content:"";position:absolute;top:0;right:0;bottom:0;width:26px;background:linear-gradient(90deg,transparent,var(--surf));pointer-events:none}
+.rChips{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:9px 26px 10px 10px;scrollbar-width:none;scroll-snap-type:x proximity}
+.rChips::-webkit-scrollbar{display:none}
+.rChips button{flex:none;scroll-snap-align:start;border:1px solid color-mix(in srgb,var(--acc) 55%,var(--line));background:color-mix(in srgb,var(--acc) 12%,var(--bg));color:var(--tx);font:900 12.5px var(--font);padding:8px 12px;border-radius:999px;cursor:pointer;min-height:36px}
+.rChips button.faq{border-color:var(--line);background:var(--bg);font-weight:800}
+.rChips button:active{transform:scale(.97)}
+.rSep{flex:none;font-size:10.5px;font-weight:900;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;padding:0 2px 0 8px;border-left:1px solid var(--line);margin-left:2px}
+.tdAsst .rota{margin-bottom:12px}
+.tabs3 button.rUn{position:relative}
+.tabs3 button.rUn::after{content:"";position:absolute;top:6px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--g2);box-shadow:0 0 0 2px var(--topbg);animation:rPul 1.6s infinite}
+@keyframes rPul{50%{transform:scale(1.35)}}
+.rPing{position:fixed;z-index:60;left:50%;top:calc(env(safe-area-inset-top,0px) + 10px);transform:translate(-50%,-160%);width:min(440px,calc(100% - 24px));display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:16px;border:1px solid color-mix(in srgb,var(--g2) 45%,var(--line));background:var(--surf);color:var(--tx);font:700 13px/1.4 var(--font);text-align:left;box-shadow:0 12px 30px rgba(0,0,0,.45);cursor:pointer;transition:transform .35s cubic-bezier(.2,.9,.3,1.2)}
+.rPing.show{transform:translate(-50%,0)}
+.rPing .rAv{width:34px;height:34px}
+.rPt{min-width:0}.rPt b{display:block;font-size:12px;color:var(--g2)}
+/* tamamlama penceresi */
+.ckHint{text-align:center;margin:2px 0 4px}
+.ckFoot{margin-top:12px}
+.ckGo{position:relative;width:100%;min-height:56px;border:0;border-radius:15px;background:var(--acc);color:var(--accTx);font:900 16.5px var(--font);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .3s,color .3s}
+.ckGo:active{transform:scale(.985)}
+.ckGo.ok{background:var(--done);color:#fff;cursor:default}
+.ckDone{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:15px;border:2px solid var(--done);background:color-mix(in srgb,var(--done) 14%,var(--surf));font-weight:900}
+.ckDone b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--done);color:#fff;display:grid;place-items:center}
+.ckDone span{flex:1}
+.ckUndo{border:0;background:none;color:var(--tx);font:900 13px var(--font);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px}
+.ckRota{display:flex;gap:9px;align-items:flex-end;margin-top:14px;animation:rIn .35s ease-out}
+.ckRota .rAv{width:34px;height:34px}
+.ckRota .rB{flex:1;background:color-mix(in srgb,var(--acc) 16%,var(--surf));border-color:color-mix(in srgb,var(--acc) 45%,var(--line));font-size:14.5px;font-weight:800}
+.ckRota .rB small{display:block;font-size:11px;font-weight:900;color:var(--g2);margin-bottom:2px}
+.ckRota.gold .rB{border-color:#e8b931;background:linear-gradient(135deg,color-mix(in srgb,#ffc928 15%,var(--surf)),color-mix(in srgb,#ff9f1a 6%,var(--surf)))}
+.ckStat{margin-top:6px;font-size:12px;font-weight:900;color:var(--mut);font-variant-numeric:tabular-nums}
+.ckBar{height:3px;border-radius:3px;background:var(--line);margin-top:12px;overflow:hidden}
+.ckBar i{display:block;height:100%;width:100%;background:var(--g2);transform-origin:left;transform:scaleX(1)}
+.ckBar.go i{transition:transform 3.4s linear;transform:scaleX(0)}
+
+/* tür satırı (düzenleme ekranları) */
+.rType{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:14px;border:1px solid var(--line);background:var(--surf);color:var(--tx);font:inherit;text-align:left;cursor:pointer}
+.rType .rAv{width:30px;height:30px}
+.rType .rtx{flex:1;min-width:0}
+.rType b{display:block;font-weight:900;font-size:14.5px}
+.rType small{display:block;font-size:11.5px;font-weight:800;color:var(--mut)}
+.rType .chev{color:var(--mut);font-size:20px;font-weight:900;transition:transform .2s}
+.rType.open .chev{transform:rotate(90deg)}
+.rTypes{margin-top:8px;padding:12px;border-radius:14px;background:color-mix(in srgb,var(--acc) 8%,var(--surf));border:1px solid color-mix(in srgb,var(--acc) 30%,var(--line))}
+.rWhy{margin:0 0 10px;font-size:12.5px;font-weight:700;line-height:1.5;color:color-mix(in srgb,var(--tx) 85%,var(--mut))}
+.rWhy b{color:var(--tx)}
+.rTg{display:flex;flex-wrap:wrap;gap:6px}
+.rTg button{border:1px solid var(--line);background:var(--bg);color:var(--tx);font:800 12.5px var(--font);padding:7px 10px;border-radius:999px;cursor:pointer;min-height:34px}
+.rTg button.on{border-color:var(--acc);background:var(--acc);color:var(--accTx);font-weight:900}
+.rTg button.auto{border-style:dashed}
+.rTg button.auto.on{background:color-mix(in srgb,var(--acc) 18%,var(--bg));color:var(--tx);border-style:solid}
+/* analiz kartı */
+.rM.card{max-width:100%}
+.rM.card .rB{flex:1;padding:12px 13px}
+.rAn{display:flex;flex-direction:column;gap:10px}
+.rAnH{font-weight:900;font-size:15px}
+.rAnS{display:flex;flex-direction:column;gap:4px;padding-top:9px;border-top:1px solid var(--line)}
+.rAnS>b{font-size:10.5px;font-weight:900;color:var(--g2);text-transform:uppercase;letter-spacing:.08em}
+.rAnS p{margin:0;font-size:13px;line-height:1.5}
+.rAnS p.mut{color:var(--mut);font-size:12px}
+.rKinds{display:flex;flex-direction:column;gap:5px;margin:2px 0}
+.rKind{display:grid;grid-template-columns:minmax(0,7.5em) minmax(0,1fr) auto;gap:8px;align-items:center;font-size:12.5px;font-weight:800}
+.rKind span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rKind i{height:8px;border-radius:8px;background:var(--track);overflow:hidden}
+.rKind em{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--g1),var(--g2))}
+.rKind small{font-size:11.5px;color:var(--mut);font-weight:900;font-variant-numeric:tabular-nums}
+.rAnC{margin:2px 0 0;padding:9px 11px;border-radius:12px;background:color-mix(in srgb,var(--acc) 14%,var(--surf));font-weight:900;font-size:13.5px}
+.ckKeep{width:100%;min-height:48px;margin-top:12px;border-radius:14px;border:1px solid var(--line);background:var(--surf);color:var(--tx);font:900 14.5px var(--font);cursor:pointer}
+@media (prefers-reduced-motion:reduce){.rM,.ckRota{animation:none}.rDots i,.rCur,.tabs3 button.rUn::after{animation:none}}
+
 .aMsg.last .aBb{background:color-mix(in srgb,var(--acc) 18%,var(--bg));border:1px solid color-mix(in srgb,var(--acc) 50%,var(--line));font-size:14.5px;font-weight:800;color:var(--tx);padding:10px 13px}
 .aTip{display:block;color:var(--g2);font-size:12.5px;margin-top:4px}
 @keyframes aIn{from{transform:translateY(6px);opacity:.4}}
@@ -913,7 +1021,7 @@ function normWeek(d){
   if(oldDefault)return defaultWeek();
   if(d&&Array.isArray(d.extras))w.extras=d.extras.filter(x=>x&&x.id).slice(0,MAX_EXTRA).map(x=>({id:String(x.id),name:String(x.name||"Ekstra")}));
   const okRows=new Set(w.rows.map(r=>r.id)),okCols=new Set(["d0","d1","d2","d3","d4","d5","d6",...w.extras.map(x=>"x"+x.id)]);
-  if(d&&d.cells&&typeof d.cells==="object")for(const k in d.cells){const c=d.cells[k];if(!c||!c.title)continue;const [rk,ckk]=k.split("|");if(!okRows.has(rk)||!okCols.has(ckk))continue;w.cells[k]={title:String(c.title),color:Math.max(0,Math.min(7,+c.color||0)),done:!!c.done,subs:Array.isArray(c.subs)?c.subs.filter(s=>s&&s.t).map(s=>({t:String(s.t),d:!!s.d})):[]};}
+  if(d&&d.cells&&typeof d.cells==="object")for(const k in d.cells){const c=d.cells[k];if(!c||!c.title)continue;const [rk,ckk]=k.split("|");if(!okRows.has(rk)||!okCols.has(ckk))continue;w.cells[k]={title:String(c.title),color:Math.max(0,Math.min(7,+c.color||0)),done:!!c.done,subs:Array.isArray(c.subs)?c.subs.filter(s=>s&&s.t).map(s=>({t:String(s.t),d:!!s.d})):[]};if(typeof c.cat==="string"&&/^[a-z]{2,10}$/.test(c.cat))w.cells[k].cat=c.cat;}
   return w;
 }
 function normSettings(d){
@@ -924,6 +1032,8 @@ function normSettings(d){
   if(typeof d.named==="boolean")s.named=d.named;
   if(typeof d.sound==="boolean")s.sound=d.sound;
   if(typeof d.vib==="boolean")s.vib=d.vib;
+  if(typeof d.rotaPing==="boolean")s.rotaPing=d.rotaPing;
+  if(d.lex&&typeof d.lex==="object"){s.lex={};Object.entries(d.lex).slice(-150).forEach(([w,k])=>{if(typeof w==="string"&&w.length>=2&&w.length<=24&&typeof k==="string"&&/^[a-z]{2,10}$/.test(k))s.lex[w]=k;});}
   if(Array.isArray(d.weekNames))for(let i=0;i<3;i++){const n=d.weekNames[i];if(n&&String(n).trim()!==(i+1)+". Hafta")s.weekNames[i]=String(n).slice(0,30);}
   s.mig=typeof d.mig==="number"?d.mig:0;
   s.rv=typeof d.rv==="number"?d.rv:0;
@@ -933,7 +1043,7 @@ function normSettings(d){
 function sampleWeek(){const w=defaultWeek();w.rows[0].start="09:00";w.rows[0].end="10:00";w.rows[1].start="18:00";w.rows[1].end="19:00";for(let i=0;i<7;i++){w.cells[w.rows[0].id+"|d"+i]={title:"Örnek rutin "+(2*i+1),color:1,done:false,subs:[]};w.cells[w.rows[1].id+"|d"+i]={title:"Örnek rutin "+(2*i+2),color:2,done:false,subs:[]};}return w;}
 const S={settings:defaultSettings(),weeks:[sampleWeek(),defaultWeek(),defaultWeek()]};
 const IRE=/^\d{4}-\d{2}-\d{2}$/;
-function normTasks(d){const o={items:[]};if(d&&Array.isArray(d.items))o.items=d.items.filter(x=>x&&x.id&&typeof x.date==="string"&&IRE.test(x.date)&&x.title).slice(0,3000).map(x=>{const tm=typeof x.time==="string"&&TRE.test(x.time)?x.time:"";return{id:String(x.id),date:x.date,time:tm,end:tm&&typeof x.end==="string"&&TRE.test(x.end)?x.end:"",title:String(x.title).slice(0,80),note:typeof x.note==="string"?x.note.slice(0,1000):"",color:Math.max(0,Math.min(7,+x.color||0)),done:!!x.done,subs:Array.isArray(x.subs)?x.subs.filter(q=>q&&q.t).map(q=>{const o={t:String(q.t),d:!!q.d};if(typeof q.n==="string"&&q.n.trim())o.n=q.n.slice(0,500);return o;}):[]};});return o;}
+function normTasks(d){const o={items:[]};if(d&&Array.isArray(d.items))o.items=d.items.filter(x=>x&&x.id&&typeof x.date==="string"&&IRE.test(x.date)&&x.title).slice(0,3000).map(x=>{const tm=typeof x.time==="string"&&TRE.test(x.time)?x.time:"";return{id:String(x.id),date:x.date,time:tm,end:tm&&typeof x.end==="string"&&TRE.test(x.end)?x.end:"",cat:typeof x.cat==="string"&&/^[a-z]{2,10}$/.test(x.cat)?x.cat:"",title:String(x.title).slice(0,80),note:typeof x.note==="string"?x.note.slice(0,1000):"",color:Math.max(0,Math.min(7,+x.color||0)),done:!!x.done,subs:Array.isArray(x.subs)?x.subs.filter(q=>q&&q.t).map(q=>{const o={t:String(q.t),d:!!q.d};if(typeof q.n==="string"&&q.n.trim())o.n=q.n.slice(0,500);return o;}):[]};});return o;}
 function sampleTasks(){const m=mondayOf(todayD()),items=[];
   for(let i=0;i<7;i++)items.push({id:rid(),date:isoD(addD(m,i)),time:"11:00",end:"12:00",title:"Örnek görev "+(i+1),color:1,done:false,subs:[]});
   return{items};}
@@ -941,7 +1051,7 @@ function sampleTasks(){const m=mondayOf(todayD()),items=[];
 /* tek seferlik tam sıfırlama: eski sürümlerden hiçbir veri kalmaz, örneklerle temiz başlar */
 function fullReset(){
   S.settings=defaultSettings();S.weeks=[sampleWeek(),defaultWeek(),defaultWeek()];S.tasks=sampleTasks();
-  S.log={days:{}};S.notes={tags:[],days:{}};S.uev={items:[]};
+  S.log={days:{},h:{}};S.notes={tags:[],days:{}};S.uev={items:[]};
   KEYS.forEach(k=>save(k));applyTheme();zoom=1;applyZoom();
 }
 function deviceReset(){
@@ -981,7 +1091,7 @@ const wkey=()=>"w"+S.settings.active;
 /* ---------- kayıt: bulut (db) + cihaz yedeği ---------- */
 const LS="haftalik-program-v1";
 let db=null,uid=null,hadLocal=false,ready=false;
-function markReady(){if(ready)return;ready=true;document.documentElement.classList.remove("loading");try{migrateSamples();}catch(e){}try{render();}catch(e){}setTimeout(()=>nextIntro(),400);}
+function markReady(){if(ready)return;ready=true;document.documentElement.classList.remove("loading");try{migrateSamples();}catch(e){}try{render();}catch(e){}setTimeout(()=>nextIntro(),400);try{rotaLoad();}catch(e){}setTimeout(()=>{try{rotaOpen();}catch(e){}},1200);}
 const timers={},writing={},again={},dirty={};
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
 function loadLocal(){try{const r=localStorage.getItem(LS);if(!r)return;const d=JSON.parse(r);hadLocal=true;S.settings=normSettings(d.settings);if(Array.isArray(d.weeks))for(let i=0;i<3;i++)S.weeks[i]=normWeek(d.weeks[i]);if(d.tasks)S.tasks=normTasks(d.tasks);if(d.log)S.log=normLog(d.log);if(d.notes)S.notes=normNotes(d.notes);if(d.uev)S.uev=normUev(d.uev);}catch(e){}}
@@ -1168,6 +1278,8 @@ function drawTabs3(){
   const box=$("tabs3");
   if(!box.querySelector("button"))box.insertAdjacentHTML("beforeend",[["r","Haftalık Rutin"],["b","Bugün"],["g","Haftalık Görev"]].map(([k,n])=>`<button role="tab" data-act="tab3" data-t="${k}">${TABIC[k]}<span>${n}</span></button>`).join(""));
   box.querySelectorAll("button").forEach(b=>{const on=b.dataset.t===tab;b.classList.toggle("on",on);b.setAttribute("aria-selected",String(on));});
+  if(tab==="b"&&typeof RS!=="undefined")RS.unread=0;
+  const bb=box.querySelector('[data-t="b"]');if(bb&&typeof RS!=="undefined"){bb.classList.toggle("rUn",RS.unread>0);bb.setAttribute("aria-label",RS.unread>0?"Bugün, Rota\'dan yeni mesaj":"Bugün");}
   placeSlider();
 }
 function placeSlider(){const box=$("tabs3"),on=box.querySelector("button.on"),sl=box.querySelector(".sl");if(!on||!sl)return;sl.style.left=on.offsetLeft+"px";sl.style.width=on.offsetWidth+"px";if(!sl.classList.contains("anim")&&on.offsetWidth)requestAnimationFrame(()=>sl.classList.add("anim"));}
@@ -1208,11 +1320,11 @@ function onTaskTap(id){
   const x=taskById(id);if(!x)return;
   openChecklist(null,id);
 }
-function celebrateTask(id){
+function celebrateTask(id,mute){
   const x=taskById(id);if(!x||(tab!=="g"&&tab!=="b"))return;
   const iso=x.date,st=dayStats(iso),complete=st.t>0&&st.d===st.t;
   if(complete){animDay=iso;render();}
-  const el=document.querySelector(`.tk[data-tid="${CSS.escape(id)}"]`);if(el)runEffect(el);
+  const el=document.querySelector(`.tk[data-tid="${CSS.escape(id)}"]`);if(el)runEffect(el,null,mute);
   if(!complete)return;
   setTimeout(()=>{
     const th=document.querySelector(`.tkH[data-date="${iso}"]`);
@@ -1236,14 +1348,14 @@ const B=n=>`<b>${esc(n)}</b>`;
 /* bir günün işleri (rutin: seçili haftanın o gün sütunu; görevler: o tarih) */
 function itemsOf(d){
   const wi=(d.getDay()+6)%7,key="d"+wi,iso=isoD(d),w=W(),it=[];
-  w.rows.forEach(r=>{const c=w.cells[r.id+"|"+key];if(c)it.push({id:"r:"+r.id+"|"+key,n:c.title,s:r.start||"",e:r.end||"",done:isDone(c),src:"r",subs:c.subs.length});});
-  S.tasks.items.filter(x=>x.date===iso).forEach(x=>it.push({id:"g:"+x.id,tid:x.id,n:x.title,s:x.time||"",e:x.end||"",done:isDone(x),src:"g",subs:x.subs.length}));
+  w.rows.forEach(r=>{const c=w.cells[r.id+"|"+key];if(c)it.push({id:"r:"+r.id+"|"+key,n:c.title,s:r.start||"",e:r.end||"",done:isDone(c),src:"r",subs:c.subs.length,cat:c.cat||""});});
+  S.tasks.items.filter(x=>x.date===iso).forEach(x=>it.push({id:"g:"+x.id,tid:x.id,n:x.title,s:x.time||"",e:x.end||"",done:isDone(x),src:"g",subs:x.subs.length,cat:x.cat||""}));
   return it.sort((a,b)=>(a.s||"99")<(b.s||"99")?-1:(a.s||"99")>(b.s||"99")?1:0);
 }
 const statOf=l=>({t:l.length,d:l.filter(x=>x.done).length});
 /* günlük kayıt: seri ve haftalık oranlar için (buluta da yazılır) */
-function normLog(d){const o={days:{}};if(d&&d.days&&typeof d.days==="object"){Object.keys(d.days).filter(k=>IRE.test(k)).sort().slice(-200).forEach(k=>{const v=d.days[k];if(Array.isArray(v)&&v.length===2)o.days[k]=[Math.max(0,v[0]|0),Math.max(0,v[1]|0)];});}return o;}
-S.log={days:{}};
+function normLog(d){const o={days:{},h:{}};if(d&&d.h&&typeof d.h==="object"){Object.keys(d.h).filter(k=>IRE.test(k)).sort().slice(-70).forEach(k=>{const v=d.h[k];if(v&&typeof v==="object"){const r={};Object.entries(v).slice(0,60).forEach(([id,a])=>{if(Array.isArray(a)&&a.length===2)r[String(id).slice(0,60)]=[String(a[0]).slice(0,10),Math.max(0,Math.min(1439,a[1]|0))];});o.h[k]=r;}});}if(d&&d.days&&typeof d.days==="object"){Object.keys(d.days).filter(k=>IRE.test(k)).sort().slice(-200).forEach(k=>{const v=d.days[k];if(Array.isArray(v)&&v.length===2)o.days[k]=[Math.max(0,v[0]|0),Math.max(0,v[1]|0)];});}return o;}
+S.log={days:{},h:{}};
 function updateLog(){
   const t=todayD(),iso=isoD(t),days=S.log.days;let ch=false;
   const st=statOf(itemsOf(t)),cur=days[iso];
@@ -1487,7 +1599,7 @@ function insights(b){
   const L=[],t=todayD();
   if(b.yv&&b.yv[0]){const p=b.yp;L.push({k:"Dün",v:`%${p} tamamlandı`,s:p>=100?"Kusursuz bir gündü 🏆":p>=85?"Harika bir gündü 🌟":p>=70?"Gayet iyiydi 👏":p>=50?"Fena değildi 👍":p>0?"Biraz yoğundu, bugün telafi 💪":"Pek fırsat olmadı, bugün yeni bir gün 🌱"});}
   else if(b.yv)L.push({k:"Dün",v:"Plan yoktu",s:"Dinlenme günü 😌"});
-  if(b.wk.bestDay){L.push({k:"Haftanın en iyisi",v:`${DAYS[b.wk.bestDay.i]} · %${Math.round(b.wk.bestDay.p*100)}`,s:"Bu haftanın en verimli günü"});}
+  if(b.wk.bestDay&&b.wk.bestDay.p>0){L.push({k:"Haftanın en iyisi",v:`${DAYS[b.wk.bestDay.i]} · %${Math.round(b.wk.bestDay.p*100)}`,s:"Bu haftanın en verimli günü"});}
   const lw=weekPct(addD(mondayOf(t),-7));if(b.wk.p!=null&&lw.p!=null){const d=b.wk.p-lw.p;L.push({k:"Geçen haftaya göre",v:`%${b.wk.p} ${d>0?"▲":d<0?"▼":"="} ${d?Math.abs(d)+" puan":""}`,s:d>0?"Geçen haftadan iyisin 📈":d<0?"Biraz geride, yetişirsin 💪":"Aynı tempodasın"});}
   const wb=weekdayBest();if(wb)L.push({k:"En verimli günün",v:`${DAYS[wb.i]} · %${Math.round(wb.p*100)}`,s:"Kayıtlarına göre ortalama"});
   const a7=avg7();if(a7!=null)L.push({k:"Son 7 gün",v:`Ortalama %${a7}`,s:a7>=80?"Çok istikrarlısın 👏":a7>=50?"İstikrarlı gidiyorsun":"Küçük adımlarla yükselir 📈"});
@@ -1496,17 +1608,1072 @@ function insights(b){
   return L;
 }
 const ringSm=p=>`<div class="aRing"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="var(--track)" stroke-width="4.5"/>${p>0?`<circle cx="18" cy="18" r="15" fill="none" stroke="url(#embG)" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="${p*.9425} 94.25"/>`:""}</svg><b>%${p}</b></div>`;
-function renderAsst(){
-  const box=$("asstPane");if(!box)return;
-  const b=brainNow(),M=b.M,top=b.out[0],log=chatLog(top,M);
-  const hist=log.slice(0,-1).slice(-4),cur=log[log.length-1];
-  const extra=top&&top.tip?`<span class="aTip">${top.tip}</span>`:"";
-  let h=`<div class="aChat"><div class="aChH"><span class="aEmb">${EMB}</span><b>Asistan</b></div>`;
-  h+=hist.map(x=>`<div class="aMsg old"><span class="aGh"></span><div class="aBb"><time>${fmM(x.at)}</time>${x.m}</div></div>`).join("");
-  if(top)h+=`<div class="aMsg last${top.ty==="all"?" gold":""}"><span class="aEmb">${EMB}</span><div class="aBb"><time>${fmM(M)} · şimdi</time>${top.m}${extra}</div></div>`;
-  h+=`</div>`;
+/* ---------- Rota motoru ---------- */
+/* =====================================================================
+   ASİSTAN v2 — kural tabanlı, yapay zekâ hissi veren günlük asistan
+   - Türkçe ek uyumu (Spor'a, 20:00'de, Örnek rutin 8'e …)
+   - Hafıza: bir şeyi söyleyince tekrar etmez, gereksizse susar
+   - Olaylara tepki: tamamla, geri al, ekle, ruh hâli, uygulamayı açma, zaman
+   - Cümleyi parçalardan kurar: övgü + zamanlama + ilerleme + sıradaki iş
+   - Soru-cevap: hazır sorular ve serbest yazıdan anahtar kelimeyle niyet bulma
+   ===================================================================== */
+/* =====================================================================
+   ASİSTAN v2 — kural tabanlı, yapay zekâ hissi veren günlük asistan
+   - Türkçe ek uyumu (Spor'a, 20:00'de, Örnek rutin 8'e …)
+   - Hafıza: bir şeyi söyleyince tekrar etmez, gereksizse susar
+   - Olaylara tepki: tamamla, geri al, ekle, ruh hâli, uygulamayı açma, zaman
+   - Cümleyi parçalardan kurar: övgü + zamanlama + ilerleme + sıradaki iş
+   - Soru-cevap: hazır sorular ve serbest yazıdan anahtar kelimeyle niyet bulma
+   ===================================================================== */
+/* =====================================================================
+   ASİSTAN v2 — kural tabanlı, yapay zekâ hissi veren günlük asistan
+   - Türkçe ek uyumu (Spor'a, 20:00'de, Örnek rutin 8'e …)
+   - Hafıza: bir şeyi söyleyince tekrar etmez, gereksizse susar
+   - Olaylara tepki: tamamla, geri al, ekle, ruh hâli, uygulamayı açma, zaman
+   - Cümleyi parçalardan kurar: övgü + zamanlama + ilerleme + sıradaki iş
+   - Soru-cevap: hazır sorular ve serbest yazıdan anahtar kelimeyle niyet bulma
+   ===================================================================== */
+/* =====================================================================
+   ASİSTAN v2 — kural tabanlı, yapay zekâ hissi veren günlük asistan
+   - Türkçe ek uyumu (Spor'a, 20:00'de, Örnek rutin 8'e …)
+   - Hafıza: bir şeyi söyleyince tekrar etmez, gereksizse susar
+   - Olaylara tepki: tamamla, geri al, ekle, ruh hâli, uygulamayı açma, zaman
+   - Cümleyi parçalardan kurar: övgü + zamanlama + ilerleme + sıradaki iş
+   - Soru-cevap: hazır sorular ve serbest yazıdan anahtar kelimeyle niyet bulma
+   ===================================================================== */
+/* =====================================================================
+   ASİSTAN v2 — kural tabanlı, yapay zekâ hissi veren günlük asistan
+   - Türkçe ek uyumu (Spor'a, 20:00'de, Örnek rutin 8'e …)
+   - Hafıza: bir şeyi söyleyince tekrar etmez, gereksizse susar
+   - Olaylara tepki: tamamla, geri al, ekle, ruh hâli, uygulamayı açma, zaman
+   - Cümleyi parçalardan kurar: övgü + zamanlama + ilerleme + sıradaki iş
+   - Soru-cevap: hazır sorular ve serbest yazıdan anahtar kelimeyle niyet bulma
+   ===================================================================== */
+/* =====================================================================
+   ASİSTAN v2 — kural tabanlı, yapay zekâ hissi veren günlük asistan
+   - Türkçe ek uyumu (Spor'a, 20:00'de, Örnek rutin 8'e …)
+   - Hafıza: bir şeyi söyleyince tekrar etmez, gereksizse susar
+   - Olaylara tepki: tamamla, geri al, ekle, ruh hâli, uygulamayı açma, zaman
+   - Cümleyi parçalardan kurar: övgü + zamanlama + ilerleme + sıradaki iş
+   - Soru-cevap: hazır sorular ve serbest yazıdan anahtar kelimeyle niyet bulma
+   ===================================================================== */
+/* =====================================================================
+   ASİSTAN v2 — kural tabanlı, yapay zekâ hissi veren günlük asistan
+   - Türkçe ek uyumu (Spor'a, 20:00'de, Örnek rutin 8'e …)
+   - Hafıza: bir şeyi söyleyince tekrar etmez, gereksizse susar
+   - Olaylara tepki: tamamla, geri al, ekle, ruh hâli, uygulamayı açma, zaman
+   - Cümleyi parçalardan kurar: övgü + zamanlama + ilerleme + sıradaki iş
+   - Soru-cevap: hazır sorular ve serbest yazıdan anahtar kelimeyle niyet bulma
+   ===================================================================== */
+var Asistan2=(function(){
+"use strict";
+
+/* ---------- Türkçe dil bilgisi ---------- */
+const ONES=["sıfır","bir","iki","üç","dört","beş","altı","yedi","sekiz","dokuz"];
+const TENS=["","on","yirmi","otuz","kırk","elli","altmış","yetmiş","seksen","doksan"];
+function numTail(n){n=Math.abs(Math.round(n));if(n===0)return"sıfır";if(n%10)return ONES[n%10];if(n%100)return TENS[(n%100)/10];if(n%1000)return"yüz";if(n%1e6)return"bin";return"milyon";}
+// bir ifadenin "okunuşunun" son kelimesi (ek uyumu için)
+function spokenTail(w){
+  w=String(w).trim();
+  let m=w.match(/(\d{1,2}):(\d{2})\s*$/);
+  if(m){const h=+m[1],mm=+m[2];return mm?numTail(mm):numTail(h);}
+  m=w.match(/%\s*(\d+)\s*$/);if(m)return numTail(+m[1]);
+  m=w.match(/(\d+)\s*$/);if(m)return numTail(+m[1]);
+  const letters=w.toLocaleLowerCase("tr-TR").replace(/[^a-zçğıöşü]+$/,"");
+  const words=letters.split(/[^a-zçğıöşü]+/).filter(Boolean);
+  return words.length?words[words.length-1]:"e";
+}
+const VOW="aeıioöuü",BACK="aıou",ROUND="oöuü",HARD="fstkçşhp";
+function harm(w){
+  const t=spokenTail(w);let v="e";
+  for(let i=t.length-1;i>=0;i--)if(VOW.includes(t[i])){v=t[i];break;}
+  const last=t[t.length-1]||"e";
+  // ince/kalın: bazı alıntı kelimeler (saat, gol…) için basit istisna listesi
+  const exFront=/(saat|hal|kalp|rol|gol|alkol|petrol|kontrol|meal|ideal|lal)$/.test(t);
+  return {front:exFront||!BACK.includes(v),round:ROUND.includes(v),vowelEnd:VOW.includes(last),hard:HARD.includes(last)};
+}
+function sfx(w,k){
+  const h=harm(w),e=h.front?"e":"a",i4=h.front?(h.round?"ü":"i"):(h.round?"u":"ı");
+  switch(k){
+    case "e":return(h.vowelEnd?"y":"")+e;                 // yönelme: Spor'a, rutin 8'e
+    case "de":return(h.hard?"t":"d")+e;                   // bulunma: 20:00'de, 3'te
+    case "den":return(h.hard?"t":"d")+e+"n";              // ayrılma
+    case "i":return(h.vowelEnd?"y":"")+i4;                // belirtme
+    case "in":return(h.vowelEnd?"n":"")+i4+"n";           // tamlayan
+    case "le":return(h.vowelEnd?"y":"")+"l"+e;            // vasıta
+    case "ki":return"ki";
+    case "dA":return h.front?"de":"da";                    // bağlaç: Spor da
+    case "mi":return h.front?(h.round?"mü":"mi"):(h.round?"mu":"mı");
+  }
+  return"";
+}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const B=n=>`<b>${esc(n)}</b>`;
+const BE=(n,k)=>`<b>${esc(n)}</b>'${sfx(n,k)}`;          // Spor'a
+const TE=(t,k)=>`${t}'${sfx(t,k)}`;                        // 20:00'de
+const DA=n=>sfx(n,"dA");
+const pct=p=>`%${p}`;
+const PE=(p,k)=>`%${p}'${sfx("%"+p,k)}`;
+
+/* ---------- zaman ifadeleri ---------- */
+const toMin=s=>{if(!s)return null;const[a,b]=s.split(":").map(Number);return a*60+b;};
+const fmM=m=>{m=((m%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");};
+function dur(m){
+  m=Math.max(0,Math.round(m));
+  if(m<=1)return"bir dakika";if(m<5)return m+" dakika";
+  if(m===15)return"çeyrek saat";if(m===30)return"yarım saat";if(m===60)return"bir saat";if(m===90)return"bir buçuk saat";
+  if(m<60)return m+" dakika";
+  const h=Math.floor(m/60),r=m%60;
+  if(r===0)return(h===1?"bir":h)+" saat";
+  if(r===30)return(h===1?"bir":h)+" buçuk saat";
+  if(r<8)return(h===1?"bir":h)+" saatten biraz fazla";
+  if(r>52)return(h+1)+" saate yakın";
+  return h+" saat "+r+" dakika";
+}
+function durShort(m){m=Math.round(m);if(m<60)return m+" dk";const h=Math.floor(m/60),r=m%60;return r?`${h} sa ${r} dk`:`${h} saat`;}
+function partOfDay(M){if(M<300)return"gece";if(M<660)return"sabah";if(M<750)return"öğle";if(M<1050)return"öğleden sonra";if(M<1290)return"akşam";return"gece";}
+function clockNat(s,k){ // bazen "akşam 8'de" gibi doğal söyler
+  const m=toMin(s);if(m%60!==0)return TE(s,k);
+  const h=Math.floor(m/60),h12=h>12?h-12:h;
+  const p=h>=6&&h<=10?"sabah":h>=13&&h<=17?"öğleden sonra":h>=18&&h<=22?"akşam":null;
+  if(p&&Math.random()<.45)return`${p} ${h12}'${sfx(String(h12),k)}`;
+  return TE(s,k);
+}
+const GUN=["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"];
+
+/* ---------- kelime haznesi ---------- */
+const L={
+ greetM:["Günaydın!","Günaydın ☀️","Günaydın, güne hoş geldin.","Günaydın! Kahven hazırsa başlayalım.","Günaydın, yeni bir sayfa.","Günaydın! Bugün güzel şeyler olacak gibi."],
+ greetN:["Merhaba!","Selam!","Tekrar hoş geldin.","Merhaba, kaldığımız yerden devam.","Hoş geldin!"],
+ greetE:["İyi akşamlar!","İyi akşamlar, günün nasıl geçti?","Akşam oldu bile."],
+ greetG:["İyi geceler… ya da hâlâ ayakta mıyız? 🦉","Gece kuşu musun bugün?","Geç oldu, kısa tutayım."],
+ praise:["Harika iş.","Bravo!","İşte bu!","Tıkır tıkır.","Helal olsun.","Süpersin.","Mükemmel.","Çok iyi.","Temiz iş.","Sağlam.","Böyle devam.","Güzel gidiyorsun.","Oldu bu iş.","Eline sağlık.","Ne güzel.","Çok şık.","Aferin sana.","Takdire şayan.","Bu iş tamam.","Kusursuz.","Çat diye bitti.","Yine yaptın.","Gurur verici.","Tam isabet.","Harikasın."],
+ praiseN:["{n} tamam.","{n} bitti, eline sağlık.","{n} listeden düştü.","{n} {da} tamamlandı.","{n} halloldu.","{n} işini bitirdin.","{n} için bir çentik daha.","{n} tamamlandı, güzel."],
+ early:["Saatinden {d} önce bitirdin, erkencisin.","Planın önündesin, {d} erken.","Daha saati gelmeden bitti, bu ne hız!","Vaktinden önce halletmek ayrı bir keyif."],
+ ontime:["Tam zamanında.","Saatinde, dakik.","Planladığın gibi, tam vaktinde.","Programa harfiyen uydun."],
+ late:["Biraz geç oldu ama önemli olan yapmak.","Geç de olsa yetiştirdin.","Saati kaçsa da iş kaçmadı.","Geç olsun, güç olmasın."],
+ first:["Günün ilk işi bitti, gerisi daha kolay.","İlk adım atıldı, en zoru buydu.","Açılışı yaptın, şimdi ritmi koru.","Güne iyi başladın."],
+ half:["Günün yarısını devirdin.","Yarı yolu geçtin.","Yarıdan fazlası tamam, ikinci yarı daha hızlı geçer.","Yarıyı aştın, bitiş çizgisi görünmeye başladı."],
+ lastOne:["Bir tek {n} kaldı.","Geriye sadece {n} kaldı, son düzlük.","Bitirmene bir iş var: {n}.","Son iş {n}, ondan sonra gün senin."],
+ left:["{r} iş kaldı.","Geriye {r} iş kaldı.","Kalan iş sayısı {r}."],
+ next:["Sıradaki {n}, {t}.","Bir sonraki durak {n}, {t}.","Sırada {n} var, {t}.","Bir sonraki iş {n}, {t}."],
+ nextSoon:["Hemen ardından {n} geliyor, {d} sonra.","Nefeslen, {d} sonra {n} var.","Az sonra {n}: {d} kaldı."],
+ nextFar:["Sıradaki iş {n}, {d} sonra; arada nefes alacak vaktin var.","{n} için daha {d} var, şimdilik rahatsın.","Bir sonraki iş {n}, ona daha {d} var.","{d} sonra {n} var, o zamana kadar serbestsin."],
+ untimedLeft:["Saatsiz işlerinden {n} duruyor, boş bir anında halledersin.","Bir de saati olmayan {n} var, araya sıkıştırabilirsin."],
+ allDone:["Tebrikler! Bugünü eksiksiz bitirdin.","Tüm işler tamam! Kendine bir ödül ver.","Mükemmel bir gün, alkışlar senin için!","Bugün tam not aldın, harikasın!","Listede tek iş kalmadı, helal olsun!","Hepsi bitti! Bugünün şampiyonu sensin.","Söz verdin, yaptın. Kendinle gurur duy!","Günü altın gibi kapattın, tebrikler!","Yüzde yüz! Bundan iyisi can sağlığı.","Bugün kendini aştın, bravo!","Disiplin böyle olur, tebrikler!","Tüm kutular dolu, bugün senin zaferin!"],
+ allDoneM:["Daha öğlen olmadan her şey tamam! Bu ne disiplin.","Sabahtan bitirdin, günün geri kalanı senin.","Erken başladın, erken bitirdin. Tebrikler!","Gün yarılanmadan liste bitti, helal olsun!"],
+ allDoneTail:["Bugün {d}/{t}.","Üst üste {s}. gün!","Kalan vaktin tamamen senin.","Akşamı gönül rahatlığıyla geçirebilirsin.","Şimdi biraz dinlen, hak ettin."],
+ goldE:["🏆","🎉","👏","✨","🥇","👑","🌟"],
+ soon:["{d} sonra {n}{tm}.","{n} yaklaşıyor, {d} kaldı.","{n} kapıda: {d} sonra.","Hazır mısın? {d} sonra {n}.","Hatırlatayım: {d} sonra {n}."],
+ start:["{n} başladı{l}.","{n} zamanı.","Hadi bakalım, {n} başlıyor{l}.","Şimdi {n} vakti{l}."],
+ startL:[", {d} boyunca odak sende",", önünde {d} var",""],
+ running:["Şu an {n} zamanı, bitişine {d} var.","{n} devam ediyor, {d} kaldı.","{n} sürüyor; {e} bitiyor."],
+ ending:["{n} bitmek üzere, {d} kaldı. Yaptıysan işaretlemeyi unutma.","{n} için son {d}.","{n} birazdan bitiyor; tamamladıysan bir dokunuş yeter."],
+ missedR:["{n} saati geçti. Yaptıysan işaretle; yapamadıysan sorun değil, rutin haftaya yine burada.","{n} bugün kaçmış gibi görünüyor. Yaptıysan bir dokunuşla işaretle.","{n} için ayrılan süre bitti. Hâlâ yapabilirsin, istersen bugünlük atlarız."],
+ missed:["{n} saati geçti. Yaptıysan işaretle, yapamadıysan yarına atabilirim.","{n} biraz gecikti. Hâlâ yetişebilirsin ya da yarına alalım.","{n} için ayrılan süre bitti. Ne yapalım?","{n} kaçtı gibi görünüyor; telafi etmek ister misin?"],
+ conflict:["{a} ile {b} aynı saatlere denk geliyor ({ta} ve {tb}). Birini kaydırmak isteyebilirsin.","Küçük bir çakışma var: {a} ({ta}) bitmeden {b} ({tb}) başlıyor."],
+ overdue:["Önceki günlerden kalan {k} iş var: {l}. Bugüne alalım mı?","Geçmişten sarkan {k} iş görüyorum: {l}. İstersen bugüne taşıyayım.","{l} hâlâ bekliyor. Bugüne almak ister misin?"],
+ free:["Şu an boştasın. Sıradaki iş {n}, {t}; arada {d} var.","{d} boyunca programın boş, sonra {n} var.","Önümüzdeki {d} senin. Sonra {n}."],
+ freeEnd:["Bugünlük başka saatli işin yok. Kalan vakit senin.","Takvimin boş, keyfine bak.","Saatli işlerin bitti; gerisi serbest zaman."],
+ empty:["Bugün planında bir şey yok. Dinlenme günü mü, yoksa bir şey ekleyelim mi?","Bugün boş bir sayfa. İstersen küçük bir hedefle başla.","Program bomboş; ya dinlen ya da bir iş ekle, ikisi de güzel."],
+ evening:["Günü {d}/{t} ile kapatıyorsun.","Bugünün karnesi: {d}/{t}.","Gün bitiyor, {d}/{t} tamam."],
+ eveningGood:["Gayet iyi bir gündü.","Bence verimli bir gün.","Güzel bir tempo tutturdun."],
+ eveningMid:["Fena değil, yarın biraz daha iyi olur.","Güzel bir gün; kalanlara yarın bakarız.","İyi iş çıkardın, eksikler yarına."],
+ eveningLow:["Bugün biraz durgun geçti, olur böyle günler.","Her gün aynı geçmiyor; yarın yeni bir sayfa."],
+ tomorrowFirst:["Yarın ilk işin {t} {n}.","Yarın güne {t} {n} ile başlıyorsun.","Yarın sabah ilk durak {n}, {t}."],
+ night:["Ekran ışığı uykunu kaçırmasın 🌙","İyi uykular, yarın görüşürüz.","Dinlenmek de programın parçası.","Bu saatte en verimli iş uyku 😴"],
+ mood:[
+  ["Harika bir enerjin var! Bunu iyi kullanalım.","Süper! Böyle günlerde zor işi öne almak iyi fikir.","Çok güzel. Bugün hedefleri biraz yüksek tutabilirsin."],
+  ["İyi gidiyor. Kafan yerindeyse önemli işi şimdi bitirebilirsin.","Güzel, dengeli bir gün olsun.","İyi hissetmen sevindirdi."],
+  ["Normal bir gün. Küçük adımlarla ilerleriz.","Ne iyi ne kötü; bir iki iş bitirince açılırsın.","Olduğu gibi kabul edelim, ritim gelir."],
+  ["Biraz düşük hissediyorsun. Kendine yüklenme, en kolay işle başla.","Moral bozuksa listeyi küçült; bir iş bile yeter.","Anlıyorum. Bugün kendine nazik ol."],
+  ["Zor bir gün gibi. Önce biraz nefes al; işler bekleyebilir.","Çok yorgunsan önemli olmayanları yarına atabiliriz.","Böyle günler de oluyor. Sadece en gerekli işe odaklan."]],
+ undo:["Geri aldım, {n} yeniden listede.","Tamam, {n} işaretini kaldırdım.","Olur, {n} tekrar bekleyenlere eklendi."],
+ undoQuick:["Yanlışlıkla mı dokundun? Geri aldım, sorun yok.","Hop, geri aldım. Parmak kaydı galiba 🙂"],
+ add:["Not aldım: {n}, {w}.","{n} eklendi, {w}.","Tamam, {n} programında: {w}."],
+ addBusy:["Bugün epey doldu, {t} iş oldu.","Liste kabardı: bugün {t} iş.","Yoğun bir gün olacak, {t} iş var."],
+ irony:["Bu hızla gidersen öğlene kadar haftayı bitirirsin 😄 Hepsini gerçekten yaptın mı?","Vay, saniyeler içinde {k} iş! Ya süper kahramansın ya da toplu işaretleme yapıyorsun 😄","Işık hızında gidiyorsun. Gerçekten yaptıysan efsanesin, yapmadıysan dürüstlüğüne güveniyorum 😉","Bir dakikada {k} iş mi? Sana gıptayla bakıyorum… ya da biraz şüpheyle 🙂"],
+ sample:["Takvimindeki 'Örnek' işler sana göstermek için. Kendi rutinlerini ekledikçe seni daha iyi tanırım; örnekleri istediğin zaman silebilirsin.","Bu arada, 'Örnek' diye başlayan işler deneme amaçlı. Kendi işlerini ekleyince sana özel konuşmaya başlarım."],
+ streak:["Üst üste {n} gündür hedefini tutturuyorsun 🔥","{n} günlük serin devam ediyor.","Seri {n} gün oldu, bozmayalım."],
+ streakRisk:["{n} günlük serin var; bugünü de tamamlarsan {k} olur. Kalan {r} iş.","Seriyi korumak için {r} iş kaldı. {n} günlük emek bu!"],
+ weekUp:["Bu hafta geçen haftadan iyi gidiyorsun: {p} (geçen hafta {q}).","Haftalık tablo yükselişte: {p}, geçen hafta {q} idi."],
+ weekDown:["Bu hafta şimdilik {p}; geçen hafta {q} idi. Toparlarız.","Hafta biraz yavaş: {p}. Kalan günlerde açarız."],
+ bestDay:["En verimli günün genelde {g}; bugün de o gün 💪","{g} günleri senin günün, ortalaman {p}."],
+ monday:["Yeni hafta, yeni sayfa. Havasını sen belirle.","Pazartesi geldi; ilk günü iyi kurarsak hafta kendiliğinden akar."],
+ friday:["Cuma! Haftayı güzel kapatalım.","Hafta sonuna az kaldı, son bir gayret."],
+ weekend:["Hafta sonu! Biraz dinlen, biraz iş.","Cumartesi keyfi; işleri hafif tut."],
+ sunday:["Pazar akşamı: yarın yeni hafta başlıyor.","Haftayı kapatıyoruz; yarına hazır mısın?"],
+ thanks:["Rica ederim!","Ne demek, her zaman.","Ben teşekkür ederim, birlikte iyi iş çıkarıyoruz.","Ne zaman istersen buradayım."],
+ hello:["Merhaba! Bugün nasıl yardımcı olayım?","Selam! Sana günün özetini verebilirim ya da sıradaki işi söyleyebilirim.","Merhaba, buradayım."],
+ who:["Ben Rota, senin planlama asistanınım. Programına bakıp hatırlatırım, ilerlemeni takip ederim, arada biraz da gaz veririm.","Adım Rota. Programının yanındaki küçük yardımcınım; saatleri, işleri ve seriyi ben takip ediyorum. Şu an 0.1 sürümündeyim, yani daha yolun başındayım."],
+ intro:["Merhaba, ben <b>Rota</b> 👋 Programını takip eden asistanınım; işler yaklaşınca haber verir, bitirdiğinde seninle sevinirim. Henüz yeniyim (sürüm 0.1), ara sıra hata yapabilirim, hoş gör 🙂","Bir şey merak edersen aşağıdaki düğmelerden sorabilirsin. İstersen programını analiz etmemi de isteyebilirsin; böylece sana daha iyi sonuçlar çıkarabilirim."],
+ typeTip:["Küçük bir ipucu: İş eklerken türünü işaretlersen (📚 ders, 🏃 spor, 🍽 yemek…) seni daha iyi takip ederim; derse 30 dakika kala haber veririm, yemeği ve dinlenmeyi mola sayarım."],
+ praiseOther:["{n} tamam, eline sağlık.","{n} işaretlendi. {g} listesi biraz daha hafifledi.","Güzel, {n} bitti.","{n} tamamlandı 👍"],
+ dunno:["Bunu tam anlayamadım. Şunlardan birini sorabilirsin:","Hmm, onu çözemedim. Belki şunlar işine yarar:","Bunu henüz bilmiyorum ama şunlarda iyiyim:"],
+ tired:["Yorulduysan 10 dakikalık bir mola ver; su iç, biraz yürü. İşler kaçmaz.","Dinlenmek de verimliliğin parçası. Kısa bir ara, sonra kaldığın yerden.","Kendini zorlama. En küçük işi seç, sadece onu bitir; gerisi kendiliğinden gelir."],
+ motivate:["Küçük adımlar da adımdır. Sadece bir tanesini bitir, gerisi gelir.","Başlamak için mükemmel anı bekleme; şimdi yeterince iyi.","Bugün attığın her adım, yarınki seni hafifletiyor.","Hedef büyük olabilir ama sıradaki iş küçük. Sadece ona bak.","Disiplin motivasyonun bittiği yerde başlar. Sen yaparsın.","İki dakika kuralı: iki dakikada başlayabileceğin şeye hemen başla.","Kendinle yarış, başkasıyla değil. Dünden iyiysen kazandın."],
+ soz:["Damlaya damlaya göl olur.","Bugünün işini yarına bırakma.","Sabreden derviş muradına ermiş.","Emek olmadan yemek olmaz.","İşleyen demir ışıldar.","Erken kalkan yol alır.","Yavaş giden yol alır.","Ağaç yaşken eğilir.","Bin bilsen de bir bilene danış."],
+ ackToday:["Tamam, {l} bugüne taşındı.","Taşıdım: {l} artık bugünün listesinde.","Oldu, {l} bugüne geldi. Uygun bir boşluğa yerleştirirsin."],
+ ackTomorrow:["Tamam, {l} yarına taşındı. Bugün kendini yorma.","Yarına aldım: {l}.","Oldu, {l} yarının listesinde."],
+ ackDismiss:["Peki, şimdilik dokunmuyorum.","Tamam, sonra bakarız.","Anlaştık, kalsın."],
+ ackDoneLate:["İşaretledim. Geç de olsa yapılmış olması önemli.","Tamamdır, kaydettim."],
+ connect:["Bu arada,","Aklında olsun,","Küçük bir not:","Unutmadan,","Ha bir de,"]
+};
+
+/* ---------- işin ne olduğunu anlama ----------
+   Türkçe ekleri ayıklar (dersime → ders, koşuya → koşu), kelimenin başına bakar
+   (araba ≠ ara), küçük yazım hatalarını tolere eder, kullanıcının öğrettiklerini önce dener. */
+const FOLDM={"ç":"c","ğ":"g","ı":"i","ö":"o","ş":"s","ü":"u","â":"a","î":"i","û":"u"};
+const fold=s=>String(s).toLocaleLowerCase("tr-TR").replace(/[çğıöşüâîû]/g,c=>FOLDM[c]);
+const SUFX=[...new Set(["lerimizi","larimizi","lerimiz","larimiz","lerinden","larindan","lerini","larini","lerine","larina","lerin","larin","leri","lari","ler","lar","mizi","muzu","nizi","nuzu","masi","mesi","mak","mek","ma","me","yla","yle","la","le","dan","den","tan","ten","da","de","ta","te","nin","nun","yis","yus","is","us","sina","sine","suna","sune","sini","sunu","si","su","ina","ine","una","une","ini","unu","in","un","yi","yu","ya","ye","im","um","i","u","a","e","m","n","ki","lik","luk","ci","cu","yken","ken","ip","up","yip","yup"])].sort((a,b)=>b.length-a.length);
+function sufOK(r){if(!r)return true;if(r.length>10)return false;const memo={};const ok=i=>{if(i===r.length)return true;if(i in memo)return memo[i];for(const s of SUFX)if(r.startsWith(s,i)&&ok(i+s.length))return memo[i]=true;return memo[i]=false;};return ok(0);}
+const SOFT={k:"g",c:"c",t:"d",p:"b"};
+function lev(a,b){if(Math.abs(a.length-b.length)>1)return 9;const m=a.length,n=b.length;let p=Array.from({length:n+1},(_,j)=>j);for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c;}return p[n];}
+function tokMatch(tok,kw){
+  if(tok===kw)return 1;
+  if(kw.length>=2&&tok.startsWith(kw)&&sufOK(tok.slice(kw.length)))return .92;
+  const sk=SOFT[kw[kw.length-1]];if(sk){const k2=kw.slice(0,-1)+sk;if(tok.startsWith(k2)&&sufOK(tok.slice(k2.length)))return .9;}
+  if(kw.length>=6&&tok.length>=6&&lev(tok,kw)<=1)return .6;
+  if(kw.length>=6&&tok.length>kw.length&&lev(tok.slice(0,kw.length),kw)<=1&&sufOK(tok.slice(kw.length)))return .55;
+  return 0;
+}
+/* tür tanımları: k anahtar, e simge, l ad, lead kaç dk önce hatırlatılır, rest dinlendirici mi,
+   w anahtar kelimeler ("kelime:ağırlık"), nouns isme göre "…na/…ne" hâli, prep yaklaşınca, start başlarken, done bitince */
+const CATS=[
+ {k:"ders",e:"📚",l:"Ders",lead:30,
+  w:"ders,calis,sinav:.9,vize,final,odev,test:.6,konu:.8,tekrar,quiz,kurs,universite:.8,okul:.6,unite,soru coz,soru:.7,lise:.7,slayt,ozet:.8,ezber,not cikar,ders notu,etut,deneme sinavi,deneme:.6,matematik,fizik,kimya,biyoloji,tarih:.5,cografya,edebiyat,ingilizce,almanca,fransizca,psikoloji,sosyoloji,felsefe,ekonomi:.7,hukuk:.7,anatomi,istatistik,yks,kpss,ales,lgs,tyt,ayt,tez,seminer,laboratuvar,lab:.6,kelime:.5,gramer,okuma odevi,proje odevi",
+  nouns:[["tekrar","tekrarına"],["calis","çalışmana"],["odev","ödevine"],["ozet","özet çalışmana"],["slayt","slayt çalışmana"],["ezber","ezberine"],["deneme","denemene"],["test","testine"],["kurs","kursuna"],["etut","etüdüne"],["sinav","sınavına"],["vize","sınavına"],["final","sınavına"],["quiz","sınavına"]],noun:"dersine",
+  prep:["hazırlan.","kitaplarını hazırla.","masanı toparlamaya başlayabilirsin.","telefonu sessize almayı unutma."],
+  start:["İyi dersler!","İyi çalışmalar!","Odak zamanı, başarılar!","Kolay gelsin, sen yaparsın."],
+  tip:["Telefonu biraz uzağa koy; 25 dakika tam odak, 5 dakika mola iyi gider.","Masanda sadece o işin malzemesi kalsın.","Zor konuyu başa al, enerjin tazeyken."],
+  done:["Kafa çalıştı bugün.","Beyin kası da kas sonuçta 🧠","Kısa bir mola hak ettin.","Öğrendiğin her şey cebinde."]},
+ {k:"is",e:"💼",l:"İş",lead:15,
+  w:"toplanti,meeting,sunum,rapor,proje:.8,mail,e posta,eposta,musteri,is gorusmesi,mesai,ofis,zoom:.7,teams:.7,brifing,plan:.4,is:.6,mulakat,vardiya,nobet,teklif,sozlesme,evrak,imza:.7,dosya:.5,sirket,patron:.7,ihale,fatura kes,muhasebe",
+  nouns:[["toplanti","toplantına"],["meeting","toplantına"],["sunum","sunumuna"],["mulakat","mülakatına"],["is gorusmesi","iş görüşmene"],["mesai","mesaine"],["vardiya","vardiyana"],["nobet","nöbetine"]],noun:"işine",
+  prep:["notlarını gözden geçir.","hazırlıklarını kontrol et.","gündemi bir kez daha gözden geçirebilirsin."],
+  start:["Kolay gelsin!","Başarılar!","Kolay gelsin, sen halledersin."],
+  tip:["Önce en kritik maddeyi konuş.","Notlarını hazırla, kısa ve net geçer."],
+  done:["Bir iş daha masadan kalktı.","Profesyonelce.","Gündem hafifledi."]},
+ {k:"spor",e:"🏃",l:"Spor",lead:20,
+  w:"sinav cek:3,spor,kosu,yuru,yuruyus,antrenman,gym,fitness,fitnes,yoga,pilates,bisiklet,yuzme,egzersiz,esneme,mekik,salon:.6,mac:.7,futbol,basketbol,voleybol,tenis,kardiyo,agirlik,squat,plank,jimnastik,boks,kickboks,tirmanis,dans:.6,stretching,kosu bandi",
+  nouns:[["kosu","koşuna"],["yuruyus","yürüyüşüne"],["yuru","yürüyüşüne"],["yoga","yogana"],["pilates","pilatesine"],["yuzme","yüzmene"],["mac","maçına"],["bisiklet","bisiklet turuna"],["dans","dansına"]],noun:"antrenmanına",
+  prep:["suyunu ve kıyafetini hazırla.","ısınmayı unutma.","rahat bir şeyler giy, enerjini topla."],
+  start:["İyi antrenmanlar!","Hadi bakalım, enerjini göster 💪","Isınmayı atlama, iyi antrenmanlar!"],
+  tip:["Suyunu yanına almayı unutma.","Isınmayı atlama, sakatlık riskini düşürür."],
+  done:["Vücudun teşekkür ediyor.","Şimdi bir bardak su iyi gider.","Enerjin yükseldi, hissediyor musun?"]},
+ {k:"yemek",e:"🍽",l:"Yemek",lead:10,rest:1,
+  w:"yemek,kahvalti,ogle yemegi,aksam yemegi,mutfak:.6,pisir,tarif,ogun,ara ogun,atistirma,corba:.7,brunch,iftar,sahur",
+  nouns:[["yemek yap","yemek hazırlığına"],["kahvalti","kahvaltına"],["ogle yemegi","öğle yemeğine"],["aksam yemegi","akşam yemeğine"],["iftar","iftara"],["sahur","sahura"],["pisir","yemek hazırlığına"]],noun:"yemek vaktine",
+  prep:["acıktıysan tam zamanı.","",""],
+  start:["Afiyet olsun!","Afiyet olsun, acele etme.","Afiyet olsun, keyfini çıkar."],
+  tip:[],done:["Afiyet olsun!","Afiyet olsun, umarım güzeldi.","Mideler bayram etti."]},
+ {k:"dinlenme",e:"😌",l:"Dinlenme",lead:0,rest:1,
+  w:"dinlen,mola,istirahat,rahatla,keyif:.6,uzan,kahve molasi,cay molasi,serbest zaman,bos zaman",
+  nouns:[["mola","molana"]],noun:"dinlenme vaktine",prep:[""],
+  start:["Biraz dinlen, hak ettin.","Mola vakti; ekranı bırak, biraz nefes al.","Keyfini çıkar, hak ettin."],
+  tip:[],done:["Umarım dinlenebildin.","Enerji depolandı.","Dinlenmek de programın parçası."]},
+ {k:"uyku",e:"😴",l:"Uyku",lead:30,rest:1,
+  w:"uyku,uyu,sekerleme,kestir,yatma:.7,uyan:.5",
+  nouns:[["sekerleme","şekerlemene"],["kestir","şekerlemene"]],noun:"uyku saatine",
+  prep:["ekranları bırakmaya başla.","ışıkları kısabilirsin.","yarın için hazırlığını yap, sonra dinlen."],
+  start:["İyi uykular 🌙","Tatlı rüyalar.","İyi dinlen, yarın görüşürüz."],
+  tip:[],done:["Günaydın! Umarım iyi uyudun.","Dinlenmek de iş."]},
+ {k:"eglence",e:"🎉",l:"Eğlence",lead:15,rest:1,
+  w:"film,dizi,oyun,sinema,konser,parti,gezi,gez:.7,eglence,eglen,piknik,tiyatro,festival,oyna,netflix,youtube,playstation,ps5,muze,sergi,bowling,karaoke,kutu oyunu,mac izle,stand up",
+  nouns:[["film","film keyfine"],["dizi","dizi keyfine"],["sinema","sinemaya"],["konser","konserine"],["tiyatro","tiyatroya"],["oyun","oyun vaktine"],["parti","partiye"],["piknik","pikniğe"],["gezi","gezine"],["muze","müze gezine"]],noun:"eğlence vaktine",
+  prep:["keyfini çıkar.","hazırlanmaya başlayabilirsin.",""],
+  start:["İyi eğlenceler! 🎉","Keyfini çıkar!","Tadını çıkar, hak ettin."],
+  tip:[],done:["Umarım eğlenmişsindir 🎉","Keyifli vakit güzel geçti umarım."]},
+ {k:"sosyal",e:"👥",l:"Sosyal",lead:30,rest:1,
+  w:"bulus,arkadas,aile,ziyaret,misafir,dugun,nisan,kina,sohbet:.6,akraba,komsu,davet,toplanma:.6,bayramlasma,dogum gunu partisi",
+  nouns:[["bulus","buluşmana"],["ziyaret","ziyaretine"],["dugun","düğüne"],["nisan","nişana"],["davet","davete"],["misafir","misafirliğe"]],noun:"buluşmana",
+  prep:["hazırlanmaya başlayabilirsin.","yola çıkma vaktini hesapla."],
+  start:["Keyifli vakit geçir!","İyi eğlenceler!","Güzel vakit geçir."],
+  tip:[],done:["Güzel vakit geçirdin umarım.","Sosyal pil doldu 🔋"]},
+ {k:"ara",e:"☎️",l:"Arama",lead:5,
+  w:"ara,telefon,arama,goruntulu,mesaj at,whatsapp,gorus:.5",
+  nouns:[],noun:"aramana",prep:["",""],
+  start:["Kolay gelsin.","İyi görüşmeler."],
+  tip:["Konuşmak istediklerini iki madde not al."],done:["İletişim tamam.","Bir arama daha halloldu."]},
+ {k:"saglik",e:"🩺",l:"Sağlık",lead:60,
+  w:"doktor,hastane,randevu,dis,eczane,ilac,tahlil,kontrol:.5,muayene,fizik tedavi,goz:.6,vitamin,psikolog,terapi,asi:.7,check up,klinik,poliklinik,dis hekimi",
+  nouns:[["eczane","eczane işine",15],["ilac","ilaç vaktine",5],["vitamin","vitamin vaktine",5],["randevu","randevuna"],["muayene","muayenene"],["tahlil","tahliline"],["terapi","terapine"],["fizik tedavi","fizik tedavine"],["dis","diş randevuna"]],noun:"randevuna",
+  prep:["yola çıkma vaktini hesapla.","gerekli belgeleri yanına al.","kimliğini unutma."],
+  start:["Kolay gelsin, geçmiş olsun.","Sağlık her şeyden önce, kolay gelsin."],
+  tip:["Kimliğini ve gerekli belgeleri yanına al.","Sormak istediklerini önceden not et."],
+  done:["Sağlık her şeyden önce.","Bir sorumluluk daha bitti, geçmiş olsun."]},
+ {k:"alisveris",e:"🛒",l:"Alışveriş",lead:15,
+  w:"market,alisveris,siparis,pazar:.5,manav,firin:.6,kargo,magaza,avm,bakkal,kasap,eczane:.3",
+  nouns:[["kargo","kargo işine"]],noun:"alışverişine",
+  prep:["listeni hazırla.","bez çantanı unutma.","eksikleri bir not et."],
+  start:["Kolay gelsin!","Kolay gelsin, listeye sadık kal 😄"],
+  tip:["Liste yaparsan yarı sürede biter."],done:["Dolap doldu 🛒","Bir koşturmaca daha bitti."]},
+ {k:"ev",e:"🧹",l:"Ev işi",lead:10,
+  w:"temizlik,camasir,bulasik,duzen:.5,toparla,supur,utu,oda:.5,ev isi,yika:.8,yikat:.8,arac yika,cop,toz al,nevresim,tamir:.6,silme,cam sil,mutfak temizligi,banyo temizligi,ev temizligi",
+  nouns:[["temizlik","temizliğe"],["camasir","çamaşıra"],["bulasik","bulaşığa"],["utu","ütüye"]],noun:"ev işine",
+  prep:["sevdiğin bir müzik hazırla.",""],
+  start:["Kolay gelsin, sevdiğin bir müzik aç.","Kolay gelsin!"],
+  tip:["15 dakikalık sayaç kur, bitince bırak."],done:["Etraf pırıl pırıl ✨","Düzenli bir ortam, rahat bir kafa."]},
+ {k:"okuma",e:"📖",l:"Okuma",lead:10,
+  w:"kitap,oku,okuma,makale:.8,dergi,gazete:.7,roman,sayfa:.6",
+  nouns:[],noun:"okuma vaktine",prep:["sessiz bir köşe hazırla.",""],
+  start:["Keyifli okumalar 📖","İyi okumalar!"],
+  tip:["Kenara küçük notlar al."],done:["Bir sayfa daha bilgelik.","Okuyan insan bir adım önde."]},
+ {k:"zihin",e:"🧘",l:"Zihin",lead:5,rest:1,
+  w:"meditasyon,nefes,gunluk,journal,farkindalik,dua,ibadet,namaz,kuran,sukur,mindfulness,sessizlik",
+  nouns:[["meditasyon","meditasyonuna"],["gunluk","günlük yazmaya"],["namaz","namaza"]],noun:"sakin vaktine",prep:[""],
+  start:["Huzurlu bir an olsun.","Sakin bir an; acele yok."],
+  tip:["Bildirimleri birkaç dakikalığına sustur."],done:["Zihin biraz hafifledi.","Huzurlu bir an."]},
+ {k:"para",e:"💳",l:"Ödeme",lead:30,
+  w:"fatura,kira,odeme,ode,banka,vergi,borc,aidat,kredi,harcama,butce,havale,eft,para yatir,taksit",
+  nouns:[["fatura","fatura ödemene"],["kira","kira ödemene"]],noun:"ödemene",
+  prep:["son günü kaçırma.","dekontu saklamayı unutma."],
+  start:["Halledince bir yük kalkacak.","Kolay gelsin."],
+  tip:["Dekontu bir kenara kaydet."],done:["Bir yük daha kalktı.","Hesaplar temiz."]},
+ {k:"kod",e:"💻",l:"Yazılım",lead:15,
+  w:"kod,kodla,yazilim,program:.6,github,debug,uygulama:.6,site:.6,web:.7,python,javascript,html,css,algoritma,bilgisayar:.5,commit",
+  nouns:[["proje","projene"]],noun:"kodlama vaktine",prep:["kahveni hazırla ☕",""],
+  start:["Kolay gelsin, bol şans 💻","İyi kodlamalar!"],
+  tip:["Önce küçük bir parçayı çalıştır, sonra büyüt."],done:["Bir commit daha.","Derlendi ve çalıştı, umarım 😄"]},
+ {k:"hobi",e:"🎸",l:"Hobi",lead:10,rest:1,
+  w:"gitar,piyano,keman,baglama,muzik,enstruman,pratik:.5,resim,cizim,boya:.5,orgu,el isi,fotograf,bahce,bitki:.6,cicek:.6,puzzle,satranc,koleksiyon,yemek kursu:.3",
+  nouns:[["gitar","gitar pratiğine"],["piyano","piyano pratiğine"],["resim","resim vaktine"],["cizim","çizim vaktine"]],noun:"hobi vaktine",prep:["",""],
+  start:["Keyfini çıkar 🎨","İyi eğlenceler!"],
+  tip:["Önce yavaş tempoda, sonra hızlan."],done:["Kulağımıza hoş geldi 🎵","Elin hızlanıyor, belli."]},
+ {k:"yol",e:"🚗",l:"Yol",lead:30,
+  w:"yolculuk,otobus,ucak,tren,servis:.6,havalimani,otogar,metro:.7,yola cik,seyahat,bilet:.5,araba:.5,surus,taksi:.7,feribot,vapur",
+  nouns:[["ucak","uçağına"],["tren","trenine"],["otobus","otobüsüne"],["servis","servisine"]],noun:"yola çıkmana",
+  prep:["eşyalarını kontrol et.","biletini ve kimliğini yanına al.","biraz erken çıkmak iyi olur."],
+  start:["İyi yolculuklar!","Yolun açık olsun."],
+  tip:[],done:["Yolculuk tamam.","Varış başarılı 🚩"]},
+ {k:"bakim",e:"🧴",l:"Kişisel bakım",lead:10,
+  w:"dus,banyo:.6,cilt,sac,berber,kuafor,tiras,makyaj,manikur,bakim,epilasyon",
+  nouns:[["berber","berbere"],["kuafor","kuaföre"]],noun:"bakım vaktine",prep:[""],
+  start:["Kendine iyi bak ✨","Keyfini çıkar."],
+  tip:[],done:["Kendine vakit ayırmak iyi geldi ✨"]},
+ {k:"diger",e:"✨",l:"Diğer",lead:15,w:"",nouns:[],noun:"",prep:[""],start:[],tip:[],done:[]},
+ {k:"ornek",e:"🧪",l:"Örnek",lead:15,hidden:1,w:"ornek rutin:5,ornek gorev:5",nouns:[],noun:"",prep:[""],start:[],tip:[],done:[]}
+];
+CATS.forEach(c=>{c.kw=c.w?c.w.split(",").map(x=>{const[a,b]=x.split(":");return{t:fold(a.trim()),wt:b?+b:1,multi:a.includes(" ")};}):[];c.nf=(c.nouns||[]).map(([a,b,l])=>[fold(a),b,l]);});
+const CAT_BY={};CATS.forEach(c=>CAT_BY[c.k]=c);
+const STOP=new Set(["ve","ile","icin","bir","bu","su","o","da","de","ki","mi","gibi","cok","az","en","her","biraz","sonra","once","bugun","yarin","saat","dk","dakika","yap","et","git","al","ver"]);
+const toks=n=>fold(n).replace(/[^a-z0-9 ]+/g," ").split(/\s+/).filter(Boolean);
+/* puanla: hangi tür, ne kadar emin */
+function guessCat(name,lex){
+  const ft=" "+toks(name).join(" ")+" ",tk=toks(name);if(!tk.length)return null;
+  const sc={};let best=null;
+  if(lex)for(const[w,k]of Object.entries(lex)){if(!CAT_BY[k])continue;for(const t of tk){const m=tokMatch(t,w);if(m>=.9){sc[k]=(sc[k]||0)+3*m;}}}
+  for(const c of CATS){let s=0;for(const kw of c.kw){let m=0;if(kw.multi){if(ft.includes(" "+kw.t))m=1;}else for(const t of tk){m=Math.max(m,tokMatch(t,kw.t));}s+=m*kw.wt;}if(s>0)sc[c.k]=(sc[c.k]||0)+s;}
+  for(const[k,s]of Object.entries(sc))if(!best||s>best.s)best={k,s};
+  if(!best||best.s<.45)return null;
+  return{k:best.k,cat:CAT_BY[best.k],conf:best.s>=.9?"yüksek":"orta"};
+}
+function catOf(n,o){if(o&&o.cat&&CAT_BY[o.cat])return CAT_BY[o.cat];const g=guessCat(n,o&&o.lex);return g?g.cat:null;}
+/* isimden ek bilgi: türün "…na" hâli, konu, sınav mı, miktar, eylem, yer */
+const UNITS={soru:"soru",sayfa:"sayfa",dk:"dakika",dakika:"dakika",saat:"saat",km:"km",tur:"tur",set:"set",tekrar:"tekrar",bolum:"bölüm",unite:"ünite",test:"test",kelime:"kelime",adim:"adım",tane:"tane",paragraf:"paragraf"};
+const VERBS={ode:"ödemeyi",al:"almayı",gonder:"göndermeyi",goturmek:"götürmeyi",gotur:"götürmeyi",getir:"getirmeyi",yatir:"yatırmayı",bitir:"bitirmeyi",hazirla:"hazırlamayı",teslim:"teslim etmeyi",yolla:"yollamayı",iade:"iade etmeyi",sula:"sulamayı",yikat:"yıkatmayı",yenile:"yenilemeyi",kaydol:"kaydolmayı",basvur:"başvurmayı",imzala:"imzalamayı",ara:"aramayı",yaz:"yazmayı",doldur:"doldurmayı",yukle:"yüklemeyi",cikart:"çıkartmayı",birak:"bırakmayı"};
+function lik(w){const h=harm(w);const v=h.front?(h.round?"ü":"i"):(h.round?"u":"ı");return"l"+v+"k";}
+function info(n,c){
+  const raw=String(n).trim(),tk=toks(raw),out={};
+  const q=fold(raw).match(/(\d+)\s*(soru|sayfa|dk|dakika|saat|km|tur|set|tekrar|bolum|unite|test|kelime|adim|tane|paragraf)\b/);
+  if(q){const u=UNITS[q[2]];out.qty={n:+q[1],u,lik:(u==="km"?"'":"")+lik(u==="km"?"kilometre":u)};}
+  const last=tk[tk.length-1];if(last&&VERBS[last])out.verb=VERBS[last];
+  if(/\S+(?:y?[ae])\s+(git|gid|ugra|var)/.test(fold(raw)))out.go=true;
+  if(c&&c.nf&&c.nf.length){
+    const ft=" "+tk.join(" ")+" ";let idx=-1,hit=null;
+    for(const[kf,nn,ld]of c.nf){if(kf.includes(" ")){if(ft.includes(" "+kf)){hit=nn;if(ld!=null)out.lead=ld;break;}}else{const i=tk.findIndex(t=>tokMatch(t,kf)>=.9);if(i>=0){hit=nn;idx=i;if(ld!=null)out.lead=ld;break;}}}
+    out.noun=hit||c.noun;
+    if(c.k==="ders"){
+      const ACT=["ders","calis","sinav","vize","final","odev","test","tekrar","quiz","slayt","ozet","ezber","soru","deneme","etut","kurs","not"];
+      const words=raw.split(/\s+/).filter(Boolean);
+      let kwI=tk.findIndex(t=>ACT.some(k=>tokMatch(t,k)>=.9));if(kwI<0)kwI=words.length;
+      if(kwI>0&&words.length===tk.length){const top=words.slice(0,kwI).filter(w=>!/\d/.test(w)).join(" ");if(top&&top.length<=40&&!STOP.has(fold(top)))out.topic=top.charAt(0).toLocaleUpperCase("tr-TR")+top.slice(1);}
+      const exam=tk.some(t=>["sinav","vize","final","quiz"].some(k=>tokMatch(t,k)>=.9));
+      const prep=tk.some(t=>["tekrar","calis","odev","ozet","slayt","hazirlik","ezber","deneme","soru","test"].some(k=>tokMatch(t,k)>=.9));
+      out.exam=exam&&!prep;
+    }
+  }else if(c)out.noun=c.noun;
+  return out;
+}
+
+/* ---------- çekirdek ---------- */
+function create(opt){
+  opt=opt||{};
+  const rnd=opt.random||Math.random;
+  const mem={said:{},recent:[],dayKey:null,asked:{}}; // said: key -> {at,day}
+  const recentMax=60;
+  // tekrar etmeyen seçim
+  function P(pool){
+    const avail=pool.filter(s=>!mem.recent.includes(s));
+    const arr=avail.length?avail:pool;
+    const s=arr[Math.floor(rnd()*arr.length)];
+    mem.recent.push(s);if(mem.recent.length>recentMax)mem.recent.shift();
+    return s;
+  }
+  const tidy=h=>String(h).replace(/(^|[.!?…]\s+)((?:<[^>]+>|\s)*)([a-zçğıöşü])/g,(m,a,t,c)=>a+t+c.toLocaleUpperCase("tr-TR")).replace(/\s{2,}/g," ").trim();
+  const F=(s,o)=>s.replace(/\{(\w+)\}/g,(m,k)=>o&&o[k]!=null?o[k]:"");
+  const chance=p=>rnd()<p;
+  const cap=s=>s.charAt(0).toLocaleUpperCase("tr-TR")+s.slice(1);
+
+  let LEX=null;
+  const cOf=x=>{const c=catOf(x.n,{cat:x.cat,lex:LEX});return c&&c.k!=="diger"?c:null;};
+  /* --- durum analizi --- */
+  function analyze(ctx){
+    const M=ctx.M;
+    const items=(ctx.items||[]).map(x=>({...x,sm:toMin(x.s),em:toMin(x.e)}));
+    items.forEach(x=>{if(x.sm!=null&&x.em==null)x.em=x.sm+30;if(x.sm!=null&&x.em<=x.sm)x.em+=1440;});
+    const timed=items.filter(x=>x.sm!=null).sort((a,b)=>a.sm-b.sm);
+    const untimed=items.filter(x=>x.sm==null);
+    const t=items.length,d=items.filter(x=>x.done).length;
+    const now=timed.find(x=>!x.done&&M>=x.sm&&M<x.em)||null;
+    const next=timed.find(x=>!x.done&&x.sm>M)||null;
+    const missed=timed.filter(x=>!x.done&&x.em<=M);
+    const remaining=items.filter(x=>!x.done);
+    const realOver=(ctx.overdue||[]).filter(x=>!x.sample);
+    const anySample=items.some(x=>x.sample)||(ctx.overdue||[]).some(x=>x.sample);
+    const onlySample=items.length>0&&items.every(x=>x.sample);
+    return{M,items,timed,untimed,t,d,p:t?Math.round(d/t*100):0,now,next,missed,remaining,realOver,anySample,onlySample};
+  }
+  function freeWindows(A,from,to){
+    const segs=A.timed.filter(x=>!x.done||x.em>from).map(x=>[x.sm,x.em]).sort((a,b)=>a[0]-b[0]);
+    const out=[];let cur=from;
+    for(const[a,b]of segs){if(b<=cur)continue;if(a>cur&&a-cur>=45)out.push([cur,Math.min(a,to)]);cur=Math.max(cur,b);if(cur>=to)break;}
+    if(to-cur>=45)out.push([cur,to]);
+    return out.filter(w=>w[1]-w[0]>=45);
+  }
+  function busiest(A){
+    let best=null;
+    const up=A.timed.filter(y=>!y.done&&y.em>A.M);
+    for(const x of up){const win=up.filter(y=>y.sm>=x.sm&&y.sm<x.sm+180);if(win.length>=3&&(!best||win.length>best.n))best={n:win.length,a:x.sm,b:Math.max(...win.map(y=>y.em))};}
+    return best;
+  }
+  const nameList=(arr,max)=>{max=max||3;const ns=arr.slice(0,max).map(x=>B(x.n));const more=arr.length>max?` ve ${arr.length-max} iş daha`:"";if(ns.length<=1)return ns.join("")+more;return ns.slice(0,-1).join(", ")+(more?", "+ns[ns.length-1]+more:" ve "+ns[ns.length-1]);};
+
+  /* --- cümle üreticiler --- */
+  const isSampleN=n=>/^örnek (rutin|görev) \d+$/i.test(String(n).trim());
+  function nextLine(A,exclude){
+    const nx=A.timed.find(x=>!x.done&&x.sm>A.M&&x!==exclude);
+    if(nx){const df=nx.sm-A.M;
+      if(df<=20)return F(P(L.nextSoon),{n:B(nx.n),d:dur(df)});
+      if(df>=150)return F(P(L.nextFar),{n:B(nx.n),d:dur(df)});
+      return F(P(L.next),{n:B(nx.n),t:clockNat(nx.s,"de")});}
+    const un=A.untimed.find(x=>!x.done&&x!==exclude);
+    if(un){const inf=info(un.n,cOf(un));if(inf.verb&&chance(.6))return`Bir de ${B(un.n)} var; ${inf.verb} unutma.`;return F(P(L.untimedLeft),{n:B(un.n)});}
+    return null;
+  }
+  function genDone(A,x,ctx){
+    const parts=[],c=cOf(x),inf=info(x.n,c);
+    // 1) övgü (bazen isimli); yemek, dinlenme gibi işlerde türe özel
+    if(c&&c.rest&&c.done.length)parts.push(P(c.done));
+    else parts.push(chance(.45)?F(P(L.praiseN),{n:B(x.n),da:DA(x.n)}):P(L.praise));
+    const extras=[];
+    // zamanlama
+    if(x.sm!=null){
+      if(A.M<x.sm-5)extras.push({p:3,s:F(P(L.early),{d:dur(x.sm-A.M)})});
+      else if(A.M>x.em+20)extras.push({p:2,s:P(L.late)});
+      else if(chance(.25))extras.push({p:1,s:P(L.ontime)});
+    }
+    // ilerleme
+    const rem=A.remaining.length;
+    if(A.d===1&&A.t>2)extras.push({p:3,s:P(L.first)});
+    else if(rem===1)extras.push({p:4,s:F(P(L.lastOne),{n:B(A.remaining[0].n)}),last:true});
+    else if(A.d/A.t>=.5&&(A.d-1)/A.t<.5)extras.push({p:3,s:P(L.half)});
+    // tür (spor, ders…)
+    if(c&&!c.rest&&c.done.length&&chance(.5))extras.push({p:2,s:P(c.done)});
+    if(inf.qty&&!["dakika","saat","tane"].includes(inf.qty.u))extras.push({p:3.2,s:P([`${inf.qty.n} ${inf.qty.u} tamam, helal!`,`${inf.qty.n} ${inf.qty.u} bitti, hedef tuttu 🎯`])});
+    // sıradaki
+    const nl=extras.some(e=>e.last)?null:nextLine(A,x);
+    if(nl)extras.push({p:3.5,s:nl});
+    else if(rem>1&&chance(.5))extras.push({p:1,s:F(P(L.left),{r:rem})});
+    extras.sort((a,b)=>b.p-a.p+(rnd()-.5)*.8);
+    extras.slice(0,2).forEach(e=>parts.push(e.s));
+    return parts.join(" ");
+  }
+  function genAllDone(A,ctx){
+    const pool=A.M<720?L.allDoneM:L.allDone;
+    let s=`<span class="aGold">${P(pool)}</span> ${P(L.goldE)}`;
+    const h=ctx.hist||{};
+    const tails=[];
+    if(h.streak>=1)tails.push(F("Üst üste {s}. gün!",{s:h.streak+1}));
+    tails.push(F("Bugün {d}/{t}.",{d:A.d,t:A.t}));
+    if(A.M<1080)tails.push(P(["Kalan vaktin tamamen senin.","Şimdi biraz dinlen, hak ettin."]));
+    else tails.push(P(["Akşamı gönül rahatlığıyla geçirebilirsin.","Şimdi biraz dinlen, hak ettin."]));
+    return s+" "+P([tails[0],tails[tails.length-1]]);
+  }
+  function genMorning(A,ctx){
+    const parts=[];const M=A.M,wi=ctx.wi;
+    parts.push(M<300||M>=1380?P(L.greetG):M<720?P(L.greetM):M>=1080?P(L.greetE):P(L.greetN));
+    const h=ctx.hist||{};
+    if(!A.t){parts.push(P(L.empty));return parts.join(" ");}
+    const r=A.items.filter(x=>x.src==="r").length,g=A.t-r;
+    const comp=r&&g?` (${r} rutin, ${g} görev)`:"";
+    const first=A.timed.find(x=>!x.done&&x.em>M);
+    const s1=P([`Bugün ${A.t} işin var${comp}.`,`Bugün için ${A.t} iş planladın${comp}.`,`Listende bugün ${A.t} iş var${comp}.`]);
+    const prog=A.d?" "+P([`Şu ana kadar ${A.d} tanesi tamam.`,`${A.d} tanesini çoktan bitirmişsin.`,`Şimdiden ${A.d}/${A.t}.`]):"";
+    const later=A.d>0||M>=720;
+    parts.push(s1+prog+(first?" "+(later?P([`Sıradaki ${B(first.n)}, ${TE(first.s,"de")}.`,`Sırada ${B(first.n)} var (${first.s}).`]):P([`İlki ${clockNat(first.s,"de")} ${B(first.n)}.`,`${cap(clockNat(first.s,"de"))} ${B(first.n)} ile açılıyor.`,`İlk durak ${B(first.n)}, ${first.s}.`])):""));
+    const bz=busiest(A);
+    const fw=freeWindows(A,Math.max(M,480),1320).sort((a,b)=>(b[1]-b[0])-(a[1]-a[0]))[0];
+    if(bz&&chance(.7))parts.push(P([`${fmM(bz.a)}–${fmM(bz.b)} arası yoğun: ${bz.n} iş üst üste.`,`En yoğun saatlerin ${fmM(bz.a)}–${fmM(bz.b)}, orada ${bz.n} iş var.`]));
+    else if(fw&&fw[1]-fw[0]>=120&&chance(.6))parts.push(P([`${fmM(fw[0])}–${fmM(fw[1])} arası boş; değerlendirmek istersen orası müsait.`,`${fmM(fw[0])}–${fmM(fw[1])} arası tamamen serbestsin.`]));
+    if(h.yest!=null&&chance(.6)){const yp=h.yest;parts.push(yp>=100?P([`Dün eksiksizdi, aynı tempoyla devam.`,`Dünü ${PE(yp,"le")} kapattın, harikaydı.`]):yp>=70?`Dün ${PE(yp,"le")} kapattın, gayet iyi.`:yp>=40?P([`Dün ${pct(yp)} oldu; bugün biraz daha yukarı çıkarız.`]):P([`Dün biraz durgundu, bugün telafi ederiz.`,`Dünü geride bırak, bugün yeni sayfa.`]));}
+    if(wi===0&&chance(.6))parts.push(P(L.monday));else if(wi===4&&chance(.5))parts.push(P(L.friday));else if(wi===5&&chance(.5))parts.push(P(L.weekend));
+    return parts.slice(0,4).join(" ");
+  }
+  const isRest=x=>{const c=cOf(x);return!!(c&&c.rest);};
+  // akşam karnesinde yapılmamış dinlendirici işler (yemek, film, uyku…) sayılmaz
+  const coreOf=A=>{const core=A.items.filter(x=>x.done||!isRest(x));const d=core.filter(x=>x.done).length;return{core,t:core.length,d,p:core.length?Math.round(d/core.length*100):0};};
+  function genEvening(A,ctx){
+    const K=coreOf(A);
+    const parts=[F(P(L.evening),{d:K.d,t:K.t})];
+    parts.push(K.p>=80?P(L.eveningGood):K.p>=45?P(L.eveningMid):P(L.eveningLow));
+    const left=K.core.filter(x=>!x.done),lt=left.filter(x=>x.src==="g");
+    if(lt.length&&left.length<=4)parts.push(P([`Kalan görevler: ${nameList(lt)}. Yarına taşıyayım mı?`,`${nameList(lt)} yapılamadı; istersen yarına alalım.`]));
+    else if(left.length&&left.length<=3)parts.push(P([`Kalan rutinler: ${nameList(left)}. Rutinler haftaya yine burada, dert etme.`,`${nameList(left)} bugün olmadı; yarın yeni bir gün.`]));
+    const tm=(ctx.tomorrow||[]).filter(x=>x.s).sort((a,b)=>toMin(a.s)-toMin(b.s))[0];
+    if(tm&&chance(.7))parts.push(F(P(L.tomorrowFirst),{t:TE(tm.s,"de"),n:B(tm.n)}));
+    return{text:parts.join(" "),actions:lt.length&&left.length<=4?[{l:"Görevleri yarına taşı",a:"toTomorrow"},{l:"Kalsın",a:"dismiss"}]:[]};
+  }
+
+  /* --- aday niyetler --- */
+  function candidates(ctx,ev,A){
+    const C=[],M=A.M,h=ctx.hist||{},day=ctx.dayKey||"d";
+    const add=(key,p,gen,o)=>C.push({key,p,gen,cd:(o&&o.cd)||0,once:!!(o&&o.once),ev:!!(o&&o.ev)});
+    const isOpen=ev.type==="open";
+    // olaylar
+    if(ev.type==="done"&&ev.item){
+      const x=A.items.find(y=>y.id===ev.item.id)||ev.item;
+      if(ev.rapid>=3)add("irony",95,()=>({text:F(P(L.irony),{k:ev.rapid}),tone:"wink"}),{ev:1});
+      else if(A.t&&A.d===A.t)add("allDone",100,()=>({text:genAllDone(A,ctx),tone:"gold"}),{ev:1});
+      else add("done:"+x.id,90,()=>({text:genDone(A,x,ctx)}),{ev:1});
+    }
+    if(ev.type==="undo"&&ev.item)add("undo",80,()=>({text:ev.quick?P(L.undoQuick):F(P(L.undo),{n:B(ev.item.n)})}),{ev:1});
+    if(ev.type==="add"&&ev.item){
+      add("add:"+ev.item.id,85,()=>{const x=ev.item;const w=x.s?(x.day==="tomorrow"?"yarın "+TE(x.s,"de"):"bugün "+TE(x.s,"de")):(x.day==="tomorrow"?"yarın, saatsiz":"bugün, saatsiz");
+        let s=F(P(L.add),{n:B(x.n),w});
+        const xs=toMin(x.s),xe=x.e?toMin(x.e):xs+30;
+        if(xs!=null&&x.day!=="tomorrow"){const cf=A.timed.find(y=>y.id!==x.id&&!y.done&&y.sm<xe&&xs<y.em);if(cf)s+=" "+P([`Yalnız ${B(cf.n)} ile çakışıyor (${cf.s}).`,`Dikkat: aynı saatte ${B(cf.n)} ${DA(cf.n)} var.`]);
+          else if(xs<M)s+=" "+P(["Saati geçmiş bir iş ekledin; yaptıysan hemen işaretleyebilirsin.","Bu saat geçti bile; tamamladıysan işaretle."]);}
+        if(x.day!=="tomorrow"&&A.t>=7&&chance(.6))s+=" "+F(P(L.addBusy),{t:A.t});
+        const c=cOf(x),inf=info(x.n,c);
+        if(inf.verb&&!x.s)s+=" "+cap(inf.verb)+" unutma.";
+        else if(c&&c.tip.length&&chance(.4))s+=" "+P(c.tip);
+        if(c&&!x.cat&&!c.hidden)s+=" "+P([`${c.e} ${c.l} olarak anladım.`,`Bunu ${c.e} ${c.l.toLocaleLowerCase("tr-TR")} diye not ettim.`]);
+        if(!mem.said.typeTip&&!isSampleN(x.n)){mem.said.typeTip={at:M,day:"ever"};s+=" "+P(L.typeTip);}
+        return{text:s};},{ev:1});
+    }
+    if(ev.type==="mood"&&ev.mood!=null)add("mood"+ev.mood,88,()=>({text:P(L.mood[ev.mood])}),{ev:1});
+    if(ev.type==="tagSoon")add("tag",60,()=>({text:""}),{});
+    // zaman ve durum
+    if(A.now){const x=A.now,since=M-x.sm,left=x.em-M,c=cOf(x),inf=info(x.n,c);
+      if(since<=5)add("start:"+x.id,86,()=>{
+        let s;
+        if(c&&c.start.length){s=`${B(x.n)} ${c.rest?"vakti!":P(["başladı.","zamanı.","vakti geldi."])} ${inf.exam?P(["Başarılar! 🍀","Sakin ol, bildiklerini yaz. Başarılar!"]):P(c.start)}`;}
+        else s=F(P(L.start),{n:B(x.n),l:F(P(L.startL),{d:dur(x.em-x.sm)})});
+        if(inf.qty)s+=" "+`${inf.qty.n} ${inf.qty.u}${inf.qty.lik} hedef, kolay gelsin.`;
+        else if(c&&c.tip.length&&!inf.exam&&chance(.45))s+=" "+P(c.tip);
+        return{text:s};},{once:1});
+      else if(left<=10&&!isRest(x))add("end:"+x.id,72,()=>({text:F(P(L.ending),{n:B(x.n),d:dur(left)})}),{once:1});
+      else if(isOpen)add("run:"+x.id,46,()=>({text:F(P(L.running),{n:B(x.n),d:dur(left),e:TE(x.e||fmM(x.em%1440),"de")})}),{cd:25});
+    }
+    // yaklaşanlar: türüne göre (derse 30, randevuya 60, spora 20 dk kala…)
+    A.timed.filter(x=>!x.done&&x.sm>M&&x.sm-M<=60).forEach(x=>{
+      const df=x.sm-M,c=cOf(x),inf=info(x.n,c);
+      let lead=c&&!c.hidden?c.lead:15;if(inf.lead!=null)lead=inf.lead;if(inf.go)lead=Math.max(lead,30);
+      if(lead<=0||df>lead)return;
+      add("lead:"+x.id,df<=15?80:74,()=>{
+        let s;
+        if(c&&!c.hidden&&inf.noun){
+          const np=(inf.topic?inf.topic+" ":"")+inf.noun;
+          const nt=toks(inf.noun),stem=(a,b)=>{if(tokMatch(a,b)>=.9||tokMatch(b,a)>=.9)return true;let i=0;while(i<a.length&&a[i]===b[i])i++;return i>=5;},showName=!inf.topic&&toks(x.n).length>=2&&!toks(x.n).some(t=>nt.some(w=>stem(t,w)));
+          const pr=inf.exam?P(["başarılar! 🍀","derin bir nefes al, hazırsın.","kalemini ve kimliğini unutma."]):inf.go&&!/yola/.test(np)?P(["yola çıkma vaktini hesapla.","biraz erken çıkmak iyi olur."]):P(c.prep);
+          s=`${cap(np)} ${dur(df)} kaldı${showName?` (${B(x.n)})`:""}${pr?", "+pr:"."}`;
+          if(inf.qty&&chance(.6))s+=` Hedef: ${inf.qty.n} ${inf.qty.u}.`;
+        }else s=F(P(L.soon),{n:B(x.n),d:dur(df),tm:""});
+        if(ctx.notes&&ctx.notes[x.id])s+=` 📝 Notun: "${esc(ctx.notes[x.id])}"`;
+        return{text:s};},{once:1});
+    });
+    // geciken (bugün)
+    const ms=A.missed.filter(x=>!x.sample&&!isRest(x)&&M-x.em<=90).sort((a,b)=>b.em-a.em)[0];
+    if(ms&&!(mem.said.evening&&mem.said.evening.day===day))add("miss:"+ms.id,M>=1260?58:66,()=>({text:ms.src==="r"?F(P(L.missedR),{n:B(ms.n)}):F(P(L.missed),{n:B(ms.n)}),actions:ms.src==="r"?[{l:"Yapıldı ✓",a:"markDone",id:ms.id},{l:"Bugün atla",a:"dismiss"}]:[{l:"Yapıldı ✓",a:"markDone",id:ms.id},{l:"Yarına at",a:"toTomorrow",id:ms.id}]}),{once:1});
+    // çakışma
+    for(let i=0;i<A.timed.length;i++)for(let j=i+1;j<A.timed.length;j++){const a=A.timed[i],b=A.timed[j];if(a.done||b.done||a.src===b.src&&a.src==="r")continue;if(b.sm<a.em&&b.em>M&&b.sm-M<=120&&b.sm>=M-5){add("conf:"+a.id+b.id,62,()=>({text:F(P(L.conflict),{a:B(a.n),b:B(b.n),ta:a.s,tb:b.s})}),{once:1});i=j=1e9;}}
+    // sabah özeti / günün ilk açılışı
+    const briefed=["morning","firstOpen"].some(k=>mem.said[k]&&mem.said[k].day===day);
+    if(isOpen&&!briefed&&M>=300)add(M<720?"morning":"firstOpen",84,()=>({text:genMorning(A,ctx),also:A.t?[]:["empty"]}),{once:1});
+    // geçmişten kalanlar
+    if(A.realOver.length&&M>=300&&M<1290)add("overdue",58,()=>({text:F(P(L.overdue),{k:A.realOver.length,l:nameList(A.realOver)}),actions:[{l:"Bugüne taşı",a:"moveToday"},{l:"Şimdilik kalsın",a:"dismiss"}]}),{cd:240});
+    // örnek uyarısı (bir kez)
+    if(A.anySample&&isOpen)add("sample",A.onlySample?77:57,()=>({text:P(L.sample)}),{once:1,ever:1});
+    // akşam özeti
+    {const K=coreOf(A);if(K.t&&M>=1260&&K.d<K.t&&!A.timed.some(x=>!x.done&&!isRest(x)&&x.sm>M))add("evening",64,()=>genEvening(A,ctx),{once:1});}
+    // seri riskte
+    if(h.streak>=2&&A.d<A.t&&M>=1080&&M<1380)add("stkRisk",61,()=>({text:F(P(L.streakRisk),{n:h.streak,k:h.streak+1,r:A.t-A.d})}),{once:1});
+    // gece
+    if(M>=1380||M<300)add("night",isOpen?52:40,()=>{const tm=(ctx.tomorrow||[]).filter(x=>x.s).sort((a,b)=>toMin(a.s)-toMin(b.s))[0];let s=P(L.night);if(tm&&!(mem.said.evening&&mem.said.evening.day===day))s=F(P(L.tomorrowFirst),{t:TE(tm.s,"de"),n:B(tm.n)})+" "+s;return{text:(M<300?P(L.greetG)+" ":"")+s};},{once:1});
+    // boş zaman
+    if(isOpen&&!A.now){
+      if(A.next){const df=A.next.sm-M;if(df>=45)add("free",22,()=>({text:F(P(L.free),{n:B(A.next.n),t:TE(A.next.s,"de"),d:dur(df)})}),{cd:60});}
+      else if(A.t&&A.d<A.t&&!A.timed.some(x=>!x.done&&x.em>M))add("freeEnd",21,()=>({text:P(L.freeEnd)+" "+(A.untimed.find(x=>!x.done)?F(P(L.untimedLeft),{n:B(A.untimed.find(x=>!x.done).n)}):"")}),{cd:90});
+      else if(!A.t)add("empty",30,()=>({text:P(L.empty)}),{cd:180});
+    }
+    // içgörüler (günde bir)
+    if(isOpen&&h.weekPct!=null&&h.lastWeekPct!=null&&Math.abs(h.weekPct-h.lastWeekPct)>=8&&M>=720)add("week",34,()=>({text:F(P(h.weekPct>h.lastWeekPct?L.weekUp:L.weekDown),{p:pct(h.weekPct),q:pct(h.lastWeekPct)})}),{once:1});
+    if(isOpen&&h.bestDay&&h.bestDay.i===ctx.wi&&M<720)add("bestDay",33,()=>({text:F(P(L.bestDay),{g:GUN[h.bestDay.i],p:pct(h.bestDay.p)})}),{once:1});
+    if(isOpen&&h.streak>=3&&A.d<A.t)add("streak",32,()=>({text:F(P(L.streak),{n:h.streak})}),{once:1});
+    if(isOpen&&ctx.wi===6&&M>=1080)add("sunday",31,()=>({text:P(L.sunday)}),{once:1});
+    // özel gün / geri sayım
+    const sp=ctx.special||{};
+    if(sp.personal&&sp.personal.length&&M>=360)add("uev",87,()=>{const e=sp.personal[0];const T={dog:["🎂 Bugün doğum günü: {n}. Kutlamayı unutma!","🎂 {n} için doğum günü bugün! Güzel bir mesaj atabilirsin."],yil:["💍 Bugün yıl dönümü: {n}. Nice yıllara!"],anma:["🕯 Bugün anma günü: {n}."],etk:["🎉 Bugün: {n}! Keyfini çıkar."],dig:["📌 Bugün: {n}."]};return{text:F(P(T[e.type]||T.dig),{n:B(e.name)})};},{once:1});
+    if(sp.holiday&&M>=420&&M<1320)add("hol",70,()=>({text:sp.holidayText||P([`Bugün ${B(sp.holiday)}. Kutlu olsun!`,`${B(sp.holiday)} bugün; ${A.t>=4?"tatilde bile çalışkansın!":"keyfini çıkar."}`])}),{once:1});
+    if(sp.tags&&sp.tags.length){const g=sp.tags.slice().sort((a,b)=>a.d-b.d)[0];if(g.d>=0&&g.d<=3&&isOpen)add("tag:"+g.t+g.d,55,()=>({text:g.d===0?P([`Bugün ${B(g.t)} günü! Başarılar 🍀`,`${B(g.t)} bugün. Hazırsın, rahat ol.`]):P([`${B(g.t)} için ${g.d} gün kaldı.`,`${B(g.t)} yaklaşıyor: ${g.d} gün.`,`Geri sayım: ${B(g.t)}'${sfx(g.t,"e")} ${g.d} gün.`])}),{once:1});}
+    // ruh hâli düşükse ilerleme baskısını azalt
+    if(ctx.mood!=null&&ctx.mood>=3)C.forEach(c=>{if(/^(stkRisk|overdue|miss)/.test(c.key))c.p-=15;});
+    return C;
+  }
+
+  function elapsed(k,M,day){const s=mem.said[k];if(!s)return Infinity;if(s.day!==day)return Infinity;return M>=s.at?M-s.at:Infinity;}
+  function react(ctx,ev){
+    ev=ev||{type:"tick"};
+    const day=ctx.dayKey||"d";
+    if(mem.dayKey!==day){mem.dayKey=day;}
+    LEX=ctx.lex||null;
+    const A=analyze(ctx);
+    const C=candidates(ctx,ev,A);
+    const dbg=[];
+    let best=null;
+    for(const c of C){
+      const s=mem.said[c.key];let blocked="";
+      if(s&&(c.once?s.day===day||c.key==="sample":elapsed(c.key,A.M,day)<c.cd))blocked=c.once?"söylendi":"bekleme";
+      if(c.ev)blocked="";
+      dbg.push({key:c.key,p:c.p,blocked});
+      if(!blocked&&(!best||c.p>best.p))best=c;
+    }
+    // zamanla gelen tetiklerde önemsiz şeyler için susar
+    if(best&&ev.type==="tick"&&best.p<60)best=null;
+    if(ev.type==="tick"&&best&&mem.lastAt!=null&&mem.lastDay===day&&A.M-mem.lastAt>=0&&A.M-mem.lastAt<2&&best.p<80)best=null;
+    let msg=null,extra=null;
+    const run=c=>{const m=c.gen();if(!m||!m.text)return null;m.text=tidy(m.text);mem.said[c.key]={at:A.M,day};(m.also||[]).forEach(k=>{mem.said[k]={at:A.M,day};});mem.lastAt=A.M;mem.lastDay=day;m.key=c.key;m.p=c.p;return m;};
+    if(best)msg=run(best);
+    // uygulama açılınca: özetin ardından gerçekten önemli bir şey varsa onu da söyle
+    if(msg&&ev.type==="open"){
+      const sec=C.filter(c=>c!==best&&c.p>=60&&!dbg.find(d=>d.key===c.key&&d.blocked)&&!(mem.said[c.key]&&mem.said[c.key].day===day)).sort((a,b)=>b.p-a.p)[0];
+      if(sec){extra=run(sec);if(extra)dbg.forEach(d=>{if(d.key===sec.key)d.blocked="";});}
+    }
+    return{msg,extra,debug:{cands:dbg.sort((a,b)=>b.p-a.p),chosen:best?best.key:null,second:extra?extra.key:null,silent:!best}};
+  }
+
+  /* --- soru-cevap --- */
+  const norm=s=>String(s||"").toLocaleLowerCase("tr-TR").replace(/[.,!?;:'"()]/g," ").replace(/\s+/g," ").trim();
+  const INTENTS=[
+    ["thanks",/(teşekkür|tesekkur|sağ ?ol|sag ?ol|eyvallah|tşk|tsk|mersi|eline sağlık)/],
+    ["hello",/^(merhaba|selam|hey|slm|günaydın|gunaydin|iyi akşamlar|iyi geceler|naber|nasılsın)/],
+    ["who",/(kimsin|adın ne|sen ne|nesin|kim bu)/],
+    ["help",/(yardım|ne yapabilirsin|neler yapabilirsin|nasıl kullan|komut)/],
+    ["tired",/(yoruldum|yorgun|bitkin|uykum|canım istemiyor|üşeniyorum|isteksiz|sıkıldım|bunaldım)/],
+    ["motivate",/(motivasyon|moral|gaz ver|cesaret|söz söyle|ilham)/],
+    ["tomorrow",/(yarın|yarin)/],
+    ["week",/(hafta|haftalık)/],
+    ["streak",/(seri|üst üste|kaç gün)/],
+    ["free",/(boş|bos|müsait|musait|vaktim|zamanım var|ne zaman boş|ara var)/],
+    ["next",/(sıradaki|siradaki|sonraki|şimdi ne|ne yapayım|ne yapmalıyım|sırada ne|bir sonraki)/],
+    ["progress",/(nasıl gidiyor|ilerleme|yüzde|durum|kaç tane|kaçını|ne kadar kaldı|kalan)/],
+    ["today",/(bugün|bugun|plan|program|günüm|neler var|ne var)/]
+  ];
+  const CHIPS=[["today","Bugün ne var?"],["next","Sıradaki ne?"],["free","Ne zaman boşum?"],["progress","Nasıl gidiyorum?"],["tomorrow","Yarın ne var?"],["motivate","Biraz motivasyon"]];
+  function intentOf(text){const t=norm(text);for(const[k,re]of INTENTS)if(re.test(t))return k;return null;}
+  function answer(ctx,q){
+    LEX=ctx.lex||null;
+    const intent=INTENTS.some(i=>i[0]===q)||q==="motivate"?q:intentOf(q);
+    const A=analyze(ctx),h=ctx.hist||{},M=A.M;
+    let text="",actions=[];
+    switch(intent){
+      case "today":{
+        if(!A.t){text=P(L.empty);break;}
+        const r=A.items.filter(x=>x.src==="r").length,g=A.t-r;
+        text=P([`Bugün ${A.t} iş var: ${r} rutin, ${g} görev.`,`Bugünkü listen ${A.t} iş: ${r} rutin ve ${g} görev.`]).replace(/: 0 rutin, |: (\d+) rutin, 0 görev/,m=>m);
+        text+=A.d?` ${A.d} tanesini bitirdin.`:" Henüz başlamadın.";
+        const left=A.remaining.slice().sort((a,b)=>(a.sm??1e4)-(b.sm??1e4));
+        if(left.length)text+=" Kalanlar: "+left.slice(0,4).map(x=>B(x.n)+(x.s?` (${x.s})`:" (gün içi)")).join(", ")+(left.length>4?` ve ${left.length-4} iş daha.`:".");
+        else text+=" Hepsi tamam!";
+        break;}
+      case "next":{
+        if(A.now)text=F(P(["Şu an {n} zamanı; {d} kaldı.","Şimdi {n} sürüyor, bitişine {d} var."]),{n:B(A.now.n),d:dur(A.now.em-M)});
+        const nl=nextLine(A,A.now);
+        if(nl)text+=(text?" Ondan sonra: ":"")+(text?nl.charAt(0).toLocaleLowerCase("tr-TR")+nl.slice(1):nl);
+        if(!text)text=A.t&&A.d===A.t?"Sırada iş kalmadı, bugünü bitirdin 🎉":P(L.freeEnd);
+        if(A.missed.length&&!A.now)text+=" "+P([`Bu arada ${B(A.missed[0].n)} saati geçti, hâlâ bekliyor.`,`Gecikmiş bir iş de var: ${B(A.missed[0].n)}.`]);
+        break;}
+      case "free":{
+        const fw=freeWindows(A,Math.max(M,420),1380);
+        if(!fw.length){text=P(["Bugün epey dolusun, 45 dakikadan uzun boşluk görünmüyor.","Programın sıkı; uzun bir boşluk yok. Kısa molaları iyi değerlendir."]);break;}
+        const list=fw.slice(0,3).map(w=>`${fmM(w[0])}–${fmM(w[1])}${w[1]-w[0]>=120?" (uzun)":""}`);
+        text=P(["Boş aralıkların: ","Şu saatlerde müsaitsin: "])+list.join(", ")+".";
+        const lg=fw.slice().sort((a,b)=>(b[1]-b[0])-(a[1]-a[0]))[0];
+        if(lg[1]-lg[0]>=120)text+=" "+P([`En uzunu ${fmM(lg[0])} ile başlıyor, ${dur(lg[1]-lg[0])}.`,`${fmM(lg[0])}'${sfx(fmM(lg[0]),"den")} itibaren ${dur(lg[1]-lg[0])} boyunca serbestsin.`]);
+        break;}
+      case "progress":{
+        if(!A.t){text="Bugün listede iş yok, ölçecek bir şey de yok 🙂";break;}
+        text=P([`Bugün ${A.d}/${A.t}, yani ${pct(A.p)}.`,`Şu an ${pct(A.p)}: ${A.d} bitti, ${A.t-A.d} kaldı.`]);
+        if(h.avg7!=null){const df=A.p-h.avg7;text+=" "+(df>=10?`Son 7 gün ortalaman ${pct(h.avg7)}; bugün ortalamanın üstündesin.`:df<=-10?`Son 7 gün ortalaman ${pct(h.avg7)}; biraz geridesin ama gün bitmedi.`:`Son 7 günle aynı çizgidesin (${pct(h.avg7)}).`);}
+        if(h.streak>=2)text+=" "+F(P(L.streak),{n:h.streak});
+        break;}
+      case "tomorrow":{
+        const tm=(ctx.tomorrow||[]).slice().sort((a,b)=>(toMin(a.s)??1e4)-(toMin(b.s)??1e4));
+        if(!tm.length){text=P(["Yarın için henüz bir şey yok. Şimdiden bir iki iş eklemek ister misin?","Yarın boş görünüyor."]);break;}
+        text=`Yarın ${tm.length} iş var. `+(tm[0].s?F(P(L.tomorrowFirst),{t:TE(tm[0].s,"de"),n:B(tm[0].n)}):`İlk iş ${B(tm[0].n)}.`);
+        if(tm.length>1)text+=" Sonra "+tm.slice(1,3).map(x=>B(x.n)+(x.s?` (${x.s})`:"")).join(", ")+(tm.length>3?" ve diğerleri.":".");
+        break;}
+      case "week":{
+        if(h.weekPct==null){text="Bu hafta için henüz yeterli kayıt yok.";break;}
+        text=`Bu hafta şimdiye kadar ${pct(h.weekPct)}.`;
+        if(h.lastWeekPct!=null)text+=" "+(h.weekPct>=h.lastWeekPct?`Geçen haftayı (${pct(h.lastWeekPct)}) geçiyorsun 📈`:`Geçen hafta ${pct(h.lastWeekPct)} idi; kalan günlerde yakalarız.`);
+        if(h.bestDay)text+=` En iyi günün genelde ${GUN[h.bestDay.i]}.`;
+        break;}
+      case "streak":text=h.streak?F(P(L.streak),{n:h.streak})+(A.d<A.t?` Bugünü de bitirirsen ${h.streak+1} olur.`:""):"Henüz bir serin yok; bugünü tamamlarsan ilk gün başlar 🔥";break;
+      case "motivate":text=P(L.motivate)+(chance(.35)?` ${P(["Atalar da demiş: ","Bir de şu var: "])}"${P(L.soz)}"`:"");break;
+      case "tired":text=P(L.tired);if(A.remaining.length>2)actions=[{l:"Önemsizleri yarına at",a:"toTomorrowSome"}];break;
+      case "thanks":text=P(L.thanks);break;
+      case "hello":text=P(L.hello);break;
+      case "who":text=P(L.who);break;
+      case "help":text="Şunları yapabilirim: günün planını özetlerim, sıradaki işi ve boş saatlerini söylerim, ilerlemeni ve serini takip ederim, işler yaklaşınca hatırlatırım, bir şey tamamladığında hemen tepki veririm. Uygulamanın nasıl kullanıldığını da sorabilirsin.";break;
+      default:text=P(L.dunno);actions=CHIPS.slice(0,4).map(c=>({l:c[1],a:"ask",q:c[0]}));
+    }
+    return{text:tidy(text),actions,key:"q:"+(intent||"?"),intent};
+  }
+
+  function summary(ctx){const A=analyze(ctx);if(!A.t)return{text:tidy(P(L.empty))};const m=genEvening(A,ctx);m.text=tidy(m.text);return m;}
+  function overdueMsg(ctx){const A=analyze(ctx);if(!A.realOver.length)return{text:tidy(P(["Geçmiş günlerden kalan işin yok, tertemiz 👌","Gecikmiş iş yok, her şey yolunda."]))};return{text:tidy(F(P(L.overdue),{k:A.realOver.length,l:nameList(A.realOver)})),actions:[{l:"Bugüne taşı",a:"moveToday"},{l:"Şimdilik kalsın",a:"dismiss"}]};}
+  function praiseOther(name,g){return{text:tidy(F(P(L.praiseOther),{n:B(name),g:g||"O günün"}))};}
+  function intro(){return L.intro.slice();}
+  function ack(kind,list){const l=nameList(list||[]);const pool=kind==="today"?L.ackToday:kind==="tomorrow"?L.ackTomorrow:kind==="doneLate"?L.ackDoneLate:L.ackDismiss;return{text:tidy(F(P(pool),{l}))};}
+  function loadMem(o){if(!o)return;if(o.said&&typeof o.said==="object")mem.said=o.said;if(Array.isArray(o.recent))mem.recent=o.recent.slice(-recentMax);}
+  return{react,answer,analyze,ack,summary,overdueMsg,praiseOther,intro,loadMem,mem,chips:CHIPS,resetDay(){mem.said={};mem.lastAt=null;},resetAll(){mem.said={};mem.recent.length=0;mem.lastAt=null;},sfx,BE,dur,catOf};
+}
+
+function stem(t){const one=["leri","lari","ler","lar","nin","nun","dan","den","tan","ten","yla","yle","yi","yu","ya","ye","si","su","in","un","da","de","ta","te","la","le","i","u","a","e"];for(const x of one)if(t.endsWith(x)&&t.length-x.length>=3)return t.slice(0,-x.length);return t;}
+return {create,sfx,dur,catOf,guessCat,info,CATS,CAT_BY,fold,toks,tokMatch,stem,STOP,VERBS,spokenTail,toMin,fmM,esc};
+})();
+if(typeof module!=="undefined"&&module.exports)module.exports=Asistan2;
+
+/* =====================================================================
+   ROTA 0.1 · uygulamanın asistanı
+   Motor (Asistan2) kurallarla çalışır; burada uygulamanın verisine bağlanır:
+   rutinler, görevler, notlar, ruh hâli, özel günler, etiketler, kayıtlar.
+   ===================================================================== */
+const ROTA_V="0.1";
+const COMPASS=`<svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="23" fill="#171615"/><circle cx="50" cy="50" r="40" fill="url(#embGlow)"/><circle cx="50" cy="50" r="30" fill="none" stroke="#2d2a27" stroke-width="6"/><g transform="rotate(35 50 50)"><path d="M50 20 L60 50 L40 50z" fill="url(#embG)"/><path d="M50 80 L60 50 L40 50z" fill="#efe7df" opacity=".85"/></g><circle cx="50" cy="50" r="5" fill="#171615" stroke="#efe7df" stroke-width="2.5"/></svg>`;
+const RT=Asistan2.create();
+const RS={log:[],day:null,unread:0,q:[],busy:false,el:null,hiddenAt:0,doneTimes:[],chipX:0,pt:0};
+const isSampleName=n=>/^Örnek (rutin|görev) \d+$/i.test(String(n||"").trim());
+const stripTags=h=>String(h).replace(/<[^>]+>/g,"");
+
+/* uygulamanın verisinden asistanın bakacağı tablo */
+function rotaCtx(){
+  const t=todayD(),iso=isoD(t);
+  const map=x=>({id:x.id,n:x.n,src:x.src,s:x.s,e:x.e,done:x.done,sample:isSampleName(x.n),subs:x.subs,cat:x.cat||""});
+  const items=itemsOf(t).map(map),tomorrow=itemsOf(addD(t,1)).map(map);
+  const overdue=overdueTasks().map(x=>({id:"g:"+x.id,n:x.title,src:"g",sample:isSampleName(x.title),cat:x.cat||""}));
+  const yl=itemsOf(addD(t,-1)),ySample=yl.length>0&&yl.every(x=>isSampleName(x.n));
+  const yv=ySample?null:S.log.days[isoD(addD(t,-1))];
+  const stk=streakInfo(),wk=weekPct(mondayOf(t)),lw=weekPct(addD(mondayOf(t),-7)),wb=weekdayBest();
+  const hist={yest:yv&&yv[0]?Math.round(yv[1]/yv[0]*100):null,streak:stk.prev,avg7:avg7(),weekPct:wk.p,lastWeekPct:lw.p,bestDay:wb?{i:wb.i,p:Math.round(wb.p*100)}:null};
+  const nd=S.notes.days[iso],ev=evsOf(iso);
+  const tags=S.notes.tags.filter(g=>g.d).map(g=>({t:g.t,d:nLeft(g.d)})).filter(g=>g.d>=0&&g.d<=3);
+  const notes={};items.forEach(x=>{const n=itemNote(x.id);if(n)notes[x.id]=n;});
+  return{M:nowMin(),wi:(t.getDay()+6)%7,dayKey:iso,items,tomorrow,overdue,hist,lex:S.settings.lex||null,mood:nd&&nd.mood!=null?nd.mood:null,
+    special:{holiday:ev.length?ev[0][0].replace(/ \(\d\. gün\)$/,""):null,holidayText:ev.length?specialMsg(ev[0][0],ev[0][1],0):null,personal:uevsOn(iso).map(e=>({type:e.type,name:e.name})),tags},notes};
+}
+
+/* hafıza ve sohbet kaydı (cihazda) */
+const ROTA_RESET="1"; // artırılırsa herkesin Rota sohbeti ve hafızası bir kez temizlenir (programlara dokunmaz)
+function rotaLoad(){
+  if(lsGet("hp-rota-v")!==ROTA_RESET){["hp-rota-log","hp-rota-mem","hp-rota-intro","hp-rota-prev"].forEach(k=>{try{localStorage.removeItem(k);}catch(e){}});lsSet("hp-rota-v",ROTA_RESET);}
+  try{RT.loadMem(JSON.parse(lsGet("hp-rota-mem")||"null"));}catch(e){}
+  RS.day=isoD(todayD());
+  try{const l=JSON.parse(lsGet("hp-rota-log")||"null");if(l&&Array.isArray(l.items)){if(l.day===RS.day)RS.log=l.items.filter(x=>x&&x.text).slice(-60);else rotaKeepPrev(l);}}catch(e){}
+  try{const pv=JSON.parse(lsGet("hp-rota-prev")||"null");RS.prev=pv&&pv.day===isoD(addD(todayD(),-1))&&Array.isArray(pv.items)?pv.items:[];}catch(e){RS.prev=[];}
+  RS.loaded=true;if(RS.el)rotaRedraw();
+}
+function rotaSave(){
+  const d=RS.day,said={};
+  Object.entries(RT.mem.said||{}).forEach(([k,v])=>{if(v&&(v.day===d||v.day==="ever"||k==="sample"))said[k]=v;});
+  RT.mem.said=said;
+  lsSet("hp-rota-mem",JSON.stringify({said,recent:RT.mem.recent.slice(-60)}));
+  lsSet("hp-rota-log",JSON.stringify({day:d,items:RS.log.slice(-60)}));
+}
+/* her gün sohbet sıfırdan başlar; bir önceki günün mesajları "Dünkü mesajlar" altında saklanır */
+function rotaKeepPrev(l){if(l&&l.day===isoD(addD(todayD(),-1))&&l.items&&l.items.length){lsSet("hp-rota-prev",JSON.stringify({day:l.day,items:l.items.slice(-60)}));RS.prev=l.items.slice(-60);}else{RS.prev=[];try{localStorage.removeItem("hp-rota-prev");}catch(e){}}}
+function rotaDay(){const d=isoD(todayD());if(RS.day!==d){rotaKeepPrev({day:RS.day,items:RS.log});RS.day=d;RS.log=[];RS.q=[];RS.showPrev=false;if(RS.el)rotaRedraw();rotaSave();return true;}return false;}
+
+/* sohbet balonları */
+function rotaBubble(e){
+  if(e.who==="me")return`<div class="rM me"><div class="rB"><time>${fmM(e.at)}</time>${e.text}</div></div>`;
+  const acts=e.acts&&e.acts.length?`<div class="rActs">${e.acts.map((a,i)=>`<button data-act="rota" data-m="${e.id}" data-i="${i}" ${e.used?"disabled":""}>${esc(a.l)}</button>`).join("")}</div>`:"";
+  return`<div class="rM ${e.tone||""}" data-id="${e.id}"><span class="rAv">${COMPASS}</span><div class="rB"><time>${fmM(e.at)}</time><span class="rTx">${e.text}</span>${acts}</div></div>`;
+}
+function rotaBox(){
+  if(RS.el)return RS.el;
+  const d=document.createElement("div");d.className="rota";
+  d.innerHTML=`<div class="rHead"><span class="rAv lg">${COMPASS}</span><div class="rHt"><b>Rota</b><small class="rSt">çevrimiçi</small></div><span class="rBeta" title="Rota ${ROTA_V} · geliştirme aşamasında">v${ROTA_V} · BETA</span></div><div class="rChat" role="log" aria-live="polite" aria-label="Rota ile sohbet"></div><div class="rChipsW"><div class="rChips" aria-label="Hazır sorular"></div></div>`;
+  d.querySelector(".rChips").addEventListener("scroll",e=>{RS.chipX=e.target.scrollLeft;},{passive:true});
+  RS.el=d;rotaRedraw();return d;
+}
+function rotaPrevHTML(){const p=RS.prev||[];if(!p.length)return"";return`<div class="rPrev"><button class="rPrevB" data-act="rprev" aria-expanded="${!!RS.showPrev}">${RS.showPrev?"Dünkü mesajları gizle":"Dünkü mesajlar ("+p.filter(x=>x.who!=="me").length+")"}</button>${RS.showPrev?`<div class="rPrevL">${p.map(e=>rotaBubble({...e,acts:[]})).join("")}</div><div class="rDay">Bugün</div>`:""}</div>`;}
+function rotaRedraw(){if(!RS.el)return;const c=RS.el.querySelector(".rChat");c.innerHTML=rotaPrevHTML()+(RS.log.length?RS.log.map(rotaBubble).join(""):`<div class="rEmpty">${COMPASS}<span>Rota birazdan burada…</span></div>`);c.scrollTop=c.scrollHeight;}
+function rotaStatus(t){if(RS.el){const s=RS.el.querySelector(".rSt");s.textContent=t||"çevrimiçi";s.classList.toggle("typing",!!t);}}
+const rTokens=h=>{const out=[],re=/(<[^>]+>|&[a-z#0-9]+;|[\s\S])/g;let m;while((m=re.exec(h)))out.push(m[0]);return out;};
+function rotaAppend(e,animate){
+  if(!RS.el)return;
+  const c=RS.el.querySelector(".rChat");const em=c.querySelector(".rEmpty");if(em)em.remove();
+  if(!animate||e.who==="me"||matchMedia("(prefers-reduced-motion: reduce)").matches||!c.isConnected){c.insertAdjacentHTML("beforeend",rotaBubble(e));c.scrollTop=c.scrollHeight;return;}
+  RS.q.push(e);if(!RS.busy)rotaPump();
+}
+function rotaPump(){
+  const e=RS.q.shift();if(!e){RS.busy=false;rotaStatus("");return;}
+  RS.busy=true;rotaStatus("yazıyor…");
+  const c=RS.el.querySelector(".rChat");
+  const w=document.createElement("div");w.innerHTML=rotaBubble(e);const el=w.firstChild;
+  const tx=el.querySelector(".rTx"),acts=el.querySelector(".rActs");if(acts)acts.hidden=true;
+  tx.innerHTML=`<span class="rDots"><i></i><i></i><i></i></span>`;c.appendChild(el);c.scrollTop=c.scrollHeight;
+  const plain=stripTags(e.text),wait=e.tone==="card"?1700:Math.min(1300,380+plain.length*6);
+  setTimeout(()=>{
+    if(e.tone==="gold"||e.tone==="card"){tx.innerHTML=e.text;fin();return;}
+    const tk=rTokens(e.text);let i=0,buf="";const sp=Math.max(5,Math.min(14,800/Math.max(1,tk.length)));
+    const step=()=>{let n=0;while(i<tk.length&&n<2){buf+=tk[i];if(tk[i][0]!=="<")n++;i++;}tx.innerHTML=buf+(i<tk.length?'<span class="rCur"></span>':"");if(c.scrollHeight-c.scrollTop-c.clientHeight<120)c.scrollTop=c.scrollHeight;if(i<tk.length)setTimeout(step,sp);else fin();};
+    step();
+    function fin(){tx.innerHTML=e.text;if(acts)acts.hidden=false;c.scrollTop=c.scrollHeight;setTimeout(rotaPump,220);}
+  },wait);
+}
+/* yeni mesaj */
+function rotaPost(m,o){
+  if(!m||!m.text)return null;o=o||{};
+  const e={id:rid(),at:nowMin(),who:"r",text:m.text,tone:m.tone||o.tone||"",acts:(m.actions||[]).map(a=>({...a})),used:false,key:m.key||""};
+  RS.log.push(e);if(RS.log.length>60)RS.log.shift();rotaSave();
+  const visible=tab==="b"&&!document.hidden;
+  if(!visible&&!o.silent){RS.unread++;drawTabs3();}
+  if(!visible&&o.ping)rotaPing(e);
+  rotaAppend(e,!o.instant);
+  return e;
+}
+function rotaMe(text){const e={id:rid(),at:nowMin(),who:"me",text:esc(text)};RS.log.push(e);rotaSave();rotaAppend(e,false);}
+/* başka sekmedeyken önemli bir şey olursa üstte kısa bildirim */
+function rotaPing(e){
+  if(S.settings.rotaPing===false||!$("modal").hidden||$("tour")||$("login"))return;
+  let p=$("rPing");if(!p){p=document.createElement("button");p.id="rPing";p.className="rPing";p.dataset.act="rotago";document.body.appendChild(p);}
+  const t=stripTags(e.text);p.innerHTML=`<span class="rAv">${COMPASS}</span><span class="rPt"><b>Rota</b><span>${esc(t.length>130?t.slice(0,127)+"…":t)}</span></span>`;
+  p.classList.remove("show");void p.offsetWidth;p.classList.add("show");clearTimeout(RS.pt);RS.pt=setTimeout(()=>p.classList.remove("show"),7000);
+}
+function rotaGo(){const p=$("rPing");if(p)p.classList.remove("show");setTab("b");tdIdx=2;render();window.scrollTo(0,0);setTimeout(()=>{const pn=$("tdPanes");if(pn&&pn.scrollWidth>pn.clientWidth+5)pn.scrollTo({left:2*pn.clientWidth,behavior:"smooth"});},60);}
+
+/* olaylar */
+function rotaEvent(ev,o){
+  if(!ready)return null;o=o||{};
+  rotaDay();
+  let r;try{r=RT.react(rotaCtx(),ev);}catch(err){return null;}
+  rotaSave();
+  if(r.msg&&!o.noPost)rotaPost(r.msg,{ping:ev.type==="tick"&&r.msg.p>=78,silent:o.silent});
+  if(r.extra&&!o.noPost)rotaPost(r.extra,{silent:o.silent});
+  return r.msg;
+}
+function rotaIntro(){
+  if(lsGet("hp-rota-intro"))return false;lsSet("hp-rota-intro","1");
+  const L=RT.intro();rotaPost({text:L[0]},{silent:true});rotaPost({text:L[1]},{silent:true});
+  return true;
+}
+function rotaOpen(){if(!ready)return;rotaDay();rotaIntro();rotaEvent({type:"open"});if(tab==="b"&&$("asstPane"))rotaChips();}
+/* tamamlanan bir işe Rota'nın tepkisi (pencerede ve sohbette) */
+function rotaDone(k,tid){
+  const t=todayD(),iso=isoD(t),key="d"+((t.getDay()+6)%7);
+  let id,name,today,other;
+  if(tid){const x=taskById(tid);if(!x)return null;name=x.title;today=x.date===iso;id="g:"+tid;other=today?"":dayLabel(x.date);}
+  else{const c=W().cells[k];if(!c)return null;name=c.title;const ck2=k.split("|")[1];today=ck2===key&&tab!=="g"&&!isPv();id="r:"+k;other=today?"":colName(ck2);}
+  const now=Date.now();RS.doneTimes=RS.doneTimes.filter(x=>now-x<30000);
+  let off=!today;if(today){const it=itemsOf(t).find(x=>x.id===id);if(it&&it.s){const sm=toMin(it.s),em=it.e?toMin(it.e):sm+30,M=nowMin();off=M<sm-45||M>em+60;}}
+  if(off)RS.doneTimes.push(now);
+  const rapid=RS.doneTimes.length>=3?RS.doneTimes.length:0;if(rapid)RS.doneTimes=[];
+  let m;
+  if(today||rapid){m=rotaEvent({type:"done",item:{id,n:name},rapid},{noPost:true});}
+  else m=RT.praiseOther(name,other);
+  if(m){rotaPost(m,{silent:true,instant:true});}
+  if(today)try{rotaLogDone(id,name,tid?(taskById(tid)||{}).cat:(W().cells[k]||{}).cat);}catch(e){}
+  return m;
+}
+function rotaLogDone(id,name,cat){const iso=isoD(todayD());const g=Asistan2.catOf(name,{cat,lex:S.settings.lex});(S.log.h[iso]=S.log.h[iso]||{})[id]=[g?g.k:"",nowMin()];const ks=Object.keys(S.log.h).sort();while(ks.length>70)delete S.log.h[ks.shift()];save("log");}
+function rotaStat(k,tid){
+  const t=todayD(),iso=isoD(t);
+  let label="Bugün",st;
+  if(tid){const x=taskById(tid);if(x&&x.date!==iso){label=dayLabel(x.date);st=dayStats(x.date);}}
+  else{const ck2=k.split("|")[1];if(ck2!=="d"+((t.getDay()+6)%7)){label=colName(ck2);st=colStats(ck2);}}
+  if(!st){const s=statOf(itemsOf(t));st={t:s.t,d:s.d};}
+  const sk=streakInfo();
+  return`${esc(label)} ${st.d}/${st.t}${label==="Bugün"&&sk.cur>=1?` · 🔥 ${sk.cur} gün seri`:""}`;
+}
+/* hazır sorular */
+const ROTA_FAQ=[
+ ["help","Neler yapabilirsin?"],
+ ["f_tamam","İşi nasıl tamamlarım?","Kutuya dokun, açılan pencerede <b>Tamamla</b>'ya bas. Alt görevleri varsa tek tek işaretleyebilir ya da <b>Hepsini tamamla</b> diyebilirsin. Yanlışlıkla bastıysan aynı pencereden <b>Geri al</b>."],
+ ["f_rutin","Rutin nasıl eklerim?","<b>Haftalık Rutin</b> sekmesinde boş bir kutuya dokun, adını yaz, rengini seç. Saatini soldaki saat kartından ayarlarsın. Rutinler her hafta aynı düzende tekrar eder. Sağ üstteki <b>+</b> ile satır ve sütun da ekleyebilirsin."],
+ ["f_fark","Rutin ile görev farkı?","<b>Rutin</b> her hafta tekrar eden düzenin, örneğin her salı spor. <b>Görev</b> ise tarihli ve tek seferlik iş, örneğin 12 Kasım'da fatura ödemek. Görevleri <b>Haftalık Görev</b> sekmesinden ya da takvimden eklersin."],
+ ["f_alt","Alt görev nedir?","Bir işi küçük adımlara bölmek için. Düzenleme (✎) ekranından eklersin; hepsi işaretlenince iş kendiliğinden tamamlanır. Görevlerde her alt göreve ayrıca not da ekleyebilirsin."],
+ ["f_hafta","Mevcut hafta ne demek?","Asıl haftalık düzenin. Yoğun ya da tatil haftaları için iki <b>alternatif</b> program daha kurabilirsin. Üstteki hafta düğmesinden aralarında geçersin, ✎ ile adlarını değiştirirsin."],
+ ["f_not","Not nasıl alırım?","<b>Bugün</b> sekmesinin solundaki <b>Notlarım</b> bölümüne yaz. <b>📋 İşe not</b> ile bir işe özel not eklersen, o iş yaklaşırken sana hatırlatırım."],
+ ["f_ozel","Özel gün nasıl eklerim?","Üstteki tarihe dokunup takvimi aç, günü seç ve <b>＋ Özel gün</b>'e bas. Doğum günü, yıl dönümü, etkinlik… Zamanı gelince ben de hatırlatırım."],
+ ["f_efekt","Efekti nasıl değiştiririm?","Üstteki 🎨 düğmesine dokun. Tamamlama efektini, gün bitince oynayan efekti ve temayı oradan seçersin. Seçtiğin efekt tamamlama penceresindeki düğmede de oynar."],
+ ["f_tasi","Görevi başka güne taşıma","Görevin ✎ düzenleme ekranında tarihe dokun, takvimden yeni günü seç. Geçmiş günlerden kalan görevleri ben de fark edip bugüne taşımayı öneririm."],
+ ["f_veri","Verilerim nerede?","Programın otomatik kaydedilir: bağlantın varsa bulutta, yoksa bu cihazda. Hesapla giriş yakında geliyor; o zaman her cihazdan erişebileceksin."],
+ ["f_bildirim","Bildirimlerini kapatmak","Başka bir sekmedeyken önemli bir şey olursa ekranın üstünde kısa bir not gösteririm. İstemezsen ⚙ Ayarlar'daki <b>Rota bildirimleri</b>'ni kapatabilirsin."],
+ ["tour","Tanıtımı tekrar izle"],
+ ["who","Sen kimsin?"]
+];
+function rotaChips(){
+  if(!RS.el)return;
+  let c,A;try{c=rotaCtx();A=RT.analyze(c);}catch(e){return;}
+  const M=c.M,L=[];
+  if(M<660&&A.t)L.push(["today","Bugün ne var?"]);
+  if(A.remaining.length)L.push(["next",M<660&&!A.d?"İlk işim ne?":"Sıradaki ne?"]);
+  if(A.realOver.length)L.push(["overdue","Gecikenleri göster"]);
+  if(M>=1140&&A.t)L.push(["summary","Bugünü özetle"]);
+  L.push(["analyze","🔍 Programımı analiz et"]);
+  if(A.t)L.push(["progress","Nasıl gidiyorum?"]);
+  if(M<1260&&A.remaining.length)L.push(["free","Ne zaman boşum?"]);
+  if(M>=660&&A.t)L.push(["today","Bugün ne var?"]);
+  L.push(["tomorrow","Yarın ne var?"]);
+  if(c.hist.streak>=2)L.push(["streak","Serim kaç gün?"]);
+  if(c.hist.weekPct!=null)L.push(["week","Bu hafta nasıl?"]);
+  L.push(["motivate","Biraz motivasyon"],["tired","Yoruldum"]);
+  const box=RS.el.querySelector(".rChips");
+  box.innerHTML=L.map(x=>`<button data-act="rotaq" data-q="${x[0]}">${x[1]}</button>`).join("")+`<span class="rSep">Uygulama</span>`+ROTA_FAQ.map(x=>`<button class="faq" data-act="rotaq" data-q="${x[0]}">${x[1]}</button>`).join("");
+  box.scrollLeft=RS.chipX||0;
+}
+const P0=a=>a[Math.floor(Math.random()*a.length)];
+function rotaAsk(q,label){
+  if(!ready)return;rotaDay();
+  if(RS.q.length>2)return;
+  rotaMe(label);
+  const c=rotaCtx();let m;
+  try{
+    if(q==="summary")m=RT.summary(c);
+    else if(q==="overdue")m=RT.overdueMsg(c);
+    else if(q==="analyze"){rotaPost({text:P0(["Programını inceliyorum, bir saniye…","Bakıyorum… rutinlerini ve görevlerini tarıyorum.","Hemen inceliyorum 🔍"])},{silent:true});m=rotaAnalysis();}
+    else if(q==="tour"){m={text:"Tamam, tanıtımı baştan başlatıyorum. Rutinleri, görevleri, Bugün ekranını sırayla göstereceğim."};setTimeout(()=>{if($("modal").hidden&&!$("tour"))startTour();},1900);}
+    else{const f=ROTA_FAQ.find(x=>x[0]===q);m=f&&f[2]?{text:f[2]}:RT.answer(c,q);}
+  }catch(err){m={text:"Bir şeyler ters gitti, bunu şu an cevaplayamadım. Geliştirme aşamasındayım, kusura bakma 🙏"};}
+  rotaPost(m,{silent:true});
+}
+function rotaAction(mid,i){
+  const e=RS.log.find(x=>x.id===mid);if(!e||e.used)return;const a=e.acts[+i];if(!a)return;
+  e.used=true;rotaSave();if(RS.el)RS.el.querySelectorAll(`.rM[data-id="${mid}"] .rActs button`).forEach(b=>b.disabled=true);
+  const t=todayD(),iso=isoD(t),tm=isoD(addD(t,1));
+  const taskOf=id=>id&&id.startsWith("g:")?taskById(id.slice(2)):null;
+  let m=null;
+  switch(a.a){
+    case "markDone":{
+      if(a.id&&a.id.startsWith("g:")){const x=taskOf(a.id);if(x){if(x.subs.length)x.subs.forEach(s=>s.d=true);else x.done=true;save("tasks");render();celebrateTask(x.id);}}
+      else if(a.id){const k=a.id.slice(2),c=W().cells[k];if(c){if(c.subs.length)c.subs.forEach(s=>s.d=true);else c.done=true;save(wkey());render();celebrate(k);}}
+      m=RT.ack("doneLate");break;}
+    case "toTomorrow":{
+      let mv=[];
+      if(a.id){const x=taskOf(a.id);if(x)mv=[x];}
+      else mv=S.tasks.items.filter(x=>x.date===iso&&!isDone(x));
+      mv.forEach(x=>{x.date=tm;});if(mv.length){save("tasks");render();}
+      m=mv.length?RT.ack("tomorrow",mv.map(x=>({n:x.title}))):{text:"Taşınacak görev kalmamış. Rutinler zaten her hafta tekrar ediyor."};break;}
+    case "moveToday":{
+      const ov=overdueTasks().filter(x=>!isSampleName(x.title));ov.forEach(x=>{x.date=iso;});if(ov.length){save("tasks");render();}
+      m=ov.length?RT.ack("today",ov.map(x=>({n:x.title}))):{text:"Taşınacak görev kalmamış."};break;}
+    case "ask":rotaAsk(a.q,a.l);return;
+    default:m=RT.ack("dismiss");
+  }
+  rotaPost(m,{silent:true});
+}
+
+/* ---------- tür seçimi (düzenleme ekranları): Rota tahmin eder, kullanıcı düzeltir, Rota öğrenir ---------- */
+const rotaTypes=()=>Asistan2.CATS.filter(c=>!c.hidden);
+function typeGuess(title){if(isSampleName(title))return{sample:1};const g=Asistan2.guessCat(title||"",S.settings.lex);return g&&g.k!=="diger"?g:null;}
+function typeLabel(st,title){
+  const sel=st.cat?Asistan2.CAT_BY[st.cat]:null,g=sel?null:typeGuess(title);
+  if(sel)return[`${sel.e} ${sel.l}`,"Senin seçimin · değiştirmek için dokun"];
+  if(g&&g.sample)return["🧪 Örnek iş","Kendi işini yazınca türünü tahmin ederim"];
+  if(g)return[`${g.cat.e} ${g.cat.l}`,g.conf==="yüksek"?"Rota böyle tahmin etti · değiştirmek için dokun":"Tam emin değilim · doğru değilse dokunup seç"];
+  return String(title||"").trim()?["Bunu henüz tanıyamadım","Ne olduğunu seçersen öğrenirim"]:["Adını yazınca tahmin ederim","İstersen şimdiden seçebilirsin"];
+}
+function typeRowHTML(st,title){
+  const[m,sb]=typeLabel(st,title);
+  let h=`<div class="lbl">Tür <span class="opt">· Rota için</span></div><button class="rType ${st.typeOpen?"open":""}" data-act="rtyp" aria-expanded="${!!st.typeOpen}"><span class="rAv">${COMPASS}</span><span class="rtx"><b id="rTypeMain">${m}</b><small id="rTypeSub">${sb}</small></span><span class="chev" aria-hidden="true">›</span></button>`;
+  if(st.typeOpen)h+=`<div class="rTypes"><p class="rWhy"><b>Neden seçmelisin?</b> Türünü bilirsem seni daha iyi takip ederim: derse 30 dakika, randevuya 1 saat kala haber veririm; yemeği, dinlenmeyi ve eğlenceyi mola sayarım; bitirince ona uygun konuşurum. Seçtiklerinden de öğrenirim.</p><div class="rTg">${rotaTypes().map(c=>`<button class="${st.cat===c.k?"on":""}" data-act="rtset" data-k="${c.k}" aria-pressed="${st.cat===c.k}">${c.e} ${c.l}</button>`).join("")}<button class="auto ${!st.cat?"on":""}" data-act="rtset" data-k="" aria-pressed="${!st.cat}">🧭 Rota tahmin etsin</button></div></div>`;
+  return h;
+}
+document.addEventListener("input",e=>{const t=e.target;let st=null;if(t.id==="eTitle"&&typeof ed!=="undefined"&&ed)st=ed;else if(t.id==="tTitle"&&typeof ted!=="undefined"&&ted)st=ted;if(!st||st.cat)return;const[m,sb]=typeLabel(st,t.value);const a=$("rTypeMain"),b=$("rTypeSub");if(a)a.textContent=m;if(b)b.textContent=sb;});
+function rotaLearn(title,cat){
+  if(!cat||cat==="diger"||isSampleName(title))return;
+  const g=Asistan2.guessCat(title,S.settings.lex);if(g&&g.k===cat)return;
+  const words=Asistan2.toks(title).filter(t=>t.length>=3&&!/\d/.test(t)&&!Asistan2.STOP.has(t)&&!Asistan2.VERBS[t]).slice(0,1);if(!words.length)return;
+  const lex=S.settings.lex=S.settings.lex||{};const roots=[];
+  words.forEach(t=>{const r=Asistan2.stem(t);delete lex[r];lex[r]=cat;roots.push(r);});
+  const ks=Object.keys(lex);while(ks.length>150)delete lex[ks.shift()];
+  save("settings");
+  const c=Asistan2.CAT_BY[cat],orig=title.trim();
+  try{rotaDay();rotaPost({text:`Not aldım 👍 “${esc(orig)}” gibi işleri artık ${c.e} <b>${c.l}</b> olarak bileceğim.`},{silent:true});}catch(e){}
+}
+
+/* ---------- program analizi ---------- */
+function rotaAnalysis(){
+  const t=todayD(),w=W(),lex=S.settings.lex,CB=Asistan2.CAT_BY;
+  const catKey=(n,cat)=>{const c=Asistan2.catOf(n,{cat,lex});return c?c.k:"";};
+  const items=[];// {day,s,e,min,k,n,src}
+  w.rows.forEach(r=>{for(let i=0;i<7;i++){const c=w.cells[r.id+"|d"+i];if(!c||isSampleName(c.title))continue;const sm=r.start?toMin(r.start):null;let em=r.end?toMin(r.end):null;if(sm!=null&&em!=null&&em<=sm)em+=1440;items.push({day:i,s:sm,e:em,min:sm!=null&&em!=null?em-sm:0,k:catKey(c.title,c.cat),n:c.title,src:"r"});}});
+  const nR=items.length;
+  for(let j=0;j<7;j++){const d=addD(t,j),iso=isoD(d),wi=(d.getDay()+6)%7;S.tasks.items.filter(x=>x.date===iso&&!isSampleName(x.title)).forEach(x=>{const sm=x.time?toMin(x.time):null;let em=x.end?toMin(x.end):(sm!=null?sm+30:null);if(sm!=null&&em<=sm)em+=1440;items.push({day:wi,s:sm,e:em,min:sm!=null?em-sm:0,k:catKey(x.title,x.cat),n:x.title,src:"g",done:isDone(x)});});}
+  const nG=items.length-nR;
+  if(!items.length){const anyS=Object.values(w.cells).some(c=>isSampleName(c.title));return{text:anyS?"Programında şimdilik sadece örnek işler var. Kendi rutinlerini ve görevlerini ekledikçe sana gerçek bir analiz çıkarırım 🙂":"Programın şu an boş, analiz edecek bir şey bulamadım. Birkaç rutin ya da görev ekleyince tekrar bakalım."};}
+  const hrs=m=>{const h=m/60;return(Math.round(h*2)/2).toLocaleString("tr-TR")+" sa";};
+  const REST=k=>k&&CB[k]&&CB[k].rest;
+  const totMin=items.reduce((a,x)=>a+x.min,0),untimed=items.filter(x=>x.s==null).length;
+  // türler
+  const byK={};items.forEach(x=>{const k=x.k||"?";byK[k]=byK[k]||{min:0,n:0};byK[k].min+=x.min;byK[k].n++;});
+  const kinds=Object.entries(byK).filter(([k])=>k!=="?").sort((a,b)=>(b[1].min-a[1].min)||(b[1].n-a[1].n));
+  const unknown=byK["?"]?byK["?"].n:0;const maxMin=Math.max(1,...kinds.map(([,v])=>v.min));
+  // günler
+  const days=Array.from({length:7},(_,i)=>({i,n:0,load:0,rest:0,list:[]}));
+  items.forEach(x=>{const d=days[x.day];d.n++;if(REST(x.k))d.rest+=x.min;else d.load+=x.min;if(x.s!=null)d.list.push(x);});
+  const busy=days.slice().sort((a,b)=>b.load-a.load||b.n-a.n)[0],calm=days.filter(d=>d.n>0).sort((a,b)=>a.load-b.load||a.n-b.n)[0],free=days.filter(d=>d.n===0);
+  // aralıksız uzun bloklar (dinlendirici işler bloğu böler)
+  let block=null;days.forEach(d=>{const L=d.list.slice().sort((a,b)=>a.s-b.s);let st=null,en=null;L.forEach(x=>{if(REST(x.k)){st=null;return;}if(st!=null&&x.s-en<=15){en=Math.max(en,x.e);}else{st=x.s;en=x.e;}if(en-st>=240&&(!block||en-st>block.len))block={day:d.i,a:st,b:en,len:en-st};});});
+  // çakışmalar
+  let conf=0,confEx=null;days.forEach(d=>{const L=d.list.slice().sort((a,b)=>a.s-b.s);for(let i=0;i<L.length;i++)for(let j=i+1;j<L.length;j++){if(L[j].s<L[i].e&&!(L[i].src==="r"&&L[j].src==="r"&&L[i].s===L[j].s&&L[i].e===L[j].e)){conf++;if(!confEx)confEx={day:d.i,a:L[i],b:L[j]};}}});
+  const late=items.filter(x=>x.e!=null&&x.e>1410&&!REST(x.k)).length;
+  const restMin=items.filter(x=>REST(x.k)).reduce((a,x)=>a+x.min,0);
+  const over=overdueTasks().filter(x=>!isSampleName(x.title)).length;
+  const a7=avg7(),stk=streakInfo();
+  const sec=(t,b)=>`<div class="rAnS"><b>${t}</b>${b}</div>`;
+  let h=`<div class="rAn"><div class="rAnH">🔍 Program analizi</div>`;
+  h+=sec("Genel",`<p>Mevcut haftanda <b>${nR}</b> rutin var${nR&&items.some(x=>x.src==="r"&&x.min)?`, haftada yaklaşık <b>${hrs(items.filter(x=>x.src==="r").reduce((a,x)=>a+x.min,0))}</b> tutuyor`:""}. ${nG?`Önümüzdeki 7 günde <b>${nG}</b> görevin var.`:"Önümüzdeki 7 günde görevin yok."}${untimed?` ${untimed} işin saati yok, onları gün içi sayıyorum.`:""}</p>`);
+  if(kinds.length){h+=sec("Türler",`<div class="rKinds">${kinds.slice(0,7).map(([k,v])=>{const c=CB[k];return`<div class="rKind"><span>${c.e} ${c.l}</span><i><em style="width:${Math.max(4,Math.round(v.min/maxMin*100))}%"></em></i><small>${v.min?hrs(v.min):v.n+" iş"}</small></div>`;}).join("")}</div>${unknown?`<p class="mut">${unknown} işin türünü çıkaramadım. Düzenleme ekranından türünü işaretlersen seni daha iyi takip ederim.</p>`:""}`);}
+  let wk=`<p>En yoğun gün <b>${DAYS[busy.i]}</b> (${busy.n} iş${busy.load?`, ${hrs(busy.load)}`:""}).`;
+  if(calm&&calm.i!==busy.i)wk+=` En sakini <b>${DAYS[calm.i]}</b>.`;
+  if(free.length)wk+=` ${free.length===1?DAYS[free[0].i]+" günü tamamen boş":free.length+" günün tamamen boş"}.`;
+  wk+=`</p>`;
+  if(block)wk+=`<p>${DAYS[block.day]} ${fmM(block.a%1440)}–${fmM(block.b%1440)} arası işler arka arkaya geliyor.</p>`;
+  if(restMin>0)wk+=`<p>Yemeğe ve dinlenmeye de yer ayırmışsın, güzel 👌</p>`;
+  if(late)wk+=`<p>${late} işin gece geç saate uzanıyor.</p>`;
+  h+=sec("Haftan",wk);
+  const notes=[];
+  if(conf)notes.push(`${conf} yerde saatler üst üste biniyor${confEx?` (${DAYS[confEx.day]}: <b>${esc(confEx.a.n)}</b> ile <b>${esc(confEx.b.n)}</b>)`:""}.`);
+  if(over)notes.push(`Geçmiş günlerden kalan ${over} görevin var.`);
+  if(notes.length)h+=sec("Fark ettiklerim",notes.map(x=>`<p>${x}</p>`).join(""));
+  h+=sec("Gidişat",a7!=null?`<p>Son 7 günde ortalaman <b>%${a7}</b>${stk.cur?`, serin <b>${stk.cur} gün</b>`:""}. Kullandıkça tür bazında oranlarını da göstereceğim.</p>`:`<p>Henüz yeterli kayıt yok. Kullandıkça burası dolacak; hangi tür işlerde daha istikrarlı olduğunu da göstereceğim.</p>`);
+  const peak=busy.load/60;
+  const com=peak>=9?`${DAYS[busy.i]} epey yoğun görünüyor ama halledersin 💪`:peak>=6?`${DAYS[busy.i]} biraz yoğun görünüyor ama halledersin.`:totMin<180?"Hafif ve rahat bir hafta görünüyor.":"Gayet dengeli bir hafta görünüyor 👌";
+  h+=`<p class="rAnC">🧭 ${com}</p></div>`;
+  return{text:h,tone:"card"};
+}
+
+/* Bugün sekmesinin sağ bölümü: Rota + gösterge paneli */
+function rotaDash(){
+  const b=brainNow(),M=b.M;
+  {const yl=itemsOf(addD(todayD(),-1));if(yl.length&&yl.every(x=>isSampleName(x.n))){b.yv=null;b.yp=null;}}
   const live=statOf(b.raw),lp=live.t?Math.round(live.d/live.t*100):0;
-  h+=`<div class="aTiles"><div class="aTile">${ringSm(lp)}<span class="k">Bugün</span></div><div class="aTile"><span class="v">🔥${b.stk.cur}</span><span class="k">Gün seri</span></div><div class="aTile"><span class="v">${b.wk.p!=null?"%"+b.wk.p:"—"}</span><span class="k">Bu hafta</span></div>`;
+  let h=`<div class="aTiles"><div class="aTile">${ringSm(lp)}<span class="k">Bugün</span></div><div class="aTile"><span class="v">🔥${b.stk.cur}</span><span class="k">Gün seri</span></div><div class="aTile"><span class="v">${b.wk.p!=null?"%"+b.wk.p:"—"}</span><span class="k">Bu hafta</span></div>`;
   const x=b.now||b.nx;
   if(x)h+=`<button class="aTile w" ${x.tid?`data-act="asstg" data-id="${x.tid}"`:""}><span class="tx"><small>${b.now?"Şu an":"Sıradaki"}</small><b>${esc(x.n)}</b><small>${x.s}${x.e?"–"+x.e:""} · ${x.src==="r"?"Rutin":"Görev"}</small></span><span class="aCnt">${b.now?"bitişe "+durTx(toMin(b.now.e)-M):durTx(toMin(b.nx.s)-M)}</span></button>`;
   else if(b.items.some(z=>z.s&&!z.done)){const lz=b.items.filter(z=>z.s&&!z.done).pop();h+=`<button class="aTile w" ${lz.tid?`data-act="asstg" data-id="${lz.tid}"`:""}><span class="tx"><small>Bekleyen</small><b>${esc(lz.n)}</b><small>${lz.s}${lz.e?"–"+lz.e:""} · saati geçti</small></span><span class="aCnt" style="background:var(--surf);color:var(--g2);box-shadow:inset 0 0 0 1.5px var(--g2)">gecikti</span></button>`;}
@@ -1516,9 +2683,28 @@ function renderAsst(){
   const up=upcoming3();
   h+=`<div class="aSec">Yaklaşanlar · 3 gün</div>`;
   h+=up.length?`<div class="aChips">${up.map(u=>`<${u.tid?`button data-act="asstg" data-id="${u.tid}"`:"div"} class="aCc ${u.ev?"ev":""} ${u.tag?"tg":""} ${u.uv?"uv":""} ${u.done?"dn":""}"><em>${relDayTx(u.i)}</em><b>${esc(u.n)}</b><small>${u.d.getDate()} ${AYK[u.d.getMonth()]} ${GUNK[(u.d.getDay()+6)%7]} · ${u.uv?u.sub:u.tag?"Etiket":u.ev?(u.k==="t"?"Resmî tatil":u.k==="y"?"Yarım gün":u.k==="d"?"Dinî gün":"Özel gün"):u.tm}</small></${u.tid?"button":"div"}>`).join("")}</div>`:`<div class="aNone">Önümüzdeki 3 günde bir şey yok.</div>`;
-  box.innerHTML=h;
+  return h;
 }
-setInterval(()=>{if(tab==="b"&&$("asstPane")&&$("modal").hidden)renderAsst();},30000);
+function renderAsst(){
+  const box=$("asstPane");if(!box)return;
+  const el=rotaBox(),ch=el.querySelector(".rChat");
+  const atBottom=ch.scrollHeight-ch.scrollTop-ch.clientHeight<60,st=ch.scrollTop;
+  if(el.parentNode!==box){box.innerHTML="";box.appendChild(el);}else{[...box.children].forEach(n=>{if(n!==el)n.remove();});}
+  rotaChips();
+  try{box.insertAdjacentHTML("beforeend",rotaDash());}catch(e){}
+  ch.scrollTop=atBottom?ch.scrollHeight:st;
+  if(tab==="b"&&RS.unread){RS.unread=0;drawTabs3();}
+}
+setInterval(()=>{
+  if(!ready)return;
+  if(rotaDay())rotaOpen();else rotaEvent({type:"tick"});
+  if(tab==="b"&&$("asstPane")&&$("modal").hidden)renderAsst();
+},60000);
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden){RS.hiddenAt=Date.now();return;}
+  if(ready&&RS.hiddenAt&&Date.now()-RS.hiddenAt>15*60000){RS.hiddenAt=0;rotaOpen();}
+});
+
 
 /* ---------- kişisel özel günler ---------- */
 const UT={
@@ -1679,7 +2865,7 @@ function nCalSheet(keep){
 function nAct(act,a){
   const iso=isoD(todayD());
   switch(act){
-    case "nmood":{const day=nDay(iso,true),i=+a.dataset.i;day.mood=day.mood===i?null:i;nSave();drawNotes();if($("asstPane"))renderAsst();return true;}
+    case "nmood":{const day=nDay(iso,true),i=+a.dataset.i;day.mood=day.mood===i?null:i;nSave();drawNotes();if(day.mood!=null)try{rotaEvent({type:"mood",mood:i},{silent:true});}catch(e){}if($("asstPane"))renderAsst();return true;}
     case "nmadd":{const day=nDay(iso,true);if(!day.items.length)day.items.push({t:""});const last=day.items[day.items.length-1];if(last.t.trim()||last.it)day.items.push({t:""});drawNotes(day.items.length-1);return true;}
     case "ndel":{const day=nDay(iso,true);day.items.splice(+a.dataset.i,1);nSave();drawNotes();nRefreshCells();return true;}
     case "npick":nPickSheet();return true;
@@ -1702,7 +2888,7 @@ let ted=null;
 function openTaskEditor(id,date){
   const x=id?taskById(id):null;
   const t=todayD(),d0=date||(x?x.date:(sameD(tkMon,mondayOf(t))||tab!=="g"?isoD(t):isoD(tkMon)));
-  const dd0=isoToD(d0);ted={id:x?x.id:null,isNew:!x,title:x?x.title:"",note:x?(x.note||""):"",sEdit:-1,snDraft:"",calOpen:false,cal:{y:dd0.getFullYear(),m:dd0.getMonth()},date:d0,time:x?x.time:"",end:x?x.end:"",color:x?x.color:1,subs:x?clone(x.subs):[],done:x?!!x.done:false,wasDone:x?isDone(x):false,hadSubs:!!(x&&x.subs.length),subDraft:"",delAsk:false,wk:mondayOf(isoToD(d0))};
+  const dd0=isoToD(d0);ted={id:x?x.id:null,isNew:!x,title:x?x.title:"",note:x?(x.note||""):"",sEdit:-1,snDraft:"",calOpen:false,cal:{y:dd0.getFullYear(),m:dd0.getMonth()},date:d0,time:x?x.time:"",end:x?x.end:"",color:x?x.color:1,cat:x&&x.cat||"",typeOpen:false,subs:x?clone(x.subs):[],done:x?!!x.done:false,wasDone:x?isDone(x):false,hadSubs:!!(x&&x.subs.length),subDraft:"",delAsk:false,wk:mondayOf(isoToD(d0))};
   drawTaskEditor(true);
 }
 function tRead(){if(!ted)return;const a=$("tTitle");if(a)ted.title=a.value;const b=$("tSubIn");if(b)ted.subDraft=b.value;const c=$("tDet");if(c)ted.note=c.value;const n=$("tSnIn");if(n)ted.snDraft=n.value;}
@@ -1724,6 +2910,7 @@ function drawTaskEditor(first){
   const e=ted,t=todayD(),ns=e.subs.length,nd=e.subs.filter(q=>q.d).length;
   let h=head(e.isNew?"Yeni görev":"Görevi düzenle",esc(dayLabel(e.date))+(e.time?" · "+tmText(e):""));
   h+=`<div class="lbl" style="margin-top:4px">Görev başlığı</div><input class="inp tTitleIn" id="tTitle" maxlength="60" placeholder="Görev başlığı" value="${esc(e.title)}">`;
+  h+=typeRowHTML(e,e.title);
   h+=`<div class="lbl">Görev detayı <span class="opt">(isteğe bağlı)</span></div><textarea class="inp auto" id="tDet" maxlength="1000" rows="2" placeholder="Görevle ilgili eklemek istediğiniz detaylar">${esc(e.note)}</textarea>`;
   const dd=isoToD(e.date),ev=evsOf(e.date);
   h+=`<div class="lbl">Tarih</div><button class="dField ${e.calOpen?"open":""}" data-act="tdfield" aria-expanded="${e.calOpen}"><span class="cic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="3"/><path d="M8 2.5v4M16 2.5v4M3 9.5h18"/><path d="M8.5 15.2l2.4 2.4 4.6-4.8"/></svg></span><span class="tx"><b>${dd.getDate()} ${AY[dd.getMonth()]} ${dd.getFullYear()}, ${DAYS[(dd.getDay()+6)%7]}</b><small>${relDay(dd)}${ev.length?" · "+esc(shortN(ev[0][0])):""}</small></span><svg class="ch" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>${e.calOpen?edCalHTML():""}`;
@@ -1746,11 +2933,13 @@ function commitTask(){
   if(e.sEdit>=0&&e.subs[e.sEdit]){const v=(e.snDraft||"").trim();if(v)e.subs[e.sEdit].n=v;else delete e.subs[e.sEdit].n;e.sEdit=-1;}
   const title=e.title.trim()||(e.subs.length?"Görev":"");
   if(!title){toast("Önce görevin adını yaz");const i=$("tTitle");i&&i.focus();return;}
-  const item={id:e.id||rid(),date:e.date,time:e.time||"",end:e.time?(e.end||""):"",title:title.slice(0,80),note:(e.note||"").trim().slice(0,1000),color:e.color,subs:e.subs,done:e.subs.length?e.subs.every(q=>q.d):(e.hadSubs?e.wasDone:e.done)};
+  const item={id:e.id||rid(),date:e.date,time:e.time||"",end:e.time?(e.end||""):"",cat:e.cat||"",title:title.slice(0,80),note:(e.note||"").trim().slice(0,1000),color:e.color,subs:e.subs,done:e.subs.length?e.subs.every(q=>q.d):(e.hadSubs?e.wasDone:e.done)};
   const i=S.tasks.items.findIndex(x=>x.id===item.id);if(i>=0)S.tasks.items[i]=item;else S.tasks.items.push(item);
+  if(e.cat)rotaLearn(item.title,e.cat);
   const wasDone=e.wasDone;closeSheet();
   if(tab==="g")tkMon=mondayOf(isoToD(item.date));
   save("tasks");render();
+  if(i<0){const td=isoD(todayD()),tm=isoD(addD(todayD(),1));if(item.date===td||item.date===tm)try{rotaEvent({type:"add",item:{id:"g:"+item.id,n:item.title,s:item.time,e:item.end,cat:item.cat,day:item.date===td?"today":"tomorrow"}},{silent:true});}catch(err){}}
   if(tab!=="g")toast(`Görev eklendi: ${dayLabel(item.date)}`);
   else{const n=document.querySelector(`.tk[data-tid="${CSS.escape(item.id)}"]`);if(n){n.scrollIntoView({block:"nearest",inline:"nearest",behavior:"smooth"});if(e.isNew)anim(n,"popIn .35s",360);}}
   if(!wasDone&&isDone(item))celebrateTask(item.id);
@@ -1763,7 +2952,7 @@ function calTasksHTML(iso){
 /* ---------- modal ---------- */
 let mode=null;
 function openSheet(m,html,wide){mode=m;const sh=$("sheet");sh.classList.toggle("wide",!!wide);sh.innerHTML=html;$("modal").hidden=false;}
-function closeSheet(){if(mode==="ttime"&&ted){tp=null;drawTaskEditor();return;}if(mode==="uev"&&calSt&&typeof uE!=="undefined"&&uE){uE=null;drawCal(true);return;}if(typeof uE!=="undefined")uE=null;ted=null;$("modal").hidden=true;$("sheet").innerHTML="";mode=null;ed=null;tp=null;rn=null;ck=null;pending=null;}
+function closeSheet(){const fin=mode==="check"&&ck&&ck.fin?{k:ck.k,tid:ck.tid}:null;if(ck&&ck.timer)clearTimeout(ck.timer);if(fin)setTimeout(()=>{render();fin.tid?celebrateTask(fin.tid,true):celebrate(fin.k,true);},40);if(mode==="ttime"&&ted){tp=null;drawTaskEditor();return;}if(mode==="uev"&&calSt&&typeof uE!=="undefined"&&uE){uE=null;drawCal(true);return;}if(typeof uE!=="undefined")uE=null;ted=null;$("modal").hidden=true;$("sheet").innerHTML="";mode=null;ed=null;tp=null;rn=null;ck=null;pending=null;}
 let pending=null;const setPending=v=>{pending=v;};
 const head=(t,s)=>`<div class="sh"><div><h3>${t}</h3>${s?`<small>${s}</small>`:""}</div><button class="close" data-act="close" aria-label="Kapat">✕</button></div>`;
 
@@ -1771,7 +2960,7 @@ const head=(t,s)=>`<div class="sh"><div><h3>${t}</h3>${s?`<small>${s}</small>`:"
 let ed=null;
 function openEditor(k){
   const c=W().cells[k];
-  ed={k,title:c?c.title:"",color:c?c.color:1,subs:c?clone(c.subs):[],done:c?!!c.done:false,isNew:!c,wasDone:c?isDone(c):false,hadSubs:!!(c&&c.subs.length),subDraft:"",delAsk:false,also:new Set()};
+  ed={k,title:c?c.title:"",color:c?c.color:1,cat:c&&c.cat||"",typeOpen:false,subs:c?clone(c.subs):[],done:c?!!c.done:false,isNew:!c,wasDone:c?isDone(c):false,hadSubs:!!(c&&c.subs.length),subDraft:"",delAsk:false,also:new Set()};
   drawEditor(true);
 }
 function drawEditor(first){
@@ -1779,11 +2968,12 @@ function drawEditor(first){
   const ns=ed.subs.length,nd=ed.subs.filter(s=>s.d).length;
   let h=head(ed.isNew?"Yeni görev":"Görevi düzenle",`${esc(colName(colKey))}${r&&r.start?" · "+esc(r.start)+(r.end?"–"+esc(r.end):""):""}`);
   h+=`<input class="inp" id="eTitle" maxlength="60" placeholder="Görev adı" value="${esc(ed.title)}">`;
+  h+=typeRowHTML(ed,ed.title);
   h+=`<div class="lbl">Renk</div><div class="sw">${PAL.map((p,i)=>`<button data-act="col" data-i="${i}" class="${i===ed.color?"on":""}" style="background:${p[0]}" aria-label="Renk ${i+1}"></button>`).join("")}</div>`;
   h+=`<div class="lbl">Alt görevler ${ns?`<span class="prog">· ${nd}/${ns}</span>`:""}</div><div class="subs">`;
   h+=ed.subs.map((s,i)=>`<div class="sub ed"><span class="snum">${i+1}</span><span class="stx">${esc(s.t)}</span>${s.d?'<span class="sdone">✓</span>':""}<button class="mini x2" data-act="subdel" data-i="${i}" aria-label="Alt görevi sil">✕</button></div>`).join("");
   h+=`</div><div class="subAdd"><input class="inp" id="subIn" maxlength="60" placeholder="Alt görev ekle" value="${esc(ed.subDraft||"")}"><button class="btn sm" data-act="subadd">Ekle</button></div>`;
-  h+=`<p class="note">Burası sadece düzenleme yeri. Görevi tamamlamak için tablodaki kutuya dokun${ns?", alt görevlerin listesi açılır":""}.</p>`;
+  h+=`<p class="note">Burası sadece düzenleme yeri. Tamamlamak için tablodaki kutuya dokun, açılan pencereden işaretle.</p>`;
   h+=`<div class="btns">`;
   h+=`<button class="btn" data-act="edsave">Kaydet</button>`;
   if(!ed.isNew)h+=ed.delAsk?`<div class="confirm danger"><p><b>Bu görev ve alt görevleri silinecek.</b></p><div class="row2"><button class="btn ghost" data-act="eddelno">Vazgeç</button><button class="btn dng" data-act="eddel">Evet, sil</button></div></div>`:`<button class="btn red" data-act="eddelask">Görevi sil</button>`;
@@ -1800,13 +2990,16 @@ function commitEditor(){
   const k=ed.k,wasDone=ed.wasDone;
   if(!title){closeSheet();return;}
   const cell={title,color:ed.color,subs:ed.subs,done:ed.subs.length?ed.subs.every(s=>s.d):(ed.hadSubs?ed.wasDone:ed.done)};
+  if(ed.cat)cell.cat=ed.cat;
   W().cells[k]=cell;
+  if(ed.cat)rotaLearn(title,ed.cat);
   let added=0,skipped=0;const rowId=k.split("|")[0];
-  (ed.also||new Set()).forEach(ck=>{const kk=rowId+"|"+ck;if(W().cells[kk])skipped++;else{W().cells[kk]={title,color:ed.color,subs:cell.subs.map(s=>({t:s.t,d:false})),done:false};added++;}});
-  const copyAfter=ed.copyAfter;
+  (ed.also||new Set()).forEach(ck=>{const kk=rowId+"|"+ck;if(W().cells[kk])skipped++;else{W().cells[kk]={title,color:ed.color,subs:cell.subs.map(s=>({t:s.t,d:false})),done:false};if(cell.cat)W().cells[kk].cat=cell.cat;added++;}});
+  const copyAfter=ed.copyAfter,wasNew=ed.isNew;
   closeSheet();save(wkey());render();
+  if(wasNew){const t=todayD(),r=rowOf(rowId),kk=k.split("|")[1],tk="d"+((t.getDay()+6)%7),mk="d"+((addD(t,1).getDay()+6)%7);if(kk===tk||kk===mk)try{rotaEvent({type:"add",item:{id:"r:"+k,n:title,s:r&&r.start||"",e:r&&r.end||"",cat:cell.cat||"",day:kk===tk?"today":"tomorrow"}},{silent:true});}catch(err){}}
   if(added||skipped)toast(added?`Haftanın ${added} gününe daha eklendi`+(skipped?`, ${skipped} dolu gün atlandı`:""):"Diğer günler bu saatte dolu, eklenmedi");
-  if(copyAfter){startPaste({title,color:cell.color,subs:cell.subs.map(s=>({t:s.t,d:false})),done:false});return;}
+  if(copyAfter){const cp={title,color:cell.color,subs:cell.subs.map(s=>({t:s.t,d:false})),done:false};if(cell.cat)cp.cat=cell.cat;startPaste(cp);return;}
   if(!wasDone&&isDone(cell))celebrate(k);
 }
 
@@ -1816,17 +3009,36 @@ function openChecklist(k,tid){ck={k,tid};drawChecklist();}
 function drawChecklist(){
   const c=ck.tid?taskById(ck.tid):W().cells[ck.k];if(!c){closeSheet();return;}
   let where;if(ck.tid)where=esc(dayLabel(c.date))+(c.time?" · "+tmText(c):"");else{const [rowId,colKey]=ck.k.split("|");const r=rowOf(rowId);where=`${esc(colName(colKey))}${r&&r.start?" · "+esc(r.start)+(r.end?"–"+esc(r.end):""):""}`;}
-  const ns=c.subs.length,nd=c.subs.filter(s=>s.d).length,p=ns?Math.round(nd/ns*100):0;
-  const [bg,fg]=PAL[c.color]||PAL[0];
+  const ns=c.subs.length,nd=c.subs.filter(s=>s.d).length,p=ns?Math.round(nd/ns*100):0,dn=isDone(c);
+  const [bg]=PAL[c.color]||PAL[0];
   let h=`<div class="sh"><div><h3 class="ckt"><i style="background:${bg}"></i>${esc(c.title)}</h3><small>${where}</small></div><button class="close" data-act="close" aria-label="Kapat">✕</button></div>`;
   if(ck.tid&&c.note)h+=`<div class="ckLbl">Detay</div><div class="ckNote">${esc(c.note)}</div>`;
-  if(ck.tid&&!ns){const dn=isDone(c);h+=`<button class="tDoneBtn ${dn?"on":""}" data-act="tdone" aria-pressed="${dn}"><b>${dn?"✓":""}</b><span>${dn?"Tamamlandı":"Tamamlandı olarak işaretle"}${dn?"<small>Geri almak için dokun</small>":""}</span></button>`;openSheet("check",h);return;}
-  if(ck.tid)h+=`<div class="ckLbl">Alt görevler</div>`;
-  h+=`<div class="ckp"><div class="pbar"><i style="width:${p}%"></i></div><span>${nd}/${ns}</span></div>`;
-  h+=`<div class="ckl">${c.subs.map((s,i)=>`<button class="ckr ${s.d?"on":""}" data-act="ckt" data-i="${i}" aria-pressed="${s.d}"><b>${s.d?"✓":""}</b><span>${esc(s.t)}${s.n?`<small class="ckn">${esc(s.n)}</small>`:""}</span></button>`).join("")}</div>`;
-  h+=`<p class="note" style="text-align:center">Hepsini işaretlediğinde görev tamamlanır.</p>`;
+  if(ns){
+    h+=`<div class="ckLbl">Alt görevler</div><div class="ckp"><div class="pbar"><i style="width:${p}%"></i></div><span>${nd}/${ns}</span></div>`;
+    h+=`<div class="ckl">${c.subs.map((s,i)=>`<button class="ckr ${s.d?"on":""}" data-act="ckt" data-i="${i}" aria-pressed="${s.d}"><b>${s.d?"✓":""}</b><span>${esc(s.t)}${s.n?`<small class="ckn">${esc(s.n)}</small>`:""}</span></button>`).join("")}</div>`;
+  }else if(!dn)h+=`<p class="note ckHint">${ck.tid?"Bu görevi":"Bu rutini"} bitirdiysen aşağıdan işaretle.</p>`;
+  h+=`<div class="ckFoot" id="ckFoot">${dn?`<div class="ckDone"><b>✓</b><span>Tamamlandı</span><button class="ckUndo" data-act="${ns?"ckundo":"tdone"}">Geri al</button></div>`:`<button class="ckGo" id="ckBtn" data-act="${ns?"ckall":"tdone"}">${ns?"Hepsini tamamla":"✓ Tamamla"}</button>`}</div>`;
   openSheet("check",h);
 }
+/* tamamlanınca: efekt düğmede, ardından Rota'nın mesajı; 3 sn sonra kendiliğinden kapanır */
+function ckFinish(el){
+  if(!ck)return;const k=ck.k,tid=ck.tid;
+  const tok=ck.fin=rid();ck.hold=false;
+  const foot=$("ckFoot");
+  if(el&&el.classList.contains("ckGo")){el.classList.add("ok");el.innerHTML="✓ Tamamlandı";el.removeAttribute("data-act");}
+  else if(foot)foot.innerHTML=`<div class="ckGo ok">✓ Tamamlandı</div>`;
+  runEffect(el&&el.isConnected?el:($("ckFoot")||$("sheet")));
+  let m=null;try{m=rotaDone(k,tid);}catch(e){}
+  setTimeout(()=>{
+    if(!ck||ck.fin!==tok)return;
+    const sh=$("sheet");
+    sh.insertAdjacentHTML("beforeend",`<div class="ckRota${m&&m.tone==="gold"?" gold":""}"><span class="rAv">${COMPASS}</span><div class="rB"><small>Rota</small><div>${m?m.text:"Harika iş!"}</div><div class="ckStat">${rotaStat(k,tid)}</div></div></div><div class="ckBar" id="ckBar"><i></i></div><button class="ckKeep" id="ckKeep" hidden data-act="close">Kapat</button>`);
+    const bar=$("ckBar");requestAnimationFrame(()=>bar.classList.add("go"));
+    sh.scrollTop=sh.scrollHeight;
+    ck.timer=setTimeout(()=>{if(ck&&ck.fin===tok&&!ck.hold)closeSheet();},3400);
+  },420);
+}
+function ckHold(){if(!ck||!ck.fin||ck.hold)return;ck.hold=true;clearTimeout(ck.timer);const b=$("ckBar");if(b)b.remove();const k=$("ckKeep");if(k)k.hidden=false;}
 
 /* saat seçici */
 let tp=null;
@@ -1931,6 +3143,7 @@ function drawSettings(){
   const s=S.settings;
   let h=head("Ayarlar","Tema ve efektler için 🎨 Özelleştir'e bak");
   h+=`<div class="lbl">Ses ve titreşim</div><button class="tog ${s.sound?"on":""}" data-act="sound">🔊 Ses<b></b></button><button class="tog ${s.vib?"on":""}" data-act="vib">📳 Titreşim (telefonda)<b></b></button>`;
+  h+=`<div class="lbl">Rota (asistan)</div><button class="tog ${s.rotaPing!==false?"on":""}" data-act="rotaping">🧭 Rota bildirimleri<b></b></button><p class="note" style="margin-top:6px">Başka bir sekmedeyken önemli bir şey olursa (yaklaşan iş, başlayan iş) ekranın üstünde kısa bir not gösterir. Rota ${ROTA_V} · geliştirme aşamasında.</p>`;
   h+=`<div class="lbl">Hafta isimleri</div><div class="subs">${s.weekNames.map((n,i)=>`<input class="inp" id="wn${i}" data-wn="${i}" maxlength="30" value="${esc(n)}">`).join("")}</div>`;
   const wn=esc(s.weekNames[s.active]);
   h+=`<div class="lbl">Veriler</div>`;
@@ -2010,13 +3223,13 @@ const FX=[
  {n:"Neon Nabız",fx(el){anim(el,"beat 1s",1050);add(el,'<svg class="ecg" viewBox="0 0 200 26" preserveAspectRatio="none"><path d="M0 18 L50 18 L60 18 L66 4 L74 24 L80 18 L110 18 L118 10 L124 18 L200 18"/></svg>',1500,true);},snd(){const t=ac().currentTime;tone(70,t,.18,.5,"sine",45);tone(65,t+.2,.2,.4,"sine",40);tone(988,t+.25,.15,.06);tone(988,t+.65,.5,.06);}}
 ];
 
-function runEffect(el,idx){
+function runEffect(el,idx,mute){
   let i=idx!=null?idx:S.settings.effect;
   if(i<0||i>=FX.length)i=Math.floor(Math.random()*FX.length);
   const f=FX[i];
-  if(S.settings.sound){try{f.snd();}catch(e){}}
+  if(S.settings.sound&&!mute){try{f.snd();}catch(e){}}
   try{f.fx(el);}catch(e){}
-  if(S.settings.vib&&navigator.vibrate){try{navigator.vibrate([20,40,30]);}catch(e){}}
+  if(S.settings.vib&&!mute&&navigator.vibrate){try{navigator.vibrate([20,40,30]);}catch(e){}}
 }
 function toast(msg){const t=document.createElement("div");t.className="toast";t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2700);}
 /* ---------- gün bitişi efektleri ---------- */
@@ -2061,12 +3274,12 @@ function runDay(th,tds,host,idx){
   if(S.settings.vib&&navigator.vibrate){try{navigator.vibrate([30,60,30,60,80]);}catch(e){}}
   try{return f.run(th,tds,host)||2000;}catch(e){return 500;}
 }
-function celebrate(k){
+function celebrate(k,mute){
   const colKey=k.split("|")[1],st=colStats(colKey);
   const complete=st.t>0&&st.d===st.t;
   if(complete){animatingCol=colKey;render();}
   const el=document.querySelector(`td[data-k="${CSS.escape(k)}"]`);
-  if(el)runEffect(el);
+  if(el)runEffect(el,null,mute);
   if(!complete)return;
   setTimeout(()=>{
     const th=document.querySelector(`th[data-col="${CSS.escape(colKey)}"]`);
@@ -2148,10 +3361,10 @@ function onCellTap(td){
   if(!c){openEditor(k);return;}
   if(editMode){openEditor(k);return;}
   if(tab==="r"&&isPv()){toast(tkMon<mondayOf(todayD())?"Geçmiş hafta, burada tik atılamaz":"Bu hafta gelince tik atabilirsin");return;}
-  if(c.subs.length){openChecklist(k);return;}
-  const was=isDone(c);c.done=!c.done;save(wkey());render();
-  if(!was&&c.done)celebrate(k);
+  // alt görevi olsun olmasın önce pencere açılır; yanlışlıkla dokunmayla tamamlanmaz
+  openChecklist(k);
 }
+document.addEventListener("pointerdown",e=>{if(ck&&ck.fin&&e.target.closest&&e.target.closest("#sheet")&&!e.target.closest(".close,#ckKeep"))ckHold();},true);
 document.addEventListener("click",e=>{
   const t=e.target;
   if(Date.now()-dragEndAt<400){e.preventDefault();e.stopPropagation();return;}
@@ -2181,6 +3394,11 @@ document.addEventListener("click",e=>{
     case "tnew":openTaskEditor(null);break;
     case "asstmove":{const ov=overdueTasks();if(!ov.length){toast("Taşınacak görev yok");break;}const td=isoD(todayD());ov.forEach(x=>{x.date=td;});save("tasks");render();toast(`${ov.length} görev bugüne taşındı`);break;}
     case "asstins":AS.ins=(AS.ins||0)+1;renderAsst();break;
+    case "rotaq":rotaAsk(a.dataset.q,a.textContent);break;
+    case "rota":rotaAction(a.dataset.m,a.dataset.i);break;
+    case "rotago":rotaGo();break;
+    case "rprev":{RS.showPrev=!RS.showPrev;if(RS.el){const c=RS.el.querySelector(".rChat");rotaRedraw();if(RS.showPrev)c.scrollTop=0;}break;}
+    case "rotaping":S.settings.rotaPing=S.settings.rotaPing===false;save("settings");drawSettings();break;
     case "asstg":openChecklist(null,a.dataset.id);break;
     case "tdgo":{const pn=$("tdPanes");if(pn)pn.scrollTo({left:+a.dataset.i*pn.clientWidth,behavior:"smooth"});break;}
     case "radd":{const w=W(),key="d"+((todayD().getDay()+6)%7);let r=w.rows.find(x=>x.start&&!w.cells[x.id+"|"+key])||w.rows.find(x=>!w.cells[x.id+"|"+key]);if(!r){if(w.rows.length>=MAX_ROWS){toast("Bugünün bütün satırları dolu");break;}r={id:rid(),start:"",end:""};w.rows.push(r);save(wkey());}openEditor(r.id+"|"+key);break;}
@@ -2188,7 +3406,9 @@ document.addEventListener("click",e=>{
     case "tedit":openTaskEditor(a.dataset.id);break;
     case "tdfield":{tRead();ted.calOpen=!ted.calOpen;if(ted.calOpen){const d=isoToD(ted.date);ted.cal={y:d.getFullYear(),m:d.getMonth()};}drawTaskEditor();if(ted.calOpen)setTimeout(()=>{const c=document.querySelector("#sheet .ecal");c&&c.scrollIntoView({block:"nearest",behavior:"smooth"});},30);break;}
     case "ecal":{tRead();const v=+a.dataset.v;if(v===0){const t=todayD();ted.cal={y:t.getFullYear(),m:t.getMonth()};}else{let m=ted.cal.m+v,y=ted.cal.y;if(m<0){m=11;y--;}if(m>11){m=0;y++;}if(y<CAL_Y0||y>CAL_Y1)break;ted.cal={y,m};}drawTaskEditor();break;}
-    case "tdone":{const id=ck&&ck.tid,x=id&&taskById(id);if(!x)break;const was=isDone(x);x.done=!x.done;save("tasks");if(!was&&x.done){closeSheet();render();celebrateTask(id);}else{drawChecklist();render();}break;}
+    case "tdone":{if(!ck||ck.fin)break;const id=ck.tid,k=ck.k,x=id?taskById(id):W().cells[k];if(!x)break;const was=isDone(x);x.done=!x.done;save(id?"tasks":wkey());if(!was&&x.done){ckFinish(a);}else{drawChecklist();render();if(was)try{rotaEvent({type:"undo",item:{id:id?"g:"+id:"r:"+k,n:x.title},quick:false},{silent:true});}catch(e){}}break;}
+    case "ckall":{if(!ck||ck.fin)break;const c=ck.tid?taskById(ck.tid):W().cells[ck.k];if(!c)break;c.subs.forEach(q=>q.d=true);save(ck.tid?"tasks":wkey());ckFinish(a);break;}
+    case "ckundo":{if(!ck||ck.fin)break;const c=ck.tid?taskById(ck.tid):W().cells[ck.k];if(!c)break;c.subs.forEach(q=>q.d=false);c.done=false;save(ck.tid?"tasks":wkey());drawChecklist();render();break;}
     case "tsn":{tRead();const i=+a.dataset.i;ted.sEdit=i;ted.snDraft=ted.subs[i].n||"";drawTaskEditor();setTimeout(()=>{const n=$("tSnIn");if(n){n.focus();n.selectionStart=n.value.length;}},30);break;}
     case "tsnno":tRead();ted.sEdit=-1;drawTaskEditor();break;
     case "tsnok":{tRead();const q=ted.subs[+a.dataset.i];if(q){const v=(ted.snDraft||"").trim();if(v)q.n=v;else delete q.n;}ted.sEdit=-1;drawTaskEditor();break;}
@@ -2197,6 +3417,8 @@ document.addEventListener("click",e=>{
     case "ttime":tRead();openTime(null,true);break;
     case "ttclr":tRead();ted.time="";ted.end="";drawTaskEditor();break;
     case "tcol":tRead();ted.color=+a.dataset.i;drawTaskEditor();break;
+    case "rtyp":if(mode==="teditor"&&ted){tRead();ted.typeOpen=!ted.typeOpen;drawTaskEditor();}else if(mode==="editor"&&ed){readTitle();ed.typeOpen=!ed.typeOpen;drawEditor();}break;
+    case "rtset":if(mode==="teditor"&&ted){tRead();ted.cat=a.dataset.k;ted.typeOpen=false;drawTaskEditor();}else if(mode==="editor"&&ed){readTitle();ed.cat=a.dataset.k;ed.typeOpen=false;drawEditor();}break;
     case "tsubdel":tRead();ted.subs.splice(+a.dataset.i,1);ted.sEdit=-1;drawTaskEditor();break;
     case "tsubadd":tAddSub();break;
     case "tsave":commitTask();break;
@@ -2207,12 +3429,12 @@ document.addEventListener("click",e=>{
     case "calgo":{const d=a.dataset.d;closeSheet();goTasks(d);break;}
     case "rowup":case "rowdown":{const w=W(),i=w.rows.findIndex(r=>r.id===a.dataset.id),j=act==="rowup"?i-1:i+1;if(i<0||j<0||j>=w.rows.length)break;[w.rows[i],w.rows[j]]=[w.rows[j],w.rows[i]];save(wkey());render();const b2=document.querySelector(`[data-act="${act}"][data-id="${a.dataset.id}"]`);if(b2&&!b2.disabled)b2.focus({preventScroll:true});break;}
     case "col":readTitle();ed.color=+a.dataset.i;drawEditor();break;
-    case "ckt":{const k=ck.k,tid=ck.tid,c=tid?taskById(tid):W().cells[k];if(!c)break;const was=isDone(c);const s=c.subs[+a.dataset.i];s.d=!s.d;if(s.d)tick();save(tid?"tasks":wkey());
-      if(!was&&isDone(c)){closeSheet();render();tid?celebrateTask(tid):celebrate(k);}else{drawChecklist();render();}break;}
+    case "ckt":{if(!ck||ck.fin)break;const k=ck.k,tid=ck.tid,c=tid?taskById(tid):W().cells[k];if(!c)break;const was=isDone(c);const s=c.subs[+a.dataset.i];s.d=!s.d;if(s.d)tick();save(tid?"tasks":wkey());
+      if(!was&&isDone(c)){drawChecklist();const fb=$("ckFoot");if(fb)fb.innerHTML=`<button class="ckGo" id="ckBtn">✓ Tamamlandı</button>`;ckFinish($("ckBtn"));}else{drawChecklist();render();}break;}
     case "resetask":setPending(a.dataset.w);drawSettings();break;
     case "resetno":setPending(null);drawSettings();break;
     case "resetweek":{const w=W();for(const k in w.cells){w.cells[k].done=false;w.cells[k].subs.forEach(s=>s.d=false);}save(wkey());setPending(null);closeSheet();render();toast(`${S.settings.weekNames[S.settings.active]} yeniden başladı ↺`);break;}
-    case "resetall":{S.settings=defaultSettings();S.weeks=[defaultWeek(),defaultWeek(),defaultWeek()];S.tasks={items:[]};S.log={days:{}};S.notes={tags:[],days:{}};nTf=null;S.uev={items:[]};KEYS.forEach(k=>save(k));setPending(null);applyTheme();closeSheet();editMode=false;render();toast("Her şey sıfırlandı");setTimeout(nextIntro,900);break;}
+    case "resetall":{S.settings=defaultSettings();S.weeks=[defaultWeek(),defaultWeek(),defaultWeek()];S.tasks={items:[]};S.log={days:{},h:{}};S.notes={tags:[],days:{}};nTf=null;S.uev={items:[]};KEYS.forEach(k=>save(k));setPending(null);applyTheme();closeSheet();editMode=false;render();toast("Her şey sıfırlandı");setTimeout(nextIntro,900);break;}
     case "subdel":readTitle();ed.subs.splice(+a.dataset.i,1);drawEditor();break;
     case "subadd":addSub();break;
     case "eddone":readTitle();ed.done=!ed.done;commitEditor();break;
@@ -2341,13 +3563,13 @@ const TOUR=[
  {card:"hello"},
  {sel:"#tabs3",ic:"🧭",t:"Üç sekme, tek uygulama",d:"<b>Haftalık Rutin</b> her hafta tekrar eden düzenin, <b>Haftalık Görev</b> tarihli işlerin, <b>Bugün</b> ise ikisinin bugünkü hâli. Sekmeler arasında buradan geçersin."},
  {tab:"r",sel:"#wkBtn",ic:"🗂",t:"Mevcut hafta ve alternatifler",d:"Asıl programın <b>Mevcut hafta</b>. Yoğun ya da tatil haftaları için 2 alternatif program daha kurabilirsin. Buraya dokunup birini seçersin, ✎ ile adını değiştirirsin."},
- {tab:"r",sel:"#grid tbody tr:first-child td.c",ic:"✅",t:"Rutin kutuları",d:"Boş kutuya dokun, rutin ekle. Dolu kutuya dokununca tamamlanır, köşedeki ✎ ile düzenlersin. Saat kartından saati, sağ üstteki <b>+</b> ile satır ve sütunları ayarlarsın."},
+ {tab:"r",sel:"#grid tbody tr:first-child td.c",ic:"✅",t:"Rutin kutuları",d:"Boş kutuya dokun, rutin ekle. Dolu kutuya dokununca bir pencere açılır, oradan tamamlarsın. Köşedeki ✎ ile düzenlersin. Saat kartından saati, sağ üstteki <b>+</b> ile satır ve sütunları ayarlarsın."},
  {tab:"r",sel:"#grid thead th.col.today, #grid thead th.col",ic:"🏆",t:"Günün ilerlemesi",d:"İşleri bitirdikçe çubuk dolar. Günün hepsi bitince gün altına döner ve taç takılır. Tabloyu iki parmakla büyütüp küçültebilirsin."},
  {sel:"#calBtn",ic:"📅",t:"Takvim",d:"Tarihe dokununca takvim açılır: resmî ve dinî günler mavi, senin özel günlerin pembe. Bir güne dokunup <b>görev</b> ya da <b>doğum günü, yıl dönümü</b> gibi özel gün eklersin. Yanındaki oklarla haftalar arasında gezersin."},
  {tab:"g",sel:"#tview .tkH.today ~ .tkPlus, #tview .tkCol .tkPlus",ic:"🗓",t:"Haftalık Görev",d:"Tekrar etmeyen, tarihli işlerin burada. Günün altındaki <b>+</b> ile görev ekle; saat, detay ve alt görevler isteğe bağlı. Karta dokununca görev ekranı açılır."},
  {tab:"b",pane:1,sel:".tdMain",ic:"☀️",t:"Bugün",d:"Solda bugünün rutini, sağda bugünün görevleri. Burada işaretlediğin her şey haftalık sekmelerde de işaretlenir."},
  {tab:"b",pane:0,sel:"#notesPane",ic:"📝",t:"Notlarım",d:"Gün için madde madde notlar, ruh hâlin ve geri sayımlı etiketler. <b>📋 İşe not</b> ile bir işe özel not alırsın; o iş başlarken asistan sana hatırlatır."},
- {tab:"b",pane:2,sel:"#asstPane",ic:"🤖",t:"Asistan",d:"Günü seninle takip eder: yaklaşan işleri, çakışmaları, özel günleri hatırlatır, seri ve istatistiklerini tutar, gerektiğinde motive eder. Bazen de biraz takılır 😏"},
+ {tab:"b",pane:2,sel:"#asstPane",ic:"🧭",t:"Rota, asistanın",d:"Günü seninle takip eder: yaklaşan ve kaçan işleri, çakışmaları, özel günleri hatırlatır; bir iş bitirince seninle sevinir. Alttaki hazır sorulara dokunarak ona soru sorabilir, uygulamanın nasıl kullanıldığını öğrenebilirsin."},
  {sel:"#brush",ic:"🎨",t:"Kendine göre ayarla",d:"🎨 ile 12 tema, 20 görev ve 8 gün bitişi efekti; ⚙️ ile ses, titreşim ve sıfırlama. Bu tanıtımı da ⚙️ Ayarlar'dan tekrar izleyebilirsin."},
  {card:"done"}
 ];
