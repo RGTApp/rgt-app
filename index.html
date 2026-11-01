@@ -14,6 +14,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Program">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html,body{overscroll-behavior-y:none}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="rota-ai.js"></script>
 </head>
 <body>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Press+Start+2P&family=Black+Ops+One&display=swap">
@@ -727,6 +728,29 @@ body[data-tab="b"] .tblwrap{padding-top:4px}
 .rChips button:active{transform:scale(.97)}
 .rSep{flex:none;font-size:10.5px;font-weight:900;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;padding:0 2px 0 8px;border-left:1px solid var(--line);margin-left:2px}
 .tdAsst .rota{margin-bottom:12px}
+.rAiB{flex:none;font-size:10px;font-weight:900;letter-spacing:.04em;color:var(--accTx);background:linear-gradient(135deg,var(--acc),var(--g2));padding:3px 8px;border-radius:999px;white-space:nowrap}
+.rAiB[hidden],.rIn[hidden]{display:none}
+.rIn{display:flex;gap:8px;align-items:center;padding:8px 10px 10px;border-top:1px solid var(--line)}
+.rIn input{flex:1;min-width:0;background:var(--bg);border:1.5px solid var(--line);border-radius:999px;padding:10px 15px;color:var(--tx);font:700 16px var(--font);outline:none}
+.rIn input::placeholder{color:var(--mut);font-weight:700;font-size:14px}
+.rIn input:focus{border-color:var(--acc)}
+.rIn input:disabled{opacity:.6}
+.rIn button{flex:none;width:42px;height:42px;border-radius:50%;border:none;background:var(--acc);color:var(--accTx);display:grid;place-items:center;cursor:pointer}
+.rIn button svg{width:19px;height:19px;display:block}
+.rIn button:disabled{opacity:.4;cursor:default}
+.rM.ai .rB time{color:var(--g2)}
+.aiCode{display:flex;gap:8px}.aiCode .inp{flex:1;min-width:0;text-transform:uppercase;letter-spacing:.06em;font-size:16px}.aiCode .btn{width:auto;flex:none;padding:12px 18px}
+.aiErr{margin:8px 2px 0;font-size:12.5px;font-weight:800;color:var(--danger)}
+.aiInfo{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.aiS{background:var(--surf);border-radius:14px;padding:11px 13px}
+.aiS b{display:block;font-size:13.5px;font-weight:900;margin-bottom:4px}
+.aiS p{margin:0;font-size:13px;font-weight:700;line-height:1.6;color:color-mix(in srgb,var(--tx) 85%,var(--mut))}
+.aiS p b{display:inline;font-size:inherit;margin:0}
+.aiChk{display:flex;gap:10px;align-items:flex-start;width:100%;margin-top:12px;padding:12px;border-radius:14px;border:2px solid var(--line);background:var(--surf);color:var(--tx);font:800 13.5px var(--font);text-align:left;cursor:pointer;line-height:1.45}
+.aiChk i{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--mut);display:grid;place-items:center;margin-top:1px;font-style:normal}
+.aiChk.on{border-color:var(--acc)}
+.aiChk.on i{background:var(--acc);border-color:var(--acc)}
+.aiChk.on i::after{content:"✓";color:var(--accTx);font-size:14px;font-weight:900;line-height:1}
 .tabs3 button.rUn{position:relative}
 .tabs3 button.rUn::after{content:"";position:absolute;top:6px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--g2);box-shadow:0 0 0 2px var(--topbg);animation:rPul 1.6s infinite}
 @keyframes rPul{50%{transform:scale(1.35)}}
@@ -1091,7 +1115,7 @@ const wkey=()=>"w"+S.settings.active;
 /* ---------- kayıt: bulut (db) + cihaz yedeği ---------- */
 const LS="haftalik-program-v1";
 let db=null,uid=null,hadLocal=false,ready=false;
-function markReady(){if(ready)return;ready=true;document.documentElement.classList.remove("loading");try{migrateSamples();}catch(e){}try{render();}catch(e){}setTimeout(()=>nextIntro(),400);try{rotaLoad();}catch(e){}setTimeout(()=>{try{rotaOpen();}catch(e){}},1200);}
+function markReady(){if(ready)return;ready=true;document.documentElement.classList.remove("loading");try{migrateSamples();}catch(e){}try{render();}catch(e){}setTimeout(()=>nextIntro(),400);try{rotaLoad();}catch(e){}try{aiLoad();rotaInputSync();}catch(e){}setTimeout(()=>{try{rotaOpen();}catch(e){}},1200);}
 const timers={},writing={},again={},dirty={};
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
 function loadLocal(){try{const r=localStorage.getItem(LS);if(!r)return;const d=JSON.parse(r);hadLocal=true;S.settings=normSettings(d.settings);if(Array.isArray(d.weeks))for(let i=0;i<3;i++)S.weeks[i]=normWeek(d.weeks[i]);if(d.tasks)S.tasks=normTasks(d.tasks);if(d.log)S.log=normLog(d.log);if(d.notes)S.notes=normNotes(d.notes);if(d.uev)S.uev=normUev(d.uev);}catch(e){}}
@@ -2410,14 +2434,15 @@ function rotaDay(){const d=isoD(todayD());if(RS.day!==d){rotaKeepPrev({day:RS.da
 function rotaBubble(e){
   if(e.who==="me")return`<div class="rM me"><div class="rB"><time>${fmM(e.at)}</time>${e.text}</div></div>`;
   const acts=e.acts&&e.acts.length?`<div class="rActs">${e.acts.map((a,i)=>`<button data-act="rota" data-m="${e.id}" data-i="${i}" ${e.used?"disabled":""}>${esc(a.l)}</button>`).join("")}</div>`:"";
-  return`<div class="rM ${e.tone||""}" data-id="${e.id}"><span class="rAv">${COMPASS}</span><div class="rB"><time>${fmM(e.at)}</time><span class="rTx">${e.text}</span>${acts}</div></div>`;
+  return`<div class="rM ${e.tone||""}${e.ai?" ai":""}" data-id="${e.id}"><span class="rAv">${COMPASS}</span><div class="rB"><time>${e.ai?"✨ ":""}${fmM(e.at)}</time><span class="rTx">${e.text}</span>${acts}</div></div>`;
 }
 function rotaBox(){
   if(RS.el)return RS.el;
   const d=document.createElement("div");d.className="rota";
-  d.innerHTML=`<div class="rHead"><span class="rAv lg">${COMPASS}</span><div class="rHt"><b>Rota</b><small class="rSt">çevrimiçi</small></div><span class="rBeta" title="Rota ${ROTA_V} · geliştirme aşamasında">v${ROTA_V} · BETA</span></div><div class="rChat" role="log" aria-live="polite" aria-label="Rota ile sohbet"></div><div class="rChipsW"><div class="rChips" aria-label="Hazır sorular"></div></div>`;
+  d.innerHTML=`<div class="rHead"><span class="rAv lg">${COMPASS}</span><div class="rHt"><b>Rota</b><small class="rSt">çevrimiçi</small></div><span class="rAiB" hidden>✨ AI</span><span class="rBeta" title="Rota ${ROTA_V} · geliştirme aşamasında">v${ROTA_V} · BETA</span></div><div class="rChat" role="log" aria-live="polite" aria-label="Rota ile sohbet"></div><div class="rChipsW"><div class="rChips" aria-label="Hazır sorular"></div></div><form class="rIn" hidden autocomplete="off"><input type="text" maxlength="500" enterkeyhint="send" aria-label="Rota'ya mesaj yaz"><button type="submit" aria-label="Gönder"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10.1 15 12 3.4 13.9z" fill="currentColor"/></svg></button></form>`;
   d.querySelector(".rChips").addEventListener("scroll",e=>{RS.chipX=e.target.scrollLeft;},{passive:true});
-  RS.el=d;rotaRedraw();return d;
+  d.querySelector(".rIn").addEventListener("submit",e=>{e.preventDefault();const i=e.target.querySelector("input");rotaSend(i.value);});
+  RS.el=d;rotaRedraw();rotaInputSync();return d;
 }
 function rotaPrevHTML(){const p=RS.prev||[];if(!p.length)return"";return`<div class="rPrev"><button class="rPrevB" data-act="rprev" aria-expanded="${!!RS.showPrev}">${RS.showPrev?"Dünkü mesajları gizle":"Dünkü mesajlar ("+p.filter(x=>x.who!=="me").length+")"}</button>${RS.showPrev?`<div class="rPrevL">${p.map(e=>rotaBubble({...e,acts:[]})).join("")}</div><div class="rDay">Bugün</div>`:""}</div>`;}
 function rotaRedraw(){if(!RS.el)return;const c=RS.el.querySelector(".rChat");c.innerHTML=rotaPrevHTML()+(RS.log.length?RS.log.map(rotaBubble).join(""):`<div class="rEmpty">${COMPASS}<span>Rota birazdan burada…</span></div>`);c.scrollTop=c.scrollHeight;}
@@ -2436,7 +2461,7 @@ function rotaPump(){
   const w=document.createElement("div");w.innerHTML=rotaBubble(e);const el=w.firstChild;
   const tx=el.querySelector(".rTx"),acts=el.querySelector(".rActs");if(acts)acts.hidden=true;
   tx.innerHTML=`<span class="rDots"><i></i><i></i><i></i></span>`;c.appendChild(el);c.scrollTop=c.scrollHeight;
-  const plain=stripTags(e.text),wait=e.tone==="card"?1700:Math.min(1300,380+plain.length*6);
+  const plain=stripTags(e.text),wait=e.fast?120:e.tone==="card"?1700:Math.min(1300,380+plain.length*6);
   setTimeout(()=>{
     if(e.tone==="gold"||e.tone==="card"){tx.innerHTML=e.text;fin();return;}
     const tk=rTokens(e.text);let i=0,buf="";const sp=Math.max(5,Math.min(14,800/Math.max(1,tk.length)));
@@ -2448,7 +2473,7 @@ function rotaPump(){
 /* yeni mesaj */
 function rotaPost(m,o){
   if(!m||!m.text)return null;o=o||{};
-  const e={id:rid(),at:nowMin(),who:"r",text:m.text,tone:m.tone||o.tone||"",acts:(m.actions||[]).map(a=>({...a})),used:false,key:m.key||""};
+  const e={id:rid(),at:nowMin(),who:"r",text:m.text,tone:m.tone||o.tone||"",acts:(m.actions||[]).map(a=>({...a})),used:false,key:m.key||""};if(m.ai)e.ai=true;if(o.fast)e.fast=true;
   RS.log.push(e);if(RS.log.length>60)RS.log.shift();rotaSave();
   const visible=tab==="b"&&!document.hidden;
   if(!visible&&!o.silent){RS.unread++;drawTabs3();}
@@ -2523,6 +2548,7 @@ const ROTA_FAQ=[
  ["f_tasi","Görevi başka güne taşıma","Görevin ✎ düzenleme ekranında tarihe dokun, takvimden yeni günü seç. Geçmiş günlerden kalan görevleri ben de fark edip bugüne taşımayı öneririm."],
  ["f_veri","Verilerim nerede?","Programın otomatik kaydedilir: bağlantın varsa bulutta, yoksa bu cihazda. Hesapla giriş yakında geliyor; o zaman her cihazdan erişebileceksin."],
  ["f_bildirim","Bildirimlerini kapatmak","Başka bir sekmedeyken önemli bir şey olursa ekranın üstünde kısa bir not gösteririm. İstemezsen ⚙ Ayarlar'daki <b>Rota bildirimleri</b>'ni kapatabilirsin."],
+ ["f_ai","Yapay zekâ modu nedir?"],
  ["tour","Tanıtımı tekrar izle"],
  ["who","Sen kimsin?"]
 ];
@@ -2543,7 +2569,7 @@ function rotaChips(){
   if(c.hist.weekPct!=null)L.push(["week","Bu hafta nasıl?"]);
   L.push(["motivate","Biraz motivasyon"],["tired","Yoruldum"]);
   const box=RS.el.querySelector(".rChips");
-  box.innerHTML=L.map(x=>`<button data-act="rotaq" data-q="${x[0]}">${x[1]}</button>`).join("")+`<span class="rSep">Uygulama</span>`+ROTA_FAQ.map(x=>`<button class="faq" data-act="rotaq" data-q="${x[0]}">${x[1]}</button>`).join("");
+  box.innerHTML=L.map(x=>`<button data-act="rotaq" data-q="${x[0]}">${x[1]}</button>`).join("")+`<span class="rSep">Uygulama</span>`+ROTA_FAQ.filter(x=>x[0]!=="f_ai"||AI_HOST).map(x=>`<button class="faq" data-act="rotaq" data-q="${x[0]}">${x[1]}</button>`).join("");
   box.scrollLeft=RS.chipX||0;
 }
 const P0=a=>a[Math.floor(Math.random()*a.length)];
@@ -2556,6 +2582,7 @@ function rotaAsk(q,label){
     if(q==="summary")m=RT.summary(c);
     else if(q==="overdue")m=RT.overdueMsg(c);
     else if(q==="analyze"){rotaPost({text:P0(["Programını inceliyorum, bir saniye…","Bakıyorum… rutinlerini ve görevlerini tarıyorum.","Hemen inceliyorum 🔍"])},{silent:true});m=rotaAnalysis();}
+    else if(q==="f_ai")m={text:aiOn()?`Yapay zekâ modun açık ✨ Aşağıdaki kutuya yazdığın mesajlara Claude yapay zekâsıyla cevap veriyorum. Bugün kalan hakkın: <b>${aiLeft()}</b>. ⚙ Ayarlar'dan kapatabilir ya da iş adlarını gizleyebilirsin.`:"Aktivasyon kodun varsa ⚙ Ayarlar'daki <b>Rota yapay zekâ</b> bölümünden açabilirsin. Açınca bana aşağıdaki kutudan istediğini yazabilirsin; cevapları Claude yapay zekâsı verir. Neyin gönderildiğini açmadan önce ayrıntılı gösteriyorum."};
     else if(q==="tour"){m={text:"Tamam, tanıtımı baştan başlatıyorum. Rutinleri, görevleri, Bugün ekranını sırayla göstereceğim."};setTimeout(()=>{if($("modal").hidden&&!$("tour"))startTour();},1900);}
     else{const f=ROTA_FAQ.find(x=>x[0]===q);m=f&&f[2]?{text:f[2]}:RT.answer(c,q);}
   }catch(err){m={text:"Bir şeyler ters gitti, bunu şu an cevaplayamadım. Geliştirme aşamasındayım, kusura bakma 🙏"};}
@@ -2586,6 +2613,142 @@ function rotaAction(mid,i){
   }
   rotaPost(m,{silent:true});
 }
+
+/* ---------- Rota yapay zekâ (aktivasyon kodu olanlar için) ----------
+   Sunucu adresi GitHub sürümünde rota-ai.js dosyasından gelir. Claude içinde dış bağlantı kapalı olduğu için orada görünmez.
+   Gönderilen: mesaj, son birkaç mesaj, bugünkü/yarınki işlerin adı-türü-saati-durumu, haftalık sayılar.
+   Gönderilmeyen: notlar, alt görev ayrıntıları, ruh hâli, kişisel özel günler. */
+const ROTA_AI_URL=String(window.ROTA_AI_URL||"").trim().replace(/\/+$/,"");
+const AI_HOST=/^(https:\/\/|http:\/\/(localhost|127\.0\.0\.1)[:/])/.test(ROTA_AI_URL+"/")&&!(window.claude&&window.claude.use);
+let AI=null,AIP=null;// AI: etkin kod bilgisi · AIP: onay bekleyen kod
+function aiLoad(){try{const o=JSON.parse(lsGet("hp-rota-ai")||"null");AI=o&&o.code&&o.consent?o:null;}catch(e){AI=null;}}
+function aiSave(){if(AI)lsSet("hp-rota-ai",JSON.stringify(AI));else try{localStorage.removeItem("hp-rota-ai");}catch(e){}}
+const aiOn=()=>AI_HOST&&!!AI&&AI.on!==false;
+const aiLeft=()=>!AI?0:AI.leftDay===isoD(todayD())&&AI.left!=null?AI.left:(AI.limit||40);
+const aiMask=c=>String(c||"").replace(/^(.{4,5}).*(.{4})$/,"$1••••$2");
+async function aiCall(body){
+  const ac=typeof AbortController!=="undefined"?new AbortController():null;const tm=setTimeout(()=>ac&&ac.abort(),25000);
+  try{
+    const r=await fetch(ROTA_AI_URL+"/rota",{method:"POST",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(body),signal:ac?ac.signal:undefined});
+    let j=null;try{j=await r.json();}catch(e){}
+    return j&&typeof j==="object"?j:{ok:false,err:"server"};
+  }catch(e){return{ok:false,err:"net"};}finally{clearTimeout(tm);}
+}
+/* yapay zekâya giden durum özeti (en az veri) */
+function aiCtx(){
+  const t=todayD(),iso=isoD(t),names=!AI||AI.names!==false,lex=S.settings.lex,CB=Asistan2.CAT_BY;
+  const tur=x=>{try{const g=Asistan2.catOf(x.n,{cat:x.cat,lex});return g&&g.k&&g.k!=="diger"&&CB[g.k]?CB[g.k].l:"";}catch(e){return"";}};
+  const it=(x,i)=>{const smp=isSampleName(x.n),ty=smp?"":tur(x);const o={ad:smp||names?x.n:(ty||"İş")+" "+(i+1),tur:smp?"örnek":ty||"belirsiz",tip:x.src==="r"?"rutin":"görev",saat:x.s?x.s+(x.e?"–"+x.e:""):"gün içi",durum:x.done?"bitti":"bekliyor"};if(x.subs)o.alt_gorev_sayisi=x.subs;return o;};
+  const mon=mondayOf(t),hafta=DAYS.map((g,i)=>{const d=addD(mon,i),s=statOf(itemsOf(d)),o={gun:g,is_sayisi:s.t};if(d<=t)o.biten=s.d;if(sameD(d,t))o.bugun=true;return o;});
+  const stk=streakInfo(),wk=weekPct(mon),lw=weekPct(addD(mon,-7)),a7=avg7(),ov=overdueTasks().filter(x=>!isSampleName(x.title)),ev=evsOf(iso);
+  return{simdi:dayLabel(iso)+" "+fmM(nowMin()),aktif_haftalik_program:S.settings.weekNames[S.settings.active]||"",
+    bugun:itemsOf(t).map(it),yarin:itemsOf(addD(t,1)).map(it),bu_hafta:hafta,
+    istatistik:{seri_gun:stk.cur||0,son_7_gun_ortalama:a7!=null?"%"+a7:"yeterli kayıt yok",bu_hafta:wk.p!=null?"%"+wk.p:"yeterli kayıt yok",gecen_hafta:lw.p!=null?"%"+lw.p:"kayıt yok"},
+    geciken_gorevler:names?ov.slice(0,6).map(x=>x.title):ov.length,
+    resmi_tatil_veya_ozel_gun:ev.length?ev[0][0]:null};
+}
+const deEnt=s=>{const d=document.createElement("textarea");d.innerHTML=s;return d.value;};
+function aiHist(){return RS.log.filter(e=>e.text&&e.tone!=="card").slice(-6).map(e=>({r:e.who==="me"?"u":"a",t:deEnt(stripTags(String(e.text).replace(/<br\s*\/?>/g,"\n"))).slice(0,700)}));}
+/* cevabı güvenli biçime çevir: her şey kaçışlanır, sadece kalın ve satır sonu kalır */
+function aiFmt(t){
+  let s=String(t||"").replace(/\r/g,"").replace(/```[\s\S]*?```/g,"").replace(/^#{1,6}\s*/gm,"").replace(/^\s*[-*]\s+/gm,"• ").trim();
+  let h=esc(s).replace(/\*\*([^*\n]{1,160})\*\*/g,"<b>$1</b>").replace(/__([^_\n]{1,160})__/g,"<b>$1</b>").replace(/(^|[\s(])\*([^*\n]{1,100})\*(?=[\s).,!?:;]|$)/g,"$1$2");
+  return h.replace(/\n{3,}/g,"\n\n").replace(/\n/g,"<br>");
+}
+function rotaWait(show){
+  if(!RS.el)return;const c=RS.el.querySelector(".rChat");let w=c.querySelector(".rWait");
+  if(!show){if(w)w.remove();if(!RS.busy)rotaStatus("");return;}
+  if(!w){w=document.createElement("div");w.className="rM rWait";w.innerHTML=`<span class="rAv">${COMPASS}</span><div class="rB"><span class="rTx"><span class="rDots"><i></i><i></i><i></i></span></span></div>`;}
+  c.appendChild(w);c.scrollTop=c.scrollHeight;rotaStatus("düşünüyor…");
+}
+/* yazı kutusu: sadece yapay zekâ açıkken görünür */
+function rotaInputSync(){
+  if(!RS.el)return;const f=RS.el.querySelector(".rIn"),b=RS.el.querySelector(".rAiB");const on=aiOn();
+  f.hidden=!on;b.hidden=!on;if(!on)return;
+  const left=aiLeft(),inp=f.querySelector("input"),btn=f.querySelector("button");
+  inp.disabled=left<=0;btn.disabled=left<=0||!!RS.aiBusy;
+  inp.placeholder=left<=0?"Bugünlük hakkın doldu":`Rota'ya yaz… (bugün ${left} hak)`;
+  b.title=`Yapay zekâ açık · bugün ${left} mesaj hakkın kaldı`;
+}
+async function rotaSend(raw){
+  const q=String(raw||"").replace(/\s+/g," ").trim().slice(0,500);
+  if(!q||RS.aiBusy||!ready)return;
+  rotaDay();
+  const inp=RS.el&&RS.el.querySelector(".rIn input");
+  if(!aiOn()||aiLeft()<=0){rotaMe(q);if(inp)inp.value="";aiFallback(q,aiOn()?"limit":"off");return;}
+  const hist=aiHist();rotaMe(q);if(inp)inp.value="";
+  RS.aiBusy=true;rotaInputSync();rotaWait(true);
+  let r;try{r=await aiCall({code:AI.code,kind:"chat",q,ctx:aiCtx(),hist});}catch(e){r={ok:false,err:"net"};}
+  RS.aiBusy=false;rotaWait(false);
+  if(r.ok&&r.text){if(AI){AI.left=r.left!=null?+r.left:AI.left;AI.limit=+r.limit||AI.limit;AI.leftDay=isoD(todayD());aiSave();}rotaPost({text:aiFmt(r.text),ai:true},{silent:true,fast:true});}
+  else{if(r.err==="limit"&&AI){AI.left=0;AI.leftDay=isoD(todayD());aiSave();}if(r.err==="code"){AI=null;aiSave();}aiFallback(q,r.err||"server");}
+  rotaInputSync();
+}
+/* yapay zekâ cevap veremezse kurallı moda düş */
+function aiFallback(q,why){
+  const lead=why==="limit"?`Bugünlük yapay zekâ hakkın doldu${AI&&AI.limit?` (${AI.limit} mesaj)`:""}, yarın yenilenir 🙂`
+    :why==="code"?"Aktivasyon kodun artık geçerli değil, yapay zekâ modunu kapattım. Yeni bir kodun varsa ⚙ Ayarlar'dan girebilirsin."
+    :why==="net"?"Şu an yapay zekâya ulaşamadım; internet bağlantını kontrol eder misin?"
+    :why==="off"?"Yapay zekâ modu kapalı."
+    :"Yapay zekâ şu an cevap veremedi (yoğunluk olabilir), birazdan tekrar dene.";
+  let m=null;try{m=RT.answer(rotaCtx(),q);}catch(e){}
+  if(m&&m.intent&&m.intent!=="?"){rotaPost({text:lead+" Kurallı modda şöyle söyleyebilirim:",tone:"note"},{silent:true});rotaPost(m,{silent:true});}
+  else rotaPost({text:lead+" Bu arada aşağıdaki hazır sorularla devam edebiliriz.",tone:"note"},{silent:true});
+}
+/* ayarlar bölümü */
+function aiSettingsHTML(){
+  if(!AI_HOST)return"";
+  let h=`<div class="lbl">Rota yapay zekâ <span class="opt">· deneme</span></div>`;
+  if(!AI){
+    h+=`<p class="note" style="margin:0 0 8px">Aktivasyon kodun varsa Rota'ya istediğini yazabilirsin; cevapları Claude yapay zekâsı verir. Kodu girdikten sonra neyin gönderildiğini açıkça gösterip onayını isteyeceğim.</p>`;
+    h+=`<div class="aiCode"><input class="inp" id="aiCode" maxlength="30" placeholder="ROTA-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" value="${esc(AIP&&AIP.typed||"")}"><button class="btn" data-act="aicheck" ${AIP&&AIP.wait?"disabled":""}>${AIP&&AIP.wait?"Bakıyorum…":"Devam"}</button></div>`;
+    if(AIP&&AIP.err)h+=`<p class="aiErr" role="alert">${AIP.err}</p>`;
+    return h;
+  }
+  const left=aiLeft();
+  h+=`<button class="tog ${AI.on!==false?"on":""}" data-act="aitog">✨ Yapay zekâ cevapları<b></b></button>`;
+  h+=`<button class="tog ${AI.names!==false?"on":""}" data-act="ainames">🏷 İş adlarını gönder<b></b></button>`;
+  h+=`<p class="note" style="margin-top:6px">${AI.names!==false?"İşlerinin adları gönderilir, böylece Rota onları adıyla konuşur.":"İş adların gönderilmez; Rota sadece türlerini (Ders, Spor…) ve saatlerini görür."} Kod: <b>${esc(aiMask(AI.code))}</b>${AI.ad?" · "+esc(AI.ad):""} · Bugün kalan: <b>${left}/${AI.limit||40}</b></p>`;
+  h+=`<button class="dbtn" data-act="aiinfo"><span>ℹ</span><div><b>Bilgilendirme ve kurallar</b><small>Neyin gönderildiğini, neyin saklanmadığını tekrar oku</small></div></button>`;
+  if(pending==="ai")h+=`<div class="confirm danger"><p>Kod bu cihazdan kaldırılacak ve yapay zekâ kapanacak. Tekrar açmak için kodu yeniden girmen gerekir.</p><div class="row2"><button class="btn ghost" data-act="resetno">Vazgeç</button><button class="btn dng" data-act="aidelok">Evet, kaldır</button></div></div>`;
+  else h+=`<button class="dbtn red" data-act="aidel"><span>✕</span><div><b>Kodu kaldır</b><small>Yapay zekâyı kapatır, onayını geri alır</small></div></button>`;
+  return h;
+}
+function aiInfoHTML(){
+  return`<div class="aiInfo">
+<div class="aiS"><b>Ne oluyor?</b><p>Rota'ya aşağıdaki kutudan yazdığın mesajlara <b>Claude</b> yapay zekâsı (Anthropic) cevap verir. Hazır sorular ve hatırlatmalar eskisi gibi cihazında, kurallarla çalışır.</p></div>
+<div class="aiS"><b>Ne gönderilir?</b><p>• Yazdığın mesaj ve sohbetteki son birkaç mesaj<br>• Bugünkü ve yarınki işlerinin adı, türü, saati, bitip bitmediği<br>• Haftanın gün gün iş sayıları, serin ve tamamlama oranların</p></div>
+<div class="aiS"><b>Ne gönderilmez?</b><p>Notların, alt görevlerin ayrıntıları, ruh hâlin, doğum günü gibi kişisel özel günlerin ve hesap bilgilerin gönderilmez. İstersen Ayarlar'dan iş adlarını da kapatabilirsin; o zaman sadece türler gider.</p></div>
+<div class="aiS"><b>Saklanıyor mu?</b><p>Mesajlarının içeriği bizim sunucumuzda kaydedilmez; sadece kodun için günlük mesaj sayısı tutulur. İstek Anthropic'e iletilir ve onların gizlilik koşullarına tabidir; Anthropic API verilerini varsayılan olarak modellerini eğitmek için kullanmaz.</p></div>
+<div class="aiS"><b>Bilmen gerekenler</b><p>• Yapay zekâ hata yapabilir; önemli konularda kontrol et.<br>• Sağlık, hukuk, para gibi konularda uzman tavsiyesinin yerine geçmez.<br>• Şifre, kimlik numarası, adres gibi kişisel bilgileri yazma.<br>• Kodun sana özeldir, paylaşma. Günde ${AI&&AI.limit||AIP&&AIP.limit||40} mesaj hakkın var.<br>• İstediğin an Ayarlar'dan kapatabilir ya da kodu kaldırabilirsin.</p></div>
+</div>`;
+}
+function drawAiConsent(){
+  let h=head("Rota yapay zekâ","Açmadan önce lütfen oku · deneme sürümü")+aiInfoHTML();
+  h+=`<button class="aiChk ${AIP&&AIP.ok?"on":""}" data-act="aiok" role="checkbox" aria-checked="${!!(AIP&&AIP.ok)}"><i></i><span>Okudum, anladım. Bu bilgilerin yapay zekâya gönderilmesini kabul ediyorum.</span></button>`;
+  h+=`<div class="btns"><button class="btn" data-act="aiaccept" ${AIP&&AIP.ok?"":"disabled"}>✨ Yapay zekâyı aç</button><button class="btn ghost" data-act="settings">Vazgeç</button></div>`;
+  openSheet("aiconsent",h);
+}
+async function aiCheck(){
+  const inp=$("aiCode");if(!inp)return;
+  const code=inp.value.toUpperCase().replace(/\s+/g,"").trim();
+  AIP={typed:code};
+  if(!/^[A-Z0-9-]{6,30}$/.test(code)){AIP.err="Kodu tam yazdığından emin ol (ör. ROTA-AB12-CD34).";drawSettings();return;}
+  AIP.wait=true;drawSettings();
+  const r=await aiCall({code,kind:"check"});
+  if(mode!=="settings"&&mode!=="aiconsent"){AIP=null;return;}
+  if(r.ok){AIP={code,ad:r.ad||"",left:r.left,limit:r.limit||40,ok:false};drawAiConsent();return;}
+  AIP={typed:code,err:r.err==="code"?"Bu kod geçerli değil. Harfleri ve tireleri kontrol et.":r.err==="blocked"?"Çok fazla hatalı deneme oldu, yarın tekrar dene.":r.err==="net"?"Sunucuya ulaşılamadı. İnternet bağlantını kontrol et.":"Şu an kontrol edilemedi, birazdan tekrar dene."};
+  drawSettings();
+}
+function aiAccept(){
+  if(!AIP||!AIP.code||!AIP.ok)return;
+  AI={code:AIP.code,ad:AIP.ad,on:true,names:true,consent:new Date().toISOString(),left:AIP.left,limit:AIP.limit,leftDay:isoD(todayD())};AIP=null;aiSave();
+  closeSheet();rotaGo();
+  setTimeout(()=>{rotaDay();rotaInputSync();rotaPost({text:`Yapay zekâ modum açıldı ✨ Artık bana aşağıdaki kutudan istediğini yazabilirsin: günün, programın ya da uygulama hakkında. Bugünlük <b>${aiLeft()} mesaj</b> hakkın var. Ben de hata yapabilirim, önemli şeylerde bir kontrol et 🙂`},{silent:true});},250);
+}
+/* açıkken arada kalan hakkı tazele (yapay zekâ kullanmaz, sadece sayaç) */
+async function aiRefresh(){if(!aiOn())return;const r=await aiCall({code:AI.code,kind:"check"});if(!AI)return;if(r.ok){AI.left=r.left;AI.limit=r.limit||AI.limit;AI.leftDay=isoD(todayD());aiSave();}else if(r.err==="code"){AI=null;aiSave();}rotaInputSync();if(mode==="settings")drawSettings();}
 
 /* ---------- tür seçimi (düzenleme ekranları): Rota tahmin eder, kullanıcı düzeltir, Rota öğrenir ---------- */
 const rotaTypes=()=>Asistan2.CATS.filter(c=>!c.hidden);
@@ -2690,7 +2853,7 @@ function renderAsst(){
   const el=rotaBox(),ch=el.querySelector(".rChat");
   const atBottom=ch.scrollHeight-ch.scrollTop-ch.clientHeight<60,st=ch.scrollTop;
   if(el.parentNode!==box){box.innerHTML="";box.appendChild(el);}else{[...box.children].forEach(n=>{if(n!==el)n.remove();});}
-  rotaChips();
+  rotaChips();rotaInputSync();
   try{box.insertAdjacentHTML("beforeend",rotaDash());}catch(e){}
   ch.scrollTop=atBottom?ch.scrollHeight:st;
   if(tab==="b"&&RS.unread){RS.unread=0;drawTabs3();}
@@ -3144,6 +3307,7 @@ function drawSettings(){
   let h=head("Ayarlar","Tema ve efektler için 🎨 Özelleştir'e bak");
   h+=`<div class="lbl">Ses ve titreşim</div><button class="tog ${s.sound?"on":""}" data-act="sound">🔊 Ses<b></b></button><button class="tog ${s.vib?"on":""}" data-act="vib">📳 Titreşim (telefonda)<b></b></button>`;
   h+=`<div class="lbl">Rota (asistan)</div><button class="tog ${s.rotaPing!==false?"on":""}" data-act="rotaping">🧭 Rota bildirimleri<b></b></button><p class="note" style="margin-top:6px">Başka bir sekmedeyken önemli bir şey olursa (yaklaşan iş, başlayan iş) ekranın üstünde kısa bir not gösterir. Rota ${ROTA_V} · geliştirme aşamasında.</p>`;
+  h+=aiSettingsHTML();
   h+=`<div class="lbl">Hafta isimleri</div><div class="subs">${s.weekNames.map((n,i)=>`<input class="inp" id="wn${i}" data-wn="${i}" maxlength="30" value="${esc(n)}">`).join("")}</div>`;
   const wn=esc(s.weekNames[s.active]);
   h+=`<div class="lbl">Veriler</div>`;
@@ -3379,7 +3543,15 @@ document.addEventListener("click",e=>{
   switch(act){
     case "close":closeSheet();break;
     case "tab":{const i=+a.dataset.i;if(i===S.settings.active)openRename("week",i);else{S.settings.active=i;saveLocal();render();}break;}
-    case "settings":pending=null;drawSettings();break;
+    case "settings":pending=null;if(mode!=="aiconsent"&&mode!=="aiinfo")AIP=null;drawSettings();if(mode==="settings")aiRefresh();break;
+    case "aicheck":aiCheck();break;
+    case "aiok":if(AIP){AIP.ok=!AIP.ok;const sc=$("sheet").scrollTop;drawAiConsent();$("sheet").scrollTop=sc;}break;
+    case "aiaccept":aiAccept();break;
+    case "aitog":if(AI){AI.on=AI.on===false;aiSave();rotaInputSync();drawSettings();}break;
+    case "ainames":if(AI){AI.names=AI.names===false;aiSave();drawSettings();}break;
+    case "aiinfo":openSheet("aiinfo",head("Rota yapay zekâ","Bilgilendirme ve kurallar")+aiInfoHTML()+`<div class="btns"><button class="btn ghost" data-act="settings">Ayarlara dön</button></div>`);$("sheet").scrollTop=0;break;
+    case "aidel":setPending("ai");drawSettings();break;
+    case "aidelok":AI=null;aiSave();setPending(null);rotaInputSync();drawSettings();toast("Kod kaldırıldı, yapay zekâ kapandı");break;
     case "editmode":if(tab!=="r"){openTaskEditor(null,tab==="b"?isoD(todayD()):null);break;}editMode=!editMode;delAsk=null;render();break;
     case "edit":if(clip){toast("Bu kutu dolu. Boş bir kutuya dokun");break;}openEditor(a.dataset.k);break;
     case "also":{if(a.classList.contains("full")){toast("O gün bu saatte dolu");break;}readTitle();const c=a.dataset.c;ed.also.has(c)?ed.also.delete(c):ed.also.add(c);drawEditor();break;}
@@ -3491,6 +3663,7 @@ document.addEventListener("keydown",e=>{
     if(e.target.id==="tTitle"){e.preventDefault();commitTask();return;}
     if(e.target.id==="eTitle"){e.preventDefault();commitEditor();return;}
     if(e.target.id==="rnIn"){e.preventDefault();commitRename();return;}
+    if(e.target.id==="aiCode"){e.preventDefault();aiCheck();return;}
     if(e.target.tagName==="BUTTON"||e.target.tagName==="INPUT")return;
     const td=e.target.closest&&e.target.closest("td.c");if(td){e.preventDefault();if(ready)onCellTap(td);return;}
     const ac2=e.target.closest&&e.target.closest("th[data-act]");if(ac2){ac2.click();}
